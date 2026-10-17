@@ -4,7 +4,7 @@
 
 ## 下载安装包
 
-每次向 `main` 分支提交，GitHub 都会自动生成新的安装包：打开仓库首页右侧的 **Releases**，在手机上下载最新的 `成长手册-1.N.apk`。生成进度可在 **Actions** 页查看。
+每次向 `main` 分支提交，GitHub 都会自动生成新的安装包：打开仓库首页右侧的 **Releases**，在手机上下载最新的 `growth-handbook-1.N.apk`。生成进度可在 **Actions** 页查看。
 
 ## 安装与更新
 

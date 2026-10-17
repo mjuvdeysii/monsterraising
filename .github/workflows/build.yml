@@ -33,15 +33,15 @@ jobs:
           msg=$(grep -E "error:|e: |What went wrong|FAILURE|Could not|Caused by|> " build.log | head -60 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')
           echo "::error title=Gradle build::${msg}"
       - name: Name the APK
-        run: cp app/build/outputs/apk/release/app-release.apk "成长手册-1.${{ github.run_number }}.apk"
+        run: cp app/build/outputs/apk/release/app-release.apk "growth-handbook-1.${{ github.run_number }}.apk"
       - uses: actions/upload-artifact@v4
         with:
           name: growth-handbook-apk
-          path: "成长手册-1.${{ github.run_number }}.apk"
+          path: "growth-handbook-1.${{ github.run_number }}.apk"
       - name: Publish as a release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: handbook-1.${{ github.run_number }}
           name: 成长手册 1.${{ github.run_number }}
-          files: "成长手册-1.${{ github.run_number }}.apk"
+          files: "growth-handbook-1.${{ github.run_number }}.apk"
           body: 下载 APK 文件，在安卓手机上打开安装。更新时直接覆盖安装，勾选记录和出生日期会保留。

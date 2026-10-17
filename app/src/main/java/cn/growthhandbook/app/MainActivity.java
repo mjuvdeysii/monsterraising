@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebResourceRequest;
@@ -40,7 +41,7 @@ public class MainActivity extends Activity {
         s.setDomStorageEnabled(true);
         s.setAllowFileAccess(false);
         s.setAllowContentAccess(false);
-        s.setTextZoom(100);
+        s.setTextZoom(getSharedPreferences("hb", MODE_PRIVATE).getInt("zoom", 100));
         s.setMediaPlaybackRequiresUserGesture(true);
         web.setOverScrollMode(View.OVER_SCROLL_NEVER);
         web.addJavascriptInterface(new Bridge(this), "HBApp");
@@ -115,6 +116,21 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void print() { a.printSheet(); }
+
+        @JavascriptInterface
+        public void haptic() {
+            a.runOnUiThread(() -> a.web.performHapticFeedback(Build.VERSION.SDK_INT >= 30 ? HapticFeedbackConstants.CONFIRM : HapticFeedbackConstants.VIRTUAL_KEY));
+        }
+
+        @JavascriptInterface
+        public int getTextZoom() { return a.getSharedPreferences("hb", MODE_PRIVATE).getInt("zoom", 100); }
+
+        @JavascriptInterface
+        public void setTextZoom(int z) {
+            final int v = Math.max(80, Math.min(160, z));
+            a.getSharedPreferences("hb", MODE_PRIVATE).edit().putInt("zoom", v).apply();
+            a.runOnUiThread(() -> a.web.getSettings().setTextZoom(v));
+        }
 
         @JavascriptInterface
         public void setReminders(String json) {

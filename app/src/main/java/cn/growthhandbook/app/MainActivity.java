@@ -13,6 +13,7 @@ import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
+import android.view.Window;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
@@ -103,6 +104,28 @@ public class MainActivity extends Activity {
         });
     }
 
+    void applyBars(boolean dark) {
+        Window w = getWindow();
+        int bar = dark ? 0xFF171513 : 0xFFFFFDF8, nav = dark ? 0xFF211E1B : 0xFFFFFFFF;
+        w.setStatusBarColor(bar);
+        w.setNavigationBarColor(nav);
+        View d = w.getDecorView();
+        int f = d.getSystemUiVisibility();
+        int light = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | (Build.VERSION.SDK_INT >= 26 ? View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR : 0);
+        d.setSystemUiVisibility(dark ? (f & ~light) : (f | light));
+        web.setBackgroundColor(bar);
+    }
+
+    void shareText(String title, String text) {
+        runOnUiThread(() -> {
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("text/plain");
+            i.putExtra(Intent.EXTRA_SUBJECT, title);
+            i.putExtra(Intent.EXTRA_TEXT, text);
+            try { startActivity(Intent.createChooser(i, "分享给家人")); } catch (Exception ignored) { }
+        });
+    }
+
     void askNotificationPermission() {
         if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             runOnUiThread(() -> requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 7));
@@ -116,6 +139,12 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void print() { a.printSheet(); }
+
+        @JavascriptInterface
+        public void share(String title, String text) { a.shareText(title, text); }
+
+        @JavascriptInterface
+        public void setDark(boolean dark) { a.runOnUiThread(() -> a.applyBars(dark)); }
 
         @JavascriptInterface
         public void haptic() {

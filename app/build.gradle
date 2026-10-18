@@ -7,8 +7,10 @@ android {
         applicationId "cn.growthhandbook.app"
         minSdk 24
         targetSdk 34
-        versionCode = Integer.parseInt(System.getenv("VERSION_CODE") ?: "1")
-        versionName = "1." + (System.getenv("VERSION_CODE") ?: "1")
+        def vc = Integer.parseInt(System.getenv("VERSION_CODE") ?: "1")
+        versionCode = vc
+        // 42 and later are the 2.0 line: 2.0, 2.01, 2.02 …
+        versionName = vc >= 42 ? ("2.0" + (vc > 42 ? String.valueOf(vc - 42) : "")) : ("1." + vc)
     }
     // the signing key is not in this repository: the build workflow writes it from the repository's secrets
     signingConfigs {

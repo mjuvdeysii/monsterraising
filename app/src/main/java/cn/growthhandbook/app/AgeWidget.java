@@ -27,6 +27,13 @@ public class AgeWidget extends AppWidgetProvider {
         refresh(c);
     }
 
+    static final String JOURNAL = "journal";
+
+    static void saveJournal(Context c, String json) {
+        c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().putString(JOURNAL, json == null ? "" : json).apply();
+        refresh(c);
+    }
+
     static void refresh(Context c) {
         AppWidgetManager m = AppWidgetManager.getInstance(c);
         int[] ids = m.getAppWidgetIds(new ComponentName(c, AgeWidget.class));
@@ -81,6 +88,25 @@ public class AgeWidget extends AppWidgetProvider {
             v.setImageViewResource(R.id.w_img, (night ? sleep : day)[stage - 1]);
             Intent i = new Intent(c, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             v.setOnClickPendingIntent(R.id.w_root, PendingIntent.getActivity(c, 7, i, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
+            // 育儿手帐: four quick buttons and a one-line status, only when the family turned the journal on
+            JSONObject jr = null;
+            try { jr = new JSONObject(c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(JOURNAL, "{}")); } catch (Exception e) { }
+            boolean on = jr != null && jr.optBoolean("on");
+            v.setViewVisibility(R.id.w_btns, on ? android.view.View.VISIBLE : android.view.View.GONE);
+            v.setViewVisibility(R.id.w_jr, on ? android.view.View.VISIBLE : android.view.View.GONE);
+            if (on) {
+                String run = jr.optString("sleep");
+                v.setTextViewText(R.id.w_jr, run.isEmpty() ? jr.optString("last") + "  ·  " + jr.optString("today").replace("今天 ", "") : run);
+                String[] ks = { "nurse", "bottle", "sleep", "diaper" };
+                int[] vs = { R.id.wb_nurse, R.id.wb_bottle, R.id.wb_sleep, R.id.wb_diaper };
+                for (int k = 0; k < ks.length; k++) {
+                    Intent li = new Intent(c, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("log", ks[k]).setAction("log." + ks[k]);
+                    v.setOnClickPendingIntent(vs[k], PendingIntent.getActivity(c, 20 + k, li, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
+                }
+                boolean sl = run.startsWith("正在睡"), nu = run.startsWith("正在亲喂");
+                v.setTextViewText(R.id.wt_sleep, sl ? "醒了" : "睡眠");
+                v.setTextViewText(R.id.wt_nurse, nu ? "喂完" : "亲喂");
+            }
             mgr.updateAppWidget(id, v);
         }
     }

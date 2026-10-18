@@ -7,4 +7,12 @@
     <color name="w_ink">#211E1A</color>
     <color name="w_ink2">#5A534B</color>
     <bool name="light_bars">true</bool>
+    <color name="wb_nurse">#FBE7E4</color>
+    <color name="wbs_nurse">#E58C8C</color>
+    <color name="wb_bottle">#FCEFD9</color>
+    <color name="wbs_bottle">#E6A23C</color>
+    <color name="wb_sleep">#E4EAF8</color>
+    <color name="wbs_sleep">#6F8FD8</color>
+    <color name="wb_diaper">#DFF0F3</color>
+    <color name="wbs_diaper">#5BA7B8</color>
 </resources>

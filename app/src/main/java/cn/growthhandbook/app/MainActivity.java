@@ -94,7 +94,11 @@ public class MainActivity extends Activity {
         else web.loadUrl(target(getIntent()));
     }
 
+    String pendingLog = "";
+
     private String target(Intent i) {
+        String lg = i == null ? null : i.getStringExtra("log");
+        if (lg != null && !lg.isEmpty()) { pendingLog = lg; return HOME + "#journal"; }
         int m = i == null ? -1 : i.getIntExtra("month", -1);
         return m >= 0 ? HOME + "#m" + m + "-care" : HOME;
     }
@@ -102,6 +106,8 @@ public class MainActivity extends Activity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        String lg = intent.getStringExtra("log");
+        if (lg != null && lg.matches("[a-z]+") && web != null) { web.evaluateJavascript("window.HB_LOG&&HB_LOG('" + lg + "')", null); return; }
         int m = intent.getIntExtra("month", -1);
         if (m >= 0 && web != null) web.evaluateJavascript("location.hash='m" + m + "-care'", null);
     }
@@ -389,6 +395,12 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void setName(String name) { AgeWidget.saveName(a, name); }
+
+        @JavascriptInterface
+        public void setJournal(String json) { AgeWidget.saveJournal(a, json); }
+
+        @JavascriptInterface
+        public String pendingLog() { String p = a.pendingLog; a.pendingLog = ""; return p == null ? "" : p; }
 
         @JavascriptInterface
         public void setReminders(String json) {

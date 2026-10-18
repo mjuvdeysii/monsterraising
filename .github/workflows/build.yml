@@ -71,10 +71,15 @@ jobs:
         with:
           name: growth-handbook-apk
           path: "monster-raising-1.${{ github.run_number }}.apk"
+      - name: Work out the version name
+        run: |
+          N=${{ github.run_number }}
+          if [ "$N" -ge 42 ]; then V="2.0"; [ "$N" -gt 42 ] && V="2.0$((N-42))"; else V="1.$N"; fi
+          echo "VNAME=$V" >> "$GITHUB_ENV"
       - name: Publish as a release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: handbook-1.${{ github.run_number }}
-          name: 养小怪兽 1.${{ github.run_number }}
+          name: 养小怪兽 ${{ env.VNAME }}
           files: "monster-raising-1.${{ github.run_number }}.apk"
           body_path: release_body.md

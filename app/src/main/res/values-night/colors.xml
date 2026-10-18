@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="paper">#171513</color>
+    <color name="splash_bg">#211E1B</color>
     <bool name="light_bars">false</bool>
 </resources>

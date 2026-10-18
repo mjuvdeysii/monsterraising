@@ -55,4 +55,4 @@ jobs:
           tag_name: handbook-1.${{ github.run_number }}
           name: 成长手册 1.${{ github.run_number }}
           files: "growth-handbook-1.${{ github.run_number }}.apk"
-          body: 下载 APK 文件，在安卓手机上打开安装。1.13 起使用新的签名：从 1.12 或更早的版本升级时，先在旧版“记录”页导出记录，卸载旧版后安装新版，再在新版“记录”页导入。之后的版本直接覆盖安装，记录会保留。
+          body_path: RELEASE_NOTES.md

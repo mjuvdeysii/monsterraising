@@ -13,6 +13,7 @@ import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebResourceRequest;
@@ -26,6 +27,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import org.json.JSONObject;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import androidx.webkit.WebViewAssetLoader;
 
@@ -34,12 +37,22 @@ public class MainActivity extends Activity {
     static final String ORIGIN = "https://appassets.androidplatform.net";
     static final String HOME = ORIGIN + "/assets/site/index.html";
     private WebView web;
+    private volatile boolean pageReady = false;
 
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         web = new WebView(this);
         setContentView(web);
+        final View content = findViewById(android.R.id.content);
+        content.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override public boolean onPreDraw() {
+                if (!pageReady) return false;
+                content.getViewTreeObserver().removeOnPreDrawListener(this);
+                return true;
+            }
+        });
+        content.postDelayed(() -> { pageReady = true; content.invalidate(); }, 3000);
         final WebViewAssetLoader loader = new WebViewAssetLoader.Builder()
                 .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this))
                 .build();
@@ -56,6 +69,10 @@ public class MainActivity extends Activity {
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
                 return loader.shouldInterceptRequest(request.getUrl());
+            }
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                if (!pageReady) { pageReady = true; findViewById(android.R.id.content).invalidate(); }
             }
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
@@ -179,6 +196,52 @@ public class MainActivity extends Activity {
         }
     }
 
+    // update check: reads the latest release on GitHub; nothing about the person is sent
+    static final String RELEASES = "https://api.github.com/repos/mjuvdeysii/monsterraising/releases/latest";
+
+    int versionCode() {
+        try { return (int) (Build.VERSION.SDK_INT >= 28 ? getPackageManager().getPackageInfo(getPackageName(), 0).getLongVersionCode() : getPackageManager().getPackageInfo(getPackageName(), 0).versionCode); }
+        catch (Exception e) { return 0; }
+    }
+
+    void checkUpdate(final boolean manual) {
+        new Thread(() -> {
+            String result;
+            try {
+                HttpURLConnection c = (HttpURLConnection) new URL(RELEASES).openConnection();
+                c.setConnectTimeout(8000); c.setReadTimeout(8000);
+                c.setRequestProperty("Accept", "application/vnd.github+json");
+                c.setRequestProperty("User-Agent", "growth-handbook-android");
+                if (c.getResponseCode() != 200) throw new Exception("http " + c.getResponseCode());
+                ByteArrayOutputStream b = new ByteArrayOutputStream();
+                try (InputStream in = c.getInputStream()) { byte[] buf = new byte[8192]; int n; while ((n = in.read(buf)) > 0) b.write(buf, 0, n); }
+                JSONObject r = new JSONObject(b.toString("UTF-8"));
+                String tag = r.optString("tag_name", "");
+                int latest = Integer.parseInt(tag.replaceAll("^.*\\.", ""));
+                JSONObject out = new JSONObject();
+                out.put("current", versionCode());
+                out.put("latest", latest);
+                out.put("notes", r.optString("body", ""));
+                out.put("page", r.optString("html_url", ""));
+                if (r.optJSONArray("assets") != null && r.getJSONArray("assets").length() > 0) {
+                    JSONObject a0 = r.getJSONArray("assets").getJSONObject(0);
+                    out.put("url", a0.optString("browser_download_url", ""));
+                    out.put("size", a0.optLong("size", 0));
+                }
+                out.put("manual", manual);
+                result = "HB_UPDATE(" + out.toString() + ")";
+            } catch (Exception e) {
+                result = manual ? "HB_UPDATE(null)" : "";
+            }
+            final String code = result;
+            if (!code.isEmpty()) runOnUiThread(() -> js(code));
+        }).start();
+    }
+
+    void openUrl(String url) {
+        runOnUiThread(() -> { try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url))); } catch (Exception ignored) { } });
+    }
+
     void askNotificationPermission() {
         if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             runOnUiThread(() -> requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 7));
@@ -201,6 +264,15 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void openFile() { a.openFile(); }
+
+        @JavascriptInterface
+        public int version() { return a.versionCode(); }
+
+        @JavascriptInterface
+        public void checkUpdate(boolean manual) { a.checkUpdate(manual); }
+
+        @JavascriptInterface
+        public void openUrl(String url) { if (url != null && url.startsWith("https://")) a.openUrl(url); }
 
         @JavascriptInterface
         public void setDark(boolean dark) { a.runOnUiThread(() -> a.applyBars(dark)); }

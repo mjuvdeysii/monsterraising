@@ -1438,6 +1438,68 @@ html.vt main>.view:not([hidden]){animation:none!important}
 @media (prefers-reduced-motion:no-preference){html.app :is(.card,.mc,.t-cover,.map-n,.pager a):active{transform:scale(.985);transition:transform .1s}}
 html.app .tabbar a.on .ic{animation:tabPop .4s cubic-bezier(.3,1.6,.5,1)}
 @keyframes tabPop{40%{transform:scale(1.18)}to{transform:none}}
+
+/* ===== contents tab as the growth map ===== */
+html.app #home .stg{display:none}
+.home-map{display:none}
+html.app .home-map{display:block;order:-1}
+html.app .home-map .map{position:relative;margin:4px 0 0}
+.hm-head{position:absolute;left:0;right:0;display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s cubic-bezier(.2,0,0,1)}
+.hm-head h2{margin:0;font-family:var(--f-title);font-size:18px}
+.hm-head .stg-art{width:44px;height:30px}
+.hm-head .hm-evo{width:54px;margin-left:auto}
+.hm-stop{position:absolute;left:0;right:0;height:120px;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s cubic-bezier(.2,0,0,1)}
+.hm-stop.in,.hm-head.in,.hm-epi.in{opacity:1;transform:none}
+.hm-stop .map-n{top:16px}
+.hm-card{position:absolute;top:0;display:block}
+.hm-stop.l .hm-card{left:92px;right:0}
+.hm-stop.r .hm-card{left:0;right:92px}
+html.app .hm-card .mc{display:grid!important;grid-template-columns:104px 1fr;grid-template-rows:auto auto;align-items:center;column-gap:10px;padding:8px!important;min-height:0;border-radius:18px!important}
+html.app .hm-card .mc .ill.mini{grid-row:1/3;grid-column:1;margin:0!important;border-radius:12px}
+html.app .hm-card .mc b{grid-column:2;align-self:end;font-size:24px}
+html.app .hm-card .mc span{display:none}
+html.app .hm-card .mc em{grid-column:2;align-self:start;font-size:13px!important;line-height:1.5;border-top:0!important;padding-top:2px!important;margin:0!important}
+html.app .hm-card .mc b::after{content:" 个月";font:700 12px var(--f-ui);color:var(--ink2)}
+.hm-date{position:absolute;top:72px;font:700 10.5px var(--f-num);color:var(--ink2)}
+.hm-stop.l .hm-date{left:22px}
+.hm-stop.r .hm-date{right:22px}
+.map-road .r4{fill:none;stroke:#E9DCC4;stroke-width:6;stroke-linecap:round;stroke-dasharray:0.1 16}
+.map-n.done .star{display:block}
+.map-n .star{display:none;position:absolute;right:-8px;bottom:-6px;width:20px;height:20px;background:#F3C443;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);z-index:1}
+.map-k .k-s{width:13px;height:13px;background:#F3C443;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.hm-epi{position:absolute;left:0;right:0;text-align:center;opacity:0;transform:translateY(14px);transition:opacity .7s,transform .7s cubic-bezier(.2,0,0,1)}
+.hm-epi .te-m{display:block;width:120px;margin:0 auto}
+.hm-epi .dots{font:900 18px var(--f-num);letter-spacing:.3em;color:var(--ink2);margin:6px 0}
+.hm-epi h2{font-family:var(--f-title);font-size:19px;margin:4px 0 6px}
+.hm-epi p{font-size:14.5px;color:var(--ink2);margin:0 18px}
+@media (prefers-reduced-motion:no-preference){.hm-epi.in .te-m .mascot{animation:float 4s ease-in-out infinite}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
+.map-road .r3{stroke-dasharray:var(--to,0) 1000}
+/* strip ellipsis, epilogue cards */
+html.app .chain a.more b{font-size:18px;letter-spacing:.05em}
+html.app .chain a.more::after{display:none}
+.t-epi,.m-epi{display:flex!important;align-items:center;gap:14px}
+.te-m{flex:none;width:76px}
+.t-epi b,.m-epi b{display:block;font-family:var(--f-title);font-size:16px;line-height:1.5}
+.m-epi{margin:8px 0 0;padding:14px 16px;border-radius:18px;background:var(--surface);border:1px solid var(--line);color:var(--ink);text-decoration:none}
+html.app .m-epi{display:flex!important}
+.m-epi{display:none!important}
+/* special days and the little monster's tricks */
+.t-day{display:flex!important;align-items:center;gap:12px;background:#FFF4D6!important;border-color:#F3D27A!important}
+.t-day.big{background:linear-gradient(135deg,#FFF1D0,#FCE3E0)!important}
+.td-m{flex:none;width:62px}
+.t-day b{display:block;font-family:var(--f-title);font-size:19px}
+html.app[data-theme="dark"] .t-day{background:#3A321F!important;border-color:#6B5A2A!important}
+@media (prefers-color-scheme:dark){html.app:not([data-theme="light"]) .t-day{background:#3A321F!important;border-color:#6B5A2A!important}}
+@media (prefers-reduced-motion:no-preference){
+  .t-mascot.spin .mascot{animation:spin .9s cubic-bezier(.3,1.3,.5,1)}
+  .t-mascot.doze .mascot{animation:doze 1.6s ease-in-out infinite}
+  .td-m .mascot{animation:jump 1.4s cubic-bezier(.3,1.6,.5,1) infinite}
+}
+@keyframes spin{0%{transform:rotate(0)}70%{transform:rotate(380deg)}100%{transform:rotate(360deg)}}
+@keyframes doze{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg) translateY(1px)}}
+/* night: a few stars around the little monster on Today */
+.t-mascot{position:relative}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kFFF6E6:#473c29;--kE8EEDB:#333826;--kDDE8CF:#2b3222;--kF5E0E4:#41252a;--kFFF3C4:#3a3521;--kDFC6C3:#523d3a;--kF1EEE8:#3b372d;--kF5E0E0:#412525;--kDFCAC3:#52403a;--kF5E4E0:#412a25;--kDFCFC3:#52443a;--kF5E7E0:#412e25;--kDFD3C3:#52483a;--kF5EBE0:#413425;--kDFD8C3:#524c3a;--kF5EEE0:#413825;--kF5F1E0:#413c25;--kDDDFC3:#50523a;--kF5F5E0:#414125;--kD8DFC3:#4c523a;--kF1F5E0:#3c4125;--kD3DFC3:#48523a;--kEEF5E0:#384125;--kCFDFC3:#44523a;--kEBF5E0:#344125;--kCADFC3:#40523a;--kE7F5E0:#2e4125;--kC6DFC3:#3d523a;--kE4F5E0:#2a4125;--kC3DFC6:#3a523d;--kF7EFE2:#433826;--kE0F5E0:#254125;--kC3DFCA:#3a5240;--kE0F5E4:#25412a;--kC3DFCF:#3a5244;--kE0F5E7:#25412e;--kC3DFD3:#3a5248;--kE0F5EB:#254134;--kC3DFD8:#3a524c;--kE0F5EE:#254138;--kC3DFDD:#3a5250;--kE0F5F1:#25413c;--kC3DDDF:#3a5052;--kC99A6B:#47382a;--kE0F5F5:#254141;--kC3D8DF:#3a4c52;--kE0F1F5:#253c41;--kC3D3DF:#3a4852;--kE0EEF5:#253841;--kC3CFDF:#3a4452;--kE0EBF5:#253441;--kC3CADF:#3a4052;--kE0E7F5:#252e41;--kC3C6DF:#3a3d52;--kE0E4F5:#252a41;--kC6C3DF:#3d3a52;--kE0E0F5:#252541;--kCFE6D4:#223025;--kE4E0F5:#2a2541;--kCFC3DF:#443a52;--kE7E0F5:#2e2541;--kD3C3DF:#483a52;--kFFF3D6:#413925;--kEBE0F5:#342541;--kD8C3DF:#4c3a52;--kEEE0F5:#382541;--kF1E0F5:#3c2541;--kDFC3DD:#523a50;--kF5E0F5:#412541;--kF5E0F1:#41253c;--kDFC3D3:#523a48;--kDCEBF5:#24343f;--kF5E0EE:#412538;--kF5E0EB:#412534;--kDFC3CA:#523a40;--kF5E0E7:#41252e;--kDFC3C6:#523a3d;--kF7D8DF:#3f242a;--kFBF7EF:#493f2a;--kF3EEE6:#3e372a;--kA8D5B5:#354e3c;--kFFF6D6:#413b25;--kEDF2F7:#2c3843;--kF7F0E4:#433926;--kEEF5EE:#2f3f2f;--kFFF8EC:#4a3e2a;--kE9D8B8:#594c33;--kEFE3CC:#372f1f;--kF4F1EA:#3f392d;--kF3D9DF:#3d2329;--kF8EDED:#452a2a;--kEDC9C9:#351e1e;--kF0E6DB:#3b3025;--kEAF4F0:#2d3f38;--kEAF1EE:#2f3b36;--kDCE6D2:#2a3023;--kF6EAEA:#422a2a;--kEADAD1:#342822;--kF6F0EA:#42362a;--kEAE6D1:#343122;--kE2DECB:#2c2a20;--kF2EAF6:#3a2a42;--kEAD1EA:#342234;--kF5EAE6:#412f28;--kE2DECA:#534f3c;--kEAF6EE:#2a4232;--kD1EAE2:#22342e;--kD4E2D7:#252e27;--kF2EEE6:#3d372b;--kF6E9EC:#432a2f;--kFBF3E4:#453b27;--kF8EEED:#452d2a;--kEDCFC9:#35221e;--kF0E9DB:#3b3325;--kE8F1F4:#2b3a3f;--kF6F2EA:#423a2a;--kEAEAD1:#343422;--kE2E2CB:#2c2c20;--kEAF0F6:#2a3642;--kD1D5EA:#222534;--kD3D9E3:#24282e;--kF4EAF6:#3e2a42;--kEAD1E6:#342231;--kF5E9E6:#412d28;--kE2CAD4:#533c45;--kEAF6F0:#2a4236;--kD1EAE6:#223431;--kD4E2D9:#252e28;--kE8EEF2:#2c363d;--kF8F0ED:#45322a;--kEDD5C9:#35251e;--kF0ECDB:#3b3725;--kF6EEEA:#42322a;--kEAE2D1:#342e22;--kF6F4EA:#423e2a;--kE6EAD1:#313422;--kDEE2CB:#2a2c20;--kF6EAF6:#422a42;--kEAD1E2:#34222e;--kF3F5E6:#3e4128;--kE2D1CA:#53433c;--kEAF6F2:#2a423a;--kD1EAEA:#223434;--kD4E2DB:#252e29;--kF6F6EA:#42422a;--kE2EAD1:#2e3422;--kDAE2CB:#282c20;--kEAECF6:#2a2e42;--kD5D1EA:#252234;--kD3D3E3:#24242e;--kF6EAF4:#422a3e;--kEAD1DE:#34222b;--kEFF5E6:#374128;--kCADAE2:#3c4b53;--kEAF6F4:#2a423e;--kD1E6EA:#223134;--kD4E2DE:#252e2b;--kDCE8F2:#24323d;--kF8F4ED:#453c2a;--kEDE1C9:#352d1e;--kECF0DB:#373b25;--kF6EAF2:#422a3a;--kEAD1DA:#342228;--kEAEAF6:#2a2a42;--kDAD1EA:#282234;--kD6D3E3:#26242e;--kF1F5E6:#3b4128;--kCAE2CC:#3c533e;--kEAF6F6:#2a4242;--kD1E2EA:#222e34;--kD4E2E0:#252e2c;--kF8F6ED:#45412a;--kEDE7C9:#35311e;--kE9F0DB:#333b25;--kF2E7D2:#3a3221;--kF1D9C9:#36281f;--kF2F6EA:#3a422a;--kDAEAD1:#283422;--kD2E2CB:#242c20;--kECEAF6:#2e2a42;--kDED1EA:#2b2234;--kD9D3E3:#28242e;--kF6EAF0:#422a36;--kEAD1D5:#342225;--kEAF4F6:#2a3e42;--kD1DEEA:#222b34;--kD4E2E2:#252e2e;--kE3EEF3:#28373f;--kE8F1E4:#303c2a;--kF8F8ED:#45452a;--kEDEDC9:#35351e;--kE6F0DB:#303b25;--kE6F1F4:#293b40;--kF0F6EA:#36422a;--kD5EAD1:#253422;--kCFE2CB:#232c20;--kF6EAEE:#422a32;--kEAD1D1:#342222;--kE8F5E6:#2c4128;--kCAE2D3:#3c5344;--kEAF2F6:#2a3a42;--kD1DAEA:#222834;--kD4E0E2:#252c2e;--kF6F8ED:#41452a;--kE7EDC9:#31351e;--kE2F0DB:#2c3b25;--kF4F6EA:#3e422a;--kDEEAD1:#2b3422;--kEEF6EA:#32422a;--kD1EAD1:#223422;--kCBE2CB:#202c20;--kF6EAEC:#422a2e;--kEAD5D1:#342522;--kE6F5E8:#28412c;--kCAE2D6:#3c5347;--kD4DEE2:#252b2e;--kECF6EA:#2e422a;--kD1EAD5:#223425;--kCBE2CF:#202c23;--kE1D3E3:#2d242e;--kE6F5EA:#28412f;--kE2CAD7:#533c48;--kEAEEF6:#2a3242;--kD1D1EA:#222234;--kD4DBE2:#25292e;--kF2F8ED:#37452a;--kDBEDC9:#29351e;--kDBF0DB:#253b25;--kEAF6EA:#2a422a;--kD1EADA:#223428;--kCBE2D2:#202c24;--kF6ECEA:#422e2a;--kEADED1:#342b22;--kECF5E6:#324128;--kE2D8CA:#53493c;--kD4D9E2:#25282e;--kF0F8ED:#32452a;--kD5EDC9:#25351e;--kDBF0DF:#253b29;--kCCE0CC:#3e513e;--kE9F5E6:#2d4128;--kD4E2CA:#45533c;--kE3D3E1:#2e242d;--kD4D7E2:#25272e;--kEEF8ED:#2d452a;--kCFEDC9:#22351e;--kDBF0E2:#253b2c;--kCBE2DA:#202c28;--kE3D3DE:#2e242b;--kD7CAE2:#483c53;--kD4D4E2:#25252e;--kEDF8ED:#2a452a;--kC9EDC9:#1e351e;--kDBF0E6:#253b30;--kCCE0D3:#3e5144;--kE3D3DB:#2e2429;--kE6F5E6:#284128;--kD5E2CA:#46533c;--kEEEAF6:#322a42;--kE2D1EA:#2e2234;--kD7D4E2:#27252e;--kEDF8EE:#2a452d;--kC9EDCF:#1e3522;--kDBF0E9:#253b33;--kCCE0D6:#3e5147;--kE3EFF3:#28393f;--kEAF6EC:#2a422e;--kD1EADE:#22342b;--kCBE2E2:#202c2c;--kE3D3D9:#2e2428;--kF0EAF6:#362a42;--kE6D1EA:#312234;--kD9D4E2:#28252e;--kFFF3E6:#473929;--kDBD4E2:#29252e;--kEDF8F2:#2a4537;--kC9EDDB:#1e3529;--kDBF0F0:#253b3b;--kF5F1E8:#413a2a;--kDED4E2:#2b252e;--kEDF8F4:#2a453c;--kC9EDE1:#1e352d;--kDBECF0:#25373b;--kCCE0E0:#3e5151;--kE3D6D3:#2e2624;--kE6F5F1:#28413b;--kCAD3E2:#3c4453;--kE0D4E2:#2c252e;--kEDF8F6:#2a4541;--kC9EDE7:#1e3531;--kDBE9F0:#25333b;--kCBD2E2:#20242c;--kE3D9D3:#2e2824;--kE6EEF5:#283641;--kCAE0E2:#3c5153;--kE2D4E2:#2e252e;--kEDF8F8:#2a4545;--kC9EDED:#1e3535;--kDBE6F0:#25303b;--kCCDAE0:#3e4b51;--kC9C2B4:#47433c;--kE3DBD3:#2e2924;--kE2D4E0:#2e252c;--kEDF6F8:#2a4145;--kC9E7ED:#1e3135;--kDBE2F0:#252c3b;--kCCD6E0:#3e4751;--kE3DED3:#2e2b24;--kE6E6F5:#282841;--kE2D2CA:#53443c;--kE2D4DE:#2e252b;--kEDF4F8:#2a3c45;--kC9E1ED:#1e2d35;--kDBDFF0:#25293b;--kCFCBE2:#23202c;--kEAE6F5:#2f2841;--kCAD8E2:#3c4953;--kE2D4DB:#2e2529;--kEDF2F8:#2a3745;--kC9DBED:#1e2935;--kDBDBF0:#25253b;--kD2CBE2:#24202c;--kE3E3D3:#2e2e24;--kECE6F5:#322841;--kD4CAE2:#453c53;--kE2D4D9:#2e2528;--kEDF0F8:#2a3245;--kC9D5ED:#1e2535;--kDFDBF0:#29253b;--kD6CBE2:#26202c;--kE1E3D3:#2d2e24;--kEEE6F5:#362841;--kD9E2CA:#4a533c;--kE2D4D7:#2e2527;--kDACBE2:#28202c;--kDEE3D3:#2b2e24;--kE9E6F5:#2d2841;--kE0CAE2:#513c53;--kE2D4D4:#2e2525;--kEDEDF8:#2a2a45;--kC9C9ED:#1e1e35;--kE6DBF0:#30253b;--kD3CCE0:#443e51;--kF3E6F5:#3e2841;--kE2D7D4:#2e2725;--kEEEDF8:#2d2a45;--kCFC9ED:#221e35;--kE9DBF0:#33253b;--kE2CBE2:#2c202c;--kD9E3D3:#282e24;--kE2D9D4:#2e2825;--kF0EDF8:#322a45;--kD5C9ED:#251e35;--kECDBF0:#37253b;--kE2CBDE:#2c202a;--kD6E3D3:#262e24;--kE2DBD4:#2e2925;--kF2EDF8:#372a45;--kDBC9ED:#291e35;--kF0DBF0:#3b253b;--kE2DED4:#2e2b25;--kF4EDF8:#3c2a45;--kE1C9ED:#2d1e35;--kF0DBEC:#3b2537;--kE0CCE0:#513e51;--kD3E3D6:#242e26;--kF5E6F1:#41283b;--kE2E0D4:#2e2c25;--kF6EDF8:#412a45;--kE7C9ED:#311e35;--kF0DBE9:#3b2533;--kE2CBD2:#2c2024;--kD3E3D9:#242e28;--kF5E6EB:#412831;--kE2E2D4:#2e2e25;--kF8EDF8:#452a45;--kEDC9ED:#351e35;--kF0DBE6:#3b2530;--kE0CCDA:#513e4b;--kD3E3DB:#242e29;--kF5E6E8:#41282c;--kE2D3CA:#53443c;--kE0E2D4:#2c2e25;--kF8EDF6:#452a41;--kEDC9E7:#351e31;--kF0DBE2:#3b252c;--kE0CCD6:#513e47;--kE2CBCB:#2c2020;--kF5E6ED:#412834;--kCAE2DE:#3c534f;--kDEE2D4:#2b2e25;--kF8EDF4:#452a3c;--kEDC9E1:#351e2d;--kF0DBDF:#3b2529;--kE0CCD3:#513e44;--kF4E9D4:#3c3322;--kF5E7E6:#412a28;--kD0CAE2:#423c53;--kDBE2D4:#292e25;--kF8EDF2:#452a37;--kEDC9DB:#351e29;--kF0DBDB:#3b2525;--kE0CCCF:#513e41;--kCAE2DF:#3c5350;--kD9E2D4:#282e25;--kBDBDBD:#414141;--kF8EDF0:#452a32;--kEDC9D5:#351e25;--kF0DFDB:#3b2925;--kE2D6CB:#2c2620;--kD3E1E3:#242d2e;--kF5E6E6:#412828;--kE2CACD:#533c3f;--kD7E2D4:#272e25;--kF7E3B8:#322b1c;--kD3DEE3:#242b2e;--kD4E2D4:#252e25;--kF7F1E6:#443a27;--kFFFDF7:#4e462c;--kE8F0E6:#2f3a2c;--kF4F7F2:#384132;--kE8EEF4:#2b353f;--kF6DCE3:#40242c;--kDCE7F6:#243040;--kF4E6C8:#372f1f;--kE7E0F4:#2f2540;--kDCEFE2:#263a2c;--kF6E0D8:#3e2a23;--kEEF4F7:#2d3c43;--kF3E9DA:#3e3323;--kEEF5F2:#2f3f38;--kCFE3EE:#202f37;--kF2F5F8:#303a43;--kF8F3EC:#463a2a;--kF2F6FA:#2c3a48;--kE3DCCB:#2d2920;--kE8EDF4:#2b333f;--kF7EFE3:#433726;--kFFF8EA:#493e29;--kF4EFE6:#403829;--kF3ECF6:#3b2c42;--kDCE4F2:#242d3d;--kEFD5C6:#34261e;--kCBCBE2:#20202c;--kE6D2A8:#564a31;--kD3DBE3:#24292e;--kDBD3E3:#29242e;--kE3D3E3:#2e242e;--kD3E3DE:#242e2b;--kD9CFEA:#282133;--kF5F1E6:#413b28;--kF0F5E6:#394128;--kCADBE2:#3c4c53;--kE2D0CA:#53423c;--kCADCE2:#3c4d53;--kE6F5F3:#28413e;--kE2CFCA:#53413c;--kE6E7F5:#282a41;--kCADDE2:#3c4e53;--kF2E6F5:#3c2841;--kE2CECA:#53403c;--kCADEE2:#3c4f53;--kEBD9CF:#342821;--kF3EAF5:#3d2c41;--kF7F2EA:#443a29;--kF6F1E7:#433a28;--kF4F2EE:#3d3931;--kF6F8F4:#3a4133}}:root[data-theme="dark"]{--kFFF6E6:#473c29;--kE8EEDB:#333826;--kDDE8CF:#2b3222;--kF5E0E4:#41252a;--kFFF3C4:#3a3521;--kDFC6C3:#523d3a;--kF1EEE8:#3b372d;--kF5E0E0:#412525;--kDFCAC3:#52403a;--kF5E4E0:#412a25;--kDFCFC3:#52443a;--kF5E7E0:#412e25;--kDFD3C3:#52483a;--kF5EBE0:#413425;--kDFD8C3:#524c3a;--kF5EEE0:#413825;--kF5F1E0:#413c25;--kDDDFC3:#50523a;--kF5F5E0:#414125;--kD8DFC3:#4c523a;--kF1F5E0:#3c4125;--kD3DFC3:#48523a;--kEEF5E0:#384125;--kCFDFC3:#44523a;--kEBF5E0:#344125;--kCADFC3:#40523a;--kE7F5E0:#2e4125;--kC6DFC3:#3d523a;--kE4F5E0:#2a4125;--kC3DFC6:#3a523d;--kF7EFE2:#433826;--kE0F5E0:#254125;--kC3DFCA:#3a5240;--kE0F5E4:#25412a;--kC3DFCF:#3a5244;--kE0F5E7:#25412e;--kC3DFD3:#3a5248;--kE0F5EB:#254134;--kC3DFD8:#3a524c;--kE0F5EE:#254138;--kC3DFDD:#3a5250;--kE0F5F1:#25413c;--kC3DDDF:#3a5052;--kC99A6B:#47382a;--kE0F5F5:#254141;--kC3D8DF:#3a4c52;--kE0F1F5:#253c41;--kC3D3DF:#3a4852;--kE0EEF5:#253841;--kC3CFDF:#3a4452;--kE0EBF5:#253441;--kC3CADF:#3a4052;--kE0E7F5:#252e41;--kC3C6DF:#3a3d52;--kE0E4F5:#252a41;--kC6C3DF:#3d3a52;--kE0E0F5:#252541;--kCFE6D4:#223025;--kE4E0F5:#2a2541;--kCFC3DF:#443a52;--kE7E0F5:#2e2541;--kD3C3DF:#483a52;--kFFF3D6:#413925;--kEBE0F5:#342541;--kD8C3DF:#4c3a52;--kEEE0F5:#382541;--kF1E0F5:#3c2541;--kDFC3DD:#523a50;--kF5E0F5:#412541;--kF5E0F1:#41253c;--kDFC3D3:#523a48;--kDCEBF5:#24343f;--kF5E0EE:#412538;--kF5E0EB:#412534;--kDFC3CA:#523a40;--kF5E0E7:#41252e;--kDFC3C6:#523a3d;--kF7D8DF:#3f242a;--kFBF7EF:#493f2a;--kF3EEE6:#3e372a;--kA8D5B5:#354e3c;--kFFF6D6:#413b25;--kEDF2F7:#2c3843;--kF7F0E4:#433926;--kEEF5EE:#2f3f2f;--kFFF8EC:#4a3e2a;--kE9D8B8:#594c33;--kEFE3CC:#372f1f;--kF4F1EA:#3f392d;--kF3D9DF:#3d2329;--kF8EDED:#452a2a;--kEDC9C9:#351e1e;--kF0E6DB:#3b3025;--kEAF4F0:#2d3f38;--kEAF1EE:#2f3b36;--kDCE6D2:#2a3023;--kF6EAEA:#422a2a;--kEADAD1:#342822;--kF6F0EA:#42362a;--kEAE6D1:#343122;--kE2DECB:#2c2a20;--kF2EAF6:#3a2a42;--kEAD1EA:#342234;--kF5EAE6:#412f28;--kE2DECA:#534f3c;--kEAF6EE:#2a4232;--kD1EAE2:#22342e;--kD4E2D7:#252e27;--kF2EEE6:#3d372b;--kF6E9EC:#432a2f;--kFBF3E4:#453b27;--kF8EEED:#452d2a;--kEDCFC9:#35221e;--kF0E9DB:#3b3325;--kE8F1F4:#2b3a3f;--kF6F2EA:#423a2a;--kEAEAD1:#343422;--kE2E2CB:#2c2c20;--kEAF0F6:#2a3642;--kD1D5EA:#222534;--kD3D9E3:#24282e;--kF4EAF6:#3e2a42;--kEAD1E6:#342231;--kF5E9E6:#412d28;--kE2CAD4:#533c45;--kEAF6F0:#2a4236;--kD1EAE6:#223431;--kD4E2D9:#252e28;--kE8EEF2:#2c363d;--kF8F0ED:#45322a;--kEDD5C9:#35251e;--kF0ECDB:#3b3725;--kF6EEEA:#42322a;--kEAE2D1:#342e22;--kF6F4EA:#423e2a;--kE6EAD1:#313422;--kDEE2CB:#2a2c20;--kF6EAF6:#422a42;--kEAD1E2:#34222e;--kF3F5E6:#3e4128;--kE2D1CA:#53433c;--kEAF6F2:#2a423a;--kD1EAEA:#223434;--kD4E2DB:#252e29;--kF6F6EA:#42422a;--kE2EAD1:#2e3422;--kDAE2CB:#282c20;--kEAECF6:#2a2e42;--kD5D1EA:#252234;--kD3D3E3:#24242e;--kF6EAF4:#422a3e;--kEAD1DE:#34222b;--kEFF5E6:#374128;--kCADAE2:#3c4b53;--kEAF6F4:#2a423e;--kD1E6EA:#223134;--kD4E2DE:#252e2b;--kDCE8F2:#24323d;--kF8F4ED:#453c2a;--kEDE1C9:#352d1e;--kECF0DB:#373b25;--kF6EAF2:#422a3a;--kEAD1DA:#342228;--kEAEAF6:#2a2a42;--kDAD1EA:#282234;--kD6D3E3:#26242e;--kF1F5E6:#3b4128;--kCAE2CC:#3c533e;--kEAF6F6:#2a4242;--kD1E2EA:#222e34;--kD4E2E0:#252e2c;--kF8F6ED:#45412a;--kEDE7C9:#35311e;--kE9F0DB:#333b25;--kF2E7D2:#3a3221;--kF1D9C9:#36281f;--kF2F6EA:#3a422a;--kDAEAD1:#283422;--kD2E2CB:#242c20;--kECEAF6:#2e2a42;--kDED1EA:#2b2234;--kD9D3E3:#28242e;--kF6EAF0:#422a36;--kEAD1D5:#342225;--kEAF4F6:#2a3e42;--kD1DEEA:#222b34;--kD4E2E2:#252e2e;--kE3EEF3:#28373f;--kE8F1E4:#303c2a;--kF8F8ED:#45452a;--kEDEDC9:#35351e;--kE6F0DB:#303b25;--kE6F1F4:#293b40;--kF0F6EA:#36422a;--kD5EAD1:#253422;--kCFE2CB:#232c20;--kF6EAEE:#422a32;--kEAD1D1:#342222;--kE8F5E6:#2c4128;--kCAE2D3:#3c5344;--kEAF2F6:#2a3a42;--kD1DAEA:#222834;--kD4E0E2:#252c2e;--kF6F8ED:#41452a;--kE7EDC9:#31351e;--kE2F0DB:#2c3b25;--kF4F6EA:#3e422a;--kDEEAD1:#2b3422;--kEEF6EA:#32422a;--kD1EAD1:#223422;--kCBE2CB:#202c20;--kF6EAEC:#422a2e;--kEAD5D1:#342522;--kE6F5E8:#28412c;--kCAE2D6:#3c5347;--kD4DEE2:#252b2e;--kECF6EA:#2e422a;--kD1EAD5:#223425;--kCBE2CF:#202c23;--kE1D3E3:#2d242e;--kE6F5EA:#28412f;--kE2CAD7:#533c48;--kEAEEF6:#2a3242;--kD1D1EA:#222234;--kD4DBE2:#25292e;--kF2F8ED:#37452a;--kDBEDC9:#29351e;--kDBF0DB:#253b25;--kEAF6EA:#2a422a;--kD1EADA:#223428;--kCBE2D2:#202c24;--kF6ECEA:#422e2a;--kEADED1:#342b22;--kECF5E6:#324128;--kE2D8CA:#53493c;--kD4D9E2:#25282e;--kF0F8ED:#32452a;--kD5EDC9:#25351e;--kDBF0DF:#253b29;--kCCE0CC:#3e513e;--kE9F5E6:#2d4128;--kD4E2CA:#45533c;--kE3D3E1:#2e242d;--kD4D7E2:#25272e;--kEEF8ED:#2d452a;--kCFEDC9:#22351e;--kDBF0E2:#253b2c;--kCBE2DA:#202c28;--kE3D3DE:#2e242b;--kD7CAE2:#483c53;--kD4D4E2:#25252e;--kEDF8ED:#2a452a;--kC9EDC9:#1e351e;--kDBF0E6:#253b30;--kCCE0D3:#3e5144;--kE3D3DB:#2e2429;--kE6F5E6:#284128;--kD5E2CA:#46533c;--kEEEAF6:#322a42;--kE2D1EA:#2e2234;--kD7D4E2:#27252e;--kEDF8EE:#2a452d;--kC9EDCF:#1e3522;--kDBF0E9:#253b33;--kCCE0D6:#3e5147;--kE3EFF3:#28393f;--kEAF6EC:#2a422e;--kD1EADE:#22342b;--kCBE2E2:#202c2c;--kE3D3D9:#2e2428;--kF0EAF6:#362a42;--kE6D1EA:#312234;--kD9D4E2:#28252e;--kFFF3E6:#473929;--kDBD4E2:#29252e;--kEDF8F2:#2a4537;--kC9EDDB:#1e3529;--kDBF0F0:#253b3b;--kF5F1E8:#413a2a;--kDED4E2:#2b252e;--kEDF8F4:#2a453c;--kC9EDE1:#1e352d;--kDBECF0:#25373b;--kCCE0E0:#3e5151;--kE3D6D3:#2e2624;--kE6F5F1:#28413b;--kCAD3E2:#3c4453;--kE0D4E2:#2c252e;--kEDF8F6:#2a4541;--kC9EDE7:#1e3531;--kDBE9F0:#25333b;--kCBD2E2:#20242c;--kE3D9D3:#2e2824;--kE6EEF5:#283641;--kCAE0E2:#3c5153;--kE2D4E2:#2e252e;--kEDF8F8:#2a4545;--kC9EDED:#1e3535;--kDBE6F0:#25303b;--kCCDAE0:#3e4b51;--kC9C2B4:#47433c;--kE3DBD3:#2e2924;--kE2D4E0:#2e252c;--kEDF6F8:#2a4145;--kC9E7ED:#1e3135;--kDBE2F0:#252c3b;--kCCD6E0:#3e4751;--kE3DED3:#2e2b24;--kE6E6F5:#282841;--kE2D2CA:#53443c;--kE2D4DE:#2e252b;--kEDF4F8:#2a3c45;--kC9E1ED:#1e2d35;--kDBDFF0:#25293b;--kCFCBE2:#23202c;--kEAE6F5:#2f2841;--kCAD8E2:#3c4953;--kE2D4DB:#2e2529;--kEDF2F8:#2a3745;--kC9DBED:#1e2935;--kDBDBF0:#25253b;--kD2CBE2:#24202c;--kE3E3D3:#2e2e24;--kECE6F5:#322841;--kD4CAE2:#453c53;--kE2D4D9:#2e2528;--kEDF0F8:#2a3245;--kC9D5ED:#1e2535;--kDFDBF0:#29253b;--kD6CBE2:#26202c;--kE1E3D3:#2d2e24;--kEEE6F5:#362841;--kD9E2CA:#4a533c;--kE2D4D7:#2e2527;--kDACBE2:#28202c;--kDEE3D3:#2b2e24;--kE9E6F5:#2d2841;--kE0CAE2:#513c53;--kE2D4D4:#2e2525;--kEDEDF8:#2a2a45;--kC9C9ED:#1e1e35;--kE6DBF0:#30253b;--kD3CCE0:#443e51;--kF3E6F5:#3e2841;--kE2D7D4:#2e2725;--kEEEDF8:#2d2a45;--kCFC9ED:#221e35;--kE9DBF0:#33253b;--kE2CBE2:#2c202c;--kD9E3D3:#282e24;--kE2D9D4:#2e2825;--kF0EDF8:#322a45;--kD5C9ED:#251e35;--kECDBF0:#37253b;--kE2CBDE:#2c202a;--kD6E3D3:#262e24;--kE2DBD4:#2e2925;--kF2EDF8:#372a45;--kDBC9ED:#291e35;--kF0DBF0:#3b253b;--kE2DED4:#2e2b25;--kF4EDF8:#3c2a45;--kE1C9ED:#2d1e35;--kF0DBEC:#3b2537;--kE0CCE0:#513e51;--kD3E3D6:#242e26;--kF5E6F1:#41283b;--kE2E0D4:#2e2c25;--kF6EDF8:#412a45;--kE7C9ED:#311e35;--kF0DBE9:#3b2533;--kE2CBD2:#2c2024;--kD3E3D9:#242e28;--kF5E6EB:#412831;--kE2E2D4:#2e2e25;--kF8EDF8:#452a45;--kEDC9ED:#351e35;--kF0DBE6:#3b2530;--kE0CCDA:#513e4b;--kD3E3DB:#242e29;--kF5E6E8:#41282c;--kE2D3CA:#53443c;--kE0E2D4:#2c2e25;--kF8EDF6:#452a41;--kEDC9E7:#351e31;--kF0DBE2:#3b252c;--kE0CCD6:#513e47;--kE2CBCB:#2c2020;--kF5E6ED:#412834;--kCAE2DE:#3c534f;--kDEE2D4:#2b2e25;--kF8EDF4:#452a3c;--kEDC9E1:#351e2d;--kF0DBDF:#3b2529;--kE0CCD3:#513e44;--kF4E9D4:#3c3322;--kF5E7E6:#412a28;--kD0CAE2:#423c53;--kDBE2D4:#292e25;--kF8EDF2:#452a37;--kEDC9DB:#351e29;--kF0DBDB:#3b2525;--kE0CCCF:#513e41;--kCAE2DF:#3c5350;--kD9E2D4:#282e25;--kBDBDBD:#414141;--kF8EDF0:#452a32;--kEDC9D5:#351e25;--kF0DFDB:#3b2925;--kE2D6CB:#2c2620;--kD3E1E3:#242d2e;--kF5E6E6:#412828;--kE2CACD:#533c3f;--kD7E2D4:#272e25;--kF7E3B8:#322b1c;--kD3DEE3:#242b2e;--kD4E2D4:#252e25;--kF7F1E6:#443a27;--kFFFDF7:#4e462c;--kE8F0E6:#2f3a2c;--kF4F7F2:#384132;--kE8EEF4:#2b353f;--kF6DCE3:#40242c;--kDCE7F6:#243040;--kF4E6C8:#372f1f;--kE7E0F4:#2f2540;--kDCEFE2:#263a2c;--kF6E0D8:#3e2a23;--kEEF4F7:#2d3c43;--kF3E9DA:#3e3323;--kEEF5F2:#2f3f38;--kCFE3EE:#202f37;--kF2F5F8:#303a43;--kF8F3EC:#463a2a;--kF2F6FA:#2c3a48;--kE3DCCB:#2d2920;--kE8EDF4:#2b333f;--kF7EFE3:#433726;--kFFF8EA:#493e29;--kF4EFE6:#403829;--kF3ECF6:#3b2c42;--kDCE4F2:#242d3d;--kEFD5C6:#34261e;--kCBCBE2:#20202c;--kE6D2A8:#564a31;--kD3DBE3:#24292e;--kDBD3E3:#29242e;--kE3D3E3:#2e242e;--kD3E3DE:#242e2b;--kD9CFEA:#282133;--kF5F1E6:#413b28;--kF0F5E6:#394128;--kCADBE2:#3c4c53;--kE2D0CA:#53423c;--kCADCE2:#3c4d53;--kE6F5F3:#28413e;--kE2CFCA:#53413c;--kE6E7F5:#282a41;--kCADDE2:#3c4e53;--kF2E6F5:#3c2841;--kE2CECA:#53403c;--kCADEE2:#3c4f53;--kEBD9CF:#342821;--kF3EAF5:#3d2c41;--kF7F2EA:#443a29;--kF6F1E7:#433a28;--kF4F2EE:#3d3931;--kF6F8F4:#3a4133}</style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <filter id="cut" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/></filter>
@@ -1475,14 +1537,17 @@ var HB_MONSTER = (function () {
   };
   var INK = "#2A2522", WOOD = "#C99A6B", CHEEK = "#F2A9BC", RB = ["#E0533D", "#F3C443", "#7DBB6A"];
   function darker(hx) { var n = parseInt(hx.slice(1), 16), d = function (v) { return Math.round(v * 0.62).toString(16).padStart(2, "0"); }; return "#" + d(n >> 16) + d((n >> 8) & 255) + d(n & 255); }
-  function fill(c, extra) { return 'fill="' + c + '" stroke="' + darker(c) + '" stroke-width="1.5" stroke-linejoin="round"' + (extra ? " " + extra : ""); }
+  var SID = "";
+  function fill(c, extra) { return 'fill="' + c + '" stroke="' + darker(c) + '" stroke-width="1.4" stroke-linejoin="round"' + (SID ? ' filter="url(#' + SID + ')"' : "") + (extra ? " " + extra : ""); }
   function eyes(mood) {
-    if (mood === "happy") return '<path d="M32,59q6,-7 12,0M56,59q6,-7 12,0" fill="none" stroke="' + INK + '" stroke-width="3.2" stroke-linecap="round"/>';
+    if (mood === "happy" || mood === "party") return '<path d="M32,59q6,-7 12,0M56,59q6,-7 12,0" fill="none" stroke="' + INK + '" stroke-width="3.2" stroke-linecap="round"/>';
     if (mood === "sleep") return '<path d="M32,58q6,5 12,0M56,58q6,5 12,0" fill="none" stroke="' + INK + '" stroke-width="2.8" stroke-linecap="round"/>';
-    return '<g class="m-eye"><ellipse cx="38" cy="58" rx="5.6" ry="6.8" fill="' + INK + '"/><ellipse cx="62" cy="58" rx="5.6" ry="6.8" fill="' + INK + '"/><circle cx="40" cy="55.2" r="2" fill="#FBF7EF"/><circle cx="64" cy="55.2" r="2" fill="#FBF7EF"/></g>';
+    if (mood === "dizzy") return '<path d="M38,58m-5,0a5,5 0 1,1 5,5a3,3 0 1,1 -3,-3a1.4,1.4 0 1,1 1.4,1.4M62,58m-5,0a5,5 0 1,1 5,5a3,3 0 1,1 -3,-3a1.4,1.4 0 1,1 1.4,1.4" fill="none" stroke="' + INK + '" stroke-width="2.2" stroke-linecap="round"/>';
+    return '<g class="m-eye"><ellipse cx="38" cy="58" rx="5.6" ry="6.8" fill="' + INK + '"/><ellipse cx="62" cy="58" rx="5.6" ry="6.8" fill="' + INK + '"/><circle cx="40.2" cy="55" r="2.2" fill="#FFFFFF"/><circle cx="64.2" cy="55" r="2.2" fill="#FFFFFF"/><circle cx="36.4" cy="61" r="1.1" fill="#FFFFFF" opacity=".85"/><circle cx="60.4" cy="61" r="1.1" fill="#FFFFFF" opacity=".85"/></g>';
   }
   function mouth(mood) {
-    if (mood === "happy") return '<path d="M45,67q5,6.5 10,0Z" fill="' + INK + '"/><path d="M47.6,70q2.4,1.8 4.8,0" fill="#E0533D"/>';
+    if (mood === "happy" || mood === "party") return '<path d="M45,67q5,6.5 10,0Z" fill="' + INK + '"/><path d="M47.6,70q2.4,1.8 4.8,0" fill="#E0533D"/>';
+    if (mood === "dizzy") return '<path d="M46,69q2,-2 4,0q2,2 4,0" fill="none" stroke="' + INK + '" stroke-width="2" stroke-linecap="round"/>';
     if (mood === "sleep") return '<path d="M47.5,69q2.5,1.6 5,0" fill="none" stroke="' + INK + '" stroke-width="2.2" stroke-linecap="round"/>';
     return '<path d="M46,67.5q2,2.6 4,0q2,2.6 4,0" fill="none" stroke="' + INK + '" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>';
   }
@@ -1495,26 +1560,32 @@ var HB_MONSTER = (function () {
   // o: { stage: 1|2|3, mood: "open"|"happy"|"sleep", color, cls, flat: true for no paper filters }
   function svg(o) {
     o = o || {}; var st = o.stage || 2, mood = o.mood || "open", c = PAL[o.color] || PAL.blue, h = "", id = "hbm" + (++n);
-    var k = st === 1 ? 0.6 : st === 3 ? 1.18 : 1;
+    SID = o.flat ? "" : id + "s";
+    var k = st === 1 ? 0.6 : st === 3 ? 1.18 : st === 4 ? 1.3 : 1;
     function horn(s) { var x = 50 + s * 16; return '<path d="M' + (x - s * 6 * k) + ",38C" + (x - s * 6.5 * k) + "," + (31 - 5 * (k - 1)) + " " + (x - s * 2 * k) + "," + (24 - 7 * (k - 1)) + " " + (x + s * 1.5 * k) + "," + (22 - 8 * (k - 1)) + "C" + (x + s * 3.5 * k) + "," + (27 - 4 * (k - 1)) + " " + (x + s * 4.5 * k) + ",32 " + (x + s * 5 * k) + ',37Z" ' + fill(WOOD) + "/>"; }
-    if (st === 3) h += '<path d="M78,75c9,-1 13,-9 9,-15c-2,-3 -6,-2 -6,1c0,3 3,3 3,6c0,3 -3,5 -7,5Z" ' + fill(c.dark) + "/>";
+    if (st === 4) h += '<path d="M86,62C88,48 90,36 92,24" fill="none" stroke="#8B7A66" stroke-width="1" stroke-linecap="round"/><ellipse cx="92" cy="17" rx="7" ry="8.4" ' + fill(RB[0]) + '/><path d="M90,25.5l2,1.8l2,-1.8Z" ' + fill(RB[0]) + '/><ellipse cx="89.6" cy="13.6" rx="1.8" ry="2.6" fill="#fff" opacity=".55"/>';
+    if (st >= 3) h += '<path d="M78,75c9,-1 13,-9 9,-15c-2,-3 -6,-2 -6,1c0,3 3,3 3,6c0,3 -3,5 -7,5Z" ' + fill(c.dark) + "/>";
     h += horn(-1) + horn(1);
     if (st !== 1) h += '<ellipse cx="38" cy="86.5" rx="8.5" ry="4.6" ' + fill(c.dark) + '/><ellipse cx="62" cy="86.5" rx="8.5" ry="4.6" ' + fill(c.dark) + "/>";
     h += '<ellipse cx="18" cy="66" rx="4.3" ry="6.4" transform="rotate(18 18 66)" ' + fill(c.dark) + '/><ellipse cx="82" cy="66" rx="4.3" ry="6.4" transform="rotate(-18 82 66)" ' + fill(c.dark) + "/>";
-    h += '<path d="M18,61C18,40 32,30 50,30C68,30 82,40 82,61C82,78 70,86 50,86C30,86 18,78 18,61Z" ' + fill(c.body) + "/>";
+    if (st === 4) h += '<rect x="12" y="46" width="76" height="34" rx="12" ' + fill("#E0533D") + '/><rect x="40" y="40" width="20" height="8" rx="4" ' + fill("#C99A6B") + "/>";
+    var BODY = "M18,61C18,40 32,30 50,30C68,30 82,40 82,61C82,78 70,86 50,86C30,86 18,78 18,61Z";
+    h += '<path d="' + BODY + '" ' + fill(c.body) + "/>";
+    if (!o.flat) h += '<g clip-path="url(#' + id + 'b)"><ellipse cx="36" cy="40" rx="24" ry="16" fill="url(#' + id + 'h)"/><ellipse cx="66" cy="82" rx="30" ry="18" fill="url(#' + id + 'd)"/></g>';
     h += '<path d="M35,78C35,72 42,69.5 50,69.5C58,69.5 65,72 65,78C65,82.5 59,85 50,85C41,85 35,82.5 35,78Z" ' + fill(c.belly) + "/>";
     h += arch(50, 43);
     h += eyes(mood);
     h += '<ellipse cx="28" cy="67" rx="4.6" ry="3" fill="' + CHEEK + '" opacity=".9"/><ellipse cx="72" cy="67" rx="4.6" ry="3" fill="' + CHEEK + '" opacity=".9"/>';
     h += mouth(mood);
+    if (mood === "party") h += '<path d="M42,33L50,8L58,33Z" ' + fill("#7FA3C9") + '/><path d="M45.6,24h8.8M43.8,29h12.4" stroke="#F3C443" stroke-width="2.2" stroke-linecap="round"/><circle cx="50" cy="8" r="3.2" ' + fill(RB[0]) + "/>";
     if (st === 3) h += '<path d="M25,77c16,6 34,6 50,0l-1.5,5.5c-15,5.5 -32,5.5 -47,0Z" ' + fill(RB[0]) + '/><path d="M61,80l5,10l5,-3l-4,-8Z" ' + fill(RB[0]) + "/>";
     if (st === 1) h += '<path d="M14,79L22,72L29,80L37,71L44,80L51,71L58,80L65,71L72,80L79,72L86,79V85C86,94 70,98 50,98C30,98 14,94 14,85Z" ' + fill("#FBF7EF") + '/><circle cx="34" cy="89" r="2" fill="' + RB[1] + '"/><circle cx="60" cy="92" r="2.2" fill="' + RB[2] + '"/><circle cx="72" cy="86" r="1.6" fill="' + RB[0] + '"/>';
     if (mood === "sleep") h += '<path d="M80,24h7l-7,8h7M89,14h5l-5,6h5" fill="none" stroke="' + c.dark + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
-    var defs = o.flat ? "" : '<defs><filter id="' + id + 'c" x="-6%" y="-6%" width="112%" height="112%"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/></filter><filter id="' + id + 'g" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="t"/><feColorMatrix in="t" type="matrix" values="0 0 0 0 0.2  0 0 0 0 0.15  0 0 0 0 0.1  0 0 0 -0.5 0.3" result="g"/><feComposite in="g" in2="SourceGraphic" operator="in" result="gm"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="gm"/></feMerge></filter></defs>';
+    var defs = o.flat ? "" : '<defs><clipPath id="' + id + 'b"><path d="' + BODY + '"/></clipPath><radialGradient id="' + id + 'h"><stop offset="0" stop-color="#fff" stop-opacity=".42"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><radialGradient id="' + id + 'd"><stop offset="0" stop-color="' + darker(c.body) + '" stop-opacity=".30"/><stop offset="1" stop-color="' + darker(c.body) + '" stop-opacity="0"/></radialGradient><filter id="' + SID + '" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0.5" dy="1.3" stdDeviation="0.7" flood-color="#3A2A1A" flood-opacity=".22"/></filter><filter id="' + id + 'c" x="-6%" y="-6%" width="112%" height="112%"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1"/></filter><filter id="' + id + 'g" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="t"/><feColorMatrix in="t" type="matrix" values="0 0 0 0 0.2  0 0 0 0 0.15  0 0 0 0 0.1  0 0 0 -0.42 0.24" result="g"/><feComposite in="g" in2="SourceGraphic" operator="in" result="gm"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="gm"/></feMerge></filter></defs>';
     var body = o.flat ? h : '<g filter="url(#' + id + 'g)"><g filter="url(#' + id + 'c)">' + h + "</g></g>";
-    return '<svg class="mascot ' + (o.cls || "") + '" xmlns="http://www.w3.org/2000/svg" viewBox="8 12 88 ' + (st === 1 ? 88 : 82) + '" aria-hidden="true">' + defs + body + "</svg>";
+    return '<svg class="mascot ' + (o.cls || "") + '" xmlns="http://www.w3.org/2000/svg" viewBox="' + (st === 4 ? "8 6 94 88" : "8 12 88 " + (st === 1 ? 88 : 82)) + '" aria-hidden="true">' + defs + body + "</svg>";
   }
-  function stageOf(m) { return m < 12 ? 1 : m < 24 ? 2 : 3; }
+  function stageOf(m) { return m < 12 ? 1 : m < 24 ? 2 : m <= 36 ? 3 : 4; }
   return { svg: svg, stageOf: stageOf, PAL: PAL };
 })();
 if (typeof module !== "undefined") module.exports = HB_MONSTER;
@@ -1526,7 +1597,7 @@ if (typeof module !== "undefined") module.exports = HB_MONSTER;
     document.documentElement.classList.add("app");
     var brandEl = document.querySelector(".brand"); if (brandEl) brandEl.innerHTML = "养小怪兽<small>Monster Raising</small>";
     try { var th = localStorage.getItem("hb:theme"); if (th) document.documentElement.setAttribute("data-theme", th); } catch (e) {}
-    document.querySelector("main").insertAdjacentHTML("afterbegin", '<section class="view app-v" id="today" data-view data-kind="tab" data-title="今天" hidden></section><section class="view app-v" id="rec" data-view data-kind="tab" data-title="记录" hidden></section><section class="view app-v map-v" id="map" data-view data-kind="ch" data-up="today" data-title="成长地图" hidden></section>');
+    document.querySelector("main").insertAdjacentHTML("afterbegin", '<section class="view app-v" id="today" data-view data-kind="tab" data-title="今天" hidden></section><section class="view app-v" id="rec" data-view data-kind="tab" data-title="记录" hidden></section>');
     document.body.insertAdjacentHTML("beforeend", '<nav class="tabbar" aria-label="主导航">' + [["today", "今天", "sun"], ["home", "目录", "book"], ["search", "搜索", "find"], ["rec", "记录", "tick"]].map(function (t) { return '<a href="#' + t[0] + '" data-tab="' + t[0] + '"><b class="pill"><i class="ic ' + t[2] + '" aria-hidden="true"></i></b><span>' + t[1] + "</span></a>"; }).join("") + "</nav>");
     document.addEventListener("click", function (e) { var b = e.target.closest(".fold-b"); if (!b) return; var f = b.parentNode; if (f.classList.contains("fold")) unfold(f); else { f.classList.add("fold"); b.setAttribute("aria-expanded", "false"); var y = f.getBoundingClientRect().top; if (y < 0) window.scrollBy(0, y - 90); } });
     // section strip for month pages: appears in place of the month row once the page is scrolled
@@ -1838,12 +1909,12 @@ if (typeof module !== "undefined") module.exports = HB_MONSTER;
 
   // ---------- Android app pages ----------
   function appShow(v) {
-    var r = /^(today|rec|search)$/.test(v.id) ? v.id : v.id === "map" ? "today" : "home";
+    var r = /^(today|rec|search)$/.test(v.id) ? v.id : "home";
     document.documentElement.classList.toggle("tabroot", /^(today|rec)$/.test(v.id));
     document.querySelectorAll(".tabbar a").forEach(function (a) { var on = a.getAttribute("data-tab") === r; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
     fillSecbar(v);
     if (v.getAttribute("data-m") !== null) decorateChain(v);
-    if (v.id === "map" && window.HB_BUILD_MAP) setTimeout(function () { HB_BUILD_MAP(v); }, 0);
+    if (v.id === "home" && window.HB_HOME_MAP) setTimeout(HB_HOME_MAP, 0);
     if (v.id === "today" || v.id === "rec") setTimeout(function () { if (v.id === "today") buildToday(); else buildRec(); }, 0);
   }
   function getBirth() { var v = null; try { v = localStorage.getItem("hb:birth"); } catch (e) {} if (!v) return null; var p = v.split("-"); return { s: v, d: new Date(+p[0], +p[1] - 1, +p[2]) }; }
@@ -1869,7 +1940,7 @@ if (typeof module !== "undefined") module.exports = HB_MONSTER;
     var mm0 = Math.min(Math.max(ageOf(b.d).m, 0), 36), mv0 = document.getElementById("m" + mm0);
     if (mv0 && mv0.querySelector(".mv-load")) { T.innerHTML = '<p class="t-wait">正在打开满 ' + mm0 + " 个月…</p>"; loadView(mv0, buildToday); return; }
     var a = ageOf(b.d), m = Math.min(Math.max(a.m, 0), 36), st = stats(m), mc = document.querySelector(".mc.mv" + m), mv = mc && mc.querySelector("svg");
-    if (a.m > 36) h += '<section class="card"><p>已满 36 个月，手册的逐月内容到此结束。</p></section>';
+    if (a.m > 36) h += '<a class="card t-epi" href="#home-epi"><span class="te-m">' + MASC({ stage: 4, mood: "happy" }) + '</span><span><b>36 个月以后，故事还在继续……</b><small>愿孩子带着好奇心，继续慢慢长大。手册的逐月内容写到满 36 个月，随时可以翻回来看看。</small></span></a>';
     var art = document.querySelector("#m" + m + " .cover-art svg") || mv;
     h += '<a class="t-cover mv' + m + '" style="' + (mc ? esc(mc.getAttribute("style") || "") : "") + '" href="#m' + m + '" aria-label="打开满 ' + m + ' 个月">' + (art ? art.outerHTML : "") + '</a>';
     h += '<header class="t-h on-art"><span class="t-mascot">' + MASC({ mood: stats(m)[1] && stats(m)[0] === stats(m)[1] ? "happy" : "" }) + '</span><div><p class="t-date">' + wk(a.t) + "</p><h1>今天满 <b>" + a.m + '</b> 个月' + (a.d ? ' <b>' + a.d + '</b> 天' : "") + '</h1>' + (a.m < 36 ? '<p class="t-sub">再过 ' + a.next + ' 天满 ' + (a.m + 1) + ' 个月</p>' : "") + '</div></header>';
@@ -2209,40 +2280,76 @@ if (typeof module !== "undefined") module.exports = HB_MONSTER;
   function cdcMonths() { var o = {}; document.querySelectorAll(".chain a.c[data-cm]").forEach(function (a) { o[a.getAttribute("data-cm")] = 1; }); return o; }
   function dShort(d) { return d.getFullYear() + "." + (d.getMonth() + 1) + "." + d.getDate(); }
 
-  // ---------- growth map: 0–36 months as one winding road ----------
-  window.HB_BUILD_MAP = function (V) {
-    var b = H.getBirth(), am = ageMonth(), C = care(), cdc = cdcMonths(), W = Math.min(V.clientWidth || 360, 600) - 8, ROW = 96, top = 150, N = 37;
-    var pts = []; for (var m = 0; m < N; m++) { var x = W / 2 + Math.sin(m * 0.62) * (W / 2 - 54); pts.push([x, top + m * ROW]); }
-    var d = "M" + pts[0][0] + "," + (pts[0][1] - 80);
-    d += "C" + pts[0][0] + "," + (pts[0][1] - 40) + " " + pts[0][0] + "," + (pts[0][1] - 20) + " " + pts[0][0] + "," + pts[0][1];
-    for (var i = 1; i < N; i++) { var p0 = pts[i - 1], p1 = pts[i], my = (p0[1] + p1[1]) / 2; d += "C" + p0[0] + "," + my + " " + p1[0] + "," + my + " " + p1[0] + "," + p1[1]; }
-    var Ht = top + (N - 1) * ROW + 120, done = am === null ? -1 : am;
-    var h = '<header class="map-h"><h1>0–36 个月成长地图</h1><p>一个月一站。点任意一站，打开那个月。</p><p class="map-k"><i class="k-c"></i>CDC 观察清单<i class="k-v"></i>接种<i class="k-k"></i>儿保</p></header>';
-    h += '<div class="map" style="height:' + Ht + 'px">';
-    // stage bands behind the road
-    STAGES.forEach(function (g, gi) { var y0 = top + g[0] * ROW - ROW / 2, y1 = top + g[1] * ROW + ROW / 2; h += '<div class="map-band b' + (gi % 2) + '" style="top:' + y0 + "px;height:" + (y1 - y0) + 'px"><span>' + g[2] + "</span></div>"; });
-    h += '<svg class="map-road" width="' + W + '" height="' + Ht + '" viewBox="0 0 ' + W + " " + Ht + '" aria-hidden="true"><path d="' + d + '" class="r1"/><path d="' + d + '" class="r2"/>';
-    if (done >= 0) { h += '<path d="' + d + '" class="r3" pathLength="1000" style="--to:' + Math.round(1000 * (done * ROW + 80) / ((N - 1) * ROW + 80)) + '"/>'; }
-    h += "</svg>";
-    // the three growth stages of the little monster beside the road
-    EVO.forEach(function (e) { var p = pts[e[0]], side = p[0] > W / 2 ? -1 : 1, x = side > 0 ? p[0] + 46 : p[0] - 46 - 84; h += '<div class="map-evo" style="left:' + Math.max(4, Math.min(W - 88, x)) + "px;top:" + (p[1] - 56) + 'px">' + M({ stage: e[1], mood: e[0] <= done ? "happy" : "open" }) + "<small>" + e[2] + "</small></div>"; });
-    for (var k = 0; k < N; k++) {
-      var p = pts[k], st = H.stats(k), pr = st[1] ? st[0] / st[1] : 0, cls = "map-n" + (k < done ? " past" : k === done ? " now" : "") + (cdc[k] ? " c" : "");
-      var badges = (C.v[k] ? '<i class="bv" title="接种"></i>' : "") + (C.c[k] ? '<i class="bk" title="儿保"></i>' : "");
-      var date = b ? dShort(H.addM(b.d, k)) : "";
-      h += '<a class="' + cls + '" href="#m' + k + '" style="left:' + (p[0] - 24) + "px;top:" + (p[1] - 24) + "px;--p:" + pr.toFixed(3) + '" aria-label="满 ' + k + ' 个月"><b>' + k + "</b>" + badges + (date ? "<small>" + date + "</small>" : "") + "</a>";
+  // ---------- contents = growth map: every month card sits at its stop on one winding road ----------
+  var MAPW = 0;
+  window.HB_HOME_MAP = function () {
+    var home = document.getElementById("home"); if (!home) return;
+    var box = document.getElementById("home-map");
+    if (!box) {
+      box = document.createElement("section"); box.className = "home-map"; box.id = "home-map"; home.insertBefore(box, home.firstChild);
+      box.innerHTML = '<header class="map-h"><h1>0–36 个月成长地图</h1><p>一个月一站。点任意一站，打开那个月。</p><p class="map-k"><i class="k-c"></i>CDC 观察清单<i class="k-v"></i>接种<i class="k-k"></i>儿保<i class="k-s"></i>本月记录全部完成</p></header><div class="map"></div>';
     }
-    if (done >= 0) { var q = pts[done]; h += '<div class="map-me" style="left:' + (q[0] - 34) + "px;top:" + (q[1] - 86) + 'px">' + M({ mood: "happy" }) + "</div>"; }
-    h += "</div>";
-    V.innerHTML = h;
-    if (done >= 0) setTimeout(function () { var y = V.querySelector(".map-n.now"); if (y) window.scrollTo({ top: Math.max(0, y.getBoundingClientRect().top + window.scrollY - window.innerHeight / 2), behavior: reduce ? "auto" : "smooth" }); }, 120);
+    var map = box.querySelector(".map"), W = Math.min(box.clientWidth || (document.querySelector("main").clientWidth - 40), 680);
+    if (W !== MAPW) layout(map, W);
+    refresh(map);
   };
-
+  function layout(map, W) {
+    MAPW = W;
+    var cards = {}, heads = [];
+    document.querySelectorAll("#home a.mc[href^='#m']").forEach(function (a) { cards[a.getAttribute("href").slice(2)] = a; });
+    document.querySelectorAll("#home .stg").forEach(function (g) { var h = g.querySelector(".stg-h"); if (h) heads.push(h); });
+    var ROW = 132, HEAD = 64, y = 40, pts = [], html = [], C = care(), cdc = cdcMonths();
+    for (var m = 0; m <= 36; m++) {
+      var gi = -1; STAGES.forEach(function (g, i) { if (g[0] === m) gi = i; });
+      if (gi >= 0) { html.push({ head: gi, y: y }); y += HEAD; }
+      var left = m % 2 === 0, x = left ? 46 : W - 46;
+      pts.push([x, y + 40]); html.push({ m: m, y: y, left: left, x: x }); y += ROW;
+    }
+    var endY = y + 30;
+    var d = "M" + pts[0][0] + ",0C" + pts[0][0] + ",20 " + pts[0][0] + ",20 " + pts[0][0] + "," + pts[0][1];
+    for (var i = 1; i < pts.length; i++) { var p0 = pts[i - 1], p1 = pts[i], my = (p0[1] + p1[1]) / 2; d += "C" + p0[0] + "," + my + " " + p1[0] + "," + my + " " + p1[0] + "," + p1[1]; }
+    var last = pts[pts.length - 1], tail = "M" + last[0] + "," + last[1] + "C" + last[0] + "," + (last[1] + 80) + " " + W / 2 + "," + (endY - 40) + " " + W / 2 + "," + (endY + 60);
+    var out = '<svg class="map-road" width="' + W + '" height="' + (endY + 300) + '" aria-hidden="true"><path d="' + d + '" class="r1"/><path d="' + d + '" class="r3" pathLength="1000"/><path d="' + d + '" class="r2"/><path d="' + tail + '" class="r4"/></svg>';
+    html.forEach(function (it) {
+      if (it.head !== undefined) {
+        var hh = heads[it.head], ev = EVO.filter(function (e) { return STAGES[it.head][0] === e[0]; })[0];
+        out += '<div class="hm-head" style="top:' + (it.y + 6) + 'px">' + (hh ? hh.innerHTML : "<h2>" + STAGES[it.head][2] + "</h2>") + (ev ? '<span class="hm-evo">' + M({ stage: ev[1], mood: "open" }) + "</span>" : "") + "</div>";
+        return;
+      }
+      var k = it.m, badges = (C.v[k] ? '<i class="bv"></i>' : "") + (C.c[k] ? '<i class="bk"></i>' : "");
+      out += '<div class="hm-stop ' + (it.left ? "l" : "r") + '" data-m="' + k + '" style="top:' + it.y + 'px"><a class="map-n' + (cdc[k] ? " c" : "") + '" href="#m' + k + '" style="left:' + (it.x - 24) + 'px" aria-label="满 ' + k + ' 个月"><b>' + k + "</b>" + badges + '<s class="star" aria-hidden="true"></s></a><span class="hm-card"></span><small class="hm-date"></small></div>';
+    });
+    out += '<div class="hm-epi" id="home-epi" style="top:' + (endY + 40) + 'px"><span class="te-m">' + M({ stage: 4, mood: "happy" }) + '</span><p class="dots">· · · · · ·</p><h2>36 个月以后，故事还在继续……</h2><p>愿孩子带着好奇心，继续慢慢长大。路还很长，慢慢走就好。</p></div>';
+    map.style.height = (endY + 330) + "px"; map.innerHTML = out; map.dataset.d = d;
+    map.querySelectorAll(".hm-stop").forEach(function (st) { var c = cards[st.getAttribute("data-m")]; if (c) st.querySelector(".hm-card").appendChild(c); });
+    map._pts = pts;
+    if ("IntersectionObserver" in window && !reduce) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { rootMargin: "0px 0px -8% 0px" });
+      map.querySelectorAll(".hm-stop,.hm-head,.hm-epi").forEach(function (el) { io.observe(el); });
+    } else map.querySelectorAll(".hm-stop,.hm-head,.hm-epi").forEach(function (el) { el.classList.add("in"); });
+  }
+  function refresh(map) {
+    var b = H.getBirth(), am = ageMonth(), pts = map._pts || [];
+    map.querySelectorAll(".hm-stop").forEach(function (st) {
+      var k = +st.getAttribute("data-m"), n = st.querySelector(".map-n"), s = H.stats(k), pr = s[1] ? s[0] / s[1] : 0;
+      n.style.setProperty("--p", pr.toFixed(3)); n.classList.toggle("past", am !== null && k < am); n.classList.toggle("now", k === am); n.classList.toggle("done", !!(s[1] && s[0] === s[1]));
+      st.querySelector(".hm-date").textContent = b ? dShort(H.addM(b.d, k)) : "";
+    });
+    var r3 = map.querySelector(".r3");
+    if (r3 && r3.getTotalLength) {
+      // walk along the road to the baby's stop, so exactly the travelled part turns green
+      var total = r3.getTotalLength(), ty = am === null ? -1 : pts[am][1], lo = 0, hi = total;
+      if (ty < 0) lo = 0; else for (var it = 0; it < 24; it++) { var mid = (lo + hi) / 2; if (r3.getPointAtLength(mid).y < ty) lo = mid; else hi = mid; }
+      r3.style.setProperty("--to", Math.round(1000 * lo / (total || 1)));
+    }
+    var me = map.querySelector(".map-me"); if (me) me.remove();
+    if (am !== null && pts[am]) { map.insertAdjacentHTML("beforeend", '<div class="map-me" style="left:' + (pts[am][0] - 32) + "px;top:" + (pts[am][1] - 92) + 'px">' + M({ mood: "happy" }) + "</div>"); }
+  }
   // ---------- Today: pictures and small charts made from the handbook itself ----------
   function journey(am) {
     var segs = STAGES.map(function (g, gi) { var w = (g[1] - g[0] + 1) / 37 * 100; return '<i class="s' + (gi % 4) + '" style="width:' + w.toFixed(2) + '%"></i>'; }).join("");
     var pos = (am + 0.5) / 37 * 100;
-    return '<a class="card t-journey" href="#map"><span class="tj-h"><b>成长地图</b><small>已走过 ' + am + " / 36 个月</small></span>" +
+    return '<a class="card t-journey" href="#home-map"><span class="tj-h"><b>成长地图</b><small>已走过 ' + am + " / 36 个月</small></span>" +
       '<span class="tj-track"><span class="tj-segs">' + segs + '</span><span class="tj-fill" style="width:' + pos.toFixed(2) + '%"></span><span class="tj-me" style="left:' + pos.toFixed(2) + '%">' + M({ mood: "happy" }) + "</span></span>" +
       '<span class="tj-ends"><small>出生</small><small>满 12</small><small>满 24</small><small>满 36</small></span></a>';
   }
@@ -2266,13 +2373,44 @@ if (typeof module !== "undefined") module.exports = HB_MONSTER;
       var d0 = prev === undefined ? b.d : H.addM(b.d, prev), d1 = H.addM(b.d, k), t = a.t, p = Math.max(0, Math.min(1, (t - d0) / (d1 - d0 || 1)));
       c.insertAdjacentHTML("beforeend", '<span class="due-track" aria-hidden="true"><i style="width:' + (p * 100).toFixed(1) + '%"></i></span>');
     });
-    // the little monster jumps when tapped
-    var tm = T.querySelector(".t-mascot");
-    if (tm) tm.addEventListener("click", function () {
-      tm.innerHTML = M({ mood: "happy" }); tm.classList.remove("jump"); void tm.offsetWidth; tm.classList.add("jump"); H.haptic();
-      clearTimeout(tm._t); tm._t = setTimeout(function () { tm.innerHTML = M({}); }, 1600);
-    });
+    var tm = T.querySelector(".t-mascot"); if (tm) play(tm);
+    special(T, b, a);
   };
+  // the little monster answers: a tap makes it jump, three quick taps make it spin, a long press puts it to sleep,
+  // and shaking the phone makes it dizzy
+  function act(el, mood, cls, ms) {
+    el.innerHTML = M({ mood: mood }); el.classList.remove("jump", "spin", "doze"); void el.offsetWidth; if (cls) el.classList.add(cls); H.haptic();
+    clearTimeout(el._t); el._t = setTimeout(function () { el.classList.remove("jump", "spin", "doze"); el.innerHTML = M({}); }, ms || 1600);
+  }
+  function play(el) {
+    var taps = [], press = null;
+    el.addEventListener("pointerdown", function () { press = setTimeout(function () { press = "done"; act(el, "sleep", "doze", 3200); }, 650); });
+    el.addEventListener("pointerup", function () { if (press === "done") { press = null; return; } clearTimeout(press); press = null; var t = Date.now(); taps = taps.filter(function (x) { return t - x < 900; }); taps.push(t); if (taps.length >= 3) { taps = []; act(el, "dizzy", "spin", 1800); } else act(el, "happy", "jump"); });
+    el.addEventListener("pointerleave", function () { if (press && press !== "done") clearTimeout(press); });
+  }
+  var lastShake = 0;
+  window.addEventListener("devicemotion", function (e) {
+    var g = e.accelerationIncludingGravity; if (!g) return; var f = Math.sqrt((g.x || 0) * (g.x || 0) + (g.y || 0) * (g.y || 0) + (g.z || 0) * (g.z || 0));
+    if (f < 24 || Date.now() - lastShake < 3000) return; lastShake = Date.now();
+    var cv = H.cur(), el = cv && cv.id === "today" && document.querySelector("#today .t-mascot"); if (el) act(el, "dizzy", "spin", 2000);
+  });
+  // special days, worked out from the birth date: the 100th day, each month's day, birthdays, the 1000th day
+  function special(T, b, a) {
+    var days = Math.round((a.t - b.d) / 864e5), msg = null, key = null, big = false;
+    if (days === 100) { msg = "今天是第 100 天"; key = "d100"; }
+    else if (days === 1000) { msg = "今天是第 1000 天"; key = "d1000"; big = true; }
+    else if (a.d === 0 && a.m === 12) { msg = "一周岁啦"; key = "y1"; big = true; }
+    else if (a.d === 0 && a.m === 24) { msg = "两岁啦"; key = "y2"; big = true; }
+    else if (a.d === 0 && a.m === 36) { msg = "三岁啦"; key = "y3"; big = true; }
+    else if (a.d === 0 && a.m === 1) { msg = "满月啦"; key = "m1"; big = true; }
+    else if (a.d === 0 && a.m > 1 && a.m < 36) { msg = "今天满 " + a.m + " 个月"; key = "m" + a.m; }
+    if (!msg) return;
+    var cover = T.querySelector(".t-cover");
+    var banner = '<section class="card t-day' + (big ? " big" : "") + '"><span class="td-m">' + M({ mood: "party" }) + '</span><span><b>' + msg + "</b><small>" + (big ? "这一天值得好好记住。" : "又长大了一点点。") + "</small></span></section>";
+    if (cover) cover.insertAdjacentHTML("afterend", banner);
+    var seen = null; try { seen = localStorage.getItem("hb:egg:" + key + ":" + b.s); } catch (e) {}
+    if (!seen) { setTimeout(function () { H.confetti(); }, 500); try { localStorage.setItem("hb:egg:" + key + ":" + b.s, "1"); } catch (e) {} }
+  }
 
   // ---------- welcome flow on first launch ----------
   window.HB_ONBOARD = function () {
@@ -2301,7 +2439,7 @@ if (typeof module !== "undefined") module.exports = HB_MONSTER;
   // ---------- page turns: the picture you tapped grows into the month's opening picture ----------
   if (document.startViewTransition && !reduce) {
     document.addEventListener("click", function (e) {
-      var a = e.target.closest && e.target.closest('a.mc[href^="#m"],a.t-cover[href^="#m"],a.map-n[href^="#m"]'); if (!a) return;
+      var a = e.target.closest && e.target.closest('a.mc[href^="#m"],a.t-cover[href^="#m"]'); if (!a) return;
       var to = a.getAttribute("href").slice(1), v = document.getElementById(to); if (!v) return;
       e.preventDefault(); e.stopPropagation();
       var src = a.querySelector("svg.ill,svg.mascot,svg") || a;
@@ -2317,6 +2455,14 @@ if (typeof module !== "undefined") module.exports = HB_MONSTER;
       });
     }, true);
   }
+
+  // the month strip ends with an ellipsis: the story goes on after 36 months
+  var ch = document.querySelector(".chain"); if (ch && !ch.querySelector(".more")) ch.insertAdjacentHTML("beforeend", '<a class="more" href="#home-epi" aria-label="36 个月以后"><b>…</b></a>');
+  // the last month page ends with the same thought
+  function epiCard(v) { if (!v || v.querySelector(".m-epi")) return; var pg = v.querySelector(":scope > .pager"); if (!pg) return; pg.insertAdjacentHTML("beforebegin", '<a class="card m-epi" href="#home-epi"><span class="te-m">' + M({ stage: 4, mood: "happy" }) + '</span><span><b>36 个月以后，故事还在继续……</b><small>愿孩子带着好奇心，继续慢慢长大。</small></span></a>'); }
+  var v36 = document.getElementById("m36"); if (v36) { if (v36.querySelector(".mv-load")) { var ob = new MutationObserver(function () { if (!v36.querySelector(".mv-load")) { ob.disconnect(); epiCard(v36); } }); ob.observe(v36, { childList: true, subtree: true }); } else epiCard(v36); }
+  // build the contents map once the page is ready, so the month cards are in place
+  setTimeout(function () { if (window.HB_HOME_MAP) HB_HOME_MAP(); }, 50);
 })();
 </script>
 <script>if("serviceWorker" in navigator&&!window.HBApp&&/^https?:$/.test(location.protocol)){addEventListener("load",function(){navigator.serviceWorker.register("sw.js")})}</script>

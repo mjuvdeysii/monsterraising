@@ -15,10 +15,15 @@ import java.util.Calendar;
 
 /** Home-screen card: how old the baby is today and the next vaccine or check-up. */
 public class AgeWidget extends AppWidgetProvider {
-    static final String PREFS = "profile", BIRTH = "birth";
+    static final String PREFS = "profile", BIRTH = "birth", NAME = "name";
 
     static void saveBirth(Context c, String birth) {
         c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().putString(BIRTH, birth == null ? "" : birth).apply();
+        refresh(c);
+    }
+
+    static void saveName(Context c, String name) {
+        c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().putString(NAME, name == null ? "" : name).apply();
         refresh(c);
     }
 
@@ -43,21 +48,23 @@ public class AgeWidget extends AppWidgetProvider {
     public void onUpdate(Context c, AppWidgetManager mgr, int[] ids) {
         String line1, line2;
         String birth = c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(BIRTH, "");
+        String name = c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(NAME, "");
+        if (name == null || name.trim().isEmpty()) name = "小怪兽";
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0); today.set(Calendar.MINUTE, 0); today.set(Calendar.SECOND, 0); today.set(Calendar.MILLISECOND, 0);
         if (birth == null || birth.isEmpty()) {
-            line1 = "成长手册";
-            line2 = "打开应用，填写宝宝的出生日期";
+            line1 = "养小怪兽";
+            line2 = "打开应用，填写" + name + "的出生日期";
         } else {
             String[] p = birth.split("-");
             Calendar b = Calendar.getInstance();
             b.clear(); b.set(Integer.parseInt(p[0]), Integer.parseInt(p[1]) - 1, Integer.parseInt(p[2]));
             int mo = (today.get(Calendar.YEAR) - b.get(Calendar.YEAR)) * 12 + today.get(Calendar.MONTH) - b.get(Calendar.MONTH);
             if (addMonths(b, mo).after(today)) mo--;
-            if (mo < 0) { line1 = "成长手册"; line2 = "出生日期晚于今天"; }
+            if (mo < 0) { line1 = "养小怪兽"; line2 = "出生日期晚于今天"; }
             else {
                 long d = days(addMonths(b, mo), today);
-                line1 = "今天满 " + mo + " 个月" + (d > 0 ? " " + d + " 天" : "");
+                line1 = name + "今天满 " + mo + " 个月" + (d > 0 ? " " + d + " 天" : "");
                 line2 = nextCare(c, today);
             }
         }

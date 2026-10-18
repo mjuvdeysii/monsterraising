@@ -113,7 +113,7 @@ public class MainActivity extends Activity {
     void printSheet() {
         runOnUiThread(() -> {
             PrintManager pm = (PrintManager) getSystemService(Context.PRINT_SERVICE);
-            PrintDocumentAdapter inner = web.createPrintDocumentAdapter("成长手册一页纸");
+            PrintDocumentAdapter inner = web.createPrintDocumentAdapter("养小怪兽一页纸");
             PrintDocumentAdapter adapter = new PrintDocumentAdapter() {
                 @Override public void onStart() { inner.onStart(); }
                 @Override public void onLayout(PrintAttributes o, PrintAttributes n, android.os.CancellationSignal c, LayoutResultCallback cb, Bundle b) { inner.onLayout(o, n, c, cb, b); }
@@ -123,7 +123,7 @@ public class MainActivity extends Activity {
                     web.evaluateJavascript("document.body.classList.remove('print-sheet')", null);
                 }
             };
-            pm.print("成长手册一页纸", adapter, new PrintAttributes.Builder().setMediaSize(PrintAttributes.MediaSize.ISO_A4).build());
+            pm.print("养小怪兽一页纸", adapter, new PrintAttributes.Builder().setMediaSize(PrintAttributes.MediaSize.ISO_A4).build());
         });
     }
 
@@ -294,6 +294,9 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void setBirth(String birth) { AgeWidget.saveBirth(a, birth); }
+
+        @JavascriptInterface
+        public void setName(String name) { AgeWidget.saveName(a, name); }
 
         @JavascriptInterface
         public void setReminders(String json) {

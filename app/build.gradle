@@ -10,12 +10,15 @@ android {
         versionCode = Integer.parseInt(System.getenv("VERSION_CODE") ?: "1")
         versionName = "1." + (System.getenv("VERSION_CODE") ?: "1")
     }
+    // the signing key is not in this repository: the build workflow writes it from the repository's secrets
     signingConfigs {
         release {
-            storeFile file("../keystore/release.jks")
-            storePassword "growthhandbook"
-            keyAlias "handbook"
-            keyPassword "growthhandbook"
+            if (System.getenv("HB_KEYSTORE_FILE")) {
+                storeFile file(System.getenv("HB_KEYSTORE_FILE"))
+                storePassword System.getenv("HB_KEYSTORE_PASSWORD")
+                keyAlias "handbook"
+                keyPassword System.getenv("HB_KEYSTORE_PASSWORD")
+            }
         }
     }
     buildTypes {

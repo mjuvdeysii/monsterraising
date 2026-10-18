@@ -19,9 +19,18 @@ jobs:
           gradle-version: "8.9"
       - name: Check Android SDK
         run: echo "ANDROID_HOME=$ANDROID_HOME" && ls "$ANDROID_HOME/platforms" | tail -3
+      - name: Write the signing key from the repository secrets
+        env:
+          HB_KEYSTORE_B64: ${{ secrets.HB_KEYSTORE_B64 }}
+        shell: bash
+        run: |
+          if [ -z "$HB_KEYSTORE_B64" ]; then echo "::error title=Signing key missing::Add the HB_KEYSTORE_B64 and HB_KEYSTORE_PASSWORD secrets under Settings > Secrets and variables > Actions, then run this workflow again."; exit 1; fi
+          echo "$HB_KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/release.jks"
       - name: Build release APK
         env:
           VERSION_CODE: ${{ github.run_number }}
+          HB_KEYSTORE_FILE: ${{ runner.temp }}/release.jks
+          HB_KEYSTORE_PASSWORD: ${{ secrets.HB_KEYSTORE_PASSWORD }}
         shell: bash
         run: |
           set -o pipefail
@@ -33,7 +42,9 @@ jobs:
           msg=$(grep -E "error:|e: |What went wrong|FAILURE|Could not|Caused by|> " build.log | head -60 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')
           echo "::error title=Gradle build::${msg}"
       - name: Name the APK
-        run: cp app/build/outputs/apk/release/app-release.apk "growth-handbook-1.${{ github.run_number }}.apk"
+        run: |
+          test -f app/build/outputs/apk/release/app-release.apk || { echo "::error title=Unsigned build::The release APK was not signed."; exit 1; }
+          cp app/build/outputs/apk/release/app-release.apk "growth-handbook-1.${{ github.run_number }}.apk"
       - uses: actions/upload-artifact@v4
         with:
           name: growth-handbook-apk
@@ -44,4 +55,4 @@ jobs:
           tag_name: handbook-1.${{ github.run_number }}
           name: 成长手册 1.${{ github.run_number }}
           files: "growth-handbook-1.${{ github.run_number }}.apk"
-          body: 下载 APK 文件，在安卓手机上打开安装。更新时直接覆盖安装，勾选记录和出生日期会保留。
+          body: 下载 APK 文件，在安卓手机上打开安装。1.13 起使用新的签名：从 1.12 或更早的版本升级时，先在旧版“记录”页导出记录，卸载旧版后安装新版，再在新版“记录”页导入。之后的版本直接覆盖安装，记录会保留。

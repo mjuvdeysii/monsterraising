@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="paper">#FFFDF8</color>
-    <color name="icon_bg">#F4ECDF</color>
-    <color name="splash_bg">#F4ECDF</color>
+    <color name="icon_bg">#FBF3E4</color>
+    <color name="splash_bg">#FBF3E4</color>
     <color name="w_bg">#FFFDF8</color>
     <color name="w_ink">#211E1A</color>
     <color name="w_ink2">#5A534B</color>

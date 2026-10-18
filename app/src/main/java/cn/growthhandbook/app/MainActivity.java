@@ -293,9 +293,13 @@ public class MainActivity extends Activity {
         }
 
         @JavascriptInterface
+        public void setBirth(String birth) { AgeWidget.saveBirth(a, birth); }
+
+        @JavascriptInterface
         public void setReminders(String json) {
             Reminders.save(a, json);
             Reminders.schedule(a);
+            AgeWidget.refresh(a);
             if (json != null && json.length() > 2) a.askNotificationPermission();
         }
     }

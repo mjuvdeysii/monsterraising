@@ -47,9 +47,9 @@ public class AgeWidget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context c, AppWidgetManager mgr, int[] ids) {
         String line1, line2;
+        int stage = 1;
         String birth = c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(BIRTH, "");
         String name = c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(NAME, "");
-        if (name == null || name.trim().isEmpty()) name = "小怪兽";
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0); today.set(Calendar.MINUTE, 0); today.set(Calendar.SECOND, 0); today.set(Calendar.MILLISECOND, 0);
         if (birth == null || birth.isEmpty()) {
@@ -65,6 +65,7 @@ public class AgeWidget extends AppWidgetProvider {
             else {
                 long d = days(addMonths(b, mo), today);
                 line1 = "今天满 " + mo + " 个月" + (d > 0 ? " " + d + " 天" : "");
+                stage = mo < 12 ? 1 : mo < 24 ? 2 : mo <= 36 ? 3 : 4;
                 line2 = nextCare(c, today);
             }
         }
@@ -72,6 +73,12 @@ public class AgeWidget extends AppWidgetProvider {
             RemoteViews v = new RemoteViews(c.getPackageName(), R.layout.widget_age);
             v.setTextViewText(R.id.w_age, line1);
             v.setTextViewText(R.id.w_next, line2);
+            // the little monster grows with the child, and sleeps at night
+            int hr = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+            boolean night = hr >= 21 || hr < 6;
+            int[] day = { R.drawable.mascot_s1, R.drawable.mascot_s2, R.drawable.mascot_s3, R.drawable.mascot_s4 };
+            int[] sleep = { R.drawable.mascot_z1, R.drawable.mascot_z2, R.drawable.mascot_z3, R.drawable.mascot_z4 };
+            v.setImageViewResource(R.id.w_img, (night ? sleep : day)[stage - 1]);
             Intent i = new Intent(c, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             v.setOnClickPendingIntent(R.id.w_root, PendingIntent.getActivity(c, 7, i, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
             mgr.updateAppWidget(id, v);

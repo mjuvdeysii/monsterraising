@@ -54,7 +54,7 @@ public class AgeWidget extends AppWidgetProvider {
         today.set(Calendar.HOUR_OF_DAY, 0); today.set(Calendar.MINUTE, 0); today.set(Calendar.SECOND, 0); today.set(Calendar.MILLISECOND, 0);
         if (birth == null || birth.isEmpty()) {
             line1 = "养小怪兽";
-            line2 = "打开应用，填写" + name + "的出生日期";
+            line2 = "打开应用，填写宝宝的出生日期";
         } else {
             String[] p = birth.split("-");
             Calendar b = Calendar.getInstance();
@@ -64,7 +64,7 @@ public class AgeWidget extends AppWidgetProvider {
             if (mo < 0) { line1 = "养小怪兽"; line2 = "出生日期晚于今天"; }
             else {
                 long d = days(addMonths(b, mo), today);
-                line1 = name + "今天满 " + mo + " 个月" + (d > 0 ? " " + d + " 天" : "");
+                line1 = "今天满 " + mo + " 个月" + (d > 0 ? " " + d + " 天" : "");
                 line2 = nextCare(c, today);
             }
         }

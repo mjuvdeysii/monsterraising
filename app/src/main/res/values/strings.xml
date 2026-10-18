@@ -2,5 +2,5 @@
 <resources>
     <string name="app_name">养小怪兽</string>
     <string name="channel_name">接种与儿保提醒</string>
-    <string name="widget_desc">小怪兽今天多大，以及下一次接种和儿保</string>
+    <string name="widget_desc">宝宝今天多大，以及下一次接种和儿保</string>
 </resources>

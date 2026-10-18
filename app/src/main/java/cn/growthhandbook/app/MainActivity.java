@@ -8,6 +8,14 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.app.DownloadManager;
+import android.database.Cursor;
+import android.provider.Settings;
+import java.io.File;
+import org.json.JSONArray;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
@@ -178,6 +186,10 @@ public class MainActivity extends Activity {
     @Override
     protected void onActivityResult(int req, int res, Intent data) {
         super.onActivityResult(req, res, data);
+        if (req == INSTALL_PERM) {
+            if (Build.VERSION.SDK_INT < 26 || getPackageManager().canRequestPackageInstalls()) install(); else js("HB_DL({s:'denied'})");
+            return;
+        }
         Uri u = (res == RESULT_OK && data != null) ? data.getData() : null;
         if (req == SAVE) {
             String text = pendingSave; pendingSave = null;
@@ -238,6 +250,80 @@ public class MainActivity extends Activity {
         }).start();
     }
 
+    // in-app update download: the system download service (resumes after network drops), several sources,
+    // a source that stops moving is dropped for the next one; the installer opens when the file is complete
+    private static final int INSTALL_PERM = 23;
+    private final Handler ui = new Handler(Looper.getMainLooper());
+    private JSONArray dlUrls; private int dlIndex; private long dlId = -1, dlLastBytes = -1, dlLastMove; private String dlName;
+
+    void downloadUpdate(String urlsJson, String name) {
+        runOnUiThread(() -> {
+            try { dlUrls = new JSONArray(urlsJson); } catch (Exception e) { js("HB_DL({s:'fail'})"); return; }
+            dlName = name; dlIndex = 0; startDownload();
+        });
+    }
+
+    private void startDownload() {
+        DownloadManager dm = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+        if (dlId >= 0) { dm.remove(dlId); dlId = -1; }
+        if (dlUrls == null || dlIndex >= dlUrls.length()) { js("HB_DL({s:'fail'})"); return; }
+        File f = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), dlName);
+        if (f.exists()) f.delete();
+        try {
+            DownloadManager.Request r = new DownloadManager.Request(Uri.parse(dlUrls.getString(dlIndex)));
+            r.setTitle(getString(R.string.app_name) + " 更新");
+            r.setDescription(dlName);
+            r.setMimeType("application/vnd.android.package-archive");
+            r.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            r.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_DOWNLOADS, dlName);
+            dlId = dm.enqueue(r);
+        } catch (Exception e) { dlIndex++; startDownload(); return; }
+        dlLastBytes = -1; dlLastMove = System.currentTimeMillis();
+        js("HB_DL({s:'run',p:0,src:" + dlIndex + "})");
+        ui.postDelayed(this::pollDownload, 700);
+    }
+
+    private void pollDownload() {
+        if (dlId < 0) return;
+        DownloadManager dm = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+        int status = -1; long done = 0, total = -1;
+        try (Cursor c = dm.query(new DownloadManager.Query().setFilterById(dlId))) {
+            if (c != null && c.moveToFirst()) {
+                status = c.getInt(c.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS));
+                done = c.getLong(c.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
+                total = c.getLong(c.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
+            }
+        } catch (Exception ignored) { }
+        long now = System.currentTimeMillis();
+        if (status == DownloadManager.STATUS_SUCCESSFUL) { js("HB_DL({s:'done'})"); install(); return; }
+        if (status == DownloadManager.STATUS_FAILED || status == -1) { dlIndex++; js("HB_DL({s:'switch'})"); startDownload(); return; }
+        if (done != dlLastBytes) { dlLastBytes = done; dlLastMove = now; }
+        long limit = done > 0 ? 25000 : 15000;
+        if (now - dlLastMove > limit) { dlIndex++; js("HB_DL({s:'switch'})"); startDownload(); return; }
+        int pct = total > 0 ? (int) (done * 100 / total) : 0;
+        js("HB_DL({s:'run',p:" + pct + "})");
+        ui.postDelayed(this::pollDownload, 700);
+    }
+
+    private void install() {
+        if (Build.VERSION.SDK_INT >= 26 && !getPackageManager().canRequestPackageInstalls()) {
+            js("HB_DL({s:'perm'})");
+            try { startActivityForResult(new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + getPackageName())), INSTALL_PERM); } catch (Exception ignored) { }
+            return;
+        }
+        DownloadManager dm = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri u = dm.getUriForDownloadedFile(dlId);
+        if (u == null) { js("HB_DL({s:'fail'})"); return; }
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setDataAndType(u, "application/vnd.android.package-archive");
+        i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
+        try { startActivity(i); } catch (Exception e) { js("HB_DL({s:'fail'})"); }
+    }
+
+    void cancelDownload() {
+        runOnUiThread(() -> { if (dlId >= 0) ((DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE)).remove(dlId); dlId = -1; dlUrls = null; });
+    }
+
     void openUrl(String url) {
         runOnUiThread(() -> { try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url))); } catch (Exception ignored) { } });
     }
@@ -270,6 +356,12 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void checkUpdate(boolean manual) { a.checkUpdate(manual); }
+
+        @JavascriptInterface
+        public void downloadUpdate(String urlsJson, String name) { a.downloadUpdate(urlsJson, name); }
+
+        @JavascriptInterface
+        public void cancelDownload() { a.cancelDownload(); }
 
         @JavascriptInterface
         public void openUrl(String url) { if (url != null && url.startsWith("https://")) a.openUrl(url); }

@@ -44,15 +44,29 @@ jobs:
       - name: Name the APK
         run: |
           test -f app/build/outputs/apk/release/app-release.apk || { echo "::error title=Unsigned build::The release APK was not signed."; exit 1; }
-          cp app/build/outputs/apk/release/app-release.apk "growth-handbook-1.${{ github.run_number }}.apk"
+          cp app/build/outputs/apk/release/app-release.apk "monster-raising-1.${{ github.run_number }}.apk"
+      - name: Publish a mirror copy for faster downloads
+        shell: bash
+        run: |
+          set -e
+          APK="monster-raising-1.${{ github.run_number }}.apk"
+          git config user.name "github-actions"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -rf /tmp/dist && mkdir /tmp/dist && cp "$APK" /tmp/dist/ && cd /tmp/dist
+          git init -q -b dist && git add "$APK" && git commit -q -m "APK ${{ github.run_number }}"
+          git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" dist
+          SHA=$(git rev-parse HEAD)
+          cd "$GITHUB_WORKSPACE"
+          cp RELEASE_NOTES.md release_body.md
+          printf '\n\n<!-- mirror: https://cdn.jsdelivr.net/gh/${{ github.repository }}@%s/%s -->\n' "$SHA" "$APK" >> release_body.md
+          curl -s -o /dev/null --max-time 60 "https://cdn.jsdelivr.net/gh/${{ github.repository }}@$SHA/$APK" || true
       - uses: actions/upload-artifact@v4
         with:
           name: growth-handbook-apk
-          path: "growth-handbook-1.${{ github.run_number }}.apk"
+          path: "monster-raising-1.${{ github.run_number }}.apk"
       - name: Publish as a release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: handbook-1.${{ github.run_number }}
-          name: 成长手册 1.${{ github.run_number }}
-          files: "growth-handbook-1.${{ github.run_number }}.apk"
-          body_path: RELEASE_NOTES.md
+          name: 养小怪兽 1.${{ github.run_number }}
+          files: "monster-raising-1.${{ github.run_number }}.apk"
+          body_path: release_body.md

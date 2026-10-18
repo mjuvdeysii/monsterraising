@@ -21,6 +21,12 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+import org.json.JSONObject;
+
 import androidx.webkit.WebViewAssetLoader;
 
 /** The handbook, bundled inside the app and served from a fixed https origin so that ticks and the birth date persist. */
@@ -126,6 +132,53 @@ public class MainActivity extends Activity {
         });
     }
 
+    // records backup: the person picks where the file goes and which file comes back, through the system file picker
+    private static final int SAVE = 21, OPEN = 22;
+    private String pendingSave = null;
+
+    void saveFile(String name, String text) {
+        runOnUiThread(() -> {
+            pendingSave = text;
+            Intent i = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+            i.addCategory(Intent.CATEGORY_OPENABLE);
+            i.setType("application/json");
+            i.putExtra(Intent.EXTRA_TITLE, name);
+            try { startActivityForResult(i, SAVE); } catch (Exception e) { pendingSave = null; js("HB_FILE_DONE('save',false)"); }
+        });
+    }
+
+    void openFile() {
+        runOnUiThread(() -> {
+            Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            i.addCategory(Intent.CATEGORY_OPENABLE);
+            i.setType("*/*");
+            try { startActivityForResult(i, OPEN); } catch (Exception e) { js("HB_FILE_DONE('open',false)"); }
+        });
+    }
+
+    private void js(String code) { if (web != null) web.evaluateJavascript(code, null); }
+
+    @Override
+    protected void onActivityResult(int req, int res, Intent data) {
+        super.onActivityResult(req, res, data);
+        Uri u = (res == RESULT_OK && data != null) ? data.getData() : null;
+        if (req == SAVE) {
+            String text = pendingSave; pendingSave = null;
+            boolean ok = false;
+            if (u != null && text != null) {
+                try (OutputStream o = getContentResolver().openOutputStream(u, "wt")) { o.write(text.getBytes(StandardCharsets.UTF_8)); ok = true; } catch (Exception ignored) { }
+            }
+            js("HB_FILE_DONE('save'," + (u == null ? "null" : String.valueOf(ok)) + ")");
+        } else if (req == OPEN) {
+            if (u == null) { js("HB_FILE_DONE('open',null)"); return; }
+            try (InputStream in = getContentResolver().openInputStream(u)) {
+                ByteArrayOutputStream b = new ByteArrayOutputStream(); byte[] buf = new byte[8192]; int n; long total = 0;
+                while ((n = in.read(buf)) > 0) { b.write(buf, 0, n); total += n; if (total > 2_000_000) throw new Exception("too large"); }
+                js("HB_IMPORT(" + JSONObject.quote(b.toString("UTF-8")) + ")");
+            } catch (Exception e) { js("HB_FILE_DONE('open',false)"); }
+        }
+    }
+
     void askNotificationPermission() {
         if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             runOnUiThread(() -> requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 7));
@@ -142,6 +195,12 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void share(String title, String text) { a.shareText(title, text); }
+
+        @JavascriptInterface
+        public void saveFile(String name, String text) { a.saveFile(name, text); }
+
+        @JavascriptInterface
+        public void openFile() { a.openFile(); }
 
         @JavascriptInterface
         public void setDark(boolean dark) { a.runOnUiThread(() -> a.applyBars(dark)); }

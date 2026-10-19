@@ -23,7 +23,6 @@ jobs:
           python3 ios/scripts/prepare_assets.py
           (cd ios && xcodegen generate --spec project.yml 2>&1 | tee ../xcodegen.log)
           echo "::notice title=Generated::$(ls ios | tr '\n' ' ') | $(xcodebuild -version | tr '\n' ' ') | $(tail -3 xcodegen.log | tr '\n' ' ')"
-          head -c 400 ios/MonsterRaising.xcodeproj/project.pbxproj | tr '\n' ' ' | sed 's/^/::notice title=pbxproj::/'
       - name: Build for the simulator
         run: |
           set -o pipefail

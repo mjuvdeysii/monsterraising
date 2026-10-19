@@ -6,6 +6,9 @@ on:
     paths-ignore:
       - "ios/**"
       - ".github/workflows/ios.yml"
+      - "docs/**"
+      - "qa/**"
+      - ".github/workflows/qa.yml"
   workflow_dispatch:
 permissions:
   contents: write

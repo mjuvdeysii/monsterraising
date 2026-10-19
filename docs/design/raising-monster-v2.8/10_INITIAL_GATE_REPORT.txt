@@ -1,0 +1,44 @@
+Raising Monster gate (audit); repository=/mnt/data
+Requirements: 39; QA platform runs: 123; baseline screens: 47
+Requirements status: {'待决策': 2, '未核验': 37}
+QA status: {'未执行': 123}
+Unresolved evidence/verification items: 344; pending decisions: 4
+ BLOCKED: BR-02: unresolved P1, status=未核验
+ BLOCKED: GX-01: unresolved P0, status=未核验
+ BLOCKED: GX-02: unresolved P0, status=未核验
+ BLOCKED: GX-03: unresolved P0, status=未核验
+ BLOCKED: GX-04: unresolved P0, status=未核验
+ BLOCKED: GX-05: unresolved P0, status=未核验
+ BLOCKED: GX-06: unresolved P0, status=未核验
+ BLOCKED: NV-01: unresolved P1, status=未核验
+ BLOCKED: NV-02: unresolved P1, status=未核验
+ BLOCKED: NV-03: unresolved P1, status=未核验
+ BLOCKED: NV-04: unresolved P1, status=未核验
+ BLOCKED: NV-05: unresolved P1, status=未核验
+ BLOCKED: NV-06: unresolved P1, status=未核验
+ BLOCKED: NV-07: unresolved P1, status=未核验
+ BLOCKED: NV-08: unresolved P1, status=未核验
+ BLOCKED: NV-09: unresolved P1, status=未核验
+ BLOCKED: UI-01: unresolved P1, status=未核验
+ BLOCKED: UI-02: unresolved P1, status=未核验
+ BLOCKED: UI-03: unresolved P1, status=未核验
+ BLOCKED: UI-04: unresolved P1, status=未核验
+ BLOCKED: UI-05: unresolved P1, status=未核验
+ BLOCKED: UI-06: unresolved P1, status=未核验
+ BLOCKED: UX-01: unresolved P1, status=未核验
+ BLOCKED: UX-02: unresolved P1, status=未核验
+ BLOCKED: UX-03: unresolved P1, status=未核验
+ BLOCKED: UX-04: unresolved P1, status=未核验
+ BLOCKED: UX-05: unresolved P1, status=未核验
+ BLOCKED: UX-06: unresolved P1, status=未核验
+ BLOCKED: UX-07: unresolved P1, status=未核验
+ BLOCKED: UX-08: unresolved P1, status=未核验
+ BLOCKED: UX-09: unresolved P1, status=未核验
+ BLOCKED: CT-01: unresolved P0, status=未核验
+ BLOCKED: CT-02: unresolved P1, status=未核验
+ BLOCKED: QA-01: unresolved P1, status=未核验
+ BLOCKED: QA-02: unresolved P1, status=未核验
+ ... and 309 additional items; inspect CSV for all rows
+Decision warnings: BR-01: brand decision pending; leave shipped name unchanged | BR-03: brand decision pending; leave shipped name unchanged | T065/Android: naming proposals pending user review; no renaming allowed | T065/iOS: naming proposals pending user review; no renaming allowed
+IMPORTANT: A clean gate only means fields and files are present. Human review of real test content is still required.
+AUDIT: incomplete items listed; this is expected before implementation

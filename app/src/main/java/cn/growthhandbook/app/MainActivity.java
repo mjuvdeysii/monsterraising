@@ -69,7 +69,9 @@ public class MainActivity extends Activity {
         s.setDomStorageEnabled(true);
         s.setAllowFileAccess(false);
         s.setAllowContentAccess(false);
-        s.setTextZoom(getSharedPreferences("hb", MODE_PRIVATE).getInt("zoom", 100));
+        s.setTextZoom(textZoom(this));
+        // debug builds only: lets qa/android_qa.py drive the page through Chrome DevTools
+        if ((getApplicationInfo().flags & android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0) WebView.setWebContentsDebuggingEnabled(true);
         s.setMediaPlaybackRequiresUserGesture(true);
         web.setOverScrollMode(View.OVER_SCROLL_NEVER);
         web.addJavascriptInterface(new Bridge(this), "HBApp");
@@ -95,6 +97,10 @@ public class MainActivity extends Activity {
     }
 
     String pendingLog = "";
+
+    /** The page's text size: the size chosen in 设置, or, until one is chosen, the phone's own font size. */
+    static int systemZoom(Context c) { return Math.max(80, Math.min(160, Math.round(c.getResources().getConfiguration().fontScale * 100))); }
+    static int textZoom(Context c) { int z = c.getSharedPreferences("hb", MODE_PRIVATE).getInt("zoom", 0); return z > 0 ? z : systemZoom(c); }
 
     private String target(Intent i) {
         if (i != null && "journal".equals(i.getStringExtra("page"))) return HOME + "#journal";
@@ -411,12 +417,17 @@ public class MainActivity extends Activity {
         }
 
         @JavascriptInterface
-        public int getTextZoom() { return a.getSharedPreferences("hb", MODE_PRIVATE).getInt("zoom", 100); }
+        public int getTextZoom() { return a.getSharedPreferences("hb", MODE_PRIVATE).getInt("zoom", 0); }
+
+        @JavascriptInterface
+        public int systemTextZoom() { return systemZoom(a); }
 
         @JavascriptInterface
         public void setTextZoom(int z) {
-            final int v = Math.max(80, Math.min(160, z));
-            a.getSharedPreferences("hb", MODE_PRIVATE).edit().putInt("zoom", v).apply();
+            // 0 means: follow the phone's font size
+            if (z <= 0) a.getSharedPreferences("hb", MODE_PRIVATE).edit().remove("zoom").apply();
+            else a.getSharedPreferences("hb", MODE_PRIVATE).edit().putInt("zoom", Math.max(80, Math.min(160, z))).apply();
+            final int v = textZoom(a);
             a.runOnUiThread(() -> a.web.getSettings().setTextZoom(v));
         }
 

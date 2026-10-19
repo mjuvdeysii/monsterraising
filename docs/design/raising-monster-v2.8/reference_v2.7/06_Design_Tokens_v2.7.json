@@ -1,0 +1,212 @@
+{
+  "$schemaNote": "Raising Monster v2.7 project recommendations, not Apple/Google mandatory numeric values. Audit current code first; do not blindly overwrite existing theme colors.",
+  "version": "2.7.0",
+  "brand": {
+    "appNameZh": "养小怪兽",
+    "appNameEn": "TBD: Raising Monster vs Monster Raising",
+    "tabPolicy": "keep all four IP-based tabs + visible Chinese labels",
+    "twoCharacters": "existing assets, names and official palettes pending"
+  },
+  "color": {
+    "sharedInitialValues": {
+      "canvas": "#F7F4EC",
+      "surface": "#FFFEFA",
+      "textPrimary": "#292D27",
+      "textSecondary": "#50574F",
+      "primaryAction": "#4B6952",
+      "onPrimary": "#FFFFFF",
+      "outline": "#D9D5CB",
+      "error": "#9A403A"
+    },
+    "semanticRoles": [
+      "canvas",
+      "surface",
+      "surfaceRaised",
+      "textPrimary",
+      "textSecondary",
+      "textOnPrimary",
+      "primaryAction",
+      "outline",
+      "success",
+      "error",
+      "warning",
+      "focus",
+      "milestone",
+      "disabled",
+      "scrim"
+    ],
+    "themeA": {
+      "role": "existing green-eyes/character preset—verify actual asset, do not invent final value",
+      "actionColor": "inherit from audited repository"
+    },
+    "themeB": {
+      "role": "existing cyclops preset—verify actual asset, do not invent final value",
+      "actionColor": "inherit from audited repository"
+    },
+    "appearances": [
+      "light",
+      "dark"
+    ],
+    "contrastTargets": {
+      "body": 4.5,
+      "largeText": 3.0
+    }
+  },
+  "spacing": {
+    "scaleLogical": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      32,
+      40,
+      48,
+      64
+    ],
+    "pagePaddingCompact": 16,
+    "pagePaddingDefault": 20,
+    "inGroup": 8,
+    "cardPadding": 16,
+    "cardGap": 12,
+    "sectionGap": 32
+  },
+  "radius": {
+    "badge": 8,
+    "control": 12,
+    "card": 16,
+    "sheet": 20
+  },
+  "type": {
+    "description": "Design baseline only; map to actual system font scaling. Do not freeze CSS px when OS enlarges text.",
+    "fontStack": {
+      "functionalZh": "iOS/Android system Chinese sans fallback to Noto Sans SC",
+      "editorialZhOptional": "LXGW WenKai limited story headings after licensing/load checks",
+      "brandingEnOptional": "Nunito for brand/large numbers after checks"
+    },
+    "roles": {
+      "displayStory": {
+        "fontSize": 30,
+        "lineHeight": 39,
+        "weight": 600
+      },
+      "pageTitle": {
+        "fontSize": 24,
+        "lineHeight": 32,
+        "weight": 600
+      },
+      "sectionTitle": {
+        "fontSize": 20,
+        "lineHeight": 28,
+        "weight": 600
+      },
+      "cardTitle": {
+        "fontSize": 18,
+        "lineHeight": 26,
+        "weight": 600
+      },
+      "body": {
+        "fontSize": 17,
+        "lineHeight": 27,
+        "weight": 400
+      },
+      "support": {
+        "fontSize": 15,
+        "lineHeight": 23,
+        "weight": 400
+      },
+      "caption": {
+        "fontSize": 13,
+        "lineHeight": 20,
+        "weight": 400
+      },
+      "button": {
+        "fontSize": 16,
+        "lineHeight": 23,
+        "weight": 600
+      }
+    }
+  },
+  "touch": {
+    "androidMinDesignTarget": "48dp square",
+    "iosRecommendedDesignTarget": "44pt square",
+    "note": "CSS pixels in WebView require platform-specific viewport and device verification."
+  },
+  "motion": {
+    "pressMs": [
+      80,
+      150
+    ],
+    "toggleMs": [
+      120,
+      180
+    ],
+    "monthSwitchMs": [
+      180,
+      240
+    ],
+    "navigationMs": [
+      220,
+      300
+    ],
+    "sheetCustomMs": [
+      240,
+      360
+    ],
+    "monsterJoyMs": [
+      300,
+      550
+    ],
+    "reducedMotion": "disable nonessential movement; preserve status feedback"
+  },
+  "illustration": {
+    "defaultFit": "contain for critical character/art assets",
+    "imageAspect": "source intrinsic or audited asset-specific container",
+    "safeCrop": "asset-specific documented focal/safe area",
+    "layoutShift": "reserve image box dimensions before load"
+  },
+  "monthState": {
+    "currentMonth": "computed calendar month age from birthdate/current date, authoritative state",
+    "browsedMonth": "independent UI selection 0..36",
+    "renderRequestRule": "ignore out-of-order responses"
+  },
+  "semanticStates": {
+    "contentReviewed": "viewed/read by caregiver",
+    "activityPerformed": "activity actually done, explicit confirmation",
+    "observationRecorded": "observed fact, not diagnostic result",
+    "healthEventConfirmed": "real vaccination/well-baby event verified independently",
+    "journalSavedLocal": "durably persisted only",
+    "syncPending": "cloud sync exists and is pending",
+    "stickerAwarded": "commemorative event only"
+  },
+  "platformRules": {
+    "android": [
+      "Back/predictive back",
+      "TalkBack",
+      "edge-to-edge/IME insets",
+      "system animator settings"
+    ],
+    "ios": [
+      "interactive back where supported",
+      "VoiceOver",
+      "safe area & Dynamic Type",
+      "Reduce Motion"
+    ],
+    "hybrid": [
+      "native-web route synchronization",
+      "WebView font scale bridge",
+      "keyboard inset ownership",
+      "deep link restore"
+    ]
+  },
+  "decisionPending": [
+    "official English name",
+    "mascot names",
+    "theme palettes",
+    "cloud backup policy",
+    "native shell details",
+    "tab icon optimization"
+  ]
+}

@@ -1,13 +1,8 @@
 name: Build iOS (simulator check)
 # Checks that the iOS app and its widget compile. It builds for the simulator without signing, so it needs no
 # Apple account; installing on an iPhone or publishing needs an Apple Developer account and signing.
+# iOS is paused for now: this check runs only when started by hand (Actions > Build iOS > Run workflow).
 on:
-  push:
-    branches: [main]
-    paths:
-      - "ios/**"
-      - "app/src/main/assets/site/**"
-      - ".github/workflows/ios.yml"
   workflow_dispatch:
 jobs:
   ios:

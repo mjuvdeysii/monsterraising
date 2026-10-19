@@ -8,6 +8,8 @@ on:
       - ".github/workflows/ios.yml"
       - "docs/**"
       - "qa/**"
+      - "native/**"
+      - ".github/workflows/native.yml"
       - ".github/workflows/qa.yml"
   workflow_dispatch:
 permissions:
@@ -98,6 +100,6 @@ jobs:
         shell: bash
         run: |
           gh api "repos/${{ github.repository }}/releases?per_page=100" --paginate -q '.[] | [.published_at, .tag_name] | @tsv' \
-            | sort -r | tail -n +4 | cut -f2 | while read -r t; do
+            | grep -P '\tv[0-9]' | sort -r | tail -n +4 | cut -f2 | while read -r t; do
               [ -n "$t" ] && gh release delete "$t" --repo "${{ github.repository }}" --yes --cleanup-tag && echo "removed $t"
             done

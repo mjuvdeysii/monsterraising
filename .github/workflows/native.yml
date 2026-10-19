@@ -57,16 +57,6 @@ jobs:
         run: |
           msg=$(grep -E "^e: |error:|FAILED|What went wrong|R8|Missing class" ../native-build.log | head -60 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')
           echo "::error title=Native release::${msg}"
-      - name: Publish screenshots to the native-screens branch (for review)
-        if: always()
-        continue-on-error: true
-        working-directory: .
-        run: |
-          [ -d native/app/src/test/snapshots/images ] || exit 0
-          mkdir -p /tmp/screens && cp -r native/app/src/test/snapshots/images/. /tmp/screens/ && cp native-test.log /tmp/screens/ 2>/dev/null || true
-          git config user.name "github-actions"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -q --orphan screens-tmp && git rm -rqf --cached . && find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          cp -r /tmp/screens/. . && echo "${GITHUB_SHA}" > COMMIT && git add -A && git commit -qm "screens ${GITHUB_SHA}" && git push -qf origin screens-tmp:native-screens
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -90,3 +80,13 @@ jobs:
           gh release create mossling-preview "mossling-0.1.${{ github.run_number }}.apk" --prerelease --target "${GITHUB_SHA}" \
             --title "Mossling 苔生 预览 0.1.${{ github.run_number }}" \
             --notes "原生安卓版的开发预览，和现在的「养小怪兽」是两个独立的应用，可以同时安装，互不影响。"
+      - name: Publish screenshots to the native-screens branch (for review)
+        if: always()
+        continue-on-error: true
+        working-directory: .
+        run: |
+          [ -d native/app/src/test/snapshots/images ] || exit 0
+          mkdir -p /tmp/screens && cp -r native/app/src/test/snapshots/images/. /tmp/screens/ && cp native-test.log /tmp/screens/ 2>/dev/null || true
+          git config user.name "github-actions"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -q --orphan screens-tmp && git rm -rqf --cached . && find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r /tmp/screens/. . && echo "${GITHUB_SHA}" > COMMIT && git add -A && git commit -qm "screens ${GITHUB_SHA}" && git push -qf origin screens-tmp:native-screens

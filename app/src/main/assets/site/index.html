@@ -2595,6 +2595,138 @@ html.app #home>.shelf{order:-3}html.app #home>.sh-last{order:-2}
 .fl-hist li{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
 .fl-hist time{color:var(--ink2);min-width:3.5em}
 .fl-hist em{margin-left:auto;font-style:normal;font-size:12px;color:#7DBB6A}
+
+/* ===== 2.4 质感：按钮、卡片、纸面、层次 ===== */
+html.app{--sh1:0 1px 0 rgba(70,48,24,.06),0 6px 16px -10px rgba(70,48,24,.28);--sh2:0 2px 0 rgba(70,48,24,.07),0 12px 26px -14px rgba(70,48,24,.36);--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .15 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+html.app body{background-image:var(--grain);background-attachment:fixed}
+@media (prefers-color-scheme:dark){html.app:not([data-theme="light"]){--sh1:0 1px 0 rgba(0,0,0,.4),0 8px 18px -10px rgba(0,0,0,.6);--sh2:0 2px 0 rgba(0,0,0,.45),0 14px 28px -12px rgba(0,0,0,.7)}}
+html.app[data-theme="dark"]{--sh1:0 1px 0 rgba(0,0,0,.4),0 8px 18px -10px rgba(0,0,0,.6);--sh2:0 2px 0 rgba(0,0,0,.45),0 14px 28px -12px rgba(0,0,0,.7)}
+/* buttons: centred, no underline, a pressed-paper edge */
+html.app .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:48px;padding:0 20px;border-radius:16px;text-align:center;text-decoration:none!important;line-height:1.25;font-weight:600;letter-spacing:.02em;white-space:normal;background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 88%,#fff) 0%,var(--ink) 100%);color:var(--paper);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 3px 0 color-mix(in srgb,var(--ink) 70%,#000),0 8px 16px -8px rgba(0,0,0,.35);transition:transform .08s,box-shadow .08s;-webkit-tap-highlight-color:transparent}
+html.app .btn:active{transform:translateY(2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 1px 0 color-mix(in srgb,var(--ink) 70%,#000),0 3px 8px -6px rgba(0,0,0,.3)}
+html.app .btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid color-mix(in srgb,var(--ink) 14%,var(--line));box-shadow:0 3px 0 color-mix(in srgb,var(--ink) 10%,var(--line)),0 6px 12px -10px rgba(0,0,0,.25)}
+html.app .btn.ghost:active{box-shadow:0 1px 0 color-mix(in srgb,var(--ink) 10%,var(--line))}
+html.app .btn[disabled]{opacity:.55;transform:none}
+html.app a.btn{color:var(--paper)}html.app a.btn.ghost{color:var(--ink)}
+/* small text actions become soft pills instead of underlined words */
+html.app :is(.tb-skip,.jr-off,.pv-more,.qb-go a,.pv-foot a,.ob-skip){display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 70%,transparent);color:var(--ink2);text-decoration:none!important;font-family:var(--f-ui);font-size:13px}
+html.app .tb-skip,html.app .jr-off{display:flex;width:max-content;margin-left:auto;margin-right:auto}
+/* segmented controls with depth */
+html.app .seg{background:color-mix(in srgb,var(--ink) 6%,var(--tint));box-shadow:inset 0 1px 2px rgba(0,0,0,.06);border:0}
+html.app .seg button{border-radius:11px;min-height:40px;font-weight:600}
+html.app .seg button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 0 rgba(0,0,0,.06),0 3px 8px -4px rgba(0,0,0,.25)}
+/* cards: paper with a soft shadow, a little lift under the finger */
+html.app .app-v .card,html.app .sh-c,html.app .mg-now{box-shadow:var(--sh1)}
+html.app .app-v a.card:active,html.app .sh-c:active{box-shadow:0 1px 0 rgba(70,48,24,.06)}
+html.app #home .shelf,html.app .rp-seg,html.app .crumb{border-top:0!important}
+html.app #home .shelf button{box-shadow:var(--sh1)}
+html.app #home .shelf button.on{box-shadow:0 3px 0 color-mix(in srgb,var(--area) 40%,transparent),var(--sh1)}
+html.app .tabbar{box-shadow:0 -8px 20px -14px rgba(70,48,24,.35);border-top-color:color-mix(in srgb,var(--line) 70%,transparent)}
+/* page headers sit on a soft band of the area colour */
+html.app .app-v>.t-h,html.app .view>.crumb{position:relative}
+html.app .view>.crumb{border-bottom:0;margin-bottom:12px;padding:8px 10px;border-radius:14px;background:color-mix(in srgb,var(--area) 8%,var(--surface));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--area) 18%,transparent)}
+
+/* ===== 今天：两屏之内 ===== */
+html.app #today.tdash>.t-cover{max-height:150px;overflow:hidden;border-radius:22px}
+html.app #today.tdash>.t-cover svg{width:100%;height:auto;margin-top:-6%}
+html.app #today.tdash>.t-srch{display:none}
+.t-mon2{padding:0!important;overflow:hidden}
+.t-mon2>.t-month{margin:0!important;border-radius:0!important;box-shadow:none!important;border:0!important}
+.t-mon2>.t-three{display:grid!important;grid-auto-flow:column;grid-auto-columns:78%;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0!important;padding:4px 12px 12px!important;border:0!important;box-shadow:none!important;background:none!important;scrollbar-width:none}
+.t-mon2>.t-three::-webkit-scrollbar{display:none}
+.t-mon2>.t-three a{scroll-snap-align:start;display:block;padding:10px 12px;border-radius:14px;background:color-mix(in srgb,var(--mc,var(--gold)) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--mc,var(--gold)) 22%,var(--line));color:var(--ink);text-decoration:none;min-height:88px}
+.t-mon2>.t-three a small{display:block;font-family:var(--f-ui);font-size:12px;color:var(--ink2);margin-bottom:3px}
+.t-mon2>.t-three a span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:14.5px;line-height:1.5}
+.t-care2{padding:12px 12px 6px!important}
+.tc-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:0 2px 8px;font-size:15px}
+.tc-h .t-all{font-family:var(--f-ui);font-size:12.5px;color:var(--ink2);text-decoration:none;white-space:nowrap}
+.tc-r{padding:0 0 8px;margin:0 0 8px;border-bottom:1px dashed var(--line)}
+.tc-r:last-child{border-bottom:0;margin-bottom:0}
+.tc-r .t-due{margin:0!important;padding:4px 2px!important;border:0!important;box-shadow:none!important;background:none!important;min-height:0}
+.tc-r .t-due b:not(.t-days b){display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14.5px;line-height:1.45}
+.tc-r .t-days{transform:scale(.86);transform-origin:left center}
+.tc-a{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 0}
+.tc-a .t-done{width:auto!important;margin:0!important;min-height:34px!important;padding:0 12px!important;border-radius:999px!important;font-size:12.5px!important;border:1.5px solid color-mix(in srgb,var(--gold) 55%,var(--line))!important;background:color-mix(in srgb,var(--gold) 9%,var(--surface))!important;box-shadow:0 2px 0 color-mix(in srgb,var(--gold) 28%,transparent)}
+html.app #today .t-prog details:not([open]) summary{border-radius:12px}
+.t-tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
+.t-tiles>.tile{display:flex!important;flex-direction:column;justify-content:flex-start;margin:0!important;min-height:118px;padding:12px!important;overflow:hidden;border-radius:18px!important}
+.t-tiles>.t-next a:nth-of-type(n+2){display:none}
+.t-tiles>.t-next h2{font-size:14px;margin:0 0 4px}
+.t-tiles>.t-next a{display:block;border:0!important;padding:0!important}
+.t-tiles>.t-next a span{font-size:11.5px}.t-tiles>.t-next a em{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:12.5px}
+.t-tiles>.t-sleep{align-items:stretch}
+.t-tiles>.t-sleep svg{width:100%;max-height:54px}
+.t-tiles>.t-sleep .ts-t small:last-of-type,.t-tiles>.t-sleep .ref{display:none}
+.t-tiles>.t-journey .tj-ends{display:none}
+.t-tiles>.t-back{gap:6px}
+.t-tiles>.t-back small{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:12px}
+.t-tiles>.t-back .ic{display:none}
+
+/* ===== 目录 › 月份：格子 ===== */
+html.app #home>.mg2{order:-1}
+html.app #home[data-shelf="m"]:not([data-mview="map"])>.home-map{display:none!important}
+html.app #home[data-shelf="m"][data-mview="map"]>.mg2{display:none!important}
+html.app #home[data-shelf="m"]>.mg2{display:block!important}
+.mg-now{display:grid;grid-template-columns:76px 1fr 18px;align-items:center;gap:10px;margin:0 0 12px;padding:10px 12px 10px 8px;border-radius:20px;background:color-mix(in srgb,var(--gold) 12%,var(--surface));border:1.5px solid color-mix(in srgb,var(--gold) 55%,var(--line));color:var(--ink);text-decoration:none}
+.mg-nm{display:block;width:76px;height:70px}.mg-nm .mascot{display:block;width:100%;height:100%}
+.mg-now small{display:block;font-family:var(--f-ui);font-size:12px;color:var(--goldD)}
+.mg-now b{display:block;font-size:19px}.mg-now em{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-style:normal;font-size:13.5px;color:var(--ink2);line-height:1.45}
+.mg-tools{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 2px 8px}
+.mg-lg{font-family:var(--f-ui);font-size:12px;color:var(--ink2);display:flex;align-items:center;gap:4px}
+.mg-lg i{display:inline-block;width:8px;height:8px;border-radius:50%;margin:0 2px 0 8px}
+.mg-lg i:first-child{margin-left:0}
+.mg-lg .d,.mg-m .d{background:var(--gold)}.mg-lg .c,.mg-m .c{background:none;box-shadow:inset 0 0 0 2px #E3B23C}
+.mg-map{display:inline-flex;align-items:center;gap:4px;min-height:36px;padding:0 12px 0 4px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font-family:var(--f-ui);font-size:13px;box-shadow:var(--sh1)}
+.mg-map span{display:block;width:30px;height:28px}.mg-map span .mascot{display:block;width:100%;height:100%}
+.mg-row{display:grid;grid-template-columns:5.2em 1fr;align-items:center;gap:8px;margin:0 0 8px}
+.mg-row p{margin:0;font-family:var(--f-ui);font-size:12px;color:var(--ink2);line-height:1.2}
+.mg-ms{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.mg-m{position:relative;display:grid;place-items:center;height:42px;border-radius:12px;background:var(--surface);border:1px solid var(--line);color:var(--ink);text-decoration:none;box-shadow:0 2px 0 color-mix(in srgb,var(--line) 80%,transparent)}
+.mg-m b{font-family:var(--f-num);font-size:16px;font-weight:800}
+.mg-m i{position:absolute;width:7px;height:7px;border-radius:50%}
+.mg-m .c{top:5px;right:5px}.mg-m .d{bottom:5px;right:5px}
+.mg-m.part{background:color-mix(in srgb,var(--gold) 7%,var(--surface))}
+.mg-m.done{background:color-mix(in srgb,var(--gold) 20%,var(--surface));border-color:color-mix(in srgb,var(--gold) 50%,var(--line))}
+.mg-m.now{background:var(--ink);color:var(--paper);border-color:var(--ink);box-shadow:0 3px 0 color-mix(in srgb,var(--ink) 60%,#000)}
+.mg-m.later{opacity:.55}
+.mg-m:active{transform:translateY(1px)}
+.mg-back{display:inline-flex;align-items:center;gap:4px;min-height:36px;margin:0 0 10px;padding:0 14px 0 8px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font-family:var(--f-ui);font-size:13px;box-shadow:var(--sh1)}
+.mg-back .ic{width:16px;height:16px}
+
+/* ===== 记录 › 设置：一行一项 ===== */
+html.app #rec .acc>h2{display:grid;grid-template-columns:auto 1fr 18px;align-items:center;gap:10px;margin:0;cursor:pointer;min-height:40px}
+html.app #rec .acc>h2 .acc-s{font-family:var(--f-ui);font-size:12.5px;font-weight:400;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0}
+html.app #rec .acc-i{width:10px;height:10px;border-right:2px solid var(--ink2);border-bottom:2px solid var(--ink2);transform:rotate(45deg);transition:transform .2s;justify-self:end;margin-top:-4px}
+html.app #rec .acc.open .acc-i{transform:rotate(-135deg);margin-top:4px}
+html.app #rec .acc:not(.open)>:not(h2){display:none!important}
+html.app #rec .acc{padding-top:10px!important;padding-bottom:10px!important}
+html.app #rec .acc.open>h2{margin-bottom:10px}
+.tb-b .btn{white-space:nowrap;padding:0 12px}
+.tc-h{flex-wrap:wrap}
+.tc-r .t-due{display:grid!important;grid-template-columns:52px 1fr;column-gap:10px;align-items:start}
+.tc-r .t-due .due-track{grid-column:1/-1;margin-top:6px}
+.tc-r .t-days{transform:none;width:52px;min-height:52px}
+.t-tiles>.t-journey .tj-h{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.t-tiles>.t-journey .tj-track{margin-top:auto}
+.mg-ms{grid-template-columns:repeat(7,1fr)}
+html.app #home[data-shelf="m"]>:not(.shelf):not(.mg2):not(.home-map):not(.sh-last){display:none!important}
+html.app #rec .acc>h2{display:flex!important;align-items:center;gap:8px}
+html.app #rec .acc>h2 .acc-s{margin-left:auto;max-width:52%;text-align:right}
+html.app #rec .acc>h2 .acc-i{flex:none;margin-left:4px}
+.jr-tl.fold li:nth-child(n+7){display:none}
+.jr-more6{display:flex;margin:8px auto 0;min-height:38px;padding:0 16px;align-items:center;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font-family:var(--f-ui);font-size:13px;box-shadow:var(--sh1)}
+.jr-tip{display:none}
+.mg-row{grid-template-columns:4.6em minmax(0,1fr)}
+.mg-ms{grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.mg-m{height:40px}.mg-m b{font-size:15px}
+.t-tiles>.t-sleep b{font-size:15px;line-height:1.35}
+.t-tiles>.t-journey .tj-me{width:30px;height:28px}
+#journal .jacc>h2{display:flex;align-items:center;gap:8px;margin:0;cursor:pointer;min-height:40px}
+#journal .jacc>h2 .acc-s{margin-left:auto;font-family:var(--f-ui);font-size:12.5px;font-weight:400;color:var(--ink2)}
+#journal .jacc .acc-i{flex:none;width:10px;height:10px;border-right:2px solid var(--ink2);border-bottom:2px solid var(--ink2);transform:rotate(45deg);margin:-4px 2px 0 4px;transition:transform .2s}
+#journal .jacc.open .acc-i{transform:rotate(-135deg);margin-top:4px}
+#journal .jacc:not(.open)>:not(h2){display:none!important}
+#journal .jacc.open>h2{margin-bottom:10px}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kFFF6E6:#473c29;--kE8EEDB:#333826;--kDDE8CF:#2b3222;--kF5E0E4:#41252a;--kFFF3C4:#3a3521;--kDFC6C3:#523d3a;--kF1EEE8:#3b372d;--kF5E0E0:#412525;--kDFCAC3:#52403a;--kF5E4E0:#412a25;--kDFCFC3:#52443a;--kF5E7E0:#412e25;--kDFD3C3:#52483a;--kF5EBE0:#413425;--kDFD8C3:#524c3a;--kF5EEE0:#413825;--kF5F1E0:#413c25;--kDDDFC3:#50523a;--kF5F5E0:#414125;--kD8DFC3:#4c523a;--kF1F5E0:#3c4125;--kD3DFC3:#48523a;--kEEF5E0:#384125;--kCFDFC3:#44523a;--kEBF5E0:#344125;--kCADFC3:#40523a;--kE7F5E0:#2e4125;--kC6DFC3:#3d523a;--kE4F5E0:#2a4125;--kC3DFC6:#3a523d;--kF7EFE2:#433826;--kE0F5E0:#254125;--kC3DFCA:#3a5240;--kE0F5E4:#25412a;--kC3DFCF:#3a5244;--kE0F5E7:#25412e;--kC3DFD3:#3a5248;--kE0F5EB:#254134;--kC3DFD8:#3a524c;--kE0F5EE:#254138;--kC3DFDD:#3a5250;--kE0F5F1:#25413c;--kC3DDDF:#3a5052;--kC99A6B:#47382a;--kE0F5F5:#254141;--kC3D8DF:#3a4c52;--kE0F1F5:#253c41;--kC3D3DF:#3a4852;--kE0EEF5:#253841;--kC3CFDF:#3a4452;--kE0EBF5:#253441;--kC3CADF:#3a4052;--kE0E7F5:#252e41;--kC3C6DF:#3a3d52;--kE0E4F5:#252a41;--kC6C3DF:#3d3a52;--kE0E0F5:#252541;--kCFE6D4:#223025;--kE4E0F5:#2a2541;--kCFC3DF:#443a52;--kE7E0F5:#2e2541;--kD3C3DF:#483a52;--kFFF3D6:#413925;--kEBE0F5:#342541;--kD8C3DF:#4c3a52;--kEEE0F5:#382541;--kF1E0F5:#3c2541;--kDFC3DD:#523a50;--kF5E0F5:#412541;--kF5E0F1:#41253c;--kDFC3D3:#523a48;--kDCEBF5:#24343f;--kF5E0EE:#412538;--kF5E0EB:#412534;--kDFC3CA:#523a40;--kF5E0E7:#41252e;--kDFC3C6:#523a3d;--kF7D8DF:#3f242a;--kFBF7EF:#493f2a;--kF3EEE6:#3e372a;--kA8D5B5:#354e3c;--kFFF6D6:#413b25;--kEDF2F7:#2c3843;--kF7F0E4:#433926;--kEEF5EE:#2f3f2f;--kFFF8EC:#4a3e2a;--kE9D8B8:#594c33;--kEFE3CC:#372f1f;--kF4F1EA:#3f392d;--kF3D9DF:#3d2329;--kF8EDED:#452a2a;--kEDC9C9:#351e1e;--kF0E6DB:#3b3025;--kEAF4F0:#2d3f38;--kEAF1EE:#2f3b36;--kDCE6D2:#2a3023;--kF6EAEA:#422a2a;--kEADAD1:#342822;--kF6F0EA:#42362a;--kEAE6D1:#343122;--kE2DECB:#2c2a20;--kF2EAF6:#3a2a42;--kEAD1EA:#342234;--kF5EAE6:#412f28;--kE2DECA:#534f3c;--kEAF6EE:#2a4232;--kD1EAE2:#22342e;--kD4E2D7:#252e27;--kF2EEE6:#3d372b;--kF6E9EC:#432a2f;--kFBF3E4:#453b27;--kF8EEED:#452d2a;--kEDCFC9:#35221e;--kF0E9DB:#3b3325;--kE8F1F4:#2b3a3f;--kF6F2EA:#423a2a;--kEAEAD1:#343422;--kE2E2CB:#2c2c20;--kEAF0F6:#2a3642;--kD1D5EA:#222534;--kD3D9E3:#24282e;--kF4EAF6:#3e2a42;--kEAD1E6:#342231;--kF5E9E6:#412d28;--kE2CAD4:#533c45;--kEAF6F0:#2a4236;--kD1EAE6:#223431;--kD4E2D9:#252e28;--kE8EEF2:#2c363d;--kF8F0ED:#45322a;--kEDD5C9:#35251e;--kF0ECDB:#3b3725;--kF6EEEA:#42322a;--kEAE2D1:#342e22;--kF6F4EA:#423e2a;--kE6EAD1:#313422;--kDEE2CB:#2a2c20;--kF6EAF6:#422a42;--kEAD1E2:#34222e;--kF3F5E6:#3e4128;--kE2D1CA:#53433c;--kEAF6F2:#2a423a;--kD1EAEA:#223434;--kD4E2DB:#252e29;--kF6F6EA:#42422a;--kE2EAD1:#2e3422;--kDAE2CB:#282c20;--kEAECF6:#2a2e42;--kD5D1EA:#252234;--kD3D3E3:#24242e;--kF6EAF4:#422a3e;--kEAD1DE:#34222b;--kEFF5E6:#374128;--kCADAE2:#3c4b53;--kEAF6F4:#2a423e;--kD1E6EA:#223134;--kD4E2DE:#252e2b;--kDCE8F2:#24323d;--kF8F4ED:#453c2a;--kEDE1C9:#352d1e;--kECF0DB:#373b25;--kF6EAF2:#422a3a;--kEAD1DA:#342228;--kEAEAF6:#2a2a42;--kDAD1EA:#282234;--kD6D3E3:#26242e;--kF1F5E6:#3b4128;--kCAE2CC:#3c533e;--kEAF6F6:#2a4242;--kD1E2EA:#222e34;--kD4E2E0:#252e2c;--kF8F6ED:#45412a;--kEDE7C9:#35311e;--kE9F0DB:#333b25;--kF2E7D2:#3a3221;--kF1D9C9:#36281f;--kF2F6EA:#3a422a;--kDAEAD1:#283422;--kD2E2CB:#242c20;--kECEAF6:#2e2a42;--kDED1EA:#2b2234;--kD9D3E3:#28242e;--kF6EAF0:#422a36;--kEAD1D5:#342225;--kEAF4F6:#2a3e42;--kD1DEEA:#222b34;--kD4E2E2:#252e2e;--kE3EEF3:#28373f;--kE8F1E4:#303c2a;--kF8F8ED:#45452a;--kEDEDC9:#35351e;--kE6F0DB:#303b25;--kE6F1F4:#293b40;--kF0F6EA:#36422a;--kD5EAD1:#253422;--kCFE2CB:#232c20;--kF6EAEE:#422a32;--kEAD1D1:#342222;--kE8F5E6:#2c4128;--kCAE2D3:#3c5344;--kEAF2F6:#2a3a42;--kD1DAEA:#222834;--kD4E0E2:#252c2e;--kF6F8ED:#41452a;--kE7EDC9:#31351e;--kE2F0DB:#2c3b25;--kF4F6EA:#3e422a;--kDEEAD1:#2b3422;--kEEF6EA:#32422a;--kD1EAD1:#223422;--kCBE2CB:#202c20;--kF6EAEC:#422a2e;--kEAD5D1:#342522;--kE6F5E8:#28412c;--kCAE2D6:#3c5347;--kD4DEE2:#252b2e;--kECF6EA:#2e422a;--kD1EAD5:#223425;--kCBE2CF:#202c23;--kE1D3E3:#2d242e;--kE6F5EA:#28412f;--kE2CAD7:#533c48;--kEAEEF6:#2a3242;--kD1D1EA:#222234;--kD4DBE2:#25292e;--kF2F8ED:#37452a;--kDBEDC9:#29351e;--kDBF0DB:#253b25;--kEAF6EA:#2a422a;--kD1EADA:#223428;--kCBE2D2:#202c24;--kF6ECEA:#422e2a;--kEADED1:#342b22;--kECF5E6:#324128;--kE2D8CA:#53493c;--kD4D9E2:#25282e;--kF0F8ED:#32452a;--kD5EDC9:#25351e;--kDBF0DF:#253b29;--kCCE0CC:#3e513e;--kE9F5E6:#2d4128;--kD4E2CA:#45533c;--kE3D3E1:#2e242d;--kD4D7E2:#25272e;--kEEF8ED:#2d452a;--kCFEDC9:#22351e;--kDBF0E2:#253b2c;--kCBE2DA:#202c28;--kE3D3DE:#2e242b;--kD7CAE2:#483c53;--kD4D4E2:#25252e;--kEDF8ED:#2a452a;--kC9EDC9:#1e351e;--kDBF0E6:#253b30;--kCCE0D3:#3e5144;--kE3D3DB:#2e2429;--kE6F5E6:#284128;--kD5E2CA:#46533c;--kEEEAF6:#322a42;--kE2D1EA:#2e2234;--kD7D4E2:#27252e;--kEDF8EE:#2a452d;--kC9EDCF:#1e3522;--kDBF0E9:#253b33;--kCCE0D6:#3e5147;--kE3EFF3:#28393f;--kEAF6EC:#2a422e;--kD1EADE:#22342b;--kCBE2E2:#202c2c;--kE3D3D9:#2e2428;--kF0EAF6:#362a42;--kE6D1EA:#312234;--kD9D4E2:#28252e;--kFFF3E6:#473929;--kDBD4E2:#29252e;--kEDF8F2:#2a4537;--kC9EDDB:#1e3529;--kDBF0F0:#253b3b;--kF5F1E8:#413a2a;--kDED4E2:#2b252e;--kEDF8F4:#2a453c;--kC9EDE1:#1e352d;--kDBECF0:#25373b;--kCCE0E0:#3e5151;--kE3D6D3:#2e2624;--kE6F5F1:#28413b;--kCAD3E2:#3c4453;--kE0D4E2:#2c252e;--kEDF8F6:#2a4541;--kC9EDE7:#1e3531;--kDBE9F0:#25333b;--kCBD2E2:#20242c;--kE3D9D3:#2e2824;--kE6EEF5:#283641;--kCAE0E2:#3c5153;--kE2D4E2:#2e252e;--kEDF8F8:#2a4545;--kC9EDED:#1e3535;--kDBE6F0:#25303b;--kCCDAE0:#3e4b51;--kC9C2B4:#47433c;--kE3DBD3:#2e2924;--kE2D4E0:#2e252c;--kEDF6F8:#2a4145;--kC9E7ED:#1e3135;--kDBE2F0:#252c3b;--kCCD6E0:#3e4751;--kE3DED3:#2e2b24;--kE6E6F5:#282841;--kE2D2CA:#53443c;--kE2D4DE:#2e252b;--kEDF4F8:#2a3c45;--kC9E1ED:#1e2d35;--kDBDFF0:#25293b;--kCFCBE2:#23202c;--kEAE6F5:#2f2841;--kCAD8E2:#3c4953;--kE2D4DB:#2e2529;--kEDF2F8:#2a3745;--kC9DBED:#1e2935;--kDBDBF0:#25253b;--kD2CBE2:#24202c;--kE3E3D3:#2e2e24;--kECE6F5:#322841;--kD4CAE2:#453c53;--kE2D4D9:#2e2528;--kEDF0F8:#2a3245;--kC9D5ED:#1e2535;--kDFDBF0:#29253b;--kD6CBE2:#26202c;--kE1E3D3:#2d2e24;--kEEE6F5:#362841;--kD9E2CA:#4a533c;--kE2D4D7:#2e2527;--kDACBE2:#28202c;--kDEE3D3:#2b2e24;--kE9E6F5:#2d2841;--kE0CAE2:#513c53;--kE2D4D4:#2e2525;--kEDEDF8:#2a2a45;--kC9C9ED:#1e1e35;--kE6DBF0:#30253b;--kD3CCE0:#443e51;--kF3E6F5:#3e2841;--kE2D7D4:#2e2725;--kEEEDF8:#2d2a45;--kCFC9ED:#221e35;--kE9DBF0:#33253b;--kE2CBE2:#2c202c;--kD9E3D3:#282e24;--kE2D9D4:#2e2825;--kF0EDF8:#322a45;--kD5C9ED:#251e35;--kECDBF0:#37253b;--kE2CBDE:#2c202a;--kD6E3D3:#262e24;--kE2DBD4:#2e2925;--kF2EDF8:#372a45;--kDBC9ED:#291e35;--kF0DBF0:#3b253b;--kE2DED4:#2e2b25;--kF4EDF8:#3c2a45;--kE1C9ED:#2d1e35;--kF0DBEC:#3b2537;--kE0CCE0:#513e51;--kD3E3D6:#242e26;--kF5E6F1:#41283b;--kE2E0D4:#2e2c25;--kF6EDF8:#412a45;--kE7C9ED:#311e35;--kF0DBE9:#3b2533;--kE2CBD2:#2c2024;--kD3E3D9:#242e28;--kF5E6EB:#412831;--kE2E2D4:#2e2e25;--kF8EDF8:#452a45;--kEDC9ED:#351e35;--kF0DBE6:#3b2530;--kE0CCDA:#513e4b;--kD3E3DB:#242e29;--kF5E6E8:#41282c;--kE2D3CA:#53443c;--kE0E2D4:#2c2e25;--kF8EDF6:#452a41;--kEDC9E7:#351e31;--kF0DBE2:#3b252c;--kE0CCD6:#513e47;--kE2CBCB:#2c2020;--kF5E6ED:#412834;--kCAE2DE:#3c534f;--kDEE2D4:#2b2e25;--kF8EDF4:#452a3c;--kEDC9E1:#351e2d;--kF0DBDF:#3b2529;--kE0CCD3:#513e44;--kF4E9D4:#3c3322;--kF5E7E6:#412a28;--kD0CAE2:#423c53;--kDBE2D4:#292e25;--kF8EDF2:#452a37;--kEDC9DB:#351e29;--kF0DBDB:#3b2525;--kE0CCCF:#513e41;--kCAE2DF:#3c5350;--kD9E2D4:#282e25;--kBDBDBD:#414141;--kF8EDF0:#452a32;--kEDC9D5:#351e25;--kF0DFDB:#3b2925;--kE2D6CB:#2c2620;--kD3E1E3:#242d2e;--kF5E6E6:#412828;--kE2CACD:#533c3f;--kD7E2D4:#272e25;--kF7E3B8:#322b1c;--kD3DEE3:#242b2e;--kD4E2D4:#252e25;--kF7F1E6:#443a27;--kFFFDF7:#4e462c;--kE8F0E6:#2f3a2c;--kF4F7F2:#384132;--kE8EEF4:#2b353f;--kF6DCE3:#40242c;--kDCE7F6:#243040;--kF4E6C8:#372f1f;--kE7E0F4:#2f2540;--kDCEFE2:#263a2c;--kF6E0D8:#3e2a23;--kEEF4F7:#2d3c43;--kF3E9DA:#3e3323;--kEEF5F2:#2f3f38;--kCFE3EE:#202f37;--kF2F5F8:#303a43;--kF8F3EC:#463a2a;--kF2F6FA:#2c3a48;--kE3DCCB:#2d2920;--kE8EDF4:#2b333f;--kF7EFE3:#433726;--kFFF8EA:#493e29;--kF4EFE6:#403829;--kF3ECF6:#3b2c42;--kDCE4F2:#242d3d;--kEFD5C6:#34261e;--kCBCBE2:#20202c;--kE6D2A8:#564a31;--kD3DBE3:#24292e;--kDBD3E3:#29242e;--kE3D3E3:#2e242e;--kD3E3DE:#242e2b;--kD9CFEA:#282133;--kF5F1E6:#413b28;--kF0F5E6:#394128;--kCADBE2:#3c4c53;--kE2D0CA:#53423c;--kCADCE2:#3c4d53;--kE6F5F3:#28413e;--kE2CFCA:#53413c;--kE6E7F5:#282a41;--kCADDE2:#3c4e53;--kF2E6F5:#3c2841;--kE2CECA:#53403c;--kCADEE2:#3c4f53;--kEBD9CF:#342821;--kF3EAF5:#3d2c41;--kF7F2EA:#443a29;--kF6F1E7:#433a28;--kF4F2EE:#3d3931;--kF6F8F4:#3a4133}}:root[data-theme="dark"]{--kFFF6E6:#473c29;--kE8EEDB:#333826;--kDDE8CF:#2b3222;--kF5E0E4:#41252a;--kFFF3C4:#3a3521;--kDFC6C3:#523d3a;--kF1EEE8:#3b372d;--kF5E0E0:#412525;--kDFCAC3:#52403a;--kF5E4E0:#412a25;--kDFCFC3:#52443a;--kF5E7E0:#412e25;--kDFD3C3:#52483a;--kF5EBE0:#413425;--kDFD8C3:#524c3a;--kF5EEE0:#413825;--kF5F1E0:#413c25;--kDDDFC3:#50523a;--kF5F5E0:#414125;--kD8DFC3:#4c523a;--kF1F5E0:#3c4125;--kD3DFC3:#48523a;--kEEF5E0:#384125;--kCFDFC3:#44523a;--kEBF5E0:#344125;--kCADFC3:#40523a;--kE7F5E0:#2e4125;--kC6DFC3:#3d523a;--kE4F5E0:#2a4125;--kC3DFC6:#3a523d;--kF7EFE2:#433826;--kE0F5E0:#254125;--kC3DFCA:#3a5240;--kE0F5E4:#25412a;--kC3DFCF:#3a5244;--kE0F5E7:#25412e;--kC3DFD3:#3a5248;--kE0F5EB:#254134;--kC3DFD8:#3a524c;--kE0F5EE:#254138;--kC3DFDD:#3a5250;--kE0F5F1:#25413c;--kC3DDDF:#3a5052;--kC99A6B:#47382a;--kE0F5F5:#254141;--kC3D8DF:#3a4c52;--kE0F1F5:#253c41;--kC3D3DF:#3a4852;--kE0EEF5:#253841;--kC3CFDF:#3a4452;--kE0EBF5:#253441;--kC3CADF:#3a4052;--kE0E7F5:#252e41;--kC3C6DF:#3a3d52;--kE0E4F5:#252a41;--kC6C3DF:#3d3a52;--kE0E0F5:#252541;--kCFE6D4:#223025;--kE4E0F5:#2a2541;--kCFC3DF:#443a52;--kE7E0F5:#2e2541;--kD3C3DF:#483a52;--kFFF3D6:#413925;--kEBE0F5:#342541;--kD8C3DF:#4c3a52;--kEEE0F5:#382541;--kF1E0F5:#3c2541;--kDFC3DD:#523a50;--kF5E0F5:#412541;--kF5E0F1:#41253c;--kDFC3D3:#523a48;--kDCEBF5:#24343f;--kF5E0EE:#412538;--kF5E0EB:#412534;--kDFC3CA:#523a40;--kF5E0E7:#41252e;--kDFC3C6:#523a3d;--kF7D8DF:#3f242a;--kFBF7EF:#493f2a;--kF3EEE6:#3e372a;--kA8D5B5:#354e3c;--kFFF6D6:#413b25;--kEDF2F7:#2c3843;--kF7F0E4:#433926;--kEEF5EE:#2f3f2f;--kFFF8EC:#4a3e2a;--kE9D8B8:#594c33;--kEFE3CC:#372f1f;--kF4F1EA:#3f392d;--kF3D9DF:#3d2329;--kF8EDED:#452a2a;--kEDC9C9:#351e1e;--kF0E6DB:#3b3025;--kEAF4F0:#2d3f38;--kEAF1EE:#2f3b36;--kDCE6D2:#2a3023;--kF6EAEA:#422a2a;--kEADAD1:#342822;--kF6F0EA:#42362a;--kEAE6D1:#343122;--kE2DECB:#2c2a20;--kF2EAF6:#3a2a42;--kEAD1EA:#342234;--kF5EAE6:#412f28;--kE2DECA:#534f3c;--kEAF6EE:#2a4232;--kD1EAE2:#22342e;--kD4E2D7:#252e27;--kF2EEE6:#3d372b;--kF6E9EC:#432a2f;--kFBF3E4:#453b27;--kF8EEED:#452d2a;--kEDCFC9:#35221e;--kF0E9DB:#3b3325;--kE8F1F4:#2b3a3f;--kF6F2EA:#423a2a;--kEAEAD1:#343422;--kE2E2CB:#2c2c20;--kEAF0F6:#2a3642;--kD1D5EA:#222534;--kD3D9E3:#24282e;--kF4EAF6:#3e2a42;--kEAD1E6:#342231;--kF5E9E6:#412d28;--kE2CAD4:#533c45;--kEAF6F0:#2a4236;--kD1EAE6:#223431;--kD4E2D9:#252e28;--kE8EEF2:#2c363d;--kF8F0ED:#45322a;--kEDD5C9:#35251e;--kF0ECDB:#3b3725;--kF6EEEA:#42322a;--kEAE2D1:#342e22;--kF6F4EA:#423e2a;--kE6EAD1:#313422;--kDEE2CB:#2a2c20;--kF6EAF6:#422a42;--kEAD1E2:#34222e;--kF3F5E6:#3e4128;--kE2D1CA:#53433c;--kEAF6F2:#2a423a;--kD1EAEA:#223434;--kD4E2DB:#252e29;--kF6F6EA:#42422a;--kE2EAD1:#2e3422;--kDAE2CB:#282c20;--kEAECF6:#2a2e42;--kD5D1EA:#252234;--kD3D3E3:#24242e;--kF6EAF4:#422a3e;--kEAD1DE:#34222b;--kEFF5E6:#374128;--kCADAE2:#3c4b53;--kEAF6F4:#2a423e;--kD1E6EA:#223134;--kD4E2DE:#252e2b;--kDCE8F2:#24323d;--kF8F4ED:#453c2a;--kEDE1C9:#352d1e;--kECF0DB:#373b25;--kF6EAF2:#422a3a;--kEAD1DA:#342228;--kEAEAF6:#2a2a42;--kDAD1EA:#282234;--kD6D3E3:#26242e;--kF1F5E6:#3b4128;--kCAE2CC:#3c533e;--kEAF6F6:#2a4242;--kD1E2EA:#222e34;--kD4E2E0:#252e2c;--kF8F6ED:#45412a;--kEDE7C9:#35311e;--kE9F0DB:#333b25;--kF2E7D2:#3a3221;--kF1D9C9:#36281f;--kF2F6EA:#3a422a;--kDAEAD1:#283422;--kD2E2CB:#242c20;--kECEAF6:#2e2a42;--kDED1EA:#2b2234;--kD9D3E3:#28242e;--kF6EAF0:#422a36;--kEAD1D5:#342225;--kEAF4F6:#2a3e42;--kD1DEEA:#222b34;--kD4E2E2:#252e2e;--kE3EEF3:#28373f;--kE8F1E4:#303c2a;--kF8F8ED:#45452a;--kEDEDC9:#35351e;--kE6F0DB:#303b25;--kE6F1F4:#293b40;--kF0F6EA:#36422a;--kD5EAD1:#253422;--kCFE2CB:#232c20;--kF6EAEE:#422a32;--kEAD1D1:#342222;--kE8F5E6:#2c4128;--kCAE2D3:#3c5344;--kEAF2F6:#2a3a42;--kD1DAEA:#222834;--kD4E0E2:#252c2e;--kF6F8ED:#41452a;--kE7EDC9:#31351e;--kE2F0DB:#2c3b25;--kF4F6EA:#3e422a;--kDEEAD1:#2b3422;--kEEF6EA:#32422a;--kD1EAD1:#223422;--kCBE2CB:#202c20;--kF6EAEC:#422a2e;--kEAD5D1:#342522;--kE6F5E8:#28412c;--kCAE2D6:#3c5347;--kD4DEE2:#252b2e;--kECF6EA:#2e422a;--kD1EAD5:#223425;--kCBE2CF:#202c23;--kE1D3E3:#2d242e;--kE6F5EA:#28412f;--kE2CAD7:#533c48;--kEAEEF6:#2a3242;--kD1D1EA:#222234;--kD4DBE2:#25292e;--kF2F8ED:#37452a;--kDBEDC9:#29351e;--kDBF0DB:#253b25;--kEAF6EA:#2a422a;--kD1EADA:#223428;--kCBE2D2:#202c24;--kF6ECEA:#422e2a;--kEADED1:#342b22;--kECF5E6:#324128;--kE2D8CA:#53493c;--kD4D9E2:#25282e;--kF0F8ED:#32452a;--kD5EDC9:#25351e;--kDBF0DF:#253b29;--kCCE0CC:#3e513e;--kE9F5E6:#2d4128;--kD4E2CA:#45533c;--kE3D3E1:#2e242d;--kD4D7E2:#25272e;--kEEF8ED:#2d452a;--kCFEDC9:#22351e;--kDBF0E2:#253b2c;--kCBE2DA:#202c28;--kE3D3DE:#2e242b;--kD7CAE2:#483c53;--kD4D4E2:#25252e;--kEDF8ED:#2a452a;--kC9EDC9:#1e351e;--kDBF0E6:#253b30;--kCCE0D3:#3e5144;--kE3D3DB:#2e2429;--kE6F5E6:#284128;--kD5E2CA:#46533c;--kEEEAF6:#322a42;--kE2D1EA:#2e2234;--kD7D4E2:#27252e;--kEDF8EE:#2a452d;--kC9EDCF:#1e3522;--kDBF0E9:#253b33;--kCCE0D6:#3e5147;--kE3EFF3:#28393f;--kEAF6EC:#2a422e;--kD1EADE:#22342b;--kCBE2E2:#202c2c;--kE3D3D9:#2e2428;--kF0EAF6:#362a42;--kE6D1EA:#312234;--kD9D4E2:#28252e;--kFFF3E6:#473929;--kDBD4E2:#29252e;--kEDF8F2:#2a4537;--kC9EDDB:#1e3529;--kDBF0F0:#253b3b;--kF5F1E8:#413a2a;--kDED4E2:#2b252e;--kEDF8F4:#2a453c;--kC9EDE1:#1e352d;--kDBECF0:#25373b;--kCCE0E0:#3e5151;--kE3D6D3:#2e2624;--kE6F5F1:#28413b;--kCAD3E2:#3c4453;--kE0D4E2:#2c252e;--kEDF8F6:#2a4541;--kC9EDE7:#1e3531;--kDBE9F0:#25333b;--kCBD2E2:#20242c;--kE3D9D3:#2e2824;--kE6EEF5:#283641;--kCAE0E2:#3c5153;--kE2D4E2:#2e252e;--kEDF8F8:#2a4545;--kC9EDED:#1e3535;--kDBE6F0:#25303b;--kCCDAE0:#3e4b51;--kC9C2B4:#47433c;--kE3DBD3:#2e2924;--kE2D4E0:#2e252c;--kEDF6F8:#2a4145;--kC9E7ED:#1e3135;--kDBE2F0:#252c3b;--kCCD6E0:#3e4751;--kE3DED3:#2e2b24;--kE6E6F5:#282841;--kE2D2CA:#53443c;--kE2D4DE:#2e252b;--kEDF4F8:#2a3c45;--kC9E1ED:#1e2d35;--kDBDFF0:#25293b;--kCFCBE2:#23202c;--kEAE6F5:#2f2841;--kCAD8E2:#3c4953;--kE2D4DB:#2e2529;--kEDF2F8:#2a3745;--kC9DBED:#1e2935;--kDBDBF0:#25253b;--kD2CBE2:#24202c;--kE3E3D3:#2e2e24;--kECE6F5:#322841;--kD4CAE2:#453c53;--kE2D4D9:#2e2528;--kEDF0F8:#2a3245;--kC9D5ED:#1e2535;--kDFDBF0:#29253b;--kD6CBE2:#26202c;--kE1E3D3:#2d2e24;--kEEE6F5:#362841;--kD9E2CA:#4a533c;--kE2D4D7:#2e2527;--kDACBE2:#28202c;--kDEE3D3:#2b2e24;--kE9E6F5:#2d2841;--kE0CAE2:#513c53;--kE2D4D4:#2e2525;--kEDEDF8:#2a2a45;--kC9C9ED:#1e1e35;--kE6DBF0:#30253b;--kD3CCE0:#443e51;--kF3E6F5:#3e2841;--kE2D7D4:#2e2725;--kEEEDF8:#2d2a45;--kCFC9ED:#221e35;--kE9DBF0:#33253b;--kE2CBE2:#2c202c;--kD9E3D3:#282e24;--kE2D9D4:#2e2825;--kF0EDF8:#322a45;--kD5C9ED:#251e35;--kECDBF0:#37253b;--kE2CBDE:#2c202a;--kD6E3D3:#262e24;--kE2DBD4:#2e2925;--kF2EDF8:#372a45;--kDBC9ED:#291e35;--kF0DBF0:#3b253b;--kE2DED4:#2e2b25;--kF4EDF8:#3c2a45;--kE1C9ED:#2d1e35;--kF0DBEC:#3b2537;--kE0CCE0:#513e51;--kD3E3D6:#242e26;--kF5E6F1:#41283b;--kE2E0D4:#2e2c25;--kF6EDF8:#412a45;--kE7C9ED:#311e35;--kF0DBE9:#3b2533;--kE2CBD2:#2c2024;--kD3E3D9:#242e28;--kF5E6EB:#412831;--kE2E2D4:#2e2e25;--kF8EDF8:#452a45;--kEDC9ED:#351e35;--kF0DBE6:#3b2530;--kE0CCDA:#513e4b;--kD3E3DB:#242e29;--kF5E6E8:#41282c;--kE2D3CA:#53443c;--kE0E2D4:#2c2e25;--kF8EDF6:#452a41;--kEDC9E7:#351e31;--kF0DBE2:#3b252c;--kE0CCD6:#513e47;--kE2CBCB:#2c2020;--kF5E6ED:#412834;--kCAE2DE:#3c534f;--kDEE2D4:#2b2e25;--kF8EDF4:#452a3c;--kEDC9E1:#351e2d;--kF0DBDF:#3b2529;--kE0CCD3:#513e44;--kF4E9D4:#3c3322;--kF5E7E6:#412a28;--kD0CAE2:#423c53;--kDBE2D4:#292e25;--kF8EDF2:#452a37;--kEDC9DB:#351e29;--kF0DBDB:#3b2525;--kE0CCCF:#513e41;--kCAE2DF:#3c5350;--kD9E2D4:#282e25;--kBDBDBD:#414141;--kF8EDF0:#452a32;--kEDC9D5:#351e25;--kF0DFDB:#3b2925;--kE2D6CB:#2c2620;--kD3E1E3:#242d2e;--kF5E6E6:#412828;--kE2CACD:#533c3f;--kD7E2D4:#272e25;--kF7E3B8:#322b1c;--kD3DEE3:#242b2e;--kD4E2D4:#252e25;--kF7F1E6:#443a27;--kFFFDF7:#4e462c;--kE8F0E6:#2f3a2c;--kF4F7F2:#384132;--kE8EEF4:#2b353f;--kF6DCE3:#40242c;--kDCE7F6:#243040;--kF4E6C8:#372f1f;--kE7E0F4:#2f2540;--kDCEFE2:#263a2c;--kF6E0D8:#3e2a23;--kEEF4F7:#2d3c43;--kF3E9DA:#3e3323;--kEEF5F2:#2f3f38;--kCFE3EE:#202f37;--kF2F5F8:#303a43;--kF8F3EC:#463a2a;--kF2F6FA:#2c3a48;--kE3DCCB:#2d2920;--kE8EDF4:#2b333f;--kF7EFE3:#433726;--kFFF8EA:#493e29;--kF4EFE6:#403829;--kF3ECF6:#3b2c42;--kDCE4F2:#242d3d;--kEFD5C6:#34261e;--kCBCBE2:#20202c;--kE6D2A8:#564a31;--kD3DBE3:#24292e;--kDBD3E3:#29242e;--kE3D3E3:#2e242e;--kD3E3DE:#242e2b;--kD9CFEA:#282133;--kF5F1E6:#413b28;--kF0F5E6:#394128;--kCADBE2:#3c4c53;--kE2D0CA:#53423c;--kCADCE2:#3c4d53;--kE6F5F3:#28413e;--kE2CFCA:#53413c;--kE6E7F5:#282a41;--kCADDE2:#3c4e53;--kF2E6F5:#3c2841;--kE2CECA:#53403c;--kCADEE2:#3c4f53;--kEBD9CF:#342821;--kF3EAF5:#3d2c41;--kF7F2EA:#443a29;--kF6F1E7:#433a28;--kF4F2EE:#3d3931;--kF6F8F4:#3a4133}</style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <filter id="cut" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/></filter>
@@ -3412,7 +3544,9 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
       } }]);
   };
   // updates: compare with the latest published release
-  function mdText(t) { return esc((t || "").replace(/<!--[\s\S]*?-->/g, "").trim()).replace(/^#+\s*/gm, "").replace(/\*\*(.+?)\*\*/g, "$1").split(/\n{2,}/).map(function (p) { return /^\s*[-*] /m.test(p) ? "<ul>" + p.split(/\n/).filter(function (l) { return l.trim(); }).map(function (l) { return "<li>" + l.replace(/^\s*[-*]\s*/, "") + "</li>"; }).join("") + "</ul>" : "<p>" + p.replace(/\n/g, "<br>") + "</p>"; }).join(""); }
+  // notes about the iPhone version are only shown on the iPhone
+  function forThisPhone(t) { var ios = false; try { ios = !!(window.HBApp && HBApp.platform && HBApp.platform() === "ios"); } catch (e) {} return ios ? t : (t || "").split(/\n{2,}/).filter(function (b) { return !/^\s*(iOS|iPhone)/i.test(b); }).join("\n\n"); }
+  function mdText(t) { t = forThisPhone(t); return esc((t || "").replace(/<!--[\s\S]*?-->/g, "").trim()).replace(/^#+\s*/gm, "").replace(/\*\*(.+?)\*\*/g, "$1").split(/\n{2,}/).map(function (p) { return /^\s*[-*] /m.test(p) ? "<ul>" + p.split(/\n/).filter(function (l) { return l.trim(); }).map(function (l) { return "<li>" + l.replace(/^\s*[-*]\s*/, "") + "</li>"; }).join("") + "</ul>" : "<p>" + p.replace(/\n/g, "<br>") + "</p>"; }).join(""); }
   function startUpdate(u) {
     var urls = [], mm = /<!--\s*mirror:\s*(\S+)\s*-->/.exec(u.notes || "");
     if (mm) { urls.push(mm[1].replace("//cdn.jsdelivr.net/", "//gcore.jsdelivr.net/"), mm[1].replace("//cdn.jsdelivr.net/", "//fastly.jsdelivr.net/"), mm[1]); }
@@ -4307,6 +4441,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   var MS = window.HB_MONSTER, reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
   function lj(k, d) { try { var v = JSON.parse(ls(k) || "null"); return v === null ? d : v; } catch (e) { return d; } }
+  function ss0(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } }
   function on() { return ls("hb:jr:on") === "1"; }
   var esc = H.esc, MIN = 6e4, HR = 36e5, DAY = 864e5;
   function pad(n) { return (n < 10 ? "0" : "") + n; }
@@ -4570,7 +4705,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     if (s.temp && s.temp >= 37.5) h += '<section class="card jr-alert"><b>这一天记录到体温 ' + s.temp + "℃</b><p>" + (ageM(d0(k)) !== null && ageM(d0(k)) < 3 && s.temp >= 38 ? "未满 3 个月体温达到或超过 38.0℃，应立即联系医生或就医。" : "持续发热、精神差、进食明显减少或有其他担心的情况，请及时就医。") + '</p><a href="#health-care">发热就医的说明</a></section>';
     // timeline
     var list = onDay(k).slice().reverse();
-    h += '<section class="card jr-tl"><h2>记录<small>' + list.length + " 条</small></h2>" + (list.length ? "<ol>" + list.map(function (e) { return '<li><button type="button" data-ev="' + e.id + '" style="--jc:' + T[e.k].c + '"><time>' + hm(e.t) + (e.e ? "–" + hm(e.e) : "") + '</time><span class="jr-tm">' + svgM({ hold: T[e.k].p, stage: 2 }) + "</span><b>" + T[e.k].n + "</b><em>" + esc(desc(e)) + gapOf(e) + "</em></button></li>"; }).join("") + "</ol>" : '<p class="r-note jr-empty"><span>' + svgM({ hold: "note", mood: "sleep" }) + "</span>这一天还没有记录。点上面的按钮开始。</p>") + "</section>";
+    h += '<section class="card jr-tl' + (list.length > 6 ? " fold" : "") + '"><h2>记录<small>' + list.length + " 条</small></h2>" + (list.length ? "<ol>" + list.map(function (e) { return '<li><button type="button" data-ev="' + e.id + '" style="--jc:' + T[e.k].c + '"><time>' + hm(e.t) + (e.e ? "–" + hm(e.e) : "") + '</time><span class="jr-tm">' + svgM({ hold: T[e.k].p, stage: 2 }) + "</span><b>" + T[e.k].n + "</b><em>" + esc(desc(e)) + gapOf(e) + "</em></button></li>"; }).join("") + "</ol>" : '<p class="r-note jr-empty"><span>' + svgM({ hold: "note", mood: "sleep" }) + "</span>这一天还没有记录。点上面的按钮开始。</p>") + (list.length > 6 ? '<button type="button" class="jr-more6" data-tlall>显示全部 ' + list.length + " 条</button>" : "") + "</section>";
     return h;
   }
   function gapOf(e) { if (e.k !== "nurse" && e.k !== "bottle") return ""; var prev = null; for (var i = 0; i < EV.length; i++) { var x = EV[i]; if (x.t >= e.t) break; if (x.k === "nurse" || x.k === "bottle") prev = x; } if (!prev) return ""; var g = e.t - (prev.e || prev.t); return g > 0 && g < 12 * HR ? " · 距上次 " + dur(g) : ""; }
@@ -4829,6 +4964,9 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var pk = J.querySelector("[data-pick]"); if (pk) pk.addEventListener("change", function () { if (pk.value && pk.value <= dk(Date.now())) { DAYK = pk.value === dk(Date.now()) ? null : pk.value; PANE = "day"; render(); } });
     J.querySelectorAll("[data-wok]").forEach(function (b) { b.addEventListener("click", function () { var f = b.getAttribute("data-wok"), n1 = add({ k: "react", t: Date.now(), v: { food: f, ok: 1 } }); refresh(); H.snack(f + "：记为没有异常", function () { del(n1.id); refresh(); }); }); });
     J.querySelectorAll("[data-wbad]").forEach(function (b) { b.addEventListener("click", function () { reactSheet(b.getAttribute("data-wbad")); }); });
+    // reminders and data tools fold into one line each; the open one is remembered
+    J.querySelectorAll(".jr-rmd,.jr-more").forEach(function (c) { var h = c.querySelector(":scope > h2"); if (!h || c.classList.contains("jacc")) return; c.classList.add("jacc"); var key = c.classList.contains("jr-rmd") ? "rmd" : "more"; if (ss0("hb:jracc") === key) c.classList.add("open"); h.insertAdjacentHTML("beforeend", '<small class="acc-s">' + (key === "rmd" ? (ls("hb:jr:rvit") || ls("hb:jr:rfeed") ? "已开启" : "维生素、喂奶间隔") : "导出、合并、给医生看") + '</small><i class="acc-i" aria-hidden="true"></i>'); h.addEventListener("click", function () { var o = !c.classList.contains("open"); J.querySelectorAll(".jacc.open").forEach(function (x) { x.classList.remove("open"); }); if (o) c.classList.add("open"); ss0("hb:jracc", o ? key : ""); H.haptic(); }); });
+    J.querySelectorAll("[data-tlall]").forEach(function (b) { b.addEventListener("click", function () { var c = b.closest(".jr-tl"); c.classList.remove("fold"); b.remove(); H.haptic(); }); });
     J.querySelectorAll("[data-night]").forEach(function (b) { b.addEventListener("click", nightOpen); });
     J.querySelectorAll("[data-share-m]").forEach(function (b) { b.addEventListener("click", function () { shareMonth(+b.getAttribute("data-share-m")); }); });
     wireRemind(J);
@@ -5162,7 +5300,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   function onShow() {
     var v = H.cur(); if (!v) return; var id = v.id;
     document.documentElement.setAttribute("data-area", areaOf(id));
-    if (id === "home") { buildShelves(); var sb = HOME && HOME.querySelector(".shelf"); if (sb && HOME.firstElementChild !== sb) HOME.insertBefore(sb, HOME.firstChild); lastReadChip(); }
+    if (id === "home") { buildShelves(); monthGrid(); mapBack(); if (HOME) HOME.setAttribute("data-mview", ss("hb:mview") || "grid"); var sb = HOME && HOME.querySelector(".shelf"); if (sb && HOME.firstElementChild !== sb) HOME.insertBefore(sb, HOME.firstChild); lastReadChip(); }
     else putCrumb(v);
     trackSec(); newDot();
   }
@@ -5258,7 +5396,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var bm = babyM(); if (!b || bm === null || bm < 1 || ls("hb:bulkDone")) return;
     var left = pastLeft(bm); if (!left[0]) { ls("hb:bulkDone", "1"); return; }
     var bk = T.querySelector(".t-back"); if (bk) bk.hidden = true;
-    var html = '<section class="card t-bulk"><div class="tb-h"><span class="tb-mm">' + M({ hold: "crayon", mood: "happy", stage: MS.stageOf(bm), flat: false }) + '</span><div><small>第一次使用 · 一步就好</small><b>宝宝已经满 ' + bm + ' 个月了</b></div></div><p>前面 ' + (bm === 1 ? "满 0 个月" : "0–" + (bm - 1) + " 个月") + '的观察清单、活动和接种儿保，可以先<b>一次全部标为已完成</b>。之后发现哪一项其实没做过，再到那个月取消勾选就好。</p><div class="tb-k">' + [["c", "观察清单"], ["a", "本月做过的活动"], ["v", "接种与儿保"]].map(function (x) { return '<label><input type="checkbox" data-bk="' + x[0] + '" checked><span>' + x[1] + "</span></label>"; }).join("") + '</div><div class="tb-b"><button type="button" class="btn" data-bulk="all">全部标为已完成</button><button type="button" class="btn ghost" data-bulk="self">我自己逐月看</button></div><button type="button" class="tb-skip" data-bulk="skip">先跳过，以后在「记录 › 进度」里补看</button></section>';
+    var html = '<section class="card t-bulk"><div class="tb-h"><span class="tb-mm">' + M({ hold: "crayon", mood: "happy", stage: MS.stageOf(bm), flat: false }) + '</span><div><small>第一次使用 · 一步就好</small><b>宝宝已经满 ' + bm + ' 个月了</b></div></div><p>前面 ' + (bm === 1 ? "满 0 个月" : "0–" + (bm - 1) + " 个月") + '的观察清单、活动和接种儿保，可以先<b>一次全部标为已完成</b>。之后发现哪一项其实没做过，再到那个月取消勾选就好。</p><div class="tb-k">' + [["c", "观察清单"], ["a", "本月做过的活动"], ["v", "接种与儿保"]].map(function (x) { return '<label><input type="checkbox" data-bk="' + x[0] + '" checked><span>' + x[1] + "</span></label>"; }).join("") + '</div><div class="tb-b"><button type="button" class="btn" data-bulk="all">全部标为完成</button><button type="button" class="btn ghost" data-bulk="self">我自己逐月看</button></div><button type="button" class="tb-skip" data-bulk="skip">先跳过，以后在「记录 › 进度」里补看</button></section>';
     var anchor = T.querySelector(".t-h"); if (anchor) anchor.insertAdjacentHTML("afterend", html); else T.insertAdjacentHTML("afterbegin", html);
     var c = T.querySelector(".t-bulk");
     c.querySelectorAll("[data-bulk]").forEach(function (bt) { bt.addEventListener("click", function () {
@@ -5285,6 +5423,68 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var allOn = keys.every(function (k) { var i = v.querySelector('input[data-mk="' + k + '"]'); return i && i.checked; });
     HB_BULK(keys, !allOn); H.haptic(); if (window.HB_QUICK) HB_QUICK(m);
   });
+
+  // ---------- 今天: everything on about two screens ----------
+  var tw2 = window.HB_TODAY_WIRE;
+  window.HB_TODAY_WIRE = function (T, b, a, mm) {
+    if (tw2) tw2(T, b, a, mm);
+    if (!b) return;
+    T.classList.add("tdash");
+    // the month: its title and the three things for this month, side by side
+    var mo = T.querySelector(":scope > .t-month"), three = T.querySelector(":scope > .t-three");
+    if (mo && three && !T.querySelector(".t-mon2")) { var box = document.createElement("section"); box.className = "card t-mon2"; mo.parentNode.insertBefore(box, mo); box.appendChild(mo); box.appendChild(three); }
+    // vaccines and check-ups in one card, their buttons as small chips under each
+    var dues = [].slice.call(T.querySelectorAll(":scope > .t-due"));
+    if (dues.length && !T.querySelector(".t-care2")) {
+      var cw = document.createElement("section"); cw.className = "card t-care2"; cw.innerHTML = '<p class="tc-h"><b>接下来的接种与儿保</b></p>'; dues[0].parentNode.insertBefore(cw, dues[0]);
+      dues.forEach(function (d) { var row = document.createElement("div"); row.className = "tc-r"; cw.appendChild(row); var n = d.nextElementSibling; row.appendChild(d); var acts = document.createElement("div"); acts.className = "tc-a"; while (n && n.classList && n.classList.contains("t-done")) { var nx = n.nextElementSibling; acts.appendChild(n); n = nx; } if (acts.children.length) row.appendChild(acts); });
+      var all = T.querySelector(":scope > .t-all"); if (all) { cw.querySelector(".tc-h").appendChild(all); }
+    }
+    // this month's ticks: the groups start folded, one line each
+    T.querySelectorAll(".t-prog details[open]").forEach(function (d) { d.removeAttribute("open"); });
+    // the rest as four tiles
+    var tiles = [".t-back", ".t-journey", ".t-sleep", ".t-next"].map(function (q) { return T.querySelector(":scope > " + q); }).filter(function (x) { return x && !x.hidden; });
+    if (tiles.length && !T.querySelector(".t-tiles")) { var g = document.createElement("div"); g.className = "t-tiles"; tiles[0].parentNode.insertBefore(g, tiles[0]); tiles.forEach(function (t) { t.classList.add("tile"); g.appendChild(t); }); }
+  };
+
+  // ---------- 目录 › 月份: a compact grid by stage; the winding map is one tap away ----------
+  var STG = [[0, 2, "0–3 个月"], [3, 5, "3–6 个月"], [6, 8, "6–9 个月"], [9, 11, "9–12 个月"], [12, 17, "12–18 个月"], [18, 23, "18–24 个月"], [24, 29, "24–30 个月"], [30, 36, "30–36 个月"]];
+  function monthGrid() {
+    if (!HOME || HOME.querySelector(".mg2")) return; var bm = babyM(), CDCM = [2, 4, 6, 9, 12, 15, 18, 24, 30, 36];
+    var h = '<section class="shelf-p mg2" data-s="m">';
+    if (bm !== null) h += '<a class="mg-now" href="#m' + bm + '"><span class="mg-nm">' + MS.svg({ color: "mint", stage: MS.stageOf(bm), mood: "happy", hold: window.HB_PROP ? HB_PROP(bm) : "", flat: false }) + '</span><span><small>孩子现在</small><b>满 ' + bm + " 个月</b><em>" + esc(H.mtitle(bm)) + '</em></span><i class="ic ar-r" aria-hidden="true"></i></a>';
+    h += '<div class="mg-tools"><span class="mg-lg"><i class="d"></i>已勾完<i class="c"></i>CDC 清单月</span><button type="button" class="mg-map" data-mview="map"><span>' + M({ hold: "flower" }) + "</span>看成长地图</button></div>";
+    STG.forEach(function (sg) {
+      h += '<div class="mg-row"><p>' + sg[2] + '</p><div class="mg-ms">';
+      for (var m = sg[0]; m <= sg[1]; m++) { var st = H.stats(m), done = st[1] && st[0] === st[1], part = st[0] > 0 && !done; h += '<a href="#m' + m + '" class="mg-m' + (done ? " done" : part ? " part" : "") + (bm === m ? " now" : "") + (bm !== null && m > bm ? " later" : "") + '"><b>' + m + "</b>" + (CDCM.indexOf(m) >= 0 ? '<i class="c"></i>' : "") + (done ? '<i class="d"></i>' : "") + "</a>"; }
+      h += "</div></div>";
+    });
+    h += "</section>";
+    var bar = HOME.querySelector(":scope > .shelf"); if (bar) bar.insertAdjacentHTML("afterend", h);
+    HOME.querySelector("[data-mview]").addEventListener("click", function () { H.haptic(); HOME.setAttribute("data-mview", "map"); ss("hb:mview", "map"); window.scrollTo(0, 0); });
+  }
+  function mapBack() {
+    if (!HOME || HOME.querySelector(".mg-back")) return; var mp = document.getElementById("home-map"); if (!mp) return;
+    mp.insertAdjacentHTML("afterbegin", '<button type="button" class="mg-back" data-mview="grid"><i class="ic ar-l" aria-hidden="true"></i>回到月份格子</button>');
+    mp.querySelector(".mg-back").addEventListener("click", function () { H.haptic(); HOME.setAttribute("data-mview", "grid"); ss("hb:mview", "grid"); window.scrollTo(0, 0); });
+  }
+
+  // links into the winding map open it in map view
+  document.addEventListener("click", function (e) { var a = e.target.closest && e.target.closest('a[href="#home-map"],a[href^="#home-map"]'); if (!a) return; ss("hb:mview", "map"); ss("hb:shelf", "m"); if (HOME) { HOME.setAttribute("data-mview", "map"); setShelf("m", true); } }, true);
+  // ---------- 记录 › 设置与帮助: one row per card, opened one at a time ----------
+  function accordion(R) {
+    R.querySelectorAll(':scope > [data-rpane="s"]').forEach(function (c) {
+      if (c.classList.contains("acc") || c.classList.contains("r-more") || c.classList.contains("r-grp") || c.tagName !== "SECTION") return;
+      var h = c.querySelector(":scope > h2"); if (!h) return; c.classList.add("acc");
+      var sum = c.classList.contains("r-set") ? "出生日期、字号、外观、接种方案" : c.classList.contains("r-ip") ? "圆眼款 / 独眼款，桌面图标" : c.classList.contains("r-jr") ? (ls("hb:jr:on") === "1" ? "已开启" : "未开启") : c.classList.contains("r-data") ? "导出、导入记录文件" : "";
+      h.insertAdjacentHTML("beforeend", '<small class="acc-s">' + sum + '</small><i class="acc-i" aria-hidden="true"></i>');
+      h.setAttribute("role", "button"); h.setAttribute("tabindex", "0");
+      var key = c.className.split(" ").filter(function (x) { return /^r-/.test(x); })[0] || ""; if (key && ss("hb:racc") === key) c.classList.add("open");
+      h.addEventListener("click", function () { var open = !c.classList.contains("open"); R.querySelectorAll(".acc.open").forEach(function (x) { x.classList.remove("open"); }); if (open) c.classList.add("open"); ss("hb:racc", open ? key : ""); H.haptic(); });
+    });
+  }
+  var rw2 = window.HB_REC_WIRE;
+  window.HB_REC_WIRE = function (R) { if (rw2) rw2(R); accordion(R); };
 
   [0, 500, 1400].forEach(function (t) { setTimeout(onShow, t); });
 })();

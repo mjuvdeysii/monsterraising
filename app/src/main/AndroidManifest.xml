@@ -16,12 +16,32 @@
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTask"
-            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|uiMode|keyboardHidden">
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|uiMode|keyboardHidden" />
+        <!-- two home-screen icons; the app turns on the one that matches the chosen look -->
+        <activity-alias
+            android:name=".IconMint"
+            android:targetActivity=".MainActivity"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity-alias>
+        <activity-alias
+            android:name=".IconEye"
+            android:targetActivity=".MainActivity"
+            android:icon="@mipmap/ic_launcher_eye"
+            android:roundIcon="@mipmap/ic_launcher_eye"
+            android:enabled="false"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
         <receiver android:name=".ReminderReceiver" android:exported="false" />
         <receiver android:name=".AgeWidget" android:exported="true" android:label="@string/app_name">
             <intent-filter>

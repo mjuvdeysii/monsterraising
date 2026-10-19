@@ -399,6 +399,22 @@ public class MainActivity extends Activity {
         @JavascriptInterface
         public void setJournal(String json) { AgeWidget.saveJournal(a, json); }
 
+        // the chosen look: the widget pictures follow it, and the home-screen icon too when asked
+        @JavascriptInterface
+        public void setIp(String ip, boolean icon) {
+            String look = "eye".equals(ip) ? "eye" : "mint";
+            a.getSharedPreferences(AgeWidget.PREFS, MODE_PRIVATE).edit().putString("ip", look).apply();
+            AgeWidget.refresh(a);
+            boolean eye = icon && "eye".equals(look);
+            android.content.pm.PackageManager pm = a.getPackageManager();
+            android.content.ComponentName cm = new android.content.ComponentName(a, MainActivity.class.getPackage().getName() + ".IconMint"), ce = new android.content.ComponentName(a, MainActivity.class.getPackage().getName() + ".IconEye");
+            int on = android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_ENABLED, off = android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DISABLED;
+            boolean eyeNow = pm.getComponentEnabledSetting(ce) == on;
+            if (eye == eyeNow) return;
+            pm.setComponentEnabledSetting(eye ? ce : cm, on, android.content.pm.PackageManager.DONT_KILL_APP);
+            pm.setComponentEnabledSetting(eye ? cm : ce, off, android.content.pm.PackageManager.DONT_KILL_APP);
+        }
+
         @JavascriptInterface
         public String pendingLog() { String p = a.pendingLog; a.pendingLog = ""; return p == null ? "" : p; }
 

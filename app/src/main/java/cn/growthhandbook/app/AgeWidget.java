@@ -83,8 +83,9 @@ public class AgeWidget extends AppWidgetProvider {
             // the little monster grows with the child, and sleeps at night
             int hr = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
             boolean night = hr >= 21 || hr < 6;
-            int[] day = { R.drawable.mascot_s1, R.drawable.mascot_s2, R.drawable.mascot_s3, R.drawable.mascot_s4 };
-            int[] sleep = { R.drawable.mascot_z1, R.drawable.mascot_z2, R.drawable.mascot_z3, R.drawable.mascot_z4 };
+            boolean eyeLook = "eye".equals(c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString("ip", "mint"));
+            int[] day = eyeLook ? new int[] { R.drawable.e_s1, R.drawable.e_s2, R.drawable.e_s3, R.drawable.e_s4 } : new int[] { R.drawable.mascot_s1, R.drawable.mascot_s2, R.drawable.mascot_s3, R.drawable.mascot_s4 };
+            int[] sleep = eyeLook ? new int[] { R.drawable.e_z1, R.drawable.e_z2, R.drawable.e_z3, R.drawable.e_z4 } : new int[] { R.drawable.mascot_z1, R.drawable.mascot_z2, R.drawable.mascot_z3, R.drawable.mascot_z4 };
             v.setImageViewResource(R.id.w_img, (night ? sleep : day)[stage - 1]);
             Intent i = new Intent(c, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             v.setOnClickPendingIntent(R.id.w_root, PendingIntent.getActivity(c, 7, i, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
@@ -103,6 +104,9 @@ public class AgeWidget extends AppWidgetProvider {
                     Intent li = new Intent(c, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("log", ks[k]).setAction("log." + ks[k]);
                     v.setOnClickPendingIntent(vs[k], PendingIntent.getActivity(c, 20 + k, li, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
                 }
+                int[] wi = { R.id.wi_nurse, R.id.wi_bottle, R.id.wi_sleep, R.id.wi_diaper };
+                int[] wm = eyeLook ? new int[] { R.drawable.ew_nurse, R.drawable.ew_bottle, R.drawable.ew_sleep, R.drawable.ew_diaper } : new int[] { R.drawable.w_nurse, R.drawable.w_bottle, R.drawable.w_sleep, R.drawable.w_diaper };
+                for (int k = 0; k < wi.length; k++) v.setImageViewResource(wi[k], wm[k]);
                 boolean sl = run.startsWith("正在睡"), nu = run.startsWith("正在亲喂");
                 v.setTextViewText(R.id.wt_sleep, sl ? "醒了" : "睡眠");
                 v.setTextViewText(R.id.wt_nurse, nu ? "喂完" : "亲喂");

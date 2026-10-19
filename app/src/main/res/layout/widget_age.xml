@@ -77,6 +77,7 @@
             android:paddingBottom="4dp"
             android:background="@drawable/wb_nurse">
             <ImageView
+                android:id="@+id/wi_nurse"
                 android:layout_width="34dp"
                 android:layout_height="34dp"
                 android:src="@drawable/w_nurse"
@@ -104,6 +105,7 @@
             android:paddingBottom="4dp"
             android:background="@drawable/wb_bottle">
             <ImageView
+                android:id="@+id/wi_bottle"
                 android:layout_width="34dp"
                 android:layout_height="34dp"
                 android:src="@drawable/w_bottle"
@@ -131,6 +133,7 @@
             android:paddingBottom="4dp"
             android:background="@drawable/wb_sleep">
             <ImageView
+                android:id="@+id/wi_sleep"
                 android:layout_width="34dp"
                 android:layout_height="34dp"
                 android:src="@drawable/w_sleep"
@@ -158,6 +161,7 @@
             android:paddingBottom="4dp"
             android:background="@drawable/wb_diaper">
             <ImageView
+                android:id="@+id/wi_diaper"
                 android:layout_width="34dp"
                 android:layout_height="34dp"
                 android:src="@drawable/w_diaper"

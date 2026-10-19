@@ -2263,6 +2263,42 @@ html.app[data-theme="dark"] .jb-i b{color:#9C7417}
 .jr-gh .jr-seg{flex:1 1 140px}
 .jr-gh .btn{flex:1 1 140px}
 @media (max-width:370px){.jr-pane button{font-size:13px}.jr-date label{font-size:14px}.jr-date button{width:40px;height:40px}.jr-h .t-sub{font-size:13px}}
+/* 手帐：计时暂停、调整、补录 */
+.jr-run{flex-direction:column;align-items:stretch!important;gap:8px!important}
+.jr-rt{display:flex;align-items:center;gap:10px}
+.jr-rt>div{flex:1;min-width:0}
+.jr-rb{flex-direction:row!important;gap:8px}
+.jr-rb .btn{flex:1}
+.jr-adj{align-self:flex-start;min-height:36px;padding:0 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font-family:var(--f-ui);font-size:13px}
+.jr-run.paused{border-style:dashed!important;background:var(--tint)!important}
+.jr-run.paused .jr-clock{color:var(--ink2)}
+@media (prefers-reduced-motion:no-preference){.jr-run.paused .jr-clock{animation:jrBlink 1.6s steps(2,start) infinite}.jr-run.flash{animation:jrFlash .9s ease-out}}
+@keyframes jrBlink{50%{opacity:.35}}
+@keyframes jrFlash{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold) 70%,transparent)}100%{box-shadow:0 0 0 14px transparent}}
+.jr-long{margin:0;padding:8px 12px;border-radius:10px;background:var(--warn-l);font-family:var(--f-ui);font-size:13px;line-height:1.5}
+.jr-sh{margin-top:2px}
+.jr-sh button{min-height:32px;padding:0 10px;font-size:12px;color:var(--ink2)}
+.jr-retro{display:flex;align-items:center;gap:8px;width:100%;min-height:48px;margin:0 0 14px;padding:0 14px 0 6px;border-radius:14px;border:1.5px dashed var(--line);background:none;color:var(--ink);font-family:var(--f-ui);font-size:14px}
+.jr-retro span{display:block;width:36px;height:34px}
+.jr-retro span .mascot,.jr-pick span .mascot{display:block;width:100%;height:100%}
+.jr-pick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.jr-pick button{display:flex;flex-direction:column;align-items:center;min-height:76px;padding:4px 0 6px;border-radius:14px;border:1.5px solid color-mix(in srgb,var(--jc) 45%,var(--line));background:color-mix(in srgb,var(--jc) 10%,var(--surface));color:var(--ink);font-family:var(--f-ui);font-size:13px}
+.jr-pick span{display:block;width:44px;height:40px}
+.jr-del{display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.jr-tl li button::after{content:"";width:16px;height:16px;justify-self:end;background:var(--ink2);opacity:.55;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 11.5V13h1.5l7-7L10 4.5zM11 3.5l1.5 1.5 1-1L12 2.5z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 11.5V13h1.5l7-7L10 4.5zM11 3.5l1.5 1.5 1-1L12 2.5z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat}
+.jr-tl li button{grid-template-columns:auto 34px auto 1fr 16px!important}
+/* 形象切换 */
+.ip-g{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 10px}
+.ip-c{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 6px 12px;border-radius:18px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font-family:var(--f-ui);transition:transform .15s}
+.ip-c:active{transform:scale(.97)}
+.ip-c.on{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 12%,var(--surface));box-shadow:0 3px 0 color-mix(in srgb,var(--gold) 40%,transparent)}
+.ip-c b{font-size:15px}.ip-c small{font-size:12px;color:var(--ink2)}
+.ip-m{display:block;width:96px;height:90px}
+.ip-m .mascot{display:block;width:100%;height:100%}
+@media (prefers-reduced-motion:no-preference){.ip-m.hop{animation:jump .6s cubic-bezier(.3,1.6,.5,1)}.r-ip.bye .ip-c:not(.on) .ip-m{animation:jump .5s cubic-bezier(.3,1.6,.5,1)}}
+.ip-ic{display:flex;align-items:center;gap:10px;min-height:44px;font-family:var(--f-ui);font-size:15px}
+.ip-ic input{width:22px;height:22px;accent-color:var(--ink)}
+.jr-sh{flex-wrap:nowrap}.jr-sh button{flex:1;padding:0 4px}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kFFF6E6:#473c29;--kE8EEDB:#333826;--kDDE8CF:#2b3222;--kF5E0E4:#41252a;--kFFF3C4:#3a3521;--kDFC6C3:#523d3a;--kF1EEE8:#3b372d;--kF5E0E0:#412525;--kDFCAC3:#52403a;--kF5E4E0:#412a25;--kDFCFC3:#52443a;--kF5E7E0:#412e25;--kDFD3C3:#52483a;--kF5EBE0:#413425;--kDFD8C3:#524c3a;--kF5EEE0:#413825;--kF5F1E0:#413c25;--kDDDFC3:#50523a;--kF5F5E0:#414125;--kD8DFC3:#4c523a;--kF1F5E0:#3c4125;--kD3DFC3:#48523a;--kEEF5E0:#384125;--kCFDFC3:#44523a;--kEBF5E0:#344125;--kCADFC3:#40523a;--kE7F5E0:#2e4125;--kC6DFC3:#3d523a;--kE4F5E0:#2a4125;--kC3DFC6:#3a523d;--kF7EFE2:#433826;--kE0F5E0:#254125;--kC3DFCA:#3a5240;--kE0F5E4:#25412a;--kC3DFCF:#3a5244;--kE0F5E7:#25412e;--kC3DFD3:#3a5248;--kE0F5EB:#254134;--kC3DFD8:#3a524c;--kE0F5EE:#254138;--kC3DFDD:#3a5250;--kE0F5F1:#25413c;--kC3DDDF:#3a5052;--kC99A6B:#47382a;--kE0F5F5:#254141;--kC3D8DF:#3a4c52;--kE0F1F5:#253c41;--kC3D3DF:#3a4852;--kE0EEF5:#253841;--kC3CFDF:#3a4452;--kE0EBF5:#253441;--kC3CADF:#3a4052;--kE0E7F5:#252e41;--kC3C6DF:#3a3d52;--kE0E4F5:#252a41;--kC6C3DF:#3d3a52;--kE0E0F5:#252541;--kCFE6D4:#223025;--kE4E0F5:#2a2541;--kCFC3DF:#443a52;--kE7E0F5:#2e2541;--kD3C3DF:#483a52;--kFFF3D6:#413925;--kEBE0F5:#342541;--kD8C3DF:#4c3a52;--kEEE0F5:#382541;--kF1E0F5:#3c2541;--kDFC3DD:#523a50;--kF5E0F5:#412541;--kF5E0F1:#41253c;--kDFC3D3:#523a48;--kDCEBF5:#24343f;--kF5E0EE:#412538;--kF5E0EB:#412534;--kDFC3CA:#523a40;--kF5E0E7:#41252e;--kDFC3C6:#523a3d;--kF7D8DF:#3f242a;--kFBF7EF:#493f2a;--kF3EEE6:#3e372a;--kA8D5B5:#354e3c;--kFFF6D6:#413b25;--kEDF2F7:#2c3843;--kF7F0E4:#433926;--kEEF5EE:#2f3f2f;--kFFF8EC:#4a3e2a;--kE9D8B8:#594c33;--kEFE3CC:#372f1f;--kF4F1EA:#3f392d;--kF3D9DF:#3d2329;--kF8EDED:#452a2a;--kEDC9C9:#351e1e;--kF0E6DB:#3b3025;--kEAF4F0:#2d3f38;--kEAF1EE:#2f3b36;--kDCE6D2:#2a3023;--kF6EAEA:#422a2a;--kEADAD1:#342822;--kF6F0EA:#42362a;--kEAE6D1:#343122;--kE2DECB:#2c2a20;--kF2EAF6:#3a2a42;--kEAD1EA:#342234;--kF5EAE6:#412f28;--kE2DECA:#534f3c;--kEAF6EE:#2a4232;--kD1EAE2:#22342e;--kD4E2D7:#252e27;--kF2EEE6:#3d372b;--kF6E9EC:#432a2f;--kFBF3E4:#453b27;--kF8EEED:#452d2a;--kEDCFC9:#35221e;--kF0E9DB:#3b3325;--kE8F1F4:#2b3a3f;--kF6F2EA:#423a2a;--kEAEAD1:#343422;--kE2E2CB:#2c2c20;--kEAF0F6:#2a3642;--kD1D5EA:#222534;--kD3D9E3:#24282e;--kF4EAF6:#3e2a42;--kEAD1E6:#342231;--kF5E9E6:#412d28;--kE2CAD4:#533c45;--kEAF6F0:#2a4236;--kD1EAE6:#223431;--kD4E2D9:#252e28;--kE8EEF2:#2c363d;--kF8F0ED:#45322a;--kEDD5C9:#35251e;--kF0ECDB:#3b3725;--kF6EEEA:#42322a;--kEAE2D1:#342e22;--kF6F4EA:#423e2a;--kE6EAD1:#313422;--kDEE2CB:#2a2c20;--kF6EAF6:#422a42;--kEAD1E2:#34222e;--kF3F5E6:#3e4128;--kE2D1CA:#53433c;--kEAF6F2:#2a423a;--kD1EAEA:#223434;--kD4E2DB:#252e29;--kF6F6EA:#42422a;--kE2EAD1:#2e3422;--kDAE2CB:#282c20;--kEAECF6:#2a2e42;--kD5D1EA:#252234;--kD3D3E3:#24242e;--kF6EAF4:#422a3e;--kEAD1DE:#34222b;--kEFF5E6:#374128;--kCADAE2:#3c4b53;--kEAF6F4:#2a423e;--kD1E6EA:#223134;--kD4E2DE:#252e2b;--kDCE8F2:#24323d;--kF8F4ED:#453c2a;--kEDE1C9:#352d1e;--kECF0DB:#373b25;--kF6EAF2:#422a3a;--kEAD1DA:#342228;--kEAEAF6:#2a2a42;--kDAD1EA:#282234;--kD6D3E3:#26242e;--kF1F5E6:#3b4128;--kCAE2CC:#3c533e;--kEAF6F6:#2a4242;--kD1E2EA:#222e34;--kD4E2E0:#252e2c;--kF8F6ED:#45412a;--kEDE7C9:#35311e;--kE9F0DB:#333b25;--kF2E7D2:#3a3221;--kF1D9C9:#36281f;--kF2F6EA:#3a422a;--kDAEAD1:#283422;--kD2E2CB:#242c20;--kECEAF6:#2e2a42;--kDED1EA:#2b2234;--kD9D3E3:#28242e;--kF6EAF0:#422a36;--kEAD1D5:#342225;--kEAF4F6:#2a3e42;--kD1DEEA:#222b34;--kD4E2E2:#252e2e;--kE3EEF3:#28373f;--kE8F1E4:#303c2a;--kF8F8ED:#45452a;--kEDEDC9:#35351e;--kE6F0DB:#303b25;--kE6F1F4:#293b40;--kF0F6EA:#36422a;--kD5EAD1:#253422;--kCFE2CB:#232c20;--kF6EAEE:#422a32;--kEAD1D1:#342222;--kE8F5E6:#2c4128;--kCAE2D3:#3c5344;--kEAF2F6:#2a3a42;--kD1DAEA:#222834;--kD4E0E2:#252c2e;--kF6F8ED:#41452a;--kE7EDC9:#31351e;--kE2F0DB:#2c3b25;--kF4F6EA:#3e422a;--kDEEAD1:#2b3422;--kEEF6EA:#32422a;--kD1EAD1:#223422;--kCBE2CB:#202c20;--kF6EAEC:#422a2e;--kEAD5D1:#342522;--kE6F5E8:#28412c;--kCAE2D6:#3c5347;--kD4DEE2:#252b2e;--kECF6EA:#2e422a;--kD1EAD5:#223425;--kCBE2CF:#202c23;--kE1D3E3:#2d242e;--kE6F5EA:#28412f;--kE2CAD7:#533c48;--kEAEEF6:#2a3242;--kD1D1EA:#222234;--kD4DBE2:#25292e;--kF2F8ED:#37452a;--kDBEDC9:#29351e;--kDBF0DB:#253b25;--kEAF6EA:#2a422a;--kD1EADA:#223428;--kCBE2D2:#202c24;--kF6ECEA:#422e2a;--kEADED1:#342b22;--kECF5E6:#324128;--kE2D8CA:#53493c;--kD4D9E2:#25282e;--kF0F8ED:#32452a;--kD5EDC9:#25351e;--kDBF0DF:#253b29;--kCCE0CC:#3e513e;--kE9F5E6:#2d4128;--kD4E2CA:#45533c;--kE3D3E1:#2e242d;--kD4D7E2:#25272e;--kEEF8ED:#2d452a;--kCFEDC9:#22351e;--kDBF0E2:#253b2c;--kCBE2DA:#202c28;--kE3D3DE:#2e242b;--kD7CAE2:#483c53;--kD4D4E2:#25252e;--kEDF8ED:#2a452a;--kC9EDC9:#1e351e;--kDBF0E6:#253b30;--kCCE0D3:#3e5144;--kE3D3DB:#2e2429;--kE6F5E6:#284128;--kD5E2CA:#46533c;--kEEEAF6:#322a42;--kE2D1EA:#2e2234;--kD7D4E2:#27252e;--kEDF8EE:#2a452d;--kC9EDCF:#1e3522;--kDBF0E9:#253b33;--kCCE0D6:#3e5147;--kE3EFF3:#28393f;--kEAF6EC:#2a422e;--kD1EADE:#22342b;--kCBE2E2:#202c2c;--kE3D3D9:#2e2428;--kF0EAF6:#362a42;--kE6D1EA:#312234;--kD9D4E2:#28252e;--kFFF3E6:#473929;--kDBD4E2:#29252e;--kEDF8F2:#2a4537;--kC9EDDB:#1e3529;--kDBF0F0:#253b3b;--kF5F1E8:#413a2a;--kDED4E2:#2b252e;--kEDF8F4:#2a453c;--kC9EDE1:#1e352d;--kDBECF0:#25373b;--kCCE0E0:#3e5151;--kE3D6D3:#2e2624;--kE6F5F1:#28413b;--kCAD3E2:#3c4453;--kE0D4E2:#2c252e;--kEDF8F6:#2a4541;--kC9EDE7:#1e3531;--kDBE9F0:#25333b;--kCBD2E2:#20242c;--kE3D9D3:#2e2824;--kE6EEF5:#283641;--kCAE0E2:#3c5153;--kE2D4E2:#2e252e;--kEDF8F8:#2a4545;--kC9EDED:#1e3535;--kDBE6F0:#25303b;--kCCDAE0:#3e4b51;--kC9C2B4:#47433c;--kE3DBD3:#2e2924;--kE2D4E0:#2e252c;--kEDF6F8:#2a4145;--kC9E7ED:#1e3135;--kDBE2F0:#252c3b;--kCCD6E0:#3e4751;--kE3DED3:#2e2b24;--kE6E6F5:#282841;--kE2D2CA:#53443c;--kE2D4DE:#2e252b;--kEDF4F8:#2a3c45;--kC9E1ED:#1e2d35;--kDBDFF0:#25293b;--kCFCBE2:#23202c;--kEAE6F5:#2f2841;--kCAD8E2:#3c4953;--kE2D4DB:#2e2529;--kEDF2F8:#2a3745;--kC9DBED:#1e2935;--kDBDBF0:#25253b;--kD2CBE2:#24202c;--kE3E3D3:#2e2e24;--kECE6F5:#322841;--kD4CAE2:#453c53;--kE2D4D9:#2e2528;--kEDF0F8:#2a3245;--kC9D5ED:#1e2535;--kDFDBF0:#29253b;--kD6CBE2:#26202c;--kE1E3D3:#2d2e24;--kEEE6F5:#362841;--kD9E2CA:#4a533c;--kE2D4D7:#2e2527;--kDACBE2:#28202c;--kDEE3D3:#2b2e24;--kE9E6F5:#2d2841;--kE0CAE2:#513c53;--kE2D4D4:#2e2525;--kEDEDF8:#2a2a45;--kC9C9ED:#1e1e35;--kE6DBF0:#30253b;--kD3CCE0:#443e51;--kF3E6F5:#3e2841;--kE2D7D4:#2e2725;--kEEEDF8:#2d2a45;--kCFC9ED:#221e35;--kE9DBF0:#33253b;--kE2CBE2:#2c202c;--kD9E3D3:#282e24;--kE2D9D4:#2e2825;--kF0EDF8:#322a45;--kD5C9ED:#251e35;--kECDBF0:#37253b;--kE2CBDE:#2c202a;--kD6E3D3:#262e24;--kE2DBD4:#2e2925;--kF2EDF8:#372a45;--kDBC9ED:#291e35;--kF0DBF0:#3b253b;--kE2DED4:#2e2b25;--kF4EDF8:#3c2a45;--kE1C9ED:#2d1e35;--kF0DBEC:#3b2537;--kE0CCE0:#513e51;--kD3E3D6:#242e26;--kF5E6F1:#41283b;--kE2E0D4:#2e2c25;--kF6EDF8:#412a45;--kE7C9ED:#311e35;--kF0DBE9:#3b2533;--kE2CBD2:#2c2024;--kD3E3D9:#242e28;--kF5E6EB:#412831;--kE2E2D4:#2e2e25;--kF8EDF8:#452a45;--kEDC9ED:#351e35;--kF0DBE6:#3b2530;--kE0CCDA:#513e4b;--kD3E3DB:#242e29;--kF5E6E8:#41282c;--kE2D3CA:#53443c;--kE0E2D4:#2c2e25;--kF8EDF6:#452a41;--kEDC9E7:#351e31;--kF0DBE2:#3b252c;--kE0CCD6:#513e47;--kE2CBCB:#2c2020;--kF5E6ED:#412834;--kCAE2DE:#3c534f;--kDEE2D4:#2b2e25;--kF8EDF4:#452a3c;--kEDC9E1:#351e2d;--kF0DBDF:#3b2529;--kE0CCD3:#513e44;--kF4E9D4:#3c3322;--kF5E7E6:#412a28;--kD0CAE2:#423c53;--kDBE2D4:#292e25;--kF8EDF2:#452a37;--kEDC9DB:#351e29;--kF0DBDB:#3b2525;--kE0CCCF:#513e41;--kCAE2DF:#3c5350;--kD9E2D4:#282e25;--kBDBDBD:#414141;--kF8EDF0:#452a32;--kEDC9D5:#351e25;--kF0DFDB:#3b2925;--kE2D6CB:#2c2620;--kD3E1E3:#242d2e;--kF5E6E6:#412828;--kE2CACD:#533c3f;--kD7E2D4:#272e25;--kF7E3B8:#322b1c;--kD3DEE3:#242b2e;--kD4E2D4:#252e25;--kF7F1E6:#443a27;--kFFFDF7:#4e462c;--kE8F0E6:#2f3a2c;--kF4F7F2:#384132;--kE8EEF4:#2b353f;--kF6DCE3:#40242c;--kDCE7F6:#243040;--kF4E6C8:#372f1f;--kE7E0F4:#2f2540;--kDCEFE2:#263a2c;--kF6E0D8:#3e2a23;--kEEF4F7:#2d3c43;--kF3E9DA:#3e3323;--kEEF5F2:#2f3f38;--kCFE3EE:#202f37;--kF2F5F8:#303a43;--kF8F3EC:#463a2a;--kF2F6FA:#2c3a48;--kE3DCCB:#2d2920;--kE8EDF4:#2b333f;--kF7EFE3:#433726;--kFFF8EA:#493e29;--kF4EFE6:#403829;--kF3ECF6:#3b2c42;--kDCE4F2:#242d3d;--kEFD5C6:#34261e;--kCBCBE2:#20202c;--kE6D2A8:#564a31;--kD3DBE3:#24292e;--kDBD3E3:#29242e;--kE3D3E3:#2e242e;--kD3E3DE:#242e2b;--kD9CFEA:#282133;--kF5F1E6:#413b28;--kF0F5E6:#394128;--kCADBE2:#3c4c53;--kE2D0CA:#53423c;--kCADCE2:#3c4d53;--kE6F5F3:#28413e;--kE2CFCA:#53413c;--kE6E7F5:#282a41;--kCADDE2:#3c4e53;--kF2E6F5:#3c2841;--kE2CECA:#53403c;--kCADEE2:#3c4f53;--kEBD9CF:#342821;--kF3EAF5:#3d2c41;--kF7F2EA:#443a29;--kF6F1E7:#433a28;--kF4F2EE:#3d3931;--kF6F8F4:#3a4133}}:root[data-theme="dark"]{--kFFF6E6:#473c29;--kE8EEDB:#333826;--kDDE8CF:#2b3222;--kF5E0E4:#41252a;--kFFF3C4:#3a3521;--kDFC6C3:#523d3a;--kF1EEE8:#3b372d;--kF5E0E0:#412525;--kDFCAC3:#52403a;--kF5E4E0:#412a25;--kDFCFC3:#52443a;--kF5E7E0:#412e25;--kDFD3C3:#52483a;--kF5EBE0:#413425;--kDFD8C3:#524c3a;--kF5EEE0:#413825;--kF5F1E0:#413c25;--kDDDFC3:#50523a;--kF5F5E0:#414125;--kD8DFC3:#4c523a;--kF1F5E0:#3c4125;--kD3DFC3:#48523a;--kEEF5E0:#384125;--kCFDFC3:#44523a;--kEBF5E0:#344125;--kCADFC3:#40523a;--kE7F5E0:#2e4125;--kC6DFC3:#3d523a;--kE4F5E0:#2a4125;--kC3DFC6:#3a523d;--kF7EFE2:#433826;--kE0F5E0:#254125;--kC3DFCA:#3a5240;--kE0F5E4:#25412a;--kC3DFCF:#3a5244;--kE0F5E7:#25412e;--kC3DFD3:#3a5248;--kE0F5EB:#254134;--kC3DFD8:#3a524c;--kE0F5EE:#254138;--kC3DFDD:#3a5250;--kE0F5F1:#25413c;--kC3DDDF:#3a5052;--kC99A6B:#47382a;--kE0F5F5:#254141;--kC3D8DF:#3a4c52;--kE0F1F5:#253c41;--kC3D3DF:#3a4852;--kE0EEF5:#253841;--kC3CFDF:#3a4452;--kE0EBF5:#253441;--kC3CADF:#3a4052;--kE0E7F5:#252e41;--kC3C6DF:#3a3d52;--kE0E4F5:#252a41;--kC6C3DF:#3d3a52;--kE0E0F5:#252541;--kCFE6D4:#223025;--kE4E0F5:#2a2541;--kCFC3DF:#443a52;--kE7E0F5:#2e2541;--kD3C3DF:#483a52;--kFFF3D6:#413925;--kEBE0F5:#342541;--kD8C3DF:#4c3a52;--kEEE0F5:#382541;--kF1E0F5:#3c2541;--kDFC3DD:#523a50;--kF5E0F5:#412541;--kF5E0F1:#41253c;--kDFC3D3:#523a48;--kDCEBF5:#24343f;--kF5E0EE:#412538;--kF5E0EB:#412534;--kDFC3CA:#523a40;--kF5E0E7:#41252e;--kDFC3C6:#523a3d;--kF7D8DF:#3f242a;--kFBF7EF:#493f2a;--kF3EEE6:#3e372a;--kA8D5B5:#354e3c;--kFFF6D6:#413b25;--kEDF2F7:#2c3843;--kF7F0E4:#433926;--kEEF5EE:#2f3f2f;--kFFF8EC:#4a3e2a;--kE9D8B8:#594c33;--kEFE3CC:#372f1f;--kF4F1EA:#3f392d;--kF3D9DF:#3d2329;--kF8EDED:#452a2a;--kEDC9C9:#351e1e;--kF0E6DB:#3b3025;--kEAF4F0:#2d3f38;--kEAF1EE:#2f3b36;--kDCE6D2:#2a3023;--kF6EAEA:#422a2a;--kEADAD1:#342822;--kF6F0EA:#42362a;--kEAE6D1:#343122;--kE2DECB:#2c2a20;--kF2EAF6:#3a2a42;--kEAD1EA:#342234;--kF5EAE6:#412f28;--kE2DECA:#534f3c;--kEAF6EE:#2a4232;--kD1EAE2:#22342e;--kD4E2D7:#252e27;--kF2EEE6:#3d372b;--kF6E9EC:#432a2f;--kFBF3E4:#453b27;--kF8EEED:#452d2a;--kEDCFC9:#35221e;--kF0E9DB:#3b3325;--kE8F1F4:#2b3a3f;--kF6F2EA:#423a2a;--kEAEAD1:#343422;--kE2E2CB:#2c2c20;--kEAF0F6:#2a3642;--kD1D5EA:#222534;--kD3D9E3:#24282e;--kF4EAF6:#3e2a42;--kEAD1E6:#342231;--kF5E9E6:#412d28;--kE2CAD4:#533c45;--kEAF6F0:#2a4236;--kD1EAE6:#223431;--kD4E2D9:#252e28;--kE8EEF2:#2c363d;--kF8F0ED:#45322a;--kEDD5C9:#35251e;--kF0ECDB:#3b3725;--kF6EEEA:#42322a;--kEAE2D1:#342e22;--kF6F4EA:#423e2a;--kE6EAD1:#313422;--kDEE2CB:#2a2c20;--kF6EAF6:#422a42;--kEAD1E2:#34222e;--kF3F5E6:#3e4128;--kE2D1CA:#53433c;--kEAF6F2:#2a423a;--kD1EAEA:#223434;--kD4E2DB:#252e29;--kF6F6EA:#42422a;--kE2EAD1:#2e3422;--kDAE2CB:#282c20;--kEAECF6:#2a2e42;--kD5D1EA:#252234;--kD3D3E3:#24242e;--kF6EAF4:#422a3e;--kEAD1DE:#34222b;--kEFF5E6:#374128;--kCADAE2:#3c4b53;--kEAF6F4:#2a423e;--kD1E6EA:#223134;--kD4E2DE:#252e2b;--kDCE8F2:#24323d;--kF8F4ED:#453c2a;--kEDE1C9:#352d1e;--kECF0DB:#373b25;--kF6EAF2:#422a3a;--kEAD1DA:#342228;--kEAEAF6:#2a2a42;--kDAD1EA:#282234;--kD6D3E3:#26242e;--kF1F5E6:#3b4128;--kCAE2CC:#3c533e;--kEAF6F6:#2a4242;--kD1E2EA:#222e34;--kD4E2E0:#252e2c;--kF8F6ED:#45412a;--kEDE7C9:#35311e;--kE9F0DB:#333b25;--kF2E7D2:#3a3221;--kF1D9C9:#36281f;--kF2F6EA:#3a422a;--kDAEAD1:#283422;--kD2E2CB:#242c20;--kECEAF6:#2e2a42;--kDED1EA:#2b2234;--kD9D3E3:#28242e;--kF6EAF0:#422a36;--kEAD1D5:#342225;--kEAF4F6:#2a3e42;--kD1DEEA:#222b34;--kD4E2E2:#252e2e;--kE3EEF3:#28373f;--kE8F1E4:#303c2a;--kF8F8ED:#45452a;--kEDEDC9:#35351e;--kE6F0DB:#303b25;--kE6F1F4:#293b40;--kF0F6EA:#36422a;--kD5EAD1:#253422;--kCFE2CB:#232c20;--kF6EAEE:#422a32;--kEAD1D1:#342222;--kE8F5E6:#2c4128;--kCAE2D3:#3c5344;--kEAF2F6:#2a3a42;--kD1DAEA:#222834;--kD4E0E2:#252c2e;--kF6F8ED:#41452a;--kE7EDC9:#31351e;--kE2F0DB:#2c3b25;--kF4F6EA:#3e422a;--kDEEAD1:#2b3422;--kEEF6EA:#32422a;--kD1EAD1:#223422;--kCBE2CB:#202c20;--kF6EAEC:#422a2e;--kEAD5D1:#342522;--kE6F5E8:#28412c;--kCAE2D6:#3c5347;--kD4DEE2:#252b2e;--kECF6EA:#2e422a;--kD1EAD5:#223425;--kCBE2CF:#202c23;--kE1D3E3:#2d242e;--kE6F5EA:#28412f;--kE2CAD7:#533c48;--kEAEEF6:#2a3242;--kD1D1EA:#222234;--kD4DBE2:#25292e;--kF2F8ED:#37452a;--kDBEDC9:#29351e;--kDBF0DB:#253b25;--kEAF6EA:#2a422a;--kD1EADA:#223428;--kCBE2D2:#202c24;--kF6ECEA:#422e2a;--kEADED1:#342b22;--kECF5E6:#324128;--kE2D8CA:#53493c;--kD4D9E2:#25282e;--kF0F8ED:#32452a;--kD5EDC9:#25351e;--kDBF0DF:#253b29;--kCCE0CC:#3e513e;--kE9F5E6:#2d4128;--kD4E2CA:#45533c;--kE3D3E1:#2e242d;--kD4D7E2:#25272e;--kEEF8ED:#2d452a;--kCFEDC9:#22351e;--kDBF0E2:#253b2c;--kCBE2DA:#202c28;--kE3D3DE:#2e242b;--kD7CAE2:#483c53;--kD4D4E2:#25252e;--kEDF8ED:#2a452a;--kC9EDC9:#1e351e;--kDBF0E6:#253b30;--kCCE0D3:#3e5144;--kE3D3DB:#2e2429;--kE6F5E6:#284128;--kD5E2CA:#46533c;--kEEEAF6:#322a42;--kE2D1EA:#2e2234;--kD7D4E2:#27252e;--kEDF8EE:#2a452d;--kC9EDCF:#1e3522;--kDBF0E9:#253b33;--kCCE0D6:#3e5147;--kE3EFF3:#28393f;--kEAF6EC:#2a422e;--kD1EADE:#22342b;--kCBE2E2:#202c2c;--kE3D3D9:#2e2428;--kF0EAF6:#362a42;--kE6D1EA:#312234;--kD9D4E2:#28252e;--kFFF3E6:#473929;--kDBD4E2:#29252e;--kEDF8F2:#2a4537;--kC9EDDB:#1e3529;--kDBF0F0:#253b3b;--kF5F1E8:#413a2a;--kDED4E2:#2b252e;--kEDF8F4:#2a453c;--kC9EDE1:#1e352d;--kDBECF0:#25373b;--kCCE0E0:#3e5151;--kE3D6D3:#2e2624;--kE6F5F1:#28413b;--kCAD3E2:#3c4453;--kE0D4E2:#2c252e;--kEDF8F6:#2a4541;--kC9EDE7:#1e3531;--kDBE9F0:#25333b;--kCBD2E2:#20242c;--kE3D9D3:#2e2824;--kE6EEF5:#283641;--kCAE0E2:#3c5153;--kE2D4E2:#2e252e;--kEDF8F8:#2a4545;--kC9EDED:#1e3535;--kDBE6F0:#25303b;--kCCDAE0:#3e4b51;--kC9C2B4:#47433c;--kE3DBD3:#2e2924;--kE2D4E0:#2e252c;--kEDF6F8:#2a4145;--kC9E7ED:#1e3135;--kDBE2F0:#252c3b;--kCCD6E0:#3e4751;--kE3DED3:#2e2b24;--kE6E6F5:#282841;--kE2D2CA:#53443c;--kE2D4DE:#2e252b;--kEDF4F8:#2a3c45;--kC9E1ED:#1e2d35;--kDBDFF0:#25293b;--kCFCBE2:#23202c;--kEAE6F5:#2f2841;--kCAD8E2:#3c4953;--kE2D4DB:#2e2529;--kEDF2F8:#2a3745;--kC9DBED:#1e2935;--kDBDBF0:#25253b;--kD2CBE2:#24202c;--kE3E3D3:#2e2e24;--kECE6F5:#322841;--kD4CAE2:#453c53;--kE2D4D9:#2e2528;--kEDF0F8:#2a3245;--kC9D5ED:#1e2535;--kDFDBF0:#29253b;--kD6CBE2:#26202c;--kE1E3D3:#2d2e24;--kEEE6F5:#362841;--kD9E2CA:#4a533c;--kE2D4D7:#2e2527;--kDACBE2:#28202c;--kDEE3D3:#2b2e24;--kE9E6F5:#2d2841;--kE0CAE2:#513c53;--kE2D4D4:#2e2525;--kEDEDF8:#2a2a45;--kC9C9ED:#1e1e35;--kE6DBF0:#30253b;--kD3CCE0:#443e51;--kF3E6F5:#3e2841;--kE2D7D4:#2e2725;--kEEEDF8:#2d2a45;--kCFC9ED:#221e35;--kE9DBF0:#33253b;--kE2CBE2:#2c202c;--kD9E3D3:#282e24;--kE2D9D4:#2e2825;--kF0EDF8:#322a45;--kD5C9ED:#251e35;--kECDBF0:#37253b;--kE2CBDE:#2c202a;--kD6E3D3:#262e24;--kE2DBD4:#2e2925;--kF2EDF8:#372a45;--kDBC9ED:#291e35;--kF0DBF0:#3b253b;--kE2DED4:#2e2b25;--kF4EDF8:#3c2a45;--kE1C9ED:#2d1e35;--kF0DBEC:#3b2537;--kE0CCE0:#513e51;--kD3E3D6:#242e26;--kF5E6F1:#41283b;--kE2E0D4:#2e2c25;--kF6EDF8:#412a45;--kE7C9ED:#311e35;--kF0DBE9:#3b2533;--kE2CBD2:#2c2024;--kD3E3D9:#242e28;--kF5E6EB:#412831;--kE2E2D4:#2e2e25;--kF8EDF8:#452a45;--kEDC9ED:#351e35;--kF0DBE6:#3b2530;--kE0CCDA:#513e4b;--kD3E3DB:#242e29;--kF5E6E8:#41282c;--kE2D3CA:#53443c;--kE0E2D4:#2c2e25;--kF8EDF6:#452a41;--kEDC9E7:#351e31;--kF0DBE2:#3b252c;--kE0CCD6:#513e47;--kE2CBCB:#2c2020;--kF5E6ED:#412834;--kCAE2DE:#3c534f;--kDEE2D4:#2b2e25;--kF8EDF4:#452a3c;--kEDC9E1:#351e2d;--kF0DBDF:#3b2529;--kE0CCD3:#513e44;--kF4E9D4:#3c3322;--kF5E7E6:#412a28;--kD0CAE2:#423c53;--kDBE2D4:#292e25;--kF8EDF2:#452a37;--kEDC9DB:#351e29;--kF0DBDB:#3b2525;--kE0CCCF:#513e41;--kCAE2DF:#3c5350;--kD9E2D4:#282e25;--kBDBDBD:#414141;--kF8EDF0:#452a32;--kEDC9D5:#351e25;--kF0DFDB:#3b2925;--kE2D6CB:#2c2620;--kD3E1E3:#242d2e;--kF5E6E6:#412828;--kE2CACD:#533c3f;--kD7E2D4:#272e25;--kF7E3B8:#322b1c;--kD3DEE3:#242b2e;--kD4E2D4:#252e25;--kF7F1E6:#443a27;--kFFFDF7:#4e462c;--kE8F0E6:#2f3a2c;--kF4F7F2:#384132;--kE8EEF4:#2b353f;--kF6DCE3:#40242c;--kDCE7F6:#243040;--kF4E6C8:#372f1f;--kE7E0F4:#2f2540;--kDCEFE2:#263a2c;--kF6E0D8:#3e2a23;--kEEF4F7:#2d3c43;--kF3E9DA:#3e3323;--kEEF5F2:#2f3f38;--kCFE3EE:#202f37;--kF2F5F8:#303a43;--kF8F3EC:#463a2a;--kF2F6FA:#2c3a48;--kE3DCCB:#2d2920;--kE8EDF4:#2b333f;--kF7EFE3:#433726;--kFFF8EA:#493e29;--kF4EFE6:#403829;--kF3ECF6:#3b2c42;--kDCE4F2:#242d3d;--kEFD5C6:#34261e;--kCBCBE2:#20202c;--kE6D2A8:#564a31;--kD3DBE3:#24292e;--kDBD3E3:#29242e;--kE3D3E3:#2e242e;--kD3E3DE:#242e2b;--kD9CFEA:#282133;--kF5F1E6:#413b28;--kF0F5E6:#394128;--kCADBE2:#3c4c53;--kE2D0CA:#53423c;--kCADCE2:#3c4d53;--kE6F5F3:#28413e;--kE2CFCA:#53413c;--kE6E7F5:#282a41;--kCADDE2:#3c4e53;--kF2E6F5:#3c2841;--kE2CECA:#53403c;--kCADEE2:#3c4f53;--kEBD9CF:#342821;--kF3EAF5:#3d2c41;--kF7F2EA:#443a29;--kF6F1E7:#433a28;--kF4F2EE:#3d3931;--kF6F8F4:#3a4133}</style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <filter id="cut" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/></filter>
@@ -2348,20 +2384,58 @@ var HB_MONSTER = (function () {
     note: function (x, y) { return '<rect x="' + (x - 6) + '" y="' + (y - 8) + '" width="12" height="15" rx="1.6" ' + fill("#FBF7EF") + '/><path d="M' + (x - 3.4) + "," + (y - 4) + "h7M" + (x - 3.4) + "," + (y - 1) + "h7M" + (x - 3.4) + "," + (y + 2) + "h4.6" + '" stroke="#B9A88F" stroke-width="1" stroke-linecap="round"/>'; },
     cake: function (x, y) { return '<rect x="' + (x - 8) + '" y="' + (y - 2) + '" width="16" height="9" rx="2" ' + fill("#F6D3DC") + '/><path d="M' + (x - 8) + "," + (y + 1) + "q2,2 4,0t4,0t4,0t4,0" + '" stroke="#FBF7EF" stroke-width="1.6" fill="none"/><rect x="' + (x - 1) + '" y="' + (y - 8) + '" width="2" height="6" fill="#5B8FD0"/><path d="M' + x + "," + (y - 12) + "q2,2.4 0,3.6q-2,-1.2 0,-3.6Z" + '" fill="' + RB[1] + '"/>'; }
   };
+  // the second look: the original one-eyed monster in front of a rainbow, redrawn in the same cut-paper way
+  var EYE = { body: "#97BB92", dark: "#7C9F78", belly: "#DCE8D2" }, EGOLD = "#E8B54E", ETERRA = "#D07E5F", EBLUE = "#7FA3C9", EIRIS = "#5B86B3";
+  var EBODY = "M21,80V61C21,43 33.5,32 50,32C66.5,32 79,43 79,61V80C79,84 76,86.5 72,86.5H28C24,86.5 21,84 21,80Z";
+  function rainbow() { var o = "", R = [38.6, 34, 29.4], C = [ETERRA, EGOLD, EBLUE]; for (var i = 0; i < 3; i++) { var a = R[i], b = R[i] - 4.6; o += '<path d="M' + (50 - a) + ",66A" + a + "," + a + " 0 0,1 " + (50 + a) + ",66L" + (50 + b) + ",74A" + b + "," + b + " 0 0,0 " + (50 - b) + ',66Z" ' + fill(C[i]) + "/>"; } return o; }
+  function eyeEye(mood) {
+    if (mood === "happy" || mood === "party") return '<path d="M40.5,57q9.5,-11 19,0" fill="none" stroke="' + INK + '" stroke-width="3.4" stroke-linecap="round"/>';
+    if (mood === "sleep") return '<path d="M40.5,55.5q9.5,7 19,0" fill="none" stroke="' + INK + '" stroke-width="3" stroke-linecap="round"/><path d="M43,59.2l-1.4,2.2M50,60.6v2.6M57,59.2l1.4,2.2" stroke="' + INK + '" stroke-width="1.6" stroke-linecap="round"/>';
+    if (mood === "dizzy") return '<circle cx="50" cy="55" r="10.4" ' + fill("#FFFDF8") + '/><path d="M50,55m-6,0a6,6 0 1,1 6,6a3.6,3.6 0 1,1 -3.6,-3.6a1.6,1.6 0 1,1 1.6,1.6" fill="none" stroke="' + INK + '" stroke-width="2" stroke-linecap="round"/>';
+    return '<g class="m-eye"><circle cx="50" cy="54.6" r="12" ' + fill("#FFFDF8") + '/><circle cx="50.8" cy="55.8" r="7.6" fill="' + EIRIS + '"/><circle cx="50.8" cy="55.8" r="7.6" fill="none" stroke="#3F6690" stroke-width="1"/><circle cx="51" cy="56.2" r="3.9" fill="' + INK + '"/><circle cx="54" cy="52.4" r="2.3" fill="#FFFFFF"/><circle cx="47.6" cy="59.4" r="1.1" fill="#FFFFFF" opacity=".85"/></g>';
+  }
+  function eyeMouth(mood) {
+    var fang = '<path d="M53.6,66.4l1.6,3.1l1.7,-3.4Z" fill="#FFFDF8" stroke="#B9AE9C" stroke-width=".6" stroke-linejoin="round"/>';
+    if (mood === "happy" || mood === "party") return '<path d="M43.4,65.2q6.6,8.4 13.2,0Z" fill="' + INK + '"/><path d="M46.4,68.6q3.6,2.6 7.2,0" fill="#E0533D"/>' + fang;
+    if (mood === "dizzy") return '<path d="M44.6,67.4q1.8,-2 3.6,0q1.8,2 3.6,0q1.8,-2 3.6,0" fill="none" stroke="' + INK + '" stroke-width="2" stroke-linecap="round"/>';
+    if (mood === "sleep") return '<path d="M46.6,67.4q3.4,2 6.8,0" fill="none" stroke="' + INK + '" stroke-width="2.2" stroke-linecap="round"/>';
+    return '<path d="M43.6,65.4q6.4,5.6 12.8,0" fill="none" stroke="' + INK + '" stroke-width="2.4" stroke-linecap="round"/>' + fang;
+  }
+  function eyeHorn(s, k) { var bx = 50 + s * 15, by = 39; return '<g transform="translate(' + bx + " " + by + ") scale(" + k + ") translate(" + -bx + " " + -by + ')"><path d="M' + (50 + s * 9) + ",41Q" + (50 + s * 20) + ",33 " + (50 + s * 23) + ",23.6Q" + (50 + s * 13) + ",26 " + (50 + s * 6.5) + ',35Z" ' + fill(EGOLD) + '/><path d="M' + (50 + s * 23) + ",23.6Q" + (50 + s * 22) + ",28.4 " + (50 + s * 20.4) + ",31.2Q" + (50 + s * 18) + ",27.8 " + (50 + s * 16.8) + ',25.6Z" fill="' + ETERRA + '"/></g>'; }
+  function eyeCore(st, k, mood, id, flat, c) {
+    var h = horn2();
+    function horn2() { return eyeHorn(-1, k) + eyeHorn(1, k); }
+    if (st !== 1) h += '<ellipse cx="37" cy="87" rx="8.4" ry="4.4" ' + fill(c.dark) + '/><ellipse cx="63" cy="87" rx="8.4" ry="4.4" ' + fill(c.dark) + "/>";
+    h += '<ellipse cx="19" cy="67" rx="4" ry="6.2" transform="rotate(16 19 67)" ' + fill(c.dark) + '/><ellipse cx="81" cy="67" rx="4" ry="6.2" transform="rotate(-16 81 67)" ' + fill(c.dark) + "/>";
+    return h;
+  }
+  function eyeFront(mood, id, flat, c) {
+    var h = '<path d="' + EBODY + '" ' + fill(c.body) + "/>";
+    if (!flat) h += '<g clip-path="url(#' + id + 'b)"><ellipse cx="35" cy="42" rx="24" ry="16" fill="url(#' + id + 'h)"/><ellipse cx="70" cy="80" rx="22" ry="22" fill="url(#' + id + 'd)"/></g>';
+    h += '<ellipse cx="50" cy="78.6" rx="14.2" ry="7.2" ' + fill(c.belly) + "/>";
+    h += '<circle cx="34.6" cy="47.6" r="2" fill="' + EGOLD + '"/><circle cx="66.6" cy="43.6" r="2.3" fill="' + ETERRA + '"/><circle cx="70.4" cy="56" r="1.6" fill="' + EBLUE + '"/><circle cx="31.4" cy="57.4" r="1.4" fill="' + ETERRA + '"/>';
+    h += '<path d="M26,55C26.6,45 33,37.6 42.6,34.6" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" opacity=".5"/>';
+    h += eyeEye(mood);
+    h += '<ellipse cx="34.4" cy="65.6" rx="3.8" ry="2.6" fill="#EBA48C" opacity=".9"/><ellipse cx="65.6" cy="65.6" rx="3.8" ry="2.6" fill="#EBA48C" opacity=".9"/>';
+    return h + '<g transform="translate(0 2.6)">' + eyeMouth(mood) + "</g>";
+  }
   var n = 0;
   // o: { stage: 1|2|3, mood: "open"|"happy"|"sleep", color, cls, flat: true for no paper filters }
   function svg(o) {
-    o = o || {}; var st = o.stage || 2, mood = o.mood || "open", c = PAL[o.color] || PAL.blue, h = "", id = "hbm" + (++n);
+    o = o || {}; var st = o.stage || 2, mood = o.mood || "open", ip = o.ip || API.ip, c = ip === "eye" ? EYE : PAL[o.color] || PAL.blue, h = "", id = "hbm" + (++n);
     SID = o.flat ? "" : id + "s";
     var k = st === 1 ? 0.6 : st === 3 ? 1.18 : st === 4 ? 1.3 : 1;
     function horn(s) { var x = 50 + s * 16; return '<path d="M' + (x - s * 6 * k) + ",38C" + (x - s * 6.5 * k) + "," + (31 - 5 * (k - 1)) + " " + (x - s * 2 * k) + "," + (24 - 7 * (k - 1)) + " " + (x + s * 1.5 * k) + "," + (22 - 8 * (k - 1)) + "C" + (x + s * 3.5 * k) + "," + (27 - 4 * (k - 1)) + " " + (x + s * 4.5 * k) + ",32 " + (x + s * 5 * k) + ',37Z" ' + fill(WOOD) + "/>"; }
+    if (ip === "eye") h += rainbow();
     if (st === 4) h += '<path d="M86,62C88,48 90,36 92,24" fill="none" stroke="#8B7A66" stroke-width="1" stroke-linecap="round"/><ellipse cx="92" cy="17" rx="7" ry="8.4" ' + fill(RB[0]) + '/><path d="M90,25.5l2,1.8l2,-1.8Z" ' + fill(RB[0]) + '/><ellipse cx="89.6" cy="13.6" rx="1.8" ry="2.6" fill="#fff" opacity=".55"/>';
     if (st >= 3) h += '<path d="M78,75c9,-1 13,-9 9,-15c-2,-3 -6,-2 -6,1c0,3 3,3 3,6c0,3 -3,5 -7,5Z" ' + fill(c.dark) + "/>";
+    if (ip === "eye") h += eyeCore(st, k, mood, id, o.flat, c); else {
     h += horn(-1) + horn(1);
     if (st !== 1) h += '<ellipse cx="38" cy="86.5" rx="8.5" ry="4.6" ' + fill(c.dark) + '/><ellipse cx="62" cy="86.5" rx="8.5" ry="4.6" ' + fill(c.dark) + "/>";
-    h += '<ellipse cx="18" cy="66" rx="4.3" ry="6.4" transform="rotate(18 18 66)" ' + fill(c.dark) + '/><ellipse cx="82" cy="66" rx="4.3" ry="6.4" transform="rotate(-18 82 66)" ' + fill(c.dark) + "/>";
+    h += '<ellipse cx="18" cy="66" rx="4.3" ry="6.4" transform="rotate(18 18 66)" ' + fill(c.dark) + '/><ellipse cx="82" cy="66" rx="4.3" ry="6.4" transform="rotate(-18 82 66)" ' + fill(c.dark) + "/>"; }
     if (st === 4) h += '<rect x="12" y="46" width="76" height="34" rx="12" ' + fill("#E0533D") + '/><rect x="40" y="40" width="20" height="8" rx="4" ' + fill("#C99A6B") + "/>";
-    var BODY = "M18,61C18,40 32,30 50,30C68,30 82,40 82,61C82,78 70,86 50,86C30,86 18,78 18,61Z";
+    var BODY = ip === "eye" ? EBODY : "M18,61C18,40 32,30 50,30C68,30 82,40 82,61C82,78 70,86 50,86C30,86 18,78 18,61Z";
+    if (ip === "eye") h += eyeFront(mood, id, o.flat, c); else {
     h += '<path d="' + BODY + '" ' + fill(c.body) + "/>";
     if (!o.flat) h += '<g clip-path="url(#' + id + 'b)"><ellipse cx="36" cy="40" rx="24" ry="16" fill="url(#' + id + 'h)"/><ellipse cx="66" cy="82" rx="30" ry="18" fill="url(#' + id + 'd)"/></g>';
     h += '<path d="M35,78C35,72 42,69.5 50,69.5C58,69.5 65,72 65,78C65,82.5 59,85 50,85C41,85 35,82.5 35,78Z" ' + fill(c.belly) + "/>";
@@ -2370,7 +2444,7 @@ var HB_MONSTER = (function () {
     h += arch(50, 43);
     h += eyes(mood);
     h += '<ellipse cx="28" cy="67" rx="4.6" ry="3" fill="' + CHEEK + '" opacity=".9"/><ellipse cx="72" cy="67" rx="4.6" ry="3" fill="' + CHEEK + '" opacity=".9"/>';
-    h += mouth(mood);
+    h += mouth(mood); }
     if (mood === "party") h += '<path d="M42,33L50,8L58,33Z" ' + fill("#7FA3C9") + '/><path d="M45.6,24h8.8M43.8,29h12.4" stroke="#F3C443" stroke-width="2.2" stroke-linecap="round"/><circle cx="50" cy="8" r="3.2" ' + fill(RB[0]) + "/>";
     if (st === 3) h += '<path d="M25,77c16,6 34,6 50,0l-1.5,5.5c-15,5.5 -32,5.5 -47,0Z" ' + fill(RB[0]) + '/><path d="M61,80l5,10l5,-3l-4,-8Z" ' + fill(RB[0]) + "/>";
     if (st === 1) h += '<path d="M14,79L22,72L29,80L37,71L44,80L51,71L58,80L65,71L72,80L79,72L86,79V85C86,94 70,98 50,98C30,98 14,94 14,85Z" ' + fill("#FBF7EF") + '/><circle cx="34" cy="89" r="2" fill="' + RB[1] + '"/><circle cx="60" cy="92" r="2.2" fill="' + RB[2] + '"/><circle cx="72" cy="86" r="1.6" fill="' + RB[0] + '"/>';
@@ -2381,7 +2455,9 @@ var HB_MONSTER = (function () {
     return '<svg class="mascot ' + (o.cls || "") + '" xmlns="http://www.w3.org/2000/svg" viewBox="' + (st === 4 ? "8 6 94 88" : "8 12 " + (o.hold ? 92 : 88) + " " + (st === 1 ? 88 : 82)) + '" aria-hidden="true">' + defs + body + "</svg>";
   }
   function stageOf(m) { return m < 12 ? 1 : m < 24 ? 2 : m <= 36 ? 3 : 4; }
-  return { svg: svg, stageOf: stageOf, PAL: PAL, PROPS: Object.keys(PROPS) };
+  var API = { svg: svg, stageOf: stageOf, PAL: PAL, PROPS: Object.keys(PROPS), ip: "mint", IPS: ["mint", "eye"] };
+  try { if (localStorage.getItem("hb:ip") === "eye") API.ip = "eye"; } catch (e) {}
+  return API;
 })();
 if (typeof module !== "undefined") module.exports = HB_MONSTER;
 
@@ -2924,9 +3000,9 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   });
   // snackbar: a short confirmation at the bottom, with an optional undo
   var SN = null, snT = null;
-  function snack(msg, undo) {
+  function snack(msg, undo, label) {
     if (!SN) { SN = document.createElement("div"); SN.className = "snack"; SN.setAttribute("role", "status"); document.body.appendChild(SN); }
-    SN.innerHTML = "<span>" + esc(msg) + "</span>" + (undo ? '<button type="button">撤销</button>' : "");
+    SN.innerHTML = "<span>" + esc(msg) + "</span>" + (undo ? '<button type="button">' + esc(label || "撤销") + "</button>" : "");
     if (undo) SN.querySelector("button").onclick = function () { SN.classList.remove("on"); undo(); };
     SN.classList.add("on"); clearTimeout(snT); snT = setTimeout(function () { SN.classList.remove("on"); }, 3200);
   }
@@ -3914,6 +3990,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   var esc = H.esc, MIN = 6e4, HR = 36e5, DAY = 864e5;
   function pad(n) { return (n < 10 ? "0" : "") + n; }
   function hm(t) { var d = new Date(t); return pad(d.getHours()) + ":" + pad(d.getMinutes()); }
+  function hmd(t) { var k = dk(t), n = dk(Date.now()); return (k === n ? "" : k === addD(n, -1) ? "昨天 " : k.slice(5).replace("-", "/") + " ") + hm(t); }
   function dk(t) { var d = new Date(t); return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
   function d0(k) { var p = k.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]).getTime(); }
   function addD(k, n) { var t = new Date(d0(k)); t.setDate(t.getDate() + n); return dk(t.getTime()); }
@@ -3960,7 +4037,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     onDay(k).forEach(function (e) {
       if (e.k === "bottle") { s.ml += +e.v.ml || 0; if (e.v.src === "fm") s.mlF += +e.v.ml || 0; else s.mlB += +e.v.ml || 0; s.feeds++; }
       else if (e.k === "nurse") { s.feeds++; s.nurseMin += Math.round(((e.v.l || 0) + (e.v.r || 0)) / 60); }
-      else if (e.k === "sleep") { s.sleeps++; s.sleepMs += Math.max(0, Math.min(b, e.e || e.t) - Math.max(a, e.t)); }
+      else if (e.k === "sleep") { s.sleeps++; var g = (e.e || e.t) - e.t, nt = Math.max(0, g - ((e.v && e.v.pz) || 0)), cl = Math.max(0, Math.min(b, e.e || e.t) - Math.max(a, e.t)); s.sleepMs += g > 0 ? cl * nt / g : 0; }
       else if (e.k === "diaper") { if (e.v.w) s.wet++; if (e.v.d) s.dirty++; }
       else if (e.k === "vitd") s.vitd = true;
       else if (e.k === "bath") s.bath = true;
@@ -3968,7 +4045,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
       else if (e.k === "food") s.food++;
       else if (e.k === "temp") s.temp = Math.max(s.temp || 0, +e.v.c || 0);
     });
-    if (RUN.sleep && k === dk(Date.now())) s.sleepMs += Math.max(0, Date.now() - Math.max(a, RUN.sleep.start));
+    if (RUN.sleep && k === dk(Date.now())) s.sleepMs += Math.max(0, (RUN.sleep.paused || Date.now()) - Math.max(a, RUN.sleep.start) - (RUN.sleep.pz || 0));
     s.sleepH = Math.round(s.sleepMs / HR * 10) / 10;
     return s;
   }
@@ -3983,15 +4060,49 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     else if (k === "nurse") { if (!RUN.nurse) RUN.nurse = { start: now, side: side || "l", seg: now, l: 0, r: 0 }; }
     save(); H.haptic(); refresh();
   }
-  function swapSide() { var r = RUN.nurse; if (!r) return; var now = Date.now(); r[r.side] += now - r.seg; r.side = r.side === "l" ? "r" : "l"; r.seg = now; save(); H.haptic(); refresh(); }
-  function stopTimer(k) {
+  function elapsed(k) { var r = RUN[k]; return r ? Math.max(0, (r.paused || Date.now()) - r.start - (r.pz || 0)) : 0; }
+  function sideMs(r, sd) { return r[sd] + (r.side === sd && !r.paused ? Date.now() - r.seg : 0); }
+  function resumeAt(r, now) { if (!r.paused) return; r.pz = (r.pz || 0) + now - r.paused; delete r.paused; r.seg = now; }
+  function swapSide() { var r = RUN.nurse; if (!r) return; var now = Date.now(); if (r.paused) resumeAt(r, now); else r[r.side] += now - r.seg; r.side = r.side === "l" ? "r" : "l"; r.seg = now; save(); H.haptic(); refresh(); }
+  // a pause is for a feed broken off to burp or settle, or a baby who woke for a while and went back to sleep
+  function pauseTimer(k) {
+    var r = RUN[k]; if (!r) return; var now = Date.now();
+    if (r.paused) { resumeAt(r, now); H.snack("继续计时 · " + T[k].n); }
+    else { if (k === "nurse") r[r.side] += now - r.seg; r.paused = now; H.snack(k === "sleep" ? "已暂停：醒着的这段不算进睡眠" : "已暂停：拍嗝、休息的时间不计入"); }
+    save(); H.haptic(); refresh();
+  }
+  function stopTimer(k, endAt) {
     var now = Date.now(), r = RUN[k]; if (!r) return;
-    if (k === "sleep") add({ k: "sleep", t: r.start, e: now, v: {} });
-    else { r[r.side] += now - r.seg; add({ k: "nurse", t: r.start, e: now, v: { l: Math.round(r.l / 1000), r: Math.round(r.r / 1000) } }); }
+    var end = endAt ? (r.paused ? Math.min(endAt, r.paused) : endAt) : (r.paused || now), ev;
+    var net = Math.max(0, end - r.start - (r.pz || 0));
+    if (k === "sleep") ev = add({ k: "sleep", t: r.start, e: end, v: r.pz ? { pz: Math.round(r.pz) } : {} });
+    else {
+      if (!r.paused) r[r.side] += now - r.seg;
+      var tot = r.l + r.r; if (tot > net && tot > 0) { r.l = r.l * net / tot; r.r = r.r * net / tot; }
+      ev = add({ k: "nurse", t: r.start, e: end, v: { l: Math.round(r.l / 1000), r: Math.round(r.r / 1000) } });
+    }
     delete RUN[k]; save(); H.haptic(); pop(k); refresh();
-    H.snack(k === "sleep" ? "记下一段睡眠 " + dur(now - r.start) : "记下一次亲喂 " + dur(now - r.start));
+    H.snack((k === "sleep" ? "记下一段睡眠 " : "记下一次亲喂 ") + dur(net), function () { open(ev.k, ev); }, "修改");
+  }
+  // the start was tapped late, the end was forgotten, or the side needs fixing
+  function adjustTimer(k) {
+    var r = RUN[k]; if (!r) return;
+    var body = '<label class="jr-l">开始时间</label><input class="bd-i" type="datetime-local" data-f="t" value="' + localInput(r.start) + '">' + shifts("t") +
+      (k === "nurse" ? '<label class="jr-l">现在喂的是</label>' + radio("side", [["l", "左侧"], ["r", "右侧"]], r.side) : "") +
+      '<label class="jr-l">已经结束了？填写实际结束时间（不填则继续计时）</label><input class="bd-i" type="datetime-local" data-f="e" value="">' +
+      '<p class="jr-hint">' + (r.pz ? "已暂停 " + dur(r.pz) + "，暂停的时间不计入。" : "暂停的时间不计入时长。") + '</p><p class="jr-del"><button type="button" class="btn ghost" data-cancel>放弃这次计时</button></p>';
+    sheetForm("调整" + T[k].n + "计时", body, "保存", function (st) {
+      var r2 = RUN[k]; if (!r2) return; var now = Date.now(), t = fromInput(st.t), e = fromInput(st.e);
+      if (t && t < now && t !== r2.start) { var d = r2.start - t; if (k === "nurse") r2[r2.side] = Math.max(0, r2[r2.side] + d); r2.start = t; }
+      if (k === "nurse" && st.side && st.side !== r2.side) { if (!r2.paused) { r2[r2.side] += now - r2.seg; r2.seg = now; } var x = r2.l; r2.l = r2.r; r2.r = x; r2.side = st.side; }
+      save();
+      if (e) { if (e <= r2.start || e > now + MIN) { H.snack("结束时间要在开始之后、现在之前"); refresh(); return; } stopTimer(k, e); return; }
+      refresh(); H.snack("已调整");
+    });
+    var sh = document.querySelector(".sheet-m"); if (sh) sh.addEventListener("click", function (e) { if (!e.target.closest("[data-cancel]")) return; var keep = JSON.parse(JSON.stringify(RUN[k])); history.back(); setTimeout(function () { cancelTimer(k); H.snack("已放弃这次计时", function () { RUN[k] = keep; save(); refresh(); }); }, 300); });
   }
   function cancelTimer(k) { delete RUN[k]; save(); refresh(); }
+  function shifts(f) { return '<div class="jr-chips jr-sh">' + [-15, -5, 5, 15].map(function (m) { return '<button type="button" data-shift="' + m + '" data-for="' + f + '">' + (m > 0 ? "+" : "−") + Math.abs(m) + " 分</button>"; }).join("") + '<button type="button" data-shift="now" data-for="' + f + '">现在</button></div>'; }
 
   // ---------- sheets ----------
   function sheetForm(title, body, okText, onOk) {
@@ -4000,15 +4111,16 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var sh = document.querySelector(".sheet-m"); if (!sh) return st;
     var read = function () { sh.querySelectorAll("[data-f]").forEach(function (el) { var n = el.getAttribute("data-f"); if (el.type === "radio") { if (el.checked) st[n] = el.value; } else st[n] = el.value; }); };
     sh.addEventListener("input", read); sh.addEventListener("change", read);
+    sh.addEventListener("click", function (e) { var sb = e.target.closest("[data-shift]"); if (sb) { var ti = sh.querySelector('[data-f="' + sb.getAttribute("data-for") + '"]'); if (ti) { var m = sb.getAttribute("data-shift"), base = fromInput(ti.value) || Date.now(), nt = m === "now" ? Date.now() : base + (+m) * MIN; ti.value = localInput(Math.min(nt, Date.now())); read(); H.haptic(); } return; } });
     sh.addEventListener("click", function (e) { var c = e.target.closest("[data-chip]"); if (!c) return; var inp = sh.querySelector('[data-f="' + c.getAttribute("data-chip") + '"]'); if (inp) { inp.value = c.getAttribute("data-v"); read(); } c.parentNode.querySelectorAll("[data-chip]").forEach(function (x) { x.classList.toggle("on", x === c); }); H.haptic(); });
     read(); return st;
   }
-  function when(t, label) { return '<label class="jr-l">' + (label || "时间") + '</label><input class="bd-i" type="datetime-local" data-f="t" value="' + localInput(t) + '">'; }
+  function when(t, label) { return '<label class="jr-l">' + (label || "时间") + '</label><input class="bd-i" type="datetime-local" data-f="t" value="' + localInput(t) + '">' + shifts("t"); }
   function chips(name, list, cur) { return '<div class="jr-chips">' + list.map(function (x) { var v = x[0], l = x[1] || x[0]; return '<button type="button" data-chip="' + name + '" data-v="' + esc(String(v)) + '"' + (String(v) === String(cur) ? ' class="on"' : "") + ">" + esc(String(l)) + "</button>"; }).join("") + "</div>"; }
   function baseT() { var k = curDay(); return k === dk(Date.now()) ? Date.now() : d0(k) + 12 * HR; }
   function open(k, ev) {
     var t0 = ev ? ev.t : baseT(), v = ev ? ev.v : {}, done = function (st, e) { var t = fromInput(st.t) || t0; if (ev) upd(ev.id, function (x) { x.t = t; if (e) { x.e = e.e; x.v = e.v; } }); else { var n = add({ k: k, t: t, e: e && e.e, v: (e && e.v) || {} }); pop(k); } refresh(); H.snack(ev ? "已修改" : "已记录 " + T[k].n); };
-    var delBtn = ev ? '<p class="jr-del"><button type="button" class="btn ghost" data-del="' + ev.id + '">删除这条记录</button></p>' : "";
+    var delBtn = ev ? '<p class="jr-del">' + (T[k].kind !== "timer" && !T[k].once && k !== "grow" ? '<button type="button" class="btn ghost" data-dup="' + ev.id + '">按现在时间再记一条</button>' : "") + '<button type="button" class="btn ghost" data-del="' + ev.id + '">删除这条记录</button></p>' : "";
     if (k === "bottle") sheetForm(ev ? "修改瓶喂" : "瓶喂", '<label class="jr-l">喂的是</label>' + radio("src", [["fm", "奶粉"], ["bm", "母乳"]], v.src || ls("hb:jr:src") || "fm") + '<label class="jr-l">奶量（毫升）</label><input class="bd-i" type="number" inputmode="numeric" min="0" max="400" data-f="ml" value="' + (v.ml || ls("hb:jr:ml") || 90) + '">' + chips("ml", [[30], [60], [90], [120], [150], [180], [210], [240]], v.ml || ls("hb:jr:ml") || 90) + when(t0) + delBtn, ev ? "保存" : "记录", function (st) { var ml = Math.max(0, Math.min(400, +st.ml || 0)); ls("hb:jr:ml", String(ml)); ls("hb:jr:src", st.src || "fm"); done(st, { v: { ml: ml, src: st.src || "fm" } }); });
     else if (k === "diaper") sheetForm(ev ? "修改尿布" : "换尿布", '<label class="jr-l">这一片</label>' + radio("dw", [["w", "湿"], ["d", "便"], ["wd", "湿和便"]], v.d && v.w ? "wd" : v.d ? "d" : "w") + when(t0) + delBtn, ev ? "保存" : "记录", function (st) { var x = st.dw || "w"; done(st, { v: { w: /w/.test(x) ? 1 : 0, d: /d/.test(x) ? 1 : 0 } }); });
     else if (k === "food") sheetForm(ev ? "修改辅食" : "辅食", '<label class="jr-l">吃了什么</label><input class="bd-i" type="text" data-f="name" maxlength="30" value="' + esc(v.name || "") + '" placeholder="例如：南瓜泥">' + chips("name", [["米粉"], ["蔬菜泥"], ["水果泥"], ["肉泥"], ["蛋黄"], ["粥"], ["软面条"]], v.name) + '<label class="jr-l">大概吃了</label><input type="hidden" data-f="amt" value="' + esc(v.amt || "") + '">' + chips("amt", [["几口"], ["小半碗"], ["半碗"], ["一碗"]], v.amt) + when(t0) + delBtn, ev ? "保存" : "记录", function (st) { done(st, { v: { name: (st.name || "").trim() || "辅食", amt: st.amt || "" } }); });
@@ -4018,16 +4130,18 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     else if (k === "play") openPlay(ev, t0, delBtn, done);
     else if (k === "sleep" || k === "nurse") {
       var e0 = ev ? ev.e : t0, s0 = ev ? ev.t : t0 - (k === "sleep" ? HR : 15 * MIN);
-      sheetForm(ev ? "修改" + T[k].n : "补录" + T[k].n, '<label class="jr-l">开始</label><input class="bd-i" type="datetime-local" data-f="t" value="' + localInput(s0) + '"><label class="jr-l">结束</label><input class="bd-i" type="datetime-local" data-f="e" value="' + localInput(e0) + '">' + (k === "nurse" ? '<label class="jr-l">左侧 / 右侧（分钟，可只填一侧）</label><div class="jr-two"><input class="bd-i" type="number" inputmode="numeric" min="0" data-f="l" value="' + (v.l ? Math.round(v.l / 60) : "") + '" placeholder="左"><input class="bd-i" type="number" inputmode="numeric" min="0" data-f="r" value="' + (v.r ? Math.round(v.r / 60) : "") + '" placeholder="右"></div>' : "") + delBtn, ev ? "保存" : "记录", function (st) {
+      sheetForm(ev ? "修改" + T[k].n : "补录" + T[k].n, '<label class="jr-l">开始</label><input class="bd-i" type="datetime-local" data-f="t" value="' + localInput(s0) + '">' + shifts("t") + '<label class="jr-l">结束</label><input class="bd-i" type="datetime-local" data-f="e" value="' + localInput(e0) + '">' + shifts("e") + (k === "sleep" ? '<label class="jr-l">中途醒着的时间（分钟，可不填）</label><input class="bd-i" type="number" inputmode="numeric" min="0" data-f="pz" value="' + (v.pz ? Math.round(v.pz / MIN) : "") + '" placeholder="0">' : "") + (k === "nurse" ? '<label class="jr-l">左侧 / 右侧（分钟，可只填一侧）</label><div class="jr-two"><input class="bd-i" type="number" inputmode="numeric" min="0" data-f="l" value="' + (v.l ? Math.round(v.l / 60) : "") + '" placeholder="左"><input class="bd-i" type="number" inputmode="numeric" min="0" data-f="r" value="' + (v.r ? Math.round(v.r / 60) : "") + '" placeholder="右"></div>' : "") + delBtn, ev ? "保存" : "记录", function (st) {
         var a = fromInput(st.t), z = fromInput(st.e); if (!a || !z || z <= a) { H.snack("结束时间要晚于开始时间"); return; }
-        var vv = {}; if (k === "nurse") { var l = (+st.l || 0) * 60, r = (+st.r || 0) * 60; if (!l && !r) l = Math.round((z - a) / 1000); vv = { l: l, r: r }; }
+        var vv = {}; if (k === "sleep" && +st.pz > 0) vv.pz = Math.min(z - a - MIN, +st.pz * MIN); if (k === "nurse") { var l = (+st.l || 0) * 60, r = (+st.r || 0) * 60; if (!l && !r) l = Math.round((z - a) / 1000); vv = { l: l, r: r }; }
         if (ev) upd(ev.id, function (x) { x.t = a; x.e = z; x.v = vv; }); else { add({ k: k, t: a, e: z, v: vv }); pop(k); }
         refresh(); H.snack(ev ? "已修改" : "已补录 " + T[k].n);
       });
     }
     else if (ev) sheetForm("修改" + T[k].n, when(t0) + delBtn, "保存", function (st) { done(st); });
     var sh = document.querySelector(".sheet-m");
-    if (sh) sh.addEventListener("click", function (e) { var b = e.target.closest("[data-del]"); if (!b) return; del(b.getAttribute("data-del")); history.back(); setTimeout(refresh, 300); H.snack("已删除"); });
+    if (sh) sh.addEventListener("click", function (e) {
+      var dp = e.target.closest("[data-dup]"); if (dp) { var src = EV.filter(function (x) { return x.id === dp.getAttribute("data-dup"); })[0]; if (src) { history.back(); setTimeout(function () { var n2 = add({ k: src.k, t: Date.now(), v: JSON.parse(JSON.stringify(src.v || {})) }); DAYK = null; refresh(); pop(src.k); H.snack("已按现在时间再记一条", function () { del(n2.id); refresh(); }); }, 300); } return; }
+      var b = e.target.closest("[data-del]"); if (!b) return; var gone = EV.filter(function (x) { return x.id === b.getAttribute("data-del"); })[0]; del(b.getAttribute("data-del")); history.back(); setTimeout(refresh, 300); H.snack("已删除", function () { if (gone) { add(gone); refresh(); } }); });
   }
   function radio(name, list, cur) { return '<div class="jr-seg">' + list.map(function (x) { return '<label><input type="radio" name="jr-' + name + '" data-f="' + name + '" value="' + x[0] + '"' + (x[0] === cur ? " checked" : "") + "><span>" + x[1] + "</span></label>"; }).join("") + "</div>"; }
   // early-learning activities come from this month's page, and ticking one ticks「本月做过」there too
@@ -4045,7 +4159,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   }
   function tap(k) {
     if (T[k].kind === "timer" && curDay() !== dk(Date.now()) && !RUN[k]) { open(k); return; }
-    if (T[k].kind === "timer") { if (RUN[k]) { if (k === "nurse") swapSide(); return; } startTimer(k); H.snack("开始计时 " + T[k].n, function () { cancelTimer(k); open(k); }); return; }
+    if (T[k].kind === "timer") { if (RUN[k]) { var rc = document.querySelector(".jr-run-" + k); if (rc) { rc.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); rc.classList.remove("flash"); void rc.offsetWidth; rc.classList.add("flash"); } return; } startTimer(k); H.snack("开始计时 " + T[k].n, function () { cancelTimer(k); open(k); }); return; }
     if (T[k].once) {
       var today = curDay(), have = onDay(today, k)[0];
       if (have) { H.snack(T[k].n === "维生素" ? "这一天已经喂过维生素" : "这一天已经记过" + T[k].n, function () { del(have.id); refresh(); }); return; }
@@ -4061,6 +4175,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   function refresh() { var cv = H.cur(); if (cv && cv.id === "journal") render(); bar(); if (cv && cv.id === "today") H.buildToday(); }
   function pop(k) { var b = document.querySelector('.jr-b[data-k="' + k + '"]'); if (!b || reduce) return; b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); }
   window.HB_JOURNAL = function () { render(); };
+  window.HB_JRRUN = function () { return RUN; };
   function render() {
     var J = document.getElementById("journal"); if (!J) return;
     if (!on()) { J.innerHTML = intro(); wireIntro(J); return; }
@@ -4081,9 +4196,14 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   function dayPane(k, s, ref, isToday) {
     var h = "";
     // timers running
-    ["nurse", "sleep"].forEach(function (t) { var r = RUN[t]; if (!r) return; h += '<section class="card jr-run jr-run-' + t + '"><span class="jr-rm">' + svgM({ hold: T[t].p, mood: t === "sleep" ? "sleep" : "happy", flat: false }) + '</span><div><small>' + (t === "sleep" ? "正在睡 · " + hm(r.start) + " 入睡" : "正在亲喂 · " + (r.side === "l" ? "左侧" : "右侧")) + '</small><b class="jr-clock" data-run="' + t + '">' + clock(Date.now() - r.start) + "</b>" + (t === "nurse" ? "<em>左 " + clock(r.l + (r.side === "l" ? Date.now() - r.seg : 0)) + " · 右 " + clock(r.r + (r.side === "r" ? Date.now() - r.seg : 0)) + "</em>" : "") + '</div><div class="jr-rb">' + (t === "nurse" ? '<button type="button" class="btn ghost" data-swap>换一侧</button>' : "") + '<button type="button" class="btn" data-stop="' + t + '">' + (t === "sleep" ? "醒了" : "喂完了") + "</button></div></section>"; });
+    ["nurse", "sleep"].forEach(function (t) {
+      var r = RUN[t]; if (!r) return; var el = elapsed(t), long = el > (t === "sleep" ? 14 : 1.5) * HR;
+      h += '<section class="card jr-run jr-run-' + t + (r.paused ? " paused" : "") + '"><div class="jr-rt"><span class="jr-rm">' + svgM({ hold: T[t].p, mood: t === "sleep" && !r.paused ? "sleep" : r.paused ? "open" : "happy", flat: false }) + '</span><div><small>' + (r.paused ? "已暂停 · " : "") + (t === "sleep" ? hmd(r.start) + " 入睡" : "亲喂 · " + hmd(r.start) + " 开始 · 现在" + (r.side === "l" ? "左侧" : "右侧")) + '</small><b class="jr-clock" data-run="' + t + '">' + clock(el) + "</b>" + (t === "nurse" ? "<em>左 " + clock(sideMs(r, "l")) + " · 右 " + clock(sideMs(r, "r")) + "</em>" : r.pz ? "<em>中途醒着 " + dur(r.pz) + "，不计入</em>" : "") + '</div><button type="button" class="jr-adj" data-adj="' + t + '">调整</button></div>' +
+        (long ? '<p class="jr-long">计时已超过 ' + dur(el) + '，是不是忘了结束？点「调整」可以填写实际结束时间。</p>' : "") +
+        '<div class="jr-rb">' + (t === "nurse" ? '<button type="button" class="btn ghost" data-swap>换一侧</button>' : "") + '<button type="button" class="btn ghost" data-pause="' + t + '">' + (r.paused ? "继续" : "暂停") + '</button><button type="button" class="btn" data-stop="' + t + '">' + (t === "sleep" ? "醒了" : "喂完了") + "</button></div></section>";
+    });
     // the button wall
-    h += '<section class="jr-wall">' + WALL.map(function (t) { var run = !!RUN[t], doneOnce = T[t].once && onDay(k, t).length; return '<button type="button" class="jr-b' + (run ? " run" : "") + (doneOnce ? " done" : "") + '" data-k="' + t + '" style="--jc:' + T[t].c + '"><span class="jr-bm">' + svgM({ hold: T[t].p, mood: run && t === "sleep" ? "sleep" : doneOnce ? "happy" : "open" }) + "</span><b>" + T[t].n + "</b>" + (run ? "<i>计时中</i>" : doneOnce ? "<i>已完成</i>" : T[t].kind === "timer" ? "<i>点击计时</i>" : "") + "</button>"; }).join("") + '</section><p class="jr-tip">' + (isToday ? "喂奶、睡眠点一下就开始计时；长按任意按钮可以补录。" : "现在是补录 " + wd(k) + "：喂奶、睡眠直接填开始和结束时间。") + "</p>";
+    h += '<section class="jr-wall">' + WALL.map(function (t) { var run = !!RUN[t], doneOnce = T[t].once && onDay(k, t).length; return '<button type="button" class="jr-b' + (run ? " run" : "") + (doneOnce ? " done" : "") + '" data-k="' + t + '" style="--jc:' + T[t].c + '"><span class="jr-bm">' + svgM({ hold: T[t].p, mood: run && t === "sleep" ? "sleep" : doneOnce ? "happy" : "open" }) + "</span><b>" + T[t].n + "</b>" + (run ? "<i>" + (RUN[t].paused ? "已暂停" : "计时中") + "</i>" : doneOnce ? "<i>已完成</i>" : T[t].kind === "timer" ? "<i>点击计时</i>" : "") + "</button>"; }).join("") + '</section><p class="jr-tip">' + (isToday ? "喂奶、睡眠点一下开始计时，可以暂停；忘了记的，点「补录」或长按按钮。" : "现在是补录 " + wd(k) + "：喂奶、睡眠直接填开始和结束时间。") + '</p><button type="button" class="jr-retro" data-retro><span>' + svgM({ hold: "note", stage: 2 }) + "</span>补录一条</button>";
     // since last
     if (isToday) { var lf = lastOf(["nurse", "bottle"]), ls0 = lastOf(["sleep"]); var bits = []; if (lf) bits.push("上次喂奶 " + ago(Date.now() - (lf.e || lf.t))); if (RUN.sleep) bits.push("已睡 " + dur(Date.now() - RUN.sleep.start)); else if (ls0) bits.push("已醒 " + dur(Date.now() - (ls0.e || ls0.t))); if (bits.length) h += '<p class="jr-since">' + bits.join("　·　") + "</p>"; }
     // summary
@@ -4108,7 +4228,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var v = e.v || {};
     if (e.k === "bottle") return v.ml + " ml · " + (v.src === "bm" ? "母乳" : "奶粉");
     if (e.k === "nurse") return dur(((v.l || 0) + (v.r || 0)) * 1000) + (v.l && v.r ? "（左 " + Math.round(v.l / 60) + " · 右 " + Math.round(v.r / 60) + " 分）" : v.r ? "（右侧）" : "（左侧）");
-    if (e.k === "sleep") return dur((e.e || e.t) - e.t);
+    if (e.k === "sleep") return dur((e.e || e.t) - e.t - (v.pz || 0)) + (v.pz ? "（中途醒着 " + Math.round(v.pz / MIN) + " 分，已扣除）" : "");
     if (e.k === "diaper") return v.w && v.d ? "湿和便" : v.d ? "便" : "湿";
     if (e.k === "food") return (v.name || "") + (v.amt ? " · " + v.amt : "");
     if (e.k === "temp") return v.c + " ℃";
@@ -4208,6 +4328,9 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     });
     J.querySelectorAll("[data-stop]").forEach(function (b) { b.addEventListener("click", function () { stopTimer(b.getAttribute("data-stop")); }); });
     J.querySelectorAll("[data-swap]").forEach(function (b) { b.addEventListener("click", swapSide); });
+    J.querySelectorAll("[data-pause]").forEach(function (b) { b.addEventListener("click", function () { pauseTimer(b.getAttribute("data-pause")); }); });
+    J.querySelectorAll("[data-adj]").forEach(function (b) { b.addEventListener("click", function () { adjustTimer(b.getAttribute("data-adj")); }); });
+    J.querySelectorAll("[data-retro]").forEach(function (b) { b.addEventListener("click", retroPick); });
     J.querySelectorAll("[data-ev]").forEach(function (b) { b.addEventListener("click", function () { var id = b.getAttribute("data-ev"), e = EV.filter(function (x) { return x.id === id; })[0]; if (e) open(e.k, e); }); });
     J.querySelectorAll("[data-day]").forEach(function (b) { b.addEventListener("click", function () { var n = addD(curDay(), +b.getAttribute("data-day")); if (n > dk(Date.now())) return; DAYK = n === dk(Date.now()) ? null : n; PANE = "day"; H.haptic(); render(); }); });
     var pk = J.querySelector("[data-pick]"); if (pk) pk.addEventListener("change", function () { if (pk.value && pk.value <= dk(Date.now())) { DAYK = pk.value === dk(Date.now()) ? null : pk.value; PANE = "day"; render(); } });
@@ -4215,9 +4338,15 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     J.querySelectorAll('input[name="jr-gsex"]').forEach(function (r) { r.addEventListener("change", function () { ls("hb:jr:sex", r.value); render(); }); });
     J.querySelectorAll("[data-x]").forEach(function (b) { b.addEventListener("click", function () { var x = b.getAttribute("data-x"); if (x === "csv") csv(); else if (x === "share") shareWeek(); else if (x === "off") { ls("hb:jr:on", null); syncTab(); widget(); location.hash = "rec"; H.snack("手帐已关闭，记录会保留", function () { ls("hb:jr:on", "1"); syncTab(); widget(); location.hash = "journal"; }); } }); });
   }
+  // 补录: pick what to add, then the form opens with its own time fields
+  function retroPick() {
+    H.sheet("补录一条", '<p class="jr-hint">记在 ' + wd(curDay()) + '，时间可以在下一步修改。</p><div class="jr-pick">' + WALL.map(function (t) { return '<button type="button" data-pk="' + t + '" style="--jc:' + T[t].c + '"><span>' + svgM({ hold: T[t].p, stage: 2 }) + "</span>" + T[t].n + "</button>"; }).join("") + "</div>", [{ t: "取消", ghost: true }]);
+    var sh = document.querySelector(".sheet-m"); if (!sh) return;
+    sh.addEventListener("click", function (e) { var b = e.target.closest("[data-pk]"); if (!b) return; var k = b.getAttribute("data-pk"); history.back(); setTimeout(function () { if (T[k].once) { var have = onDay(curDay(), k)[0]; if (have) { open(k, have); return; } add({ k: k, t: baseT(), v: {} }); refresh(); var x = onDay(curDay(), k)[0]; open(k, x); return; } open(k); }, 320); });
+  }
   function csv() {
     var rows = [["日期", "开始", "结束", "类型", "数值", "备注"]];
-    EV.forEach(function (e) { var v = e.v || {}, val = e.k === "bottle" ? v.ml : e.k === "nurse" ? Math.round(((v.l || 0) + (v.r || 0)) / 60) : e.k === "sleep" ? Math.round(((e.e || e.t) - e.t) / MIN) : e.k === "temp" ? v.c : ""; rows.push([dk(e.t), hm(e.t), e.e ? dk(e.e) + " " + hm(e.e) : "", T[e.k] ? T[e.k].n : e.k, val, desc(e)]); });
+    EV.forEach(function (e) { var v = e.v || {}, val = e.k === "bottle" ? v.ml : e.k === "nurse" ? Math.round(((v.l || 0) + (v.r || 0)) / 60) : e.k === "sleep" ? Math.round(((e.e || e.t) - e.t - (v.pz || 0)) / MIN) : e.k === "temp" ? v.c : ""; rows.push([dk(e.t), hm(e.t), e.e ? dk(e.e) + " " + hm(e.e) : "", T[e.k] ? T[e.k].n : e.k, val, desc(e)]); });
     var text = "﻿" + rows.map(function (r) { return r.map(function (c) { c = String(c === undefined || c === null ? "" : c); return /[",\n]/.test(c) ? '"' + c.replace(/"/g, '""') + '"' : c; }).join(","); }).join("\r\n");
     var d = new Date(); try { HBApp.saveFile("养小怪兽手帐-" + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + ".csv", text); } catch (e) { H.snack("这台设备不能导出文件"); }
   }
@@ -4241,12 +4370,12 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var ks = ["nurse", "sleep"].filter(function (k) { return RUN[k]; }), cv = H.cur();
     BAR.hidden = !ks.length || (cv && cv.id === "journal");
     if (!ks.length) return;
-    BAR.innerHTML = ks.map(function (k) { return '<span class="jb-i" style="--jc:' + T[k].c + '"><span class="jb-m">' + svgM({ hold: T[k].p, mood: k === "sleep" ? "sleep" : "happy", stage: 2 }) + "</span>" + (k === "sleep" ? "睡眠" : "亲喂") + ' <b data-run="' + k + '">' + clock(Date.now() - RUN[k].start) + "</b></span>"; }).join("");
+    BAR.innerHTML = ks.map(function (k) { return '<span class="jb-i" style="--jc:' + T[k].c + '"><span class="jb-m">' + svgM({ hold: T[k].p, mood: k === "sleep" ? "sleep" : "happy", stage: 2 }) + "</span>" + (k === "sleep" ? "睡眠" : "亲喂") + (RUN[k].paused ? " · 暂停" : "") + ' <b data-run="' + k + '">' + clock(elapsed(k)) + "</b></span>"; }).join("");
   }
   setInterval(function () {
     if (!RUN.nurse && !RUN.sleep) return;
-    document.querySelectorAll("[data-run]").forEach(function (el) { var k = el.getAttribute("data-run"); if (RUN[k]) el.textContent = clock(Date.now() - RUN[k].start); });
-    var em = document.querySelector(".jr-run-nurse em"), r = RUN.nurse; if (em && r) em.textContent = "左 " + clock(r.l + (r.side === "l" ? Date.now() - r.seg : 0)) + " · 右 " + clock(r.r + (r.side === "r" ? Date.now() - r.seg : 0));
+    document.querySelectorAll("[data-run]").forEach(function (el) { var k = el.getAttribute("data-run"); if (RUN[k]) el.textContent = clock(elapsed(k)); });
+    var em = document.querySelector(".jr-run-nurse em"), r = RUN.nurse; if (em && r) em.textContent = "左 " + clock(sideMs(r, "l")) + " · 右 " + clock(sideMs(r, "r"));
   }, 1000);
   window.addEventListener("hashchange", function () { setTimeout(bar, 60); });
   // Today: a slim summary with four quick buttons when the journal is on; an invitation when it is not
@@ -4294,6 +4423,44 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   if (location.hash === "#journal") setTimeout(H.show, 0);
   // a tap on the home-screen widget arrives here
   setTimeout(function () { try { var p = window.HBApp && HBApp.pendingLog ? HBApp.pendingLog() : ""; if (p) window.HB_LOG(p); } catch (e) {} }, 600);
+})();
+
+(function () {
+  // Two looks for the little monster: the round-eyed one with the forehead rainbow, and the one-eyed one in
+  // front of a rainbow. The choice is kept on this phone; in the app the home-screen icon can follow it.
+  var H = window.HB, MS = window.HB_MONSTER; if (!H || !MS) return;
+  function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
+  var LOOKS = [["mint", "圆眼款", "额头上有一道小彩虹"], ["eye", "独眼款", "站在一道大彩虹前面"]];
+  var cur = MS.ip || "mint";
+  document.documentElement.setAttribute("data-ip", cur);
+  // the browser tab and the saved-to-home-screen icon follow the look too
+  if (cur === "eye") { try { var fav = document.querySelector('link[rel="icon"]'), svg = MS.svg({ stage: 2, mood: "open" }); if (fav) fav.href = "data:image/svg+xml," + encodeURIComponent(svg); } catch (e) {} }
+  if (!H.APP) return;
+  var hasIcon = !!(window.HBApp && HBApp.setIp);
+  function iconOn() { return ls("hb:ipicon") !== "0"; }
+  try { if (hasIcon) HBApp.setIp(cur, iconOn()); } catch (e) {}
+  function apply(ip, icon) {
+    ls("hb:ip", ip === "mint" ? null : ip); ls("hb:ipicon", icon ? null : "0");
+    try { if (hasIcon) HBApp.setIp(ip, !!icon); } catch (e) {}
+    H.haptic();
+    var c = document.querySelector(".r-ip"); if (c) c.classList.add("bye");
+    setTimeout(function () { try { sessionStorage.setItem("hb:iphello", "1"); } catch (e) {} location.reload(); }, 380);
+  }
+  var rw = window.HB_REC_WIRE;
+  window.HB_REC_WIRE = function (R) {
+    if (rw) rw(R);
+    var set = R.querySelector(".r-set"); if (!set || R.querySelector(".r-ip")) return;
+    var h = '<section class="card r-ip"><h2>形象</h2><div class="ip-g" role="radiogroup" aria-label="形象">' + LOOKS.map(function (L) {
+      return '<button type="button" role="radio" aria-checked="' + (L[0] === cur) + '" class="ip-c' + (L[0] === cur ? " on" : "") + '" data-ip="' + L[0] + '"><span class="ip-m">' + MS.svg({ ip: L[0], color: "mint", stage: 2, mood: L[0] === cur ? "happy" : "open" }) + "</span><b>" + L[1] + "</b><small>" + L[2] + "</small></button>";
+    }).join("") + "</div>" +
+      (hasIcon ? '<label class="ip-ic"><input type="checkbox" data-ipicon' + (iconOn() ? " checked" : "") + '><span>桌面图标也一起换</span></label><p class="r-note">部分手机更换桌面图标后，原来的桌面图标会消失，需要从应用列表里重新拖到桌面一次；记录不受影响。</p>' : "") + "</section>";
+    set.insertAdjacentHTML("afterend", h);
+    var card = R.querySelector(".r-ip"), chk = card.querySelector("[data-ipicon]");
+    card.querySelectorAll("[data-ip]").forEach(function (b) { b.addEventListener("click", function () { var ip = b.getAttribute("data-ip"); if (ip === cur) { var m = b.querySelector(".ip-m"); m.classList.remove("hop"); void m.offsetWidth; m.classList.add("hop"); return; } apply(ip, chk ? chk.checked : false); }); });
+    if (chk) chk.addEventListener("change", function () { ls("hb:ipicon", chk.checked ? null : "0"); try { HBApp.setIp(cur, chk.checked); } catch (e) {} H.snack(chk.checked ? "桌面图标已跟随当前形象" : "桌面图标恢复为圆眼款"); });
+  };
+  // after switching, the new look says hello once on Today
+  try { if (sessionStorage.getItem("hb:iphello")) { sessionStorage.removeItem("hb:iphello"); setTimeout(function () { H.snack("已换成" + (cur === "eye" ? "独眼款" : "圆眼款") + "形象"); if (H.confetti) H.confetti(); }, 900); } } catch (e) {}
 })();
 </script>
 <script>if("serviceWorker" in navigator&&!window.HBApp&&/^https?:$/.test(location.protocol)){addEventListener("load",function(){navigator.serviceWorker.register("sw.js")})}</script>

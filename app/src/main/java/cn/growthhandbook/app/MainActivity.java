@@ -97,6 +97,7 @@ public class MainActivity extends Activity {
     String pendingLog = "";
 
     private String target(Intent i) {
+        if (i != null && "journal".equals(i.getStringExtra("page"))) return HOME + "#journal";
         String lg = i == null ? null : i.getStringExtra("log");
         if (lg != null && !lg.isEmpty()) { pendingLog = lg; return HOME + "#journal"; }
         int m = i == null ? -1 : i.getIntExtra("month", -1);
@@ -106,6 +107,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        if ("journal".equals(intent.getStringExtra("page")) && web != null) { web.evaluateJavascript("location.hash='journal'", null); return; }
         String lg = intent.getStringExtra("log");
         if (lg != null && lg.matches("[a-z]+") && web != null) { web.evaluateJavascript("window.HB_LOG&&HB_LOG('" + lg + "')", null); return; }
         int m = intent.getIntExtra("month", -1);
@@ -239,6 +241,7 @@ public class MainActivity extends Activity {
                 JSONObject out = new JSONObject();
                 out.put("current", versionCode());
                 out.put("latest", latest);
+                out.put("tag", tag);
                 out.put("notes", r.optString("body", ""));
                 out.put("page", r.optString("html_url", ""));
                 if (r.optJSONArray("assets") != null && r.getJSONArray("assets").length() > 0) {
@@ -359,6 +362,16 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public int version() { return a.versionCode(); }
+
+        @JavascriptInterface
+        public String versionName() { try { return a.getPackageManager().getPackageInfo(a.getPackageName(), 0).versionName; } catch (Exception e) { return ""; } }
+
+        @JavascriptInterface
+        public void setJournalReminders(String json) {
+            Reminders.saveJournal(a, json);
+            Reminders.schedule(a);
+            if (json != null && json.length() > 2) a.askNotificationPermission();
+        }
 
         @JavascriptInterface
         public void checkUpdate(boolean manual) { a.checkUpdate(manual); }

@@ -21,7 +21,7 @@ jobs:
           V="$(tr -d ' \r\n' < VERSION)"
           sed -i '' "s/MARKETING_VERSION: \".*\"/MARKETING_VERSION: \"$V.0\"/; s/CURRENT_PROJECT_VERSION: \".*\"/CURRENT_PROJECT_VERSION: \"${{ github.run_number }}\"/" ios/project.yml
           python3 ios/scripts/prepare_assets.py
-          xcodegen generate --spec ios/project.yml
+          (cd ios && xcodegen generate --spec project.yml) && ls ios
       - name: Build for the simulator
         run: |
           set -o pipefail

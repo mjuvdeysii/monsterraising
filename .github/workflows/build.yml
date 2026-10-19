@@ -90,7 +90,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          gh api "repos/${{ github.repository }}/releases?per_page=100" --paginate -q '.[] | [.created_at, .tag_name] | @tsv' \
+          gh api "repos/${{ github.repository }}/releases?per_page=100" --paginate -q '.[] | [.published_at, .tag_name] | @tsv' \
             | sort -r | tail -n +4 | cut -f2 | while read -r t; do
               [ -n "$t" ] && gh release delete "$t" --repo "${{ github.repository }}" --yes --cleanup-tag && echo "removed $t"
             done

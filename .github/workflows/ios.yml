@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 jobs:
   ios:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v5
       - name: Install XcodeGen
@@ -21,7 +21,9 @@ jobs:
           V="$(tr -d ' \r\n' < VERSION)"
           sed -i '' "s/MARKETING_VERSION: \".*\"/MARKETING_VERSION: \"$V.0\"/; s/CURRENT_PROJECT_VERSION: \".*\"/CURRENT_PROJECT_VERSION: \"${{ github.run_number }}\"/" ios/project.yml
           python3 ios/scripts/prepare_assets.py
-          (cd ios && xcodegen generate --spec project.yml) && ls ios
+          (cd ios && xcodegen generate --spec project.yml 2>&1 | tee ../xcodegen.log)
+          echo "::notice title=Generated::$(ls ios | tr '\n' ' ') | $(xcodebuild -version | tr '\n' ' ') | $(tail -3 xcodegen.log | tr '\n' ' ')"
+          head -c 400 ios/MonsterRaising.xcodeproj/project.pbxproj | tr '\n' ' ' | sed 's/^/::notice title=pbxproj::/'
       - name: Build for the simulator
         run: |
           set -o pipefail
@@ -32,5 +34,5 @@ jobs:
       - name: Report build errors
         if: failure()
         run: |
-          msg=$(grep -E "error:" xcodebuild.log | head -40 | sed ':a;N;$!ba;s/%/%25/g;s/\n/%0A/g')
+          msg=$(grep -E "error:|Error|error" xcodebuild.log | head -40 | sed ':a;N;$!ba;s/%/%25/g;s/\n/%0A/g')
           echo "::error title=Xcode build::${msg}"

@@ -2785,6 +2785,113 @@ html.app .tabbar a[data-tab="journal"]{--tc:#8DBFE8}
 html.app .tabbar a[data-tab="home"]{--tc:#A8D5B5}
 html.app .tabbar a[data-tab="rec"]{--tc:#F2A99A}
 html.app .tabbar .pill{isolation:isolate}
+
+/* ===== 2.6 · one focus first; the child's month and the month being read; records before stickers ===== */
+html.app{--r-tag:8px;--r-btn:12px;--r-card:16px;--r-sheet:20px;--hit:48px;--sp1:4px;--sp2:8px;--sp3:12px;--sp4:16px;--sp5:20px;--sp6:24px;--t-tap:120ms;--t-sw:200ms}
+html.app .btn,html.app .seg button,html.app .tabbar a,html.app .sheet-go,html.app .tb-skip{min-height:var(--hit)}
+html.app .btn{border-radius:var(--r-btn)}
+html.app .btn:active{transition-duration:var(--t-tap)}
+/* 今天 */
+.t-pick{padding:14px 14px 12px!important;margin:0 0 12px;border-radius:var(--r-card)!important;overflow:hidden}
+.t-pick.swap{animation:pkIn var(--t-sw) ease-out}
+@keyframes pkIn{from{opacity:.35;transform:translateX(10px)}to{opacity:1;transform:none}}
+.pk-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px}
+.pk-k{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--ok);letter-spacing:.02em}
+.pk-km{width:30px;height:30px;display:inline-flex}.pk-km svg{width:100%;height:100%}
+.pk-sw{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:13px;font-weight:700}
+.pk-sw i{width:14px;height:14px;border:2px solid currentColor;border-radius:50%;border-right-color:transparent;transform:rotate(45deg)}
+.pk-sw small{color:var(--ink2);font-weight:600}
+.pk-main{display:grid;grid-template-columns:116px 1fr;gap:12px;align-items:center;color:var(--ink);text-decoration:none}
+.pk-art{display:block;width:116px;height:87px;border-radius:12px;overflow:hidden;background:var(--paper)}
+.pk-art svg{width:100%;height:100%;display:block}
+.pk-t b{display:block;font-family:var(--f-title);font-size:18px;line-height:26px;font-weight:800}
+.pk-t small{display:block;margin-top:2px;font-size:13px;color:var(--ink2)}
+.pk-need{margin:10px 0 0;display:grid;gap:6px}
+.pk-need div{display:flex;gap:8px;font-size:14px;line-height:21px;margin:0}
+.pk-need dt{flex:none;padding:0 8px;border-radius:var(--r-tag);background:color-mix(in srgb,var(--ok) 12%,transparent);color:var(--ok);font-weight:800;font-size:12px;line-height:21px}
+.pk-need .s dt{background:color-mix(in srgb,#D9822B 14%,transparent);color:#A85A12}
+.pk-need dd{margin:0;color:var(--ink)}
+.pk-b{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.pk-b .btn{width:100%;justify-content:center}
+.pk-did.on{background:color-mix(in srgb,var(--ok) 14%,var(--surface));border-color:var(--ok);color:var(--ok)}
+.t-go{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
+.t-go:has(.tg-c){grid-template-columns:1.55fr 1fr}
+.t-go a{display:flex;align-items:center;gap:10px;min-height:72px;padding:10px 12px;border-radius:var(--r-card);background:var(--surface);border:1px solid var(--line);box-shadow:var(--sh1);color:var(--ink);text-decoration:none;min-width:0}
+.t-go .tg-s{flex-direction:column;justify-content:center;gap:0;text-align:center}
+.t-go .tg-s>span:last-child{min-width:0;max-width:100%}
+.t-go>.tg-s:only-child{grid-column:1/-1;flex-direction:row;justify-content:flex-start;gap:12px;text-align:left}
+.t-go>.tg-s:only-child .tg-m{width:48px;height:48px}
+.t-go>.tg-s:only-child::after{content:"";margin-left:auto;flex:none;width:9px;height:9px;border-right:2px solid var(--ink2);border-top:2px solid var(--ink2);transform:rotate(45deg)}
+.tg-m{flex:none;width:44px;height:44px;display:inline-flex}.tg-m svg{width:100%;height:100%}
+.t-go .tg-s .tg-m{width:40px;height:40px}
+.t-go b{font-size:15px;font-weight:800;line-height:22px}
+.t-go small{display:block;font-size:12px;color:var(--ink2);line-height:17px}
+.t-go em{display:block;font-style:normal;font-size:12px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tg-c>span:last-child{min-width:0}
+.tg-c b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tg-c.run{background:color-mix(in srgb,#E38C9A 12%,var(--surface));border-color:color-mix(in srgb,#E38C9A 45%,var(--line))}
+.t-acts.t-more{grid-template-columns:repeat(5,1fr);gap:6px;padding:10px 8px 8px;border-radius:var(--r-card);background:var(--surface);border:1px solid var(--line);box-shadow:var(--sh1)}
+.t-acts.t-more .tm-h{grid-column:1/-1;margin:0 4px 2px;font-size:12px;font-weight:800;color:var(--ink2);letter-spacing:.04em}
+.t-acts.t-more a{background:transparent!important;border:0;box-shadow:none;padding:4px 0 6px;min-height:var(--hit);border-radius:12px}
+.t-acts.t-more a .ta-m{width:40px!important;height:40px!important}
+.t-acts.t-more a b{font-size:12px;font-weight:700;white-space:nowrap}
+.t-three a.dup{display:none!important}
+/* bulk card: three kinds, health not ticked by default */
+.t-bulk .tb-k label{align-items:flex-start}
+.t-bulk .tb-k label span small{display:block;font-size:12px;font-weight:500;color:var(--ink2)}
+.t-bulk .tb-k label.tb-h0{opacity:.86}
+.tb-note{margin:8px 0 0;font-size:12.5px;line-height:19px;color:var(--ink2)}
+/* month pages: which month is the child's */
+.mstat{display:flex;align-items:center;gap:10px;margin:0 16px 8px;padding:6px 8px 6px 6px;border-radius:var(--r-btn);background:color-mix(in srgb,var(--mc,var(--ok)) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--mc,var(--ok)) 22%,var(--line));font-size:13px;line-height:18px}
+.mstat .ms-m{flex:none;width:32px;height:32px;display:inline-flex}.mstat .ms-m svg{width:100%;height:100%}
+.mstat>span:nth-child(2){flex:1;min-width:0}
+.mstat b{font-weight:800;color:var(--ink)}
+.mstat small{display:block;color:var(--ink2);font-size:12px}
+.mstat .ms-go{flex:none;display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:999px;background:var(--mc,var(--ok));color:var(--paper);font-weight:800;text-decoration:none}
+.mstat.now{padding-right:12px}
+/* the month chain: 「现在」 under the child's month; dots gone, the whole list one tap away */
+html.app .chain a.c::before{display:none}
+html.app .chain a{position:relative}
+.ch-now{position:absolute;left:50%;bottom:-1px;transform:translateX(-50%);font-style:normal;font-size:9px;line-height:12px;font-weight:800;padding:0 4px;border-radius:6px;background:var(--ok);color:var(--paper);white-space:nowrap;pointer-events:none}
+html.app .top{position:relative}
+.ch-all{position:absolute;right:0;bottom:0;height:46px;display:inline-flex;align-items:center;gap:4px;padding:0 12px 0 22px;border:0;font:inherit;font-size:12px;font-weight:800;color:var(--ink);background:linear-gradient(90deg,transparent,var(--paper) 18px);z-index:2}
+.ch-all i{width:14px;height:14px;background:linear-gradient(currentColor,currentColor) 0 0/6px 6px no-repeat,linear-gradient(currentColor,currentColor) 8px 0/6px 6px no-repeat,linear-gradient(currentColor,currentColor) 0 8px/6px 6px no-repeat,linear-gradient(currentColor,currentColor) 8px 8px/6px 6px no-repeat;border-radius:2px;opacity:.8}
+html.app body:not([data-kind="month"]) .ch-all{display:none}
+/* 目录 › 月份 grid: one state per month */
+.mg2 .mg-lg{visibility:hidden}
+.mg2 .mg-m i.c{display:none}
+.mg2 .mg-m.done i.d{display:block;position:absolute;top:3px;right:3px;width:14px;height:14px;border-radius:50%;background:var(--ok);box-shadow:none}
+.mg2 .mg-m.done i.d::after{content:"";position:absolute;left:4.5px;top:2.5px;width:3px;height:6px;border:solid var(--paper);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.mg2 .mg-m.part{background-image:linear-gradient(var(--ok),var(--ok));background-size:40% 3px;background-position:50% calc(100% - 5px);background-repeat:no-repeat}
+.mg2 .mg-m.now::after{content:"现在";position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);font-size:9px;font-weight:800;line-height:13px;padding:0 4px;border-radius:6px;background:var(--ok);color:var(--paper);white-space:nowrap}
+.mg2 .mg-m{position:relative}
+/* 成长地图: jump to the child's month */
+.mg-jump{display:inline-flex;align-items:center;gap:6px;min-height:var(--hit);margin:0 0 10px 8px;padding:0 14px 0 6px;border-radius:999px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--sh1);font:inherit;font-weight:800;font-size:14px;color:var(--ink)}
+.mg-jump span{width:36px;height:36px;display:inline-flex}.mg-jump span svg{width:100%;height:100%}
+#home-map a.pulse{animation:mpPulse 1.2s ease-out 2}
+@keyframes mpPulse{0%{filter:none}40%{filter:drop-shadow(0 0 10px color-mix(in srgb,var(--ok) 80%,transparent)) brightness(1.08)}100%{filter:none}}
+/* 记录 › 进度 */
+.r-sum{padding:14px!important;border-radius:var(--r-card)!important}
+.rs-h{display:flex;justify-content:space-between;align-items:center;margin:0 0 10px;font-size:15px}
+.rs-h a{font-size:13px;font-weight:800;color:var(--ok);text-decoration:none;min-height:36px;display:inline-flex;align-items:center}
+.rs-g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.rs-g a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px 10px;border-radius:12px;background:var(--paper);border:1px solid var(--line);color:var(--ink);text-decoration:none;min-height:var(--hit)}
+.rs-m{width:42px;height:42px;display:inline-flex}.rs-m svg{width:100%;height:100%}
+.rs-g b{font-size:18px;font-weight:800}.rs-g b small{font-size:12px;color:var(--ink2);font-weight:600}
+.rs-g b small{display:inline!important}
+.rs-g em{font-style:normal;font-size:13px;font-weight:800;color:var(--ink)}
+.rs-g i{font-style:normal;font-size:11px;color:var(--ink2)}
+.rs-q{display:flex;gap:8px;margin:10px 0 0}
+.rs-q a,.rs-q button{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:40px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font:inherit;font-size:13px;font-weight:800;color:var(--ink);text-decoration:none}
+.rs-n{margin:8px 0 0;font-size:12px;line-height:18px;color:var(--ink2)}
+/* 手帐 */
+.jr-saved{margin-left:auto;font-style:normal;font-size:11px;font-weight:700;color:var(--ok);padding:2px 8px;border-radius:999px;background:color-mix(in srgb,var(--ok) 10%,transparent);align-self:center}
+.jr-tl h2{display:flex;align-items:baseline;gap:6px}
+/* activity: 「记为本月做过」 as a clear pill */
+html.app .ac .did{margin-top:12px}
+html.app .ac .did label{display:inline-flex;align-items:center;min-height:var(--hit);padding:0 16px;border-radius:999px;border:1.5px solid color-mix(in srgb,var(--ok) 50%,var(--line));font-weight:800}
+html.app .ac .did input:checked+label{background:color-mix(in srgb,var(--ok) 14%,var(--surface));color:var(--ok)}
+@media (prefers-reduced-motion:reduce){.t-pick.swap,#home-map a.pulse{animation:none}}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kFFF6E6:#473c29;--kE8EEDB:#333826;--kDDE8CF:#2b3222;--kF5E0E4:#41252a;--kFFF3C4:#3a3521;--kDFC6C3:#523d3a;--kF1EEE8:#3b372d;--kF5E0E0:#412525;--kDFCAC3:#52403a;--kF5E4E0:#412a25;--kDFCFC3:#52443a;--kF5E7E0:#412e25;--kDFD3C3:#52483a;--kF5EBE0:#413425;--kDFD8C3:#524c3a;--kF5EEE0:#413825;--kF5F1E0:#413c25;--kDDDFC3:#50523a;--kF5F5E0:#414125;--kD8DFC3:#4c523a;--kF1F5E0:#3c4125;--kD3DFC3:#48523a;--kEEF5E0:#384125;--kCFDFC3:#44523a;--kEBF5E0:#344125;--kCADFC3:#40523a;--kE7F5E0:#2e4125;--kC6DFC3:#3d523a;--kE4F5E0:#2a4125;--kC3DFC6:#3a523d;--kF7EFE2:#433826;--kE0F5E0:#254125;--kC3DFCA:#3a5240;--kE0F5E4:#25412a;--kC3DFCF:#3a5244;--kE0F5E7:#25412e;--kC3DFD3:#3a5248;--kE0F5EB:#254134;--kC3DFD8:#3a524c;--kE0F5EE:#254138;--kC3DFDD:#3a5250;--kE0F5F1:#25413c;--kC3DDDF:#3a5052;--kC99A6B:#47382a;--kE0F5F5:#254141;--kC3D8DF:#3a4c52;--kE0F1F5:#253c41;--kC3D3DF:#3a4852;--kE0EEF5:#253841;--kC3CFDF:#3a4452;--kE0EBF5:#253441;--kC3CADF:#3a4052;--kE0E7F5:#252e41;--kC3C6DF:#3a3d52;--kE0E4F5:#252a41;--kC6C3DF:#3d3a52;--kE0E0F5:#252541;--kCFE6D4:#223025;--kE4E0F5:#2a2541;--kCFC3DF:#443a52;--kE7E0F5:#2e2541;--kD3C3DF:#483a52;--kFFF3D6:#413925;--kEBE0F5:#342541;--kD8C3DF:#4c3a52;--kEEE0F5:#382541;--kF1E0F5:#3c2541;--kDFC3DD:#523a50;--kF5E0F5:#412541;--kF5E0F1:#41253c;--kDFC3D3:#523a48;--kDCEBF5:#24343f;--kF5E0EE:#412538;--kF5E0EB:#412534;--kDFC3CA:#523a40;--kF5E0E7:#41252e;--kDFC3C6:#523a3d;--kF7D8DF:#3f242a;--kFBF7EF:#493f2a;--kF3EEE6:#3e372a;--kA8D5B5:#354e3c;--kFFF6D6:#413b25;--kEDF2F7:#2c3843;--kF7F0E4:#433926;--kEEF5EE:#2f3f2f;--kFFF8EC:#4a3e2a;--kE9D8B8:#594c33;--kEFE3CC:#372f1f;--kF4F1EA:#3f392d;--kF3D9DF:#3d2329;--kF8EDED:#452a2a;--kEDC9C9:#351e1e;--kF0E6DB:#3b3025;--kEAF4F0:#2d3f38;--kEAF1EE:#2f3b36;--kDCE6D2:#2a3023;--kF6EAEA:#422a2a;--kEADAD1:#342822;--kF6F0EA:#42362a;--kEAE6D1:#343122;--kE2DECB:#2c2a20;--kF2EAF6:#3a2a42;--kEAD1EA:#342234;--kF5EAE6:#412f28;--kE2DECA:#534f3c;--kEAF6EE:#2a4232;--kD1EAE2:#22342e;--kD4E2D7:#252e27;--kF2EEE6:#3d372b;--kF6E9EC:#432a2f;--kFBF3E4:#453b27;--kF8EEED:#452d2a;--kEDCFC9:#35221e;--kF0E9DB:#3b3325;--kE8F1F4:#2b3a3f;--kF6F2EA:#423a2a;--kEAEAD1:#343422;--kE2E2CB:#2c2c20;--kEAF0F6:#2a3642;--kD1D5EA:#222534;--kD3D9E3:#24282e;--kF4EAF6:#3e2a42;--kEAD1E6:#342231;--kF5E9E6:#412d28;--kE2CAD4:#533c45;--kEAF6F0:#2a4236;--kD1EAE6:#223431;--kD4E2D9:#252e28;--kE8EEF2:#2c363d;--kF8F0ED:#45322a;--kEDD5C9:#35251e;--kF0ECDB:#3b3725;--kF6EEEA:#42322a;--kEAE2D1:#342e22;--kF6F4EA:#423e2a;--kE6EAD1:#313422;--kDEE2CB:#2a2c20;--kF6EAF6:#422a42;--kEAD1E2:#34222e;--kF3F5E6:#3e4128;--kE2D1CA:#53433c;--kEAF6F2:#2a423a;--kD1EAEA:#223434;--kD4E2DB:#252e29;--kF6F6EA:#42422a;--kE2EAD1:#2e3422;--kDAE2CB:#282c20;--kEAECF6:#2a2e42;--kD5D1EA:#252234;--kD3D3E3:#24242e;--kF6EAF4:#422a3e;--kEAD1DE:#34222b;--kEFF5E6:#374128;--kCADAE2:#3c4b53;--kEAF6F4:#2a423e;--kD1E6EA:#223134;--kD4E2DE:#252e2b;--kDCE8F2:#24323d;--kF8F4ED:#453c2a;--kEDE1C9:#352d1e;--kECF0DB:#373b25;--kF6EAF2:#422a3a;--kEAD1DA:#342228;--kEAEAF6:#2a2a42;--kDAD1EA:#282234;--kD6D3E3:#26242e;--kF1F5E6:#3b4128;--kCAE2CC:#3c533e;--kEAF6F6:#2a4242;--kD1E2EA:#222e34;--kD4E2E0:#252e2c;--kF8F6ED:#45412a;--kEDE7C9:#35311e;--kE9F0DB:#333b25;--kF2E7D2:#3a3221;--kF1D9C9:#36281f;--kF2F6EA:#3a422a;--kDAEAD1:#283422;--kD2E2CB:#242c20;--kECEAF6:#2e2a42;--kDED1EA:#2b2234;--kD9D3E3:#28242e;--kF6EAF0:#422a36;--kEAD1D5:#342225;--kEAF4F6:#2a3e42;--kD1DEEA:#222b34;--kD4E2E2:#252e2e;--kE3EEF3:#28373f;--kE8F1E4:#303c2a;--kF8F8ED:#45452a;--kEDEDC9:#35351e;--kE6F0DB:#303b25;--kE6F1F4:#293b40;--kF0F6EA:#36422a;--kD5EAD1:#253422;--kCFE2CB:#232c20;--kF6EAEE:#422a32;--kEAD1D1:#342222;--kE8F5E6:#2c4128;--kCAE2D3:#3c5344;--kEAF2F6:#2a3a42;--kD1DAEA:#222834;--kD4E0E2:#252c2e;--kF6F8ED:#41452a;--kE7EDC9:#31351e;--kE2F0DB:#2c3b25;--kF4F6EA:#3e422a;--kDEEAD1:#2b3422;--kEEF6EA:#32422a;--kD1EAD1:#223422;--kCBE2CB:#202c20;--kF6EAEC:#422a2e;--kEAD5D1:#342522;--kE6F5E8:#28412c;--kCAE2D6:#3c5347;--kD4DEE2:#252b2e;--kECF6EA:#2e422a;--kD1EAD5:#223425;--kCBE2CF:#202c23;--kE1D3E3:#2d242e;--kE6F5EA:#28412f;--kE2CAD7:#533c48;--kEAEEF6:#2a3242;--kD1D1EA:#222234;--kD4DBE2:#25292e;--kF2F8ED:#37452a;--kDBEDC9:#29351e;--kDBF0DB:#253b25;--kEAF6EA:#2a422a;--kD1EADA:#223428;--kCBE2D2:#202c24;--kF6ECEA:#422e2a;--kEADED1:#342b22;--kECF5E6:#324128;--kE2D8CA:#53493c;--kD4D9E2:#25282e;--kF0F8ED:#32452a;--kD5EDC9:#25351e;--kDBF0DF:#253b29;--kCCE0CC:#3e513e;--kE9F5E6:#2d4128;--kD4E2CA:#45533c;--kE3D3E1:#2e242d;--kD4D7E2:#25272e;--kEEF8ED:#2d452a;--kCFEDC9:#22351e;--kDBF0E2:#253b2c;--kCBE2DA:#202c28;--kE3D3DE:#2e242b;--kD7CAE2:#483c53;--kD4D4E2:#25252e;--kEDF8ED:#2a452a;--kC9EDC9:#1e351e;--kDBF0E6:#253b30;--kCCE0D3:#3e5144;--kE3D3DB:#2e2429;--kE6F5E6:#284128;--kD5E2CA:#46533c;--kEEEAF6:#322a42;--kE2D1EA:#2e2234;--kD7D4E2:#27252e;--kEDF8EE:#2a452d;--kC9EDCF:#1e3522;--kDBF0E9:#253b33;--kCCE0D6:#3e5147;--kE3EFF3:#28393f;--kEAF6EC:#2a422e;--kD1EADE:#22342b;--kCBE2E2:#202c2c;--kE3D3D9:#2e2428;--kF0EAF6:#362a42;--kE6D1EA:#312234;--kD9D4E2:#28252e;--kFFF3E6:#473929;--kDBD4E2:#29252e;--kEDF8F2:#2a4537;--kC9EDDB:#1e3529;--kDBF0F0:#253b3b;--kF5F1E8:#413a2a;--kDED4E2:#2b252e;--kEDF8F4:#2a453c;--kC9EDE1:#1e352d;--kDBECF0:#25373b;--kCCE0E0:#3e5151;--kE3D6D3:#2e2624;--kE6F5F1:#28413b;--kCAD3E2:#3c4453;--kE0D4E2:#2c252e;--kEDF8F6:#2a4541;--kC9EDE7:#1e3531;--kDBE9F0:#25333b;--kCBD2E2:#20242c;--kE3D9D3:#2e2824;--kE6EEF5:#283641;--kCAE0E2:#3c5153;--kE2D4E2:#2e252e;--kEDF8F8:#2a4545;--kC9EDED:#1e3535;--kDBE6F0:#25303b;--kCCDAE0:#3e4b51;--kC9C2B4:#47433c;--kE3DBD3:#2e2924;--kE2D4E0:#2e252c;--kEDF6F8:#2a4145;--kC9E7ED:#1e3135;--kDBE2F0:#252c3b;--kCCD6E0:#3e4751;--kE3DED3:#2e2b24;--kE6E6F5:#282841;--kE2D2CA:#53443c;--kE2D4DE:#2e252b;--kEDF4F8:#2a3c45;--kC9E1ED:#1e2d35;--kDBDFF0:#25293b;--kCFCBE2:#23202c;--kEAE6F5:#2f2841;--kCAD8E2:#3c4953;--kE2D4DB:#2e2529;--kEDF2F8:#2a3745;--kC9DBED:#1e2935;--kDBDBF0:#25253b;--kD2CBE2:#24202c;--kE3E3D3:#2e2e24;--kECE6F5:#322841;--kD4CAE2:#453c53;--kE2D4D9:#2e2528;--kEDF0F8:#2a3245;--kC9D5ED:#1e2535;--kDFDBF0:#29253b;--kD6CBE2:#26202c;--kE1E3D3:#2d2e24;--kEEE6F5:#362841;--kD9E2CA:#4a533c;--kE2D4D7:#2e2527;--kDACBE2:#28202c;--kDEE3D3:#2b2e24;--kE9E6F5:#2d2841;--kE0CAE2:#513c53;--kE2D4D4:#2e2525;--kEDEDF8:#2a2a45;--kC9C9ED:#1e1e35;--kE6DBF0:#30253b;--kD3CCE0:#443e51;--kF3E6F5:#3e2841;--kE2D7D4:#2e2725;--kEEEDF8:#2d2a45;--kCFC9ED:#221e35;--kE9DBF0:#33253b;--kE2CBE2:#2c202c;--kD9E3D3:#282e24;--kE2D9D4:#2e2825;--kF0EDF8:#322a45;--kD5C9ED:#251e35;--kECDBF0:#37253b;--kE2CBDE:#2c202a;--kD6E3D3:#262e24;--kE2DBD4:#2e2925;--kF2EDF8:#372a45;--kDBC9ED:#291e35;--kF0DBF0:#3b253b;--kE2DED4:#2e2b25;--kF4EDF8:#3c2a45;--kE1C9ED:#2d1e35;--kF0DBEC:#3b2537;--kE0CCE0:#513e51;--kD3E3D6:#242e26;--kF5E6F1:#41283b;--kE2E0D4:#2e2c25;--kF6EDF8:#412a45;--kE7C9ED:#311e35;--kF0DBE9:#3b2533;--kE2CBD2:#2c2024;--kD3E3D9:#242e28;--kF5E6EB:#412831;--kE2E2D4:#2e2e25;--kF8EDF8:#452a45;--kEDC9ED:#351e35;--kF0DBE6:#3b2530;--kE0CCDA:#513e4b;--kD3E3DB:#242e29;--kF5E6E8:#41282c;--kE2D3CA:#53443c;--kE0E2D4:#2c2e25;--kF8EDF6:#452a41;--kEDC9E7:#351e31;--kF0DBE2:#3b252c;--kE0CCD6:#513e47;--kE2CBCB:#2c2020;--kF5E6ED:#412834;--kCAE2DE:#3c534f;--kDEE2D4:#2b2e25;--kF8EDF4:#452a3c;--kEDC9E1:#351e2d;--kF0DBDF:#3b2529;--kE0CCD3:#513e44;--kF4E9D4:#3c3322;--kF5E7E6:#412a28;--kD0CAE2:#423c53;--kDBE2D4:#292e25;--kF8EDF2:#452a37;--kEDC9DB:#351e29;--kF0DBDB:#3b2525;--kE0CCCF:#513e41;--kCAE2DF:#3c5350;--kD9E2D4:#282e25;--kBDBDBD:#414141;--kF8EDF0:#452a32;--kEDC9D5:#351e25;--kF0DFDB:#3b2925;--kE2D6CB:#2c2620;--kD3E1E3:#242d2e;--kF5E6E6:#412828;--kE2CACD:#533c3f;--kD7E2D4:#272e25;--kF7E3B8:#322b1c;--kD3DEE3:#242b2e;--kD4E2D4:#252e25;--kF7F1E6:#443a27;--kFFFDF7:#4e462c;--kE8F0E6:#2f3a2c;--kF4F7F2:#384132;--kE8EEF4:#2b353f;--kF6DCE3:#40242c;--kDCE7F6:#243040;--kF4E6C8:#372f1f;--kE7E0F4:#2f2540;--kDCEFE2:#263a2c;--kF6E0D8:#3e2a23;--kEEF4F7:#2d3c43;--kF3E9DA:#3e3323;--kEEF5F2:#2f3f38;--kCFE3EE:#202f37;--kF2F5F8:#303a43;--kF8F3EC:#463a2a;--kF2F6FA:#2c3a48;--kE3DCCB:#2d2920;--kE8EDF4:#2b333f;--kF7EFE3:#433726;--kFFF8EA:#493e29;--kF4EFE6:#403829;--kF3ECF6:#3b2c42;--kDCE4F2:#242d3d;--kEFD5C6:#34261e;--kCBCBE2:#20202c;--kE6D2A8:#564a31;--kD3DBE3:#24292e;--kDBD3E3:#29242e;--kE3D3E3:#2e242e;--kD3E3DE:#242e2b;--kD9CFEA:#282133;--kF5F1E6:#413b28;--kF0F5E6:#394128;--kCADBE2:#3c4c53;--kE2D0CA:#53423c;--kCADCE2:#3c4d53;--kE6F5F3:#28413e;--kE2CFCA:#53413c;--kE6E7F5:#282a41;--kCADDE2:#3c4e53;--kF2E6F5:#3c2841;--kE2CECA:#53403c;--kCADEE2:#3c4f53;--kEBD9CF:#342821;--kF3EAF5:#3d2c41;--kF7F2EA:#443a29;--kF6F1E7:#433a28;--kF4F2EE:#3d3931;--kF6F8F4:#3a4133}}:root[data-theme="dark"]{--kFFF6E6:#473c29;--kE8EEDB:#333826;--kDDE8CF:#2b3222;--kF5E0E4:#41252a;--kFFF3C4:#3a3521;--kDFC6C3:#523d3a;--kF1EEE8:#3b372d;--kF5E0E0:#412525;--kDFCAC3:#52403a;--kF5E4E0:#412a25;--kDFCFC3:#52443a;--kF5E7E0:#412e25;--kDFD3C3:#52483a;--kF5EBE0:#413425;--kDFD8C3:#524c3a;--kF5EEE0:#413825;--kF5F1E0:#413c25;--kDDDFC3:#50523a;--kF5F5E0:#414125;--kD8DFC3:#4c523a;--kF1F5E0:#3c4125;--kD3DFC3:#48523a;--kEEF5E0:#384125;--kCFDFC3:#44523a;--kEBF5E0:#344125;--kCADFC3:#40523a;--kE7F5E0:#2e4125;--kC6DFC3:#3d523a;--kE4F5E0:#2a4125;--kC3DFC6:#3a523d;--kF7EFE2:#433826;--kE0F5E0:#254125;--kC3DFCA:#3a5240;--kE0F5E4:#25412a;--kC3DFCF:#3a5244;--kE0F5E7:#25412e;--kC3DFD3:#3a5248;--kE0F5EB:#254134;--kC3DFD8:#3a524c;--kE0F5EE:#254138;--kC3DFDD:#3a5250;--kE0F5F1:#25413c;--kC3DDDF:#3a5052;--kC99A6B:#47382a;--kE0F5F5:#254141;--kC3D8DF:#3a4c52;--kE0F1F5:#253c41;--kC3D3DF:#3a4852;--kE0EEF5:#253841;--kC3CFDF:#3a4452;--kE0EBF5:#253441;--kC3CADF:#3a4052;--kE0E7F5:#252e41;--kC3C6DF:#3a3d52;--kE0E4F5:#252a41;--kC6C3DF:#3d3a52;--kE0E0F5:#252541;--kCFE6D4:#223025;--kE4E0F5:#2a2541;--kCFC3DF:#443a52;--kE7E0F5:#2e2541;--kD3C3DF:#483a52;--kFFF3D6:#413925;--kEBE0F5:#342541;--kD8C3DF:#4c3a52;--kEEE0F5:#382541;--kF1E0F5:#3c2541;--kDFC3DD:#523a50;--kF5E0F5:#412541;--kF5E0F1:#41253c;--kDFC3D3:#523a48;--kDCEBF5:#24343f;--kF5E0EE:#412538;--kF5E0EB:#412534;--kDFC3CA:#523a40;--kF5E0E7:#41252e;--kDFC3C6:#523a3d;--kF7D8DF:#3f242a;--kFBF7EF:#493f2a;--kF3EEE6:#3e372a;--kA8D5B5:#354e3c;--kFFF6D6:#413b25;--kEDF2F7:#2c3843;--kF7F0E4:#433926;--kEEF5EE:#2f3f2f;--kFFF8EC:#4a3e2a;--kE9D8B8:#594c33;--kEFE3CC:#372f1f;--kF4F1EA:#3f392d;--kF3D9DF:#3d2329;--kF8EDED:#452a2a;--kEDC9C9:#351e1e;--kF0E6DB:#3b3025;--kEAF4F0:#2d3f38;--kEAF1EE:#2f3b36;--kDCE6D2:#2a3023;--kF6EAEA:#422a2a;--kEADAD1:#342822;--kF6F0EA:#42362a;--kEAE6D1:#343122;--kE2DECB:#2c2a20;--kF2EAF6:#3a2a42;--kEAD1EA:#342234;--kF5EAE6:#412f28;--kE2DECA:#534f3c;--kEAF6EE:#2a4232;--kD1EAE2:#22342e;--kD4E2D7:#252e27;--kF2EEE6:#3d372b;--kF6E9EC:#432a2f;--kFBF3E4:#453b27;--kF8EEED:#452d2a;--kEDCFC9:#35221e;--kF0E9DB:#3b3325;--kE8F1F4:#2b3a3f;--kF6F2EA:#423a2a;--kEAEAD1:#343422;--kE2E2CB:#2c2c20;--kEAF0F6:#2a3642;--kD1D5EA:#222534;--kD3D9E3:#24282e;--kF4EAF6:#3e2a42;--kEAD1E6:#342231;--kF5E9E6:#412d28;--kE2CAD4:#533c45;--kEAF6F0:#2a4236;--kD1EAE6:#223431;--kD4E2D9:#252e28;--kE8EEF2:#2c363d;--kF8F0ED:#45322a;--kEDD5C9:#35251e;--kF0ECDB:#3b3725;--kF6EEEA:#42322a;--kEAE2D1:#342e22;--kF6F4EA:#423e2a;--kE6EAD1:#313422;--kDEE2CB:#2a2c20;--kF6EAF6:#422a42;--kEAD1E2:#34222e;--kF3F5E6:#3e4128;--kE2D1CA:#53433c;--kEAF6F2:#2a423a;--kD1EAEA:#223434;--kD4E2DB:#252e29;--kF6F6EA:#42422a;--kE2EAD1:#2e3422;--kDAE2CB:#282c20;--kEAECF6:#2a2e42;--kD5D1EA:#252234;--kD3D3E3:#24242e;--kF6EAF4:#422a3e;--kEAD1DE:#34222b;--kEFF5E6:#374128;--kCADAE2:#3c4b53;--kEAF6F4:#2a423e;--kD1E6EA:#223134;--kD4E2DE:#252e2b;--kDCE8F2:#24323d;--kF8F4ED:#453c2a;--kEDE1C9:#352d1e;--kECF0DB:#373b25;--kF6EAF2:#422a3a;--kEAD1DA:#342228;--kEAEAF6:#2a2a42;--kDAD1EA:#282234;--kD6D3E3:#26242e;--kF1F5E6:#3b4128;--kCAE2CC:#3c533e;--kEAF6F6:#2a4242;--kD1E2EA:#222e34;--kD4E2E0:#252e2c;--kF8F6ED:#45412a;--kEDE7C9:#35311e;--kE9F0DB:#333b25;--kF2E7D2:#3a3221;--kF1D9C9:#36281f;--kF2F6EA:#3a422a;--kDAEAD1:#283422;--kD2E2CB:#242c20;--kECEAF6:#2e2a42;--kDED1EA:#2b2234;--kD9D3E3:#28242e;--kF6EAF0:#422a36;--kEAD1D5:#342225;--kEAF4F6:#2a3e42;--kD1DEEA:#222b34;--kD4E2E2:#252e2e;--kE3EEF3:#28373f;--kE8F1E4:#303c2a;--kF8F8ED:#45452a;--kEDEDC9:#35351e;--kE6F0DB:#303b25;--kE6F1F4:#293b40;--kF0F6EA:#36422a;--kD5EAD1:#253422;--kCFE2CB:#232c20;--kF6EAEE:#422a32;--kEAD1D1:#342222;--kE8F5E6:#2c4128;--kCAE2D3:#3c5344;--kEAF2F6:#2a3a42;--kD1DAEA:#222834;--kD4E0E2:#252c2e;--kF6F8ED:#41452a;--kE7EDC9:#31351e;--kE2F0DB:#2c3b25;--kF4F6EA:#3e422a;--kDEEAD1:#2b3422;--kEEF6EA:#32422a;--kD1EAD1:#223422;--kCBE2CB:#202c20;--kF6EAEC:#422a2e;--kEAD5D1:#342522;--kE6F5E8:#28412c;--kCAE2D6:#3c5347;--kD4DEE2:#252b2e;--kECF6EA:#2e422a;--kD1EAD5:#223425;--kCBE2CF:#202c23;--kE1D3E3:#2d242e;--kE6F5EA:#28412f;--kE2CAD7:#533c48;--kEAEEF6:#2a3242;--kD1D1EA:#222234;--kD4DBE2:#25292e;--kF2F8ED:#37452a;--kDBEDC9:#29351e;--kDBF0DB:#253b25;--kEAF6EA:#2a422a;--kD1EADA:#223428;--kCBE2D2:#202c24;--kF6ECEA:#422e2a;--kEADED1:#342b22;--kECF5E6:#324128;--kE2D8CA:#53493c;--kD4D9E2:#25282e;--kF0F8ED:#32452a;--kD5EDC9:#25351e;--kDBF0DF:#253b29;--kCCE0CC:#3e513e;--kE9F5E6:#2d4128;--kD4E2CA:#45533c;--kE3D3E1:#2e242d;--kD4D7E2:#25272e;--kEEF8ED:#2d452a;--kCFEDC9:#22351e;--kDBF0E2:#253b2c;--kCBE2DA:#202c28;--kE3D3DE:#2e242b;--kD7CAE2:#483c53;--kD4D4E2:#25252e;--kEDF8ED:#2a452a;--kC9EDC9:#1e351e;--kDBF0E6:#253b30;--kCCE0D3:#3e5144;--kE3D3DB:#2e2429;--kE6F5E6:#284128;--kD5E2CA:#46533c;--kEEEAF6:#322a42;--kE2D1EA:#2e2234;--kD7D4E2:#27252e;--kEDF8EE:#2a452d;--kC9EDCF:#1e3522;--kDBF0E9:#253b33;--kCCE0D6:#3e5147;--kE3EFF3:#28393f;--kEAF6EC:#2a422e;--kD1EADE:#22342b;--kCBE2E2:#202c2c;--kE3D3D9:#2e2428;--kF0EAF6:#362a42;--kE6D1EA:#312234;--kD9D4E2:#28252e;--kFFF3E6:#473929;--kDBD4E2:#29252e;--kEDF8F2:#2a4537;--kC9EDDB:#1e3529;--kDBF0F0:#253b3b;--kF5F1E8:#413a2a;--kDED4E2:#2b252e;--kEDF8F4:#2a453c;--kC9EDE1:#1e352d;--kDBECF0:#25373b;--kCCE0E0:#3e5151;--kE3D6D3:#2e2624;--kE6F5F1:#28413b;--kCAD3E2:#3c4453;--kE0D4E2:#2c252e;--kEDF8F6:#2a4541;--kC9EDE7:#1e3531;--kDBE9F0:#25333b;--kCBD2E2:#20242c;--kE3D9D3:#2e2824;--kE6EEF5:#283641;--kCAE0E2:#3c5153;--kE2D4E2:#2e252e;--kEDF8F8:#2a4545;--kC9EDED:#1e3535;--kDBE6F0:#25303b;--kCCDAE0:#3e4b51;--kC9C2B4:#47433c;--kE3DBD3:#2e2924;--kE2D4E0:#2e252c;--kEDF6F8:#2a4145;--kC9E7ED:#1e3135;--kDBE2F0:#252c3b;--kCCD6E0:#3e4751;--kE3DED3:#2e2b24;--kE6E6F5:#282841;--kE2D2CA:#53443c;--kE2D4DE:#2e252b;--kEDF4F8:#2a3c45;--kC9E1ED:#1e2d35;--kDBDFF0:#25293b;--kCFCBE2:#23202c;--kEAE6F5:#2f2841;--kCAD8E2:#3c4953;--kE2D4DB:#2e2529;--kEDF2F8:#2a3745;--kC9DBED:#1e2935;--kDBDBF0:#25253b;--kD2CBE2:#24202c;--kE3E3D3:#2e2e24;--kECE6F5:#322841;--kD4CAE2:#453c53;--kE2D4D9:#2e2528;--kEDF0F8:#2a3245;--kC9D5ED:#1e2535;--kDFDBF0:#29253b;--kD6CBE2:#26202c;--kE1E3D3:#2d2e24;--kEEE6F5:#362841;--kD9E2CA:#4a533c;--kE2D4D7:#2e2527;--kDACBE2:#28202c;--kDEE3D3:#2b2e24;--kE9E6F5:#2d2841;--kE0CAE2:#513c53;--kE2D4D4:#2e2525;--kEDEDF8:#2a2a45;--kC9C9ED:#1e1e35;--kE6DBF0:#30253b;--kD3CCE0:#443e51;--kF3E6F5:#3e2841;--kE2D7D4:#2e2725;--kEEEDF8:#2d2a45;--kCFC9ED:#221e35;--kE9DBF0:#33253b;--kE2CBE2:#2c202c;--kD9E3D3:#282e24;--kE2D9D4:#2e2825;--kF0EDF8:#322a45;--kD5C9ED:#251e35;--kECDBF0:#37253b;--kE2CBDE:#2c202a;--kD6E3D3:#262e24;--kE2DBD4:#2e2925;--kF2EDF8:#372a45;--kDBC9ED:#291e35;--kF0DBF0:#3b253b;--kE2DED4:#2e2b25;--kF4EDF8:#3c2a45;--kE1C9ED:#2d1e35;--kF0DBEC:#3b2537;--kE0CCE0:#513e51;--kD3E3D6:#242e26;--kF5E6F1:#41283b;--kE2E0D4:#2e2c25;--kF6EDF8:#412a45;--kE7C9ED:#311e35;--kF0DBE9:#3b2533;--kE2CBD2:#2c2024;--kD3E3D9:#242e28;--kF5E6EB:#412831;--kE2E2D4:#2e2e25;--kF8EDF8:#452a45;--kEDC9ED:#351e35;--kF0DBE6:#3b2530;--kE0CCDA:#513e4b;--kD3E3DB:#242e29;--kF5E6E8:#41282c;--kE2D3CA:#53443c;--kE0E2D4:#2c2e25;--kF8EDF6:#452a41;--kEDC9E7:#351e31;--kF0DBE2:#3b252c;--kE0CCD6:#513e47;--kE2CBCB:#2c2020;--kF5E6ED:#412834;--kCAE2DE:#3c534f;--kDEE2D4:#2b2e25;--kF8EDF4:#452a3c;--kEDC9E1:#351e2d;--kF0DBDF:#3b2529;--kE0CCD3:#513e44;--kF4E9D4:#3c3322;--kF5E7E6:#412a28;--kD0CAE2:#423c53;--kDBE2D4:#292e25;--kF8EDF2:#452a37;--kEDC9DB:#351e29;--kF0DBDB:#3b2525;--kE0CCCF:#513e41;--kCAE2DF:#3c5350;--kD9E2D4:#282e25;--kBDBDBD:#414141;--kF8EDF0:#452a32;--kEDC9D5:#351e25;--kF0DFDB:#3b2925;--kE2D6CB:#2c2620;--kD3E1E3:#242d2e;--kF5E6E6:#412828;--kE2CACD:#533c3f;--kD7E2D4:#272e25;--kF7E3B8:#322b1c;--kD3DEE3:#242b2e;--kD4E2D4:#252e25;--kF7F1E6:#443a27;--kFFFDF7:#4e462c;--kE8F0E6:#2f3a2c;--kF4F7F2:#384132;--kE8EEF4:#2b353f;--kF6DCE3:#40242c;--kDCE7F6:#243040;--kF4E6C8:#372f1f;--kE7E0F4:#2f2540;--kDCEFE2:#263a2c;--kF6E0D8:#3e2a23;--kEEF4F7:#2d3c43;--kF3E9DA:#3e3323;--kEEF5F2:#2f3f38;--kCFE3EE:#202f37;--kF2F5F8:#303a43;--kF8F3EC:#463a2a;--kF2F6FA:#2c3a48;--kE3DCCB:#2d2920;--kE8EDF4:#2b333f;--kF7EFE3:#433726;--kFFF8EA:#493e29;--kF4EFE6:#403829;--kF3ECF6:#3b2c42;--kDCE4F2:#242d3d;--kEFD5C6:#34261e;--kCBCBE2:#20202c;--kE6D2A8:#564a31;--kD3DBE3:#24292e;--kDBD3E3:#29242e;--kE3D3E3:#2e242e;--kD3E3DE:#242e2b;--kD9CFEA:#282133;--kF5F1E6:#413b28;--kF0F5E6:#394128;--kCADBE2:#3c4c53;--kE2D0CA:#53423c;--kCADCE2:#3c4d53;--kE6F5F3:#28413e;--kE2CFCA:#53413c;--kE6E7F5:#282a41;--kCADDE2:#3c4e53;--kF2E6F5:#3c2841;--kE2CECA:#53403c;--kCADEE2:#3c4f53;--kEBD9CF:#342821;--kF3EAF5:#3d2c41;--kF7F2EA:#443a29;--kF6F1E7:#433a28;--kF4F2EE:#3d3931;--kF6F8F4:#3a4133}</style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <filter id="cut" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/></filter>
@@ -4278,8 +4385,9 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var gs = itemsOf(m), s = H.stats(m), b = H.getBirth();
     var head = '<div class="qb-nav"><button type="button" class="qb-ar" data-qm="' + (m - 1) + '"' + (m <= 0 ? " disabled" : "") + ' aria-label="上一个月"><i class="ic ar-l"></i></button><div class="qb-t"><span class="qb-m">' + HB_MONSTER.svg({ color: "mint", stage: HB_MONSTER.stageOf(m), hold: propFor(m), mood: s[1] && s[0] === s[1] ? "happy" : "open", flat: true }) + "</span><b>满 " + m + " 个月</b><small>" + (b ? dShort(H.addM(b.d, m)) + " · " : "") + '已勾选 <em class="qb-n">' + s[0] + " / " + s[1] + '</em></small></div><button type="button" class="qb-ar" data-qm="' + (m + 1) + '"' + (m >= last ? " disabled" : "") + ' aria-label="下一个月"><i class="ic ar-r"></i></button></div>';
     var body = gs.length ? gs.map(function (g, gi) { return '<section class="qb-g"><p class="qb-gh"><b>' + H.esc(g.n) + '</b><button type="button" class="qb-all" data-g="' + gi + '">' + (g.it.every(function (x) { return x.on; }) ? "全部取消" : "这一组全选") + "</button></p>" + g.it.map(function (x) { return '<label class="qb-i"><input type="checkbox" data-qk="' + x.k + '"' + (x.on ? " checked" : "") + "><span>" + H.esc(x.t) + "</span></label>"; }).join("") + "</section>"; }).join("") : '<p class="r-note">这个月还没有可勾选的项目。</p>';
-    var allOn = s[1] && s[0] === s[1];
-    return head + '<p class="qb-allm"><button type="button" class="qb-mall" data-m="' + m + '">' + (allOn ? "这个月全部取消" : "这个月全部勾上") + '</button><small>之后可以逐项修改</small></p><div class="qb-body">' + body + '</div><p class="qb-go"><a href="#m' + m + '">打开满 ' + m + " 个月这一页</a></p>";
+    var ca = []; gs.forEach(function (g) { g.it.forEach(function (x) { var c = (String(x.k).split(":")[1] || "").charAt(0); if (c === "c" || c === "a") ca.push(x); }); });
+    var allOn = ca.length && ca.every(function (x) { return x.on; });
+    return head + '<p class="qb-allm"><button type="button" class="qb-mall" data-m="' + m + '">' + (allOn ? "观察和活动全部取消" : "观察和活动全部勾上") + '</button><small>接种与儿保请逐项勾</small></p><div class="qb-body">' + body + '</div><p class="qb-go"><a href="#m' + m + '">打开满 ' + m + " 个月这一页</a></p>";
   }
   function quickOpen(m) {
     var b = H.getBirth(), last = b ? Math.min(36, Math.max(0, H.ageOf(b.d).m)) : 36; m = Math.max(0, Math.min(last, m));
@@ -4763,7 +4871,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     if (s.temp && s.temp >= 37.5) h += '<section class="card jr-alert"><b>这一天记录到体温 ' + s.temp + "℃</b><p>" + (ageM(d0(k)) !== null && ageM(d0(k)) < 3 && s.temp >= 38 ? "未满 3 个月体温达到或超过 38.0℃，应立即联系医生或就医。" : "持续发热、精神差、进食明显减少或有其他担心的情况，请及时就医。") + '</p><a href="#health-care">发热就医的说明</a></section>';
     // timeline
     var list = onDay(k).slice().reverse();
-    h += '<section class="card jr-tl' + (list.length > 6 ? " fold" : "") + '"><h2>记录<small>' + list.length + " 条</small></h2>" + (list.length ? "<ol>" + list.map(function (e) { return '<li><button type="button" data-ev="' + e.id + '" style="--jc:' + T[e.k].c + '"><time>' + hm(e.t) + (e.e ? "–" + hm(e.e) : "") + '</time><span class="jr-tm">' + svgM({ hold: T[e.k].p, stage: 2 }) + "</span><b>" + T[e.k].n + "</b><em>" + esc(desc(e)) + gapOf(e) + "</em></button></li>"; }).join("") + "</ol>" : '<p class="r-note jr-empty"><span>' + svgM({ hold: "note", mood: "sleep" }) + "</span>这一天还没有记录。点上面的按钮开始。</p>") + (list.length > 6 ? '<button type="button" class="jr-more6" data-tlall>显示全部 ' + list.length + " 条</button>" : "") + "</section>";
+    h += '<section class="card jr-tl' + (list.length > 6 ? " fold" : "") + '"><h2>记录<small>' + list.length + ' 条</small><em class="jr-saved">已存到本机</em></h2>' + (list.length ? "<ol>" + list.map(function (e) { return '<li><button type="button" data-ev="' + e.id + '" style="--jc:' + T[e.k].c + '"><time>' + hm(e.t) + (e.e ? "–" + hm(e.e) : "") + '</time><span class="jr-tm">' + svgM({ hold: T[e.k].p, stage: 2 }) + "</span><b>" + T[e.k].n + "</b><em>" + esc(desc(e)) + gapOf(e) + "</em></button></li>"; }).join("") + "</ol>" : '<p class="r-note jr-empty"><span>' + svgM({ hold: "note", mood: "sleep" }) + "</span>这一天还没有记录。点上面的按钮开始。</p>") + (list.length > 6 ? '<button type="button" class="jr-more6" data-tlall>显示全部 ' + list.length + " 条</button>" : "") + "</section>";
     return h;
   }
   function gapOf(e) { if (e.k !== "nurse" && e.k !== "bottle") return ""; var prev = null; for (var i = 0; i < EV.length; i++) { var x = EV[i]; if (x.t >= e.t) break; if (x.k === "nurse" || x.k === "bottle") prev = x; } if (!prev) return ""; var g = e.t - (prev.e || prev.t); return g > 0 && g < 12 * HR ? " · 距上次 " + dur(g) : ""; }
@@ -5179,6 +5287,11 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var r = RUN.nurse; if (r) document.querySelectorAll("[data-sidet]").forEach(function (el) { el.textContent = clock(sideMs(r, el.getAttribute("data-sidet"))); });
   }, 1000);
   window.addEventListener("hashchange", function () { setTimeout(bar, 60); });
+  // back from the background (screen off, another app, the widget): re-read what is stored, so a timer is never shown twice or lost
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) return; var r2 = lj("hb:jr:run", {}), e2 = lj("hb:jr:ev", null);
+    if (JSON.stringify(r2) !== JSON.stringify(RUN) || (e2 && e2.length !== EV.length)) { RUN = r2; if (e2) EV = e2; refresh(); } else bar();
+  });
   // Today: a slim summary with four quick buttons when the journal is on; an invitation when it is not
   var w0 = window.HB_TODAY_WIRE;
   window.HB_TODAY_WIRE = function (Tt, b, a, m) {
@@ -5423,7 +5536,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     }
     [].forEach.call(R.children, function (c) {
       if (c.classList.contains("t-h") || c.classList.contains("rp-seg")) return;
-      var p = c.classList.contains("r-stk") || c.classList.contains("r-months") || c.classList.contains("t-link") ? "p" : c.classList.contains("r-fav") ? "f" : "s";
+      var p = c.classList.contains("r-stk") || c.classList.contains("r-sum") || c.classList.contains("r-months") || c.classList.contains("t-link") ? "p" : c.classList.contains("r-fav") ? "f" : "s";
       c.setAttribute("data-rpane", p); c.hidden = p !== cur;
     });
     seg.querySelectorAll("button").forEach(function (b) { var on = b.getAttribute("data-rp") === cur; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); b.classList.toggle("dot", b.getAttribute("data-rp") === "s" && !!R.querySelector(".r-ver.dot,.r-new.dot")); });
@@ -5454,7 +5567,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var bm = babyM(); if (!b || bm === null || bm < 1 || ls("hb:bulkDone")) return;
     var left = pastLeft(bm); if (!left[0]) { ls("hb:bulkDone", "1"); return; }
     var bk = T.querySelector(".t-back"); if (bk) bk.hidden = true;
-    var html = '<section class="card t-bulk"><div class="tb-h"><span class="tb-mm">' + M({ hold: "crayon", mood: "happy", stage: MS.stageOf(bm), flat: false }) + '</span><div><small>第一次使用 · 一步就好</small><b>宝宝已经满 ' + bm + ' 个月了</b></div></div><p>前面 ' + (bm === 1 ? "满 0 个月" : "0–" + (bm - 1) + " 个月") + '的观察清单、活动和接种儿保，可以先<b>一次全部标为已完成</b>。之后发现哪一项其实没做过，再到那个月取消勾选就好。</p><div class="tb-k">' + [["c", "观察清单"], ["a", "本月做过的活动"], ["v", "接种与儿保"]].map(function (x) { return '<label><input type="checkbox" data-bk="' + x[0] + '" checked><span>' + x[1] + "</span></label>"; }).join("") + '</div><div class="tb-b"><button type="button" class="btn" data-bulk="all">全部标为完成</button><button type="button" class="btn ghost" data-bulk="self">我自己逐月看</button></div><button type="button" class="tb-skip" data-bulk="skip">先跳过，以后在「记录 › 进度」里补看</button></section>';
+    var html = '<section class="card t-bulk"><div class="tb-h"><span class="tb-mm">' + M({ hold: "crayon", mood: "happy", stage: MS.stageOf(bm), flat: false }) + '</span><div><small>第一次使用 · 一步就好</small><b>宝宝已经满 ' + bm + ' 个月了</b></div></div><p>前面 ' + (bm === 1 ? "满 0 个月" : "0–" + (bm - 1) + " 个月") + '的观察清单和活动，可以先<b>一次全部标上</b>，之后发现哪一项没有，再到那个月取消就好。</p><div class="tb-k">' + [["c", "观察清单", "标为看到过", 1], ["a", "活动", "标为做过", 1], ["v", "接种与儿保", "健康记录，请对照接种本", 0]].map(function (x) { return '<label' + (x[3] ? "" : ' class="tb-h0"') + '><input type="checkbox" data-bk="' + x[0] + '"' + (x[3] ? " checked" : "") + '><span>' + x[1] + "<small>" + x[2] + "</small></span></label>"; }).join("") + '</div><p class="tb-note">接种与儿保默认不勾：只有确实打过、做过的才标上。活动标为做过，只表示做过这个活动，不代表能力已经达到。</p><div class="tb-b"><button type="button" class="btn" data-bulk="all">一次标上</button><button type="button" class="btn ghost" data-bulk="self">我自己逐月看</button></div><button type="button" class="tb-skip" data-bulk="skip">先跳过，以后在「记录 › 进度」里补看</button></section>';
     var anchor = T.querySelector(".t-h"); if (anchor) anchor.insertAdjacentHTML("afterend", html); else T.insertAdjacentHTML("afterbegin", html);
     var c = T.querySelector(".t-bulk");
     c.querySelectorAll("[data-bulk]").forEach(function (bt) { bt.addEventListener("click", function () {
@@ -5467,7 +5580,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
       bulkPast(bm, kinds, function (keys) {
         var n = window.HB_BULK ? HB_BULK(keys, true) : 0; ls("hb:bulkDone", "1"); ls("hb:bulkKeys", JSON.stringify(keys));
         if (H.confetti && !reduce) H.confetti();
-        H.snack("已把前面 " + bm + " 个月的 " + n + " 项标为已完成", function () { HB_BULK(keys, false); ls("hb:bulkDone", null); H.buildToday(); });
+        H.snack("已把前面 " + bm + " 个月的 " + n + " 项标上", function () { HB_BULK(keys, false); ls("hb:bulkDone", null); H.buildToday(); });
         H.buildToday(); if (window.HB_TABDRAW) HB_TABDRAW();
       });
     }); });
@@ -5477,7 +5590,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest(".qb-mall"); if (!b) return; e.preventDefault();
     var m = +b.getAttribute("data-m"), v = document.getElementById("m" + m); if (!v) return;
-    var keys = [].map.call(v.querySelectorAll('input[data-mk^="' + m + ':"]'), function (i) { return i.getAttribute("data-mk"); });
+    var keys = [].map.call(v.querySelectorAll('input[data-mk^="' + m + ':"]'), function (i) { return i.getAttribute("data-mk"); }).filter(function (k) { var c = (k.split(":")[1] || "").charAt(0); return c === "c" || c === "a"; });
     var allOn = keys.every(function (k) { var i = v.querySelector('input[data-mk="' + k + '"]'); return i && i.checked; });
     HB_BULK(keys, !allOn); H.haptic(); if (window.HB_QUICK) HB_QUICK(m);
   });
@@ -5598,6 +5711,136 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   try { document.documentElement.style.setProperty("--ldm", 'url("data:image/svg+xml,' + encodeURIComponent(MS.svg({ color: "mint", stage: 2, hold: "book", mood: "happy", flat: true })) + '")'); } catch (e) {}
 
   [0, 500, 1400].forEach(function (t) { setTimeout(onShow, t); });
+})();
+
+(function () {
+  // One clear thing first. 今天 leads with one activity for today, where to pick up again and the two things used most;
+  // month pages say plainly which month is the child's and which one is being read; records come before stickers.
+  var H = window.HB, MS = window.HB_MONSTER; if (!H || !H.APP || !MS) return;
+  function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
+  function ss(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } }
+  function lj(k, d) { try { return JSON.parse(ls(k) || "null") || d; } catch (e) { return d; } }
+  function M(o) { return MS.svg(Object.assign({ color: "mint", stage: 2, flat: true }, o)); }
+  function babyM() { var b = H.getBirth(); return b ? Math.max(0, Math.min(36, H.ageOf(b.d).m)) : null; }
+  var esc = H.esc, reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function kindOf(k) { return (String(k).split(":")[1] || "").charAt(0); }
+  function isOn(k) { return (window.HB_RECKEYS ? HB_RECKEYS() : []).indexOf(k) >= 0; }
+  function txt(el) { return el ? el.textContent.replace(/\s+/g, " ").trim() : ""; }
+  function after(T, ref, el) { if (ref && ref.parentNode === T) ref.after(el); else T.appendChild(el); }
+
+  // ---------- 今天: one activity for today ----------
+  function acts(m) { var v = document.getElementById("m" + m); if (!v) return []; var a = [].slice.call(v.querySelectorAll("article.ac[id]")); a.sort(function (x, y) { return (y.classList.contains("feat") ? 1 : 0) - (x.classList.contains("feat") ? 1 : 0); }); return a; }
+  function pickHTML(m, list, i) {
+    var ac = list[i], inp = ac.querySelector(".did input[data-mk]"), k = inp ? inp.getAttribute("data-mk") : "", done = k && isOn(k);
+    var fr = ac.querySelector(".frames .fr svg"), prep = ac.querySelector(".prep"), safe = ac.querySelector(".safe");
+    var pt = prep ? txt(prep).replace(/^准备/, "") : "", st = safe ? txt(safe).replace(/^安全/, "") : "";
+    return '<div class="pk-top"><span class="pk-k"><span class="pk-km">' + M({ hold: "ball", mood: "happy", stage: MS.stageOf(m) }) + "</span>今天可以做</span>" + (list.length > 1 ? '<button type="button" class="pk-sw" aria-label="换一个活动"><i aria-hidden="true"></i>换一个<small>' + (i + 1) + "/" + list.length + "</small></button>" : "") + "</div>" +
+      '<a class="pk-main" href="#' + ac.id + '"><span class="pk-art">' + (fr ? fr.outerHTML : "") + '</span><span class="pk-t"><b>' + esc(txt(ac.querySelector("h4"))) + "</b><small>" + esc(txt(ac.querySelector(".meta"))) + "</small></span></a>" +
+      '<dl class="pk-need">' + (pt ? '<div><dt>准备</dt><dd>' + esc(pt) + "</dd></div>" : "") + (st ? '<div class="s"><dt>安全</dt><dd>' + esc(st) + "</dd></div>" : "") + "</dl>" +
+      '<div class="pk-b"><a class="btn" href="#' + ac.id + '">看做法</a>' + (k ? '<button type="button" class="btn ghost pk-did' + (done ? " on" : "") + '" data-k="' + esc(k) + '" aria-pressed="' + !!done + '">' + (done ? "本月做过 ✓" : "记为做过") + "</button>" : "") + "</div>";
+  }
+  function wirePick(card, m, list) {
+    var sw = card.querySelector(".pk-sw"); if (sw) sw.addEventListener("click", function () { var i = ((+ss("hb:pick:" + m) || 0) + 1) % list.length; ss("hb:pick:" + m, String(i)); H.haptic(); card.classList.remove("swap"); void card.offsetWidth; card.classList.add("swap"); card.innerHTML = pickHTML(m, list, i); wirePick(card, m, list); });
+    var d = card.querySelector(".pk-did"); if (d) d.addEventListener("click", function () {
+      var k = d.getAttribute("data-k"), on = !isOn(k); HB_BULK([k], on); H.haptic();
+      d.classList.toggle("on", on); d.setAttribute("aria-pressed", on); d.textContent = on ? "本月做过 ✓" : "记为做过";
+      if (on) { if (H.confetti && !reduce) H.confetti(); H.snack("记为本月做过：只表示做过，不代表能力已达到", function () { HB_BULK([k], false); d.classList.remove("on"); d.setAttribute("aria-pressed", "false"); d.textContent = "记为做过"; }); }
+    });
+  }
+  // ---------- 今天: pick up where it stopped ----------
+  function contHTML(m) {
+    var run = lj("hb:jr:run", {}), k = run.nurse ? "nurse" : run.sleep ? "sleep" : "";
+    if (k && ls("hb:jr:on") === "1") { var r = run[k], mins = Math.max(0, Math.round(((r.paused || Date.now()) - r.start - (r.pz || 0)) / 6e4)); return '<a class="tg-c run" href="#journal"><span class="tg-m">' + M({ hold: k === "sleep" ? "moon" : "bottle", mood: k === "sleep" ? "sleep" : "happy" }) + "</span><span><small>继续" + (r.paused ? " · 已暂停" : " · 计时中") + "</small><b>" + (k === "sleep" ? "睡眠" : "亲喂") + " " + mins + " 分钟</b></span></a>"; }
+    var o = lj("hb:lastRead", null);
+    if (o && o.id && document.getElementById(o.id) && Date.now() - (o.at || 0) < 30 * 864e5) return '<a class="tg-c" href="#' + o.id + '" data-sid="' + esc(o.sid || "") + '"><span class="tg-m">' + M({ hold: "book", mood: "happy" }) + "</span><span><small>接着读</small><b>" + esc(o.t) + "</b>" + (o.s ? "<em>" + esc(o.s) + "</em>" : "") + "</span></a>";
+    return "";
+  }
+  var tw = window.HB_TODAY_WIRE;
+  window.HB_TODAY_WIRE = function (T, b, a, m) {
+    if (tw) tw(T, b, a, m);
+    if (!b || T.querySelector(".t-pick")) return;
+    T.classList.add("tfocus");
+    var head = T.querySelector(":scope > .t-h"), list = acts(m), last = head;
+    if (list.length) {
+      var i = (+ss("hb:pick:" + m) || 0) % list.length, card = document.createElement("section");
+      card.className = "card t-pick"; card.innerHTML = pickHTML(m, list, i); after(T, last, card); wirePick(card, m, list); last = card;
+      // the same activity is not offered twice on one screen
+      var dup = T.querySelectorAll(".t-mon2 .t-three a")[1]; if (dup && /#m\d+-A/.test(dup.getAttribute("href") || "")) dup.classList.add("dup");
+    }
+    // continue + this month, side by side
+    var go = document.createElement("nav"); go.className = "t-go"; go.setAttribute("aria-label", "继续和本月");
+    var c = contHTML(m), jrOn = ls("hb:jr:on") === "1";
+    go.innerHTML = c + '<a class="tg-s" href="#m' + m + '"><span class="tg-m">' + M({ hold: window.HB_PROP ? HB_PROP(m) : "book", mood: "happy", stage: MS.stageOf(m) }) + "</span><span><b>看本月</b><small>满 " + m + " 个月</small>" + (c ? "" : "<em>" + esc(H.mtitle(m)) + "</em>") + "</span></a>" + (!c && !jrOn ? '<a class="tg-s" href="#journal"><span class="tg-m">' + M({ hold: "note" }) + "</span><b>记一条</b><small>手帐</small></a>" : "");
+    after(T, last, go); last = go;
+    var cs = go.querySelector(".tg-c[data-sid]"); if (cs) cs.addEventListener("click", function () { var sid = cs.getAttribute("data-sid"); if (!sid) return; setTimeout(function () { var t = document.getElementById(sid); if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 120, behavior: reduce ? "auto" : "smooth" }); }, 700); });
+    // the journal card is 「记一条」 when the journal is on
+    var jr = T.querySelector(":scope > .t-jr"); if (jr) { after(T, last, jr); last = jr; }
+    // the six picture buttons become a quiet row of 更多工具 (本月内容 is 「看本月」 now)
+    var ta = T.querySelector(":scope > .t-acts");
+    if (ta) { ta.classList.add("t-more"); var first = ta.querySelector('a[href="#m' + m + '"]:not([data-ta])'); if (first && /本月内容/.test(first.textContent)) first.remove(); if (!ta.querySelector(".tm-h")) ta.insertAdjacentHTML("afterbegin", '<p class="tm-h">更多工具</p>'); after(T, last, ta); last = ta; }
+    var care = T.querySelector(":scope > .t-care2"); if (care) { after(T, last, care); last = care; }
+  };
+
+  // ---------- month pages: the child's month and the month being read are two different things ----------
+  function monthStat(v) {
+    if (!v || !/^m\d+$/.test(v.id)) return; var m = +v.id.slice(1), bm = babyM(), old = v.querySelector(":scope > .mstat");
+    var key = m + ":" + bm; if (old && old.getAttribute("data-k") === key) return; if (old) old.remove();
+    if (bm === null) return;
+    var h = m === bm ? '<span class="ms-m">' + M({ hold: "star", mood: "happy", stage: MS.stageOf(m) }) + "</span><b>宝宝现在就在这个月</b>"
+      : '<span class="ms-m">' + M({ hold: "lens", stage: MS.stageOf(m) }) + "</span><span><b>正在看满 " + m + " 个月</b><small>宝宝现在满 " + bm + " 个月" + (m > bm ? "，这是以后的内容" : "，这是以前的内容") + '</small></span><a class="ms-go" href="#m' + bm + '">回到现在</a>';
+    var el = document.createElement("p"); el.className = "mstat" + (m === bm ? " now" : ""); el.setAttribute("data-k", key); el.innerHTML = h;
+    var cr = v.querySelector(":scope > .crumb"); if (cr) cr.after(el); else v.prepend(el);
+  }
+  // 「记为做过」 on every activity: one tap, with an undo
+  function didify(v) {
+    if (!v) return;
+    v.querySelectorAll('.ac .did input[data-mk]:not([data-dd])').forEach(function (i) {
+      i.setAttribute("data-dd", "1"); var l = v.querySelector('label[for="' + i.id + '"]'); if (l) l.textContent = "记为本月做过";
+      i.addEventListener("change", function () { if (!i.checked) return; H.snack("记为本月做过：只表示做过，不代表能力已达到", function () { i.checked = false; i.dispatchEvent(new Event("change")); }); });
+    });
+  }
+  function onView() { var v = H.cur(); if (!v) return; monthStat(v); didify(v); if (v.id === "home") mapJump(); }
+  window.addEventListener("hashchange", function () { setTimeout(onView, 120); });
+  var enh = window.HB_ENH; window.HB_ENH = function (R) { if (enh) enh(R); setTimeout(onView, 30); };
+
+  // ---------- the month chain under the top bar: 「现在」 under the child's month, and every month one tap away ----------
+  function chain() {
+    var ch = document.querySelector(".top .chain"); if (!ch || ch.querySelector(".ch-now")) return; var bm = babyM();
+    if (bm !== null) { var a = ch.querySelector('a[data-cm="' + bm + '"]'); if (a) a.insertAdjacentHTML("beforeend", '<em class="ch-now">现在</em>'); }
+    var top = document.querySelector(".top"); if (top && !top.querySelector(".ch-all")) { top.insertAdjacentHTML("beforeend", '<button type="button" class="ch-all" aria-label="全部月份"><i aria-hidden="true"></i>全部</button>'); top.querySelector(".ch-all").addEventListener("click", function () { H.haptic(); var w = document.getElementById("where"); if (w) w.click(); }); }
+  }
+  // ---------- 成长地图: straight to the child's month ----------
+  function mapJump() {
+    var mp = document.getElementById("home-map"), bm = babyM(); if (!mp || bm === null || mp.querySelector(".mg-jump")) return;
+    var bk = mp.querySelector(".mg-back"); if (!bk) return;
+    bk.insertAdjacentHTML("afterend", '<button type="button" class="mg-jump"><span>' + M({ hold: "flower", mood: "happy", stage: MS.stageOf(bm) }) + "</span>跳到满 " + bm + " 个月</button>");
+    mp.querySelector(".mg-jump").addEventListener("click", function () {
+      H.haptic(); var t = mp.querySelector('a[href="#m' + bm + '"]'); if (!t) { location.hash = "m" + bm; return; }
+      var r = t.getBoundingClientRect(); window.scrollTo({ top: r.top + window.scrollY - window.innerHeight / 2 + r.height / 2, behavior: reduce ? "auto" : "smooth" });
+      t.classList.remove("pulse"); void t.offsetWidth; t.classList.add("pulse");
+    });
+  }
+
+  // ---------- 记录 › 进度: what has been recorded first, stickers as the keepsake below ----------
+  function recSum(R) {
+    var bm = babyM(), old = R.querySelector(":scope > .r-sum"); if (old) old.remove(); if (bm === null) return;
+    var v = document.getElementById("m" + bm), n = { c: [0, 0], a: [0, 0], h: [0, 0] };
+    if (v && v.querySelector(".mv-load") && !recSum.w) { recSum.w = 1; H.loadView(v, function () { recSum.w = 0; recSum(R); }); }
+    if (v) v.querySelectorAll('input[data-mk^="' + bm + ':"]').forEach(function (i) { var c = kindOf(i.getAttribute("data-mk")), g = c === "c" ? "c" : c === "a" ? "a" : "h"; n[g][1]++; if (i.checked) n[g][0]++; });
+    var row = [["c", "观察", "看到过", "lens"], ["a", "活动", "做过", "ball"], ["h", "接种儿保", "已完成", "star"]];
+    var jr = ls("hb:jr:on") === "1", ev = jr ? lj("hb:jr:ev", []) : [], t0 = new Date(); t0.setHours(0, 0, 0, 0); var today = ev.filter(function (e) { return e.t >= t0.getTime(); }).length;
+    var h = '<section class="card r-sum"><p class="rs-h"><b>满 ' + bm + ' 个月 · 这个月记下的</b><a href="#m' + bm + '">打开</a></p><div class="rs-g">' + row.map(function (x) { var p = n[x[0]]; return '<a href="#m' + bm + (x[0] === "h" ? "-care" : x[0] === "a" ? "-acts" : "-cdc") + '"><span class="rs-m">' + M({ hold: x[3], mood: p[1] && p[0] === p[1] ? "happy" : "open", stage: MS.stageOf(bm) }) + "</span><b>" + p[0] + "<small> / " + p[1] + "</small></b><em>" + x[1] + "</em><i>" + x[2] + "</i></a>"; }).join("") + "</div>" +
+      '<p class="rs-q">' + (jr ? '<a href="#journal">今天手帐 ' + today + " 条</a>" : "") + '<button type="button" data-rpgo="f">收藏</button></p><p class="rs-n">三类分开记：观察是看到过，活动是做过，接种儿保是确实完成。</p></section>';
+    var seg = R.querySelector(":scope > .rp-seg"); if (seg) seg.insertAdjacentHTML("afterend", h);
+    var s = R.querySelector(":scope > .r-sum"); s.setAttribute("data-rpane", "p"); s.hidden = (ss("hb:rpane") || "p") !== "p";
+    var fb = s.querySelector('[data-rpgo="f"]'); if (fb) fb.addEventListener("click", function () { var b = R.querySelector('.rp-seg [data-rp="f"]'); if (b) b.click(); });
+    // stickers after the month list
+    var stk = R.querySelector(":scope > .r-stk"), ms = R.querySelector(":scope > .r-months"), lk = R.querySelectorAll(":scope > .t-link");
+    var tail = lk.length ? lk[lk.length - 1] : ms; if (stk && tail && stk.compareDocumentPosition(tail) & Node.DOCUMENT_POSITION_FOLLOWING) tail.after(stk);
+  }
+  var rw = window.HB_REC_WIRE; window.HB_REC_WIRE = function (R) { if (rw) rw(R); recSum(R); };
+
+  [60, 700].forEach(function (t) { setTimeout(function () { chain(); onView(); }, t); });
 })();
 </script>
 <script>if("serviceWorker" in navigator&&!window.HBApp&&/^https?:$/.test(location.protocol)){addEventListener("load",function(){navigator.serviceWorker.register("sw.js")})}</script>

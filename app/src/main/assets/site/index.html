@@ -2483,6 +2483,118 @@ html[data-ip="eye"] .sk-bar{background:color-mix(in srgb,#8FAE8B 22%,var(--line)
 html[data-ip="eye"] .jr-rev{background:color-mix(in srgb,#8FAE8B 10%,var(--surface))!important}
 html[data-ip="eye"] .jr-rev.done{border-color:color-mix(in srgb,#C8795B 55%,var(--line))!important;box-shadow:0 3px 0 color-mix(in srgb,#C8795B 25%,transparent)}
 html[data-ip="eye"] .ip-c.on{border-color:#C8795B;background:color-mix(in srgb,#C8795B 10%,var(--surface))}
+/* ===== 结构感：区域色、目录三分区、位置条、全书结构、记录分区、首次补录 ===== */
+html.app{--area:#4E9B5B}
+html.app[data-area="today"]{--area:#E3B23C}
+html.app[data-area="journal"]{--area:#6F8FD8}
+html.app[data-area="rec"]{--area:#C8795B}
+html.app .top{box-shadow:inset 0 -3px 0 color-mix(in srgb,var(--area) 55%,transparent)}
+html.app .tmap{display:grid;place-items:center;width:40px;height:40px;margin-left:auto;border:0;border-radius:12px;background:none;color:var(--ink);-webkit-tap-highlight-color:transparent}
+html.app .tmap svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8}
+html.app .tmap svg rect:first-child{fill:color-mix(in srgb,var(--area) 45%,transparent);stroke:var(--ink)}
+html.app .tmap:active{background:var(--tint)}
+/* 目录三分区 */
+.shelf{display:none}
+html.app #home .shelf{position:sticky;top:var(--toph,56px);z-index:9;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 -2px 12px;padding:8px 2px;background:var(--paper)}
+html.app #home .shelf button{display:grid;grid-template-columns:34px 1fr;grid-template-rows:auto auto;column-gap:4px;align-items:center;min-height:52px;padding:4px 8px 4px 4px;border-radius:16px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font-family:var(--f-ui);text-align:left}
+html.app #home .shelf button b{font-size:15px;line-height:1.2}
+html.app #home .shelf button small{grid-column:2;font-size:11px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shf-m{grid-row:1/3;display:block;width:34px;height:32px}
+.shf-m .mascot,.sh-m .mascot,.sh-last span .mascot,.mp-t span .mascot,.mp-list span .mascot,.tb-mm .mascot{display:block;width:100%;height:100%}
+html.app #home .shelf button.on{border-color:var(--area);background:color-mix(in srgb,var(--area) 13%,var(--surface));box-shadow:0 3px 0 color-mix(in srgb,var(--area) 35%,transparent)}
+html.app #home[data-shelf="t"]>:not(.shelf):not(.shelf-p[data-s="t"]),html.app #home[data-shelf="i"]>:not(.shelf):not(.shelf-p[data-s="i"]),html.app #home[data-shelf="m"]>.shelf-p,html.app #home[data-shelf="m"]>.sec#home-ref{display:none!important}
+html.app #home[data-shelf="t"]>.sh-last,html.app #home[data-shelf="i"]>.sh-last{display:none!important}
+.shelf-p{display:none}
+html.app #home .shelf-p{display:block}
+.shp-h{margin:2px 2px 10px;font-family:var(--f-ui);font-size:13px;color:var(--ink2)}
+.sh-c{position:relative;display:grid;grid-template-columns:64px 1fr 18px;align-items:center;gap:10px;margin:0 0 10px;padding:12px 12px 12px 10px;border-radius:20px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;box-shadow:0 2px 0 color-mix(in srgb,var(--area) 18%,transparent)}
+.sh-c:nth-child(odd){transform:rotate(-.25deg)}.sh-c:nth-child(even){transform:rotate(.2deg)}
+.sh-c:active{transform:scale(.985)}
+.sh-n{position:absolute;top:8px;right:36px;font-family:var(--f-num);font-weight:900;font-size:20px;color:color-mix(in srgb,var(--area) 45%,var(--line))}
+.sh-m{display:block;width:64px;height:58px;border-radius:16px;background:color-mix(in srgb,var(--area) 12%,var(--surface))}
+.sh-t b{display:block;font-size:16px;line-height:1.35;padding-right:30px}
+.sh-t small{display:block;margin-top:3px;font-family:var(--f-ui);font-size:12.5px;color:var(--ink2);line-height:1.5}
+.sh-c[data-dot]::after{content:"";position:absolute;top:10px;left:62px;width:9px;height:9px;border-radius:50%;background:#E0533D;box-shadow:0 0 0 2px var(--surface)}
+.sh-c .ic{opacity:.5}
+.shp-more{margin-top:18px}
+.sh-last{display:grid;grid-template-columns:40px auto 1fr 16px;align-items:center;gap:8px;margin:-4px 0 12px;padding:8px 12px 8px 6px;border-radius:14px;border:1.5px dashed color-mix(in srgb,var(--area) 50%,var(--line));background:none;color:var(--ink);text-decoration:none;font-family:var(--f-ui)}
+.sh-last span{display:block;width:40px;height:36px}
+.sh-last small{font-size:12px;color:var(--ink2)}
+.sh-last b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* 位置条 */
+.crumb{display:none}
+html.app .view>.crumb{display:flex;align-items:center;flex-wrap:wrap;gap:2px 6px;margin:0 0 10px;padding:6px 2px 8px;border-bottom:1px dashed var(--line);font-family:var(--f-ui);font-size:12.5px;color:var(--ink2)}
+html.app .crumb a{color:var(--ink2);text-decoration:none;padding:4px 2px;min-height:28px;display:inline-flex;align-items:center}
+html.app .crumb a:active{color:var(--ink)}
+html.app .crumb i{font-style:normal;opacity:.5}
+html.app .crumb b{color:var(--ink);font-weight:600}
+html.app .crumb .cr-sec{color:var(--ink2);max-width:42vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html.app .crumb .cr-map{margin-left:auto;min-height:30px;padding:0 10px;border-radius:999px;border:1px solid color-mix(in srgb,var(--area) 50%,var(--line));background:color-mix(in srgb,var(--area) 9%,var(--surface));color:var(--ink);font:inherit;font-size:12px}
+/* 全书结构 */
+.mp-l{display:flex;align-items:baseline;gap:8px;margin:14px 0 8px;font-family:var(--f-ui);font-size:13px;font-weight:700;color:var(--ink)}
+.mp-l:first-child{margin-top:0}
+.mp-l small{font-weight:400;color:var(--ink2)}
+.mp-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:6px}
+.mp-t{position:relative;display:flex;flex-direction:column;align-items:center;padding:6px 4px 8px;border-radius:16px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;font-family:var(--f-ui);text-align:center}
+.mp-t span{display:block;width:44px;height:40px}
+.mp-t b{font-size:14px}.mp-t small{font-size:10.5px;color:var(--ink2);line-height:1.3}
+.mp-t.on{border-color:var(--area);background:color-mix(in srgb,var(--area) 12%,var(--surface))}
+.mp-here{position:absolute;top:-8px;left:50%;transform:translateX(-50%);padding:1px 7px;border-radius:999px;background:#E0533D;color:#fff;font-style:normal;font-size:10px;font-weight:700;white-space:nowrap}
+.mp-ms{display:grid;grid-template-columns:repeat(8,1fr);gap:5px}
+.mp-ms a{position:relative;display:grid;place-items:center;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;font-family:var(--f-num);font-weight:700;font-size:14px}
+.mp-ms a.done{background:color-mix(in srgb,var(--gold) 22%,var(--surface));border-color:color-mix(in srgb,var(--gold) 50%,var(--line))}
+.mp-ms a.now{box-shadow:0 0 0 2px var(--gold) inset}
+.mp-ms a.now i{position:absolute;bottom:-7px;font-style:normal;font-size:8.5px;font-family:var(--f-ui);background:var(--gold);color:#1d1715;border-radius:999px;padding:0 4px;line-height:1.4}
+.mp-ms a.cur{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.mp-list a{position:relative;display:flex;align-items:center;gap:8px;min-height:44px;padding:2px 10px 2px 4px;border-radius:12px;color:var(--ink);text-decoration:none;font-family:var(--f-ui);font-size:14px}
+.mp-list a+a{border-top:1px dashed var(--line)}
+.mp-list span{display:block;width:34px;height:32px;flex:none}
+.mp-list a.cur{background:color-mix(in srgb,var(--area) 12%,var(--surface))}
+.mp-list .mp-here{position:static;transform:none;margin-left:auto}
+.mp-secs{display:flex;flex-wrap:wrap;gap:6px}
+.mp-secs a{min-height:34px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;font-family:var(--f-ui);font-size:13px}
+/* 记录分区 */
+html.app .rp-seg{position:sticky;top:var(--toph,56px);z-index:8;margin:0 0 12px;box-shadow:0 6px 10px -8px rgba(0,0,0,.15)}
+html.app .rp-seg button{position:relative}
+html.app .rp-seg button.dot::after{content:"";position:absolute;top:6px;right:10px;width:8px;height:8px;border-radius:50%;background:#E0533D}
+html.app .r-new.dot span::after,html.app .r-ver.dot span::after{content:"";display:inline-block;width:8px;height:8px;margin-left:6px;border-radius:50%;background:#E0533D;vertical-align:2px}
+/* 首次补录 */
+.t-bulk{border:1.5px solid color-mix(in srgb,var(--gold) 60%,var(--line))!important;background:color-mix(in srgb,var(--gold) 8%,var(--surface))!important}
+.tb-h{display:flex;align-items:center;gap:10px}
+.tb-mm{display:block;width:70px;height:64px;flex:none}
+.tb-h small{display:block;font-family:var(--f-ui);font-size:12px;color:var(--goldD)}
+.tb-h b{font-size:18px}
+.t-bulk p{margin:8px 0;line-height:1.65}
+.tb-k{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+.tb-k label{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 12px 0 8px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);font-family:var(--f-ui);font-size:13px}
+.tb-k input{width:18px;height:18px;accent-color:var(--ink)}
+.tb-b{display:flex;gap:8px}.tb-b .btn{flex:1}
+.tb-skip{display:block;margin:8px auto 0;min-height:36px;border:0;background:none;color:var(--ink2);font-family:var(--f-ui);font-size:12.5px;text-decoration:underline;text-underline-offset:3px}
+.qb-allm{display:flex;align-items:center;gap:10px;margin:8px 0 2px}
+.qb-mall{min-height:38px;padding:0 14px;border-radius:999px;border:1.5px solid var(--gold);background:color-mix(in srgb,var(--gold) 14%,var(--surface));color:var(--ink);font-family:var(--f-ui);font-size:13px;font-weight:600}
+.qb-allm small{font-family:var(--f-ui);font-size:12px;color:var(--ink2)}
+html.app #rec .r-grp{display:none}
+html.app #home>.shelf{order:-3}html.app #home>.sh-last{order:-2}
+.sh-ill{display:block;width:96px;height:88px;margin:-4px auto 6px}.sh-ill .mascot{display:block;width:100%;height:100%}
+.jr-pane{grid-template-columns:none!important;grid-auto-flow:column;grid-auto-columns:1fr}
+.jr-pane button{padding:0 2px}
+.fl-h{display:flex;align-items:center;gap:10px}
+.fl-m{display:block;width:64px;height:58px;flex:none}.fl-m .mascot{display:block;width:100%;height:100%}
+.fl-h b{display:block;font-size:18px}.fl-h small{font-family:var(--f-ui);font-size:13px;color:var(--ink2)}
+.fl-lg{display:flex;flex-wrap:wrap;gap:4px 12px;margin:8px 0 2px;font-family:var(--f-ui);font-size:12px;color:var(--ink2)}
+.fl-lg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.fl-lg .t{background:#7DBB6A}.fl-lg .b{background:#D9614E}.fl-lg .n{border:1.5px dashed var(--ink2)}.fl-lg .a{background:none;border-radius:50%;box-shadow:inset 0 0 0 2px #E6A23C}
+.fl-g{margin:14px 0 6px;font-family:var(--f-ui);font-size:13px;font-weight:700}
+.fl-c{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:6px}
+.fl-i{position:relative;display:flex;flex-direction:column;align-items:flex-start;min-height:52px;padding:6px 10px;border-radius:14px;border:1.5px dashed var(--line);background:none;color:var(--ink);font-family:var(--f-ui);text-align:left}
+.fl-i b{font-size:14px}.fl-i small{font-size:10.5px;color:var(--ink2);line-height:1.3}
+.fl-i.t{border-style:solid;border-color:color-mix(in srgb,#7DBB6A 60%,var(--line));background:color-mix(in srgb,#7DBB6A 12%,var(--surface))}
+.fl-i.b{border-style:solid;border-color:#D9614E;background:color-mix(in srgb,#D9614E 10%,var(--surface))}
+.fl-i.a::after{content:"";position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;box-shadow:inset 0 0 0 2px #E6A23C}
+.fl-hist{list-style:none;margin:0;padding:0;font-family:var(--f-ui);font-size:14px}
+.fl-hist li{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.fl-hist time{color:var(--ink2);min-width:3.5em}
+.fl-hist em{margin-left:auto;font-style:normal;font-size:12px;color:#7DBB6A}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kFFF6E6:#473c29;--kE8EEDB:#333826;--kDDE8CF:#2b3222;--kF5E0E4:#41252a;--kFFF3C4:#3a3521;--kDFC6C3:#523d3a;--kF1EEE8:#3b372d;--kF5E0E0:#412525;--kDFCAC3:#52403a;--kF5E4E0:#412a25;--kDFCFC3:#52443a;--kF5E7E0:#412e25;--kDFD3C3:#52483a;--kF5EBE0:#413425;--kDFD8C3:#524c3a;--kF5EEE0:#413825;--kF5F1E0:#413c25;--kDDDFC3:#50523a;--kF5F5E0:#414125;--kD8DFC3:#4c523a;--kF1F5E0:#3c4125;--kD3DFC3:#48523a;--kEEF5E0:#384125;--kCFDFC3:#44523a;--kEBF5E0:#344125;--kCADFC3:#40523a;--kE7F5E0:#2e4125;--kC6DFC3:#3d523a;--kE4F5E0:#2a4125;--kC3DFC6:#3a523d;--kF7EFE2:#433826;--kE0F5E0:#254125;--kC3DFCA:#3a5240;--kE0F5E4:#25412a;--kC3DFCF:#3a5244;--kE0F5E7:#25412e;--kC3DFD3:#3a5248;--kE0F5EB:#254134;--kC3DFD8:#3a524c;--kE0F5EE:#254138;--kC3DFDD:#3a5250;--kE0F5F1:#25413c;--kC3DDDF:#3a5052;--kC99A6B:#47382a;--kE0F5F5:#254141;--kC3D8DF:#3a4c52;--kE0F1F5:#253c41;--kC3D3DF:#3a4852;--kE0EEF5:#253841;--kC3CFDF:#3a4452;--kE0EBF5:#253441;--kC3CADF:#3a4052;--kE0E7F5:#252e41;--kC3C6DF:#3a3d52;--kE0E4F5:#252a41;--kC6C3DF:#3d3a52;--kE0E0F5:#252541;--kCFE6D4:#223025;--kE4E0F5:#2a2541;--kCFC3DF:#443a52;--kE7E0F5:#2e2541;--kD3C3DF:#483a52;--kFFF3D6:#413925;--kEBE0F5:#342541;--kD8C3DF:#4c3a52;--kEEE0F5:#382541;--kF1E0F5:#3c2541;--kDFC3DD:#523a50;--kF5E0F5:#412541;--kF5E0F1:#41253c;--kDFC3D3:#523a48;--kDCEBF5:#24343f;--kF5E0EE:#412538;--kF5E0EB:#412534;--kDFC3CA:#523a40;--kF5E0E7:#41252e;--kDFC3C6:#523a3d;--kF7D8DF:#3f242a;--kFBF7EF:#493f2a;--kF3EEE6:#3e372a;--kA8D5B5:#354e3c;--kFFF6D6:#413b25;--kEDF2F7:#2c3843;--kF7F0E4:#433926;--kEEF5EE:#2f3f2f;--kFFF8EC:#4a3e2a;--kE9D8B8:#594c33;--kEFE3CC:#372f1f;--kF4F1EA:#3f392d;--kF3D9DF:#3d2329;--kF8EDED:#452a2a;--kEDC9C9:#351e1e;--kF0E6DB:#3b3025;--kEAF4F0:#2d3f38;--kEAF1EE:#2f3b36;--kDCE6D2:#2a3023;--kF6EAEA:#422a2a;--kEADAD1:#342822;--kF6F0EA:#42362a;--kEAE6D1:#343122;--kE2DECB:#2c2a20;--kF2EAF6:#3a2a42;--kEAD1EA:#342234;--kF5EAE6:#412f28;--kE2DECA:#534f3c;--kEAF6EE:#2a4232;--kD1EAE2:#22342e;--kD4E2D7:#252e27;--kF2EEE6:#3d372b;--kF6E9EC:#432a2f;--kFBF3E4:#453b27;--kF8EEED:#452d2a;--kEDCFC9:#35221e;--kF0E9DB:#3b3325;--kE8F1F4:#2b3a3f;--kF6F2EA:#423a2a;--kEAEAD1:#343422;--kE2E2CB:#2c2c20;--kEAF0F6:#2a3642;--kD1D5EA:#222534;--kD3D9E3:#24282e;--kF4EAF6:#3e2a42;--kEAD1E6:#342231;--kF5E9E6:#412d28;--kE2CAD4:#533c45;--kEAF6F0:#2a4236;--kD1EAE6:#223431;--kD4E2D9:#252e28;--kE8EEF2:#2c363d;--kF8F0ED:#45322a;--kEDD5C9:#35251e;--kF0ECDB:#3b3725;--kF6EEEA:#42322a;--kEAE2D1:#342e22;--kF6F4EA:#423e2a;--kE6EAD1:#313422;--kDEE2CB:#2a2c20;--kF6EAF6:#422a42;--kEAD1E2:#34222e;--kF3F5E6:#3e4128;--kE2D1CA:#53433c;--kEAF6F2:#2a423a;--kD1EAEA:#223434;--kD4E2DB:#252e29;--kF6F6EA:#42422a;--kE2EAD1:#2e3422;--kDAE2CB:#282c20;--kEAECF6:#2a2e42;--kD5D1EA:#252234;--kD3D3E3:#24242e;--kF6EAF4:#422a3e;--kEAD1DE:#34222b;--kEFF5E6:#374128;--kCADAE2:#3c4b53;--kEAF6F4:#2a423e;--kD1E6EA:#223134;--kD4E2DE:#252e2b;--kDCE8F2:#24323d;--kF8F4ED:#453c2a;--kEDE1C9:#352d1e;--kECF0DB:#373b25;--kF6EAF2:#422a3a;--kEAD1DA:#342228;--kEAEAF6:#2a2a42;--kDAD1EA:#282234;--kD6D3E3:#26242e;--kF1F5E6:#3b4128;--kCAE2CC:#3c533e;--kEAF6F6:#2a4242;--kD1E2EA:#222e34;--kD4E2E0:#252e2c;--kF8F6ED:#45412a;--kEDE7C9:#35311e;--kE9F0DB:#333b25;--kF2E7D2:#3a3221;--kF1D9C9:#36281f;--kF2F6EA:#3a422a;--kDAEAD1:#283422;--kD2E2CB:#242c20;--kECEAF6:#2e2a42;--kDED1EA:#2b2234;--kD9D3E3:#28242e;--kF6EAF0:#422a36;--kEAD1D5:#342225;--kEAF4F6:#2a3e42;--kD1DEEA:#222b34;--kD4E2E2:#252e2e;--kE3EEF3:#28373f;--kE8F1E4:#303c2a;--kF8F8ED:#45452a;--kEDEDC9:#35351e;--kE6F0DB:#303b25;--kE6F1F4:#293b40;--kF0F6EA:#36422a;--kD5EAD1:#253422;--kCFE2CB:#232c20;--kF6EAEE:#422a32;--kEAD1D1:#342222;--kE8F5E6:#2c4128;--kCAE2D3:#3c5344;--kEAF2F6:#2a3a42;--kD1DAEA:#222834;--kD4E0E2:#252c2e;--kF6F8ED:#41452a;--kE7EDC9:#31351e;--kE2F0DB:#2c3b25;--kF4F6EA:#3e422a;--kDEEAD1:#2b3422;--kEEF6EA:#32422a;--kD1EAD1:#223422;--kCBE2CB:#202c20;--kF6EAEC:#422a2e;--kEAD5D1:#342522;--kE6F5E8:#28412c;--kCAE2D6:#3c5347;--kD4DEE2:#252b2e;--kECF6EA:#2e422a;--kD1EAD5:#223425;--kCBE2CF:#202c23;--kE1D3E3:#2d242e;--kE6F5EA:#28412f;--kE2CAD7:#533c48;--kEAEEF6:#2a3242;--kD1D1EA:#222234;--kD4DBE2:#25292e;--kF2F8ED:#37452a;--kDBEDC9:#29351e;--kDBF0DB:#253b25;--kEAF6EA:#2a422a;--kD1EADA:#223428;--kCBE2D2:#202c24;--kF6ECEA:#422e2a;--kEADED1:#342b22;--kECF5E6:#324128;--kE2D8CA:#53493c;--kD4D9E2:#25282e;--kF0F8ED:#32452a;--kD5EDC9:#25351e;--kDBF0DF:#253b29;--kCCE0CC:#3e513e;--kE9F5E6:#2d4128;--kD4E2CA:#45533c;--kE3D3E1:#2e242d;--kD4D7E2:#25272e;--kEEF8ED:#2d452a;--kCFEDC9:#22351e;--kDBF0E2:#253b2c;--kCBE2DA:#202c28;--kE3D3DE:#2e242b;--kD7CAE2:#483c53;--kD4D4E2:#25252e;--kEDF8ED:#2a452a;--kC9EDC9:#1e351e;--kDBF0E6:#253b30;--kCCE0D3:#3e5144;--kE3D3DB:#2e2429;--kE6F5E6:#284128;--kD5E2CA:#46533c;--kEEEAF6:#322a42;--kE2D1EA:#2e2234;--kD7D4E2:#27252e;--kEDF8EE:#2a452d;--kC9EDCF:#1e3522;--kDBF0E9:#253b33;--kCCE0D6:#3e5147;--kE3EFF3:#28393f;--kEAF6EC:#2a422e;--kD1EADE:#22342b;--kCBE2E2:#202c2c;--kE3D3D9:#2e2428;--kF0EAF6:#362a42;--kE6D1EA:#312234;--kD9D4E2:#28252e;--kFFF3E6:#473929;--kDBD4E2:#29252e;--kEDF8F2:#2a4537;--kC9EDDB:#1e3529;--kDBF0F0:#253b3b;--kF5F1E8:#413a2a;--kDED4E2:#2b252e;--kEDF8F4:#2a453c;--kC9EDE1:#1e352d;--kDBECF0:#25373b;--kCCE0E0:#3e5151;--kE3D6D3:#2e2624;--kE6F5F1:#28413b;--kCAD3E2:#3c4453;--kE0D4E2:#2c252e;--kEDF8F6:#2a4541;--kC9EDE7:#1e3531;--kDBE9F0:#25333b;--kCBD2E2:#20242c;--kE3D9D3:#2e2824;--kE6EEF5:#283641;--kCAE0E2:#3c5153;--kE2D4E2:#2e252e;--kEDF8F8:#2a4545;--kC9EDED:#1e3535;--kDBE6F0:#25303b;--kCCDAE0:#3e4b51;--kC9C2B4:#47433c;--kE3DBD3:#2e2924;--kE2D4E0:#2e252c;--kEDF6F8:#2a4145;--kC9E7ED:#1e3135;--kDBE2F0:#252c3b;--kCCD6E0:#3e4751;--kE3DED3:#2e2b24;--kE6E6F5:#282841;--kE2D2CA:#53443c;--kE2D4DE:#2e252b;--kEDF4F8:#2a3c45;--kC9E1ED:#1e2d35;--kDBDFF0:#25293b;--kCFCBE2:#23202c;--kEAE6F5:#2f2841;--kCAD8E2:#3c4953;--kE2D4DB:#2e2529;--kEDF2F8:#2a3745;--kC9DBED:#1e2935;--kDBDBF0:#25253b;--kD2CBE2:#24202c;--kE3E3D3:#2e2e24;--kECE6F5:#322841;--kD4CAE2:#453c53;--kE2D4D9:#2e2528;--kEDF0F8:#2a3245;--kC9D5ED:#1e2535;--kDFDBF0:#29253b;--kD6CBE2:#26202c;--kE1E3D3:#2d2e24;--kEEE6F5:#362841;--kD9E2CA:#4a533c;--kE2D4D7:#2e2527;--kDACBE2:#28202c;--kDEE3D3:#2b2e24;--kE9E6F5:#2d2841;--kE0CAE2:#513c53;--kE2D4D4:#2e2525;--kEDEDF8:#2a2a45;--kC9C9ED:#1e1e35;--kE6DBF0:#30253b;--kD3CCE0:#443e51;--kF3E6F5:#3e2841;--kE2D7D4:#2e2725;--kEEEDF8:#2d2a45;--kCFC9ED:#221e35;--kE9DBF0:#33253b;--kE2CBE2:#2c202c;--kD9E3D3:#282e24;--kE2D9D4:#2e2825;--kF0EDF8:#322a45;--kD5C9ED:#251e35;--kECDBF0:#37253b;--kE2CBDE:#2c202a;--kD6E3D3:#262e24;--kE2DBD4:#2e2925;--kF2EDF8:#372a45;--kDBC9ED:#291e35;--kF0DBF0:#3b253b;--kE2DED4:#2e2b25;--kF4EDF8:#3c2a45;--kE1C9ED:#2d1e35;--kF0DBEC:#3b2537;--kE0CCE0:#513e51;--kD3E3D6:#242e26;--kF5E6F1:#41283b;--kE2E0D4:#2e2c25;--kF6EDF8:#412a45;--kE7C9ED:#311e35;--kF0DBE9:#3b2533;--kE2CBD2:#2c2024;--kD3E3D9:#242e28;--kF5E6EB:#412831;--kE2E2D4:#2e2e25;--kF8EDF8:#452a45;--kEDC9ED:#351e35;--kF0DBE6:#3b2530;--kE0CCDA:#513e4b;--kD3E3DB:#242e29;--kF5E6E8:#41282c;--kE2D3CA:#53443c;--kE0E2D4:#2c2e25;--kF8EDF6:#452a41;--kEDC9E7:#351e31;--kF0DBE2:#3b252c;--kE0CCD6:#513e47;--kE2CBCB:#2c2020;--kF5E6ED:#412834;--kCAE2DE:#3c534f;--kDEE2D4:#2b2e25;--kF8EDF4:#452a3c;--kEDC9E1:#351e2d;--kF0DBDF:#3b2529;--kE0CCD3:#513e44;--kF4E9D4:#3c3322;--kF5E7E6:#412a28;--kD0CAE2:#423c53;--kDBE2D4:#292e25;--kF8EDF2:#452a37;--kEDC9DB:#351e29;--kF0DBDB:#3b2525;--kE0CCCF:#513e41;--kCAE2DF:#3c5350;--kD9E2D4:#282e25;--kBDBDBD:#414141;--kF8EDF0:#452a32;--kEDC9D5:#351e25;--kF0DFDB:#3b2925;--kE2D6CB:#2c2620;--kD3E1E3:#242d2e;--kF5E6E6:#412828;--kE2CACD:#533c3f;--kD7E2D4:#272e25;--kF7E3B8:#322b1c;--kD3DEE3:#242b2e;--kD4E2D4:#252e25;--kF7F1E6:#443a27;--kFFFDF7:#4e462c;--kE8F0E6:#2f3a2c;--kF4F7F2:#384132;--kE8EEF4:#2b353f;--kF6DCE3:#40242c;--kDCE7F6:#243040;--kF4E6C8:#372f1f;--kE7E0F4:#2f2540;--kDCEFE2:#263a2c;--kF6E0D8:#3e2a23;--kEEF4F7:#2d3c43;--kF3E9DA:#3e3323;--kEEF5F2:#2f3f38;--kCFE3EE:#202f37;--kF2F5F8:#303a43;--kF8F3EC:#463a2a;--kF2F6FA:#2c3a48;--kE3DCCB:#2d2920;--kE8EDF4:#2b333f;--kF7EFE3:#433726;--kFFF8EA:#493e29;--kF4EFE6:#403829;--kF3ECF6:#3b2c42;--kDCE4F2:#242d3d;--kEFD5C6:#34261e;--kCBCBE2:#20202c;--kE6D2A8:#564a31;--kD3DBE3:#24292e;--kDBD3E3:#29242e;--kE3D3E3:#2e242e;--kD3E3DE:#242e2b;--kD9CFEA:#282133;--kF5F1E6:#413b28;--kF0F5E6:#394128;--kCADBE2:#3c4c53;--kE2D0CA:#53423c;--kCADCE2:#3c4d53;--kE6F5F3:#28413e;--kE2CFCA:#53413c;--kE6E7F5:#282a41;--kCADDE2:#3c4e53;--kF2E6F5:#3c2841;--kE2CECA:#53403c;--kCADEE2:#3c4f53;--kEBD9CF:#342821;--kF3EAF5:#3d2c41;--kF7F2EA:#443a29;--kF6F1E7:#433a28;--kF4F2EE:#3d3931;--kF6F8F4:#3a4133}}:root[data-theme="dark"]{--kFFF6E6:#473c29;--kE8EEDB:#333826;--kDDE8CF:#2b3222;--kF5E0E4:#41252a;--kFFF3C4:#3a3521;--kDFC6C3:#523d3a;--kF1EEE8:#3b372d;--kF5E0E0:#412525;--kDFCAC3:#52403a;--kF5E4E0:#412a25;--kDFCFC3:#52443a;--kF5E7E0:#412e25;--kDFD3C3:#52483a;--kF5EBE0:#413425;--kDFD8C3:#524c3a;--kF5EEE0:#413825;--kF5F1E0:#413c25;--kDDDFC3:#50523a;--kF5F5E0:#414125;--kD8DFC3:#4c523a;--kF1F5E0:#3c4125;--kD3DFC3:#48523a;--kEEF5E0:#384125;--kCFDFC3:#44523a;--kEBF5E0:#344125;--kCADFC3:#40523a;--kE7F5E0:#2e4125;--kC6DFC3:#3d523a;--kE4F5E0:#2a4125;--kC3DFC6:#3a523d;--kF7EFE2:#433826;--kE0F5E0:#254125;--kC3DFCA:#3a5240;--kE0F5E4:#25412a;--kC3DFCF:#3a5244;--kE0F5E7:#25412e;--kC3DFD3:#3a5248;--kE0F5EB:#254134;--kC3DFD8:#3a524c;--kE0F5EE:#254138;--kC3DFDD:#3a5250;--kE0F5F1:#25413c;--kC3DDDF:#3a5052;--kC99A6B:#47382a;--kE0F5F5:#254141;--kC3D8DF:#3a4c52;--kE0F1F5:#253c41;--kC3D3DF:#3a4852;--kE0EEF5:#253841;--kC3CFDF:#3a4452;--kE0EBF5:#253441;--kC3CADF:#3a4052;--kE0E7F5:#252e41;--kC3C6DF:#3a3d52;--kE0E4F5:#252a41;--kC6C3DF:#3d3a52;--kE0E0F5:#252541;--kCFE6D4:#223025;--kE4E0F5:#2a2541;--kCFC3DF:#443a52;--kE7E0F5:#2e2541;--kD3C3DF:#483a52;--kFFF3D6:#413925;--kEBE0F5:#342541;--kD8C3DF:#4c3a52;--kEEE0F5:#382541;--kF1E0F5:#3c2541;--kDFC3DD:#523a50;--kF5E0F5:#412541;--kF5E0F1:#41253c;--kDFC3D3:#523a48;--kDCEBF5:#24343f;--kF5E0EE:#412538;--kF5E0EB:#412534;--kDFC3CA:#523a40;--kF5E0E7:#41252e;--kDFC3C6:#523a3d;--kF7D8DF:#3f242a;--kFBF7EF:#493f2a;--kF3EEE6:#3e372a;--kA8D5B5:#354e3c;--kFFF6D6:#413b25;--kEDF2F7:#2c3843;--kF7F0E4:#433926;--kEEF5EE:#2f3f2f;--kFFF8EC:#4a3e2a;--kE9D8B8:#594c33;--kEFE3CC:#372f1f;--kF4F1EA:#3f392d;--kF3D9DF:#3d2329;--kF8EDED:#452a2a;--kEDC9C9:#351e1e;--kF0E6DB:#3b3025;--kEAF4F0:#2d3f38;--kEAF1EE:#2f3b36;--kDCE6D2:#2a3023;--kF6EAEA:#422a2a;--kEADAD1:#342822;--kF6F0EA:#42362a;--kEAE6D1:#343122;--kE2DECB:#2c2a20;--kF2EAF6:#3a2a42;--kEAD1EA:#342234;--kF5EAE6:#412f28;--kE2DECA:#534f3c;--kEAF6EE:#2a4232;--kD1EAE2:#22342e;--kD4E2D7:#252e27;--kF2EEE6:#3d372b;--kF6E9EC:#432a2f;--kFBF3E4:#453b27;--kF8EEED:#452d2a;--kEDCFC9:#35221e;--kF0E9DB:#3b3325;--kE8F1F4:#2b3a3f;--kF6F2EA:#423a2a;--kEAEAD1:#343422;--kE2E2CB:#2c2c20;--kEAF0F6:#2a3642;--kD1D5EA:#222534;--kD3D9E3:#24282e;--kF4EAF6:#3e2a42;--kEAD1E6:#342231;--kF5E9E6:#412d28;--kE2CAD4:#533c45;--kEAF6F0:#2a4236;--kD1EAE6:#223431;--kD4E2D9:#252e28;--kE8EEF2:#2c363d;--kF8F0ED:#45322a;--kEDD5C9:#35251e;--kF0ECDB:#3b3725;--kF6EEEA:#42322a;--kEAE2D1:#342e22;--kF6F4EA:#423e2a;--kE6EAD1:#313422;--kDEE2CB:#2a2c20;--kF6EAF6:#422a42;--kEAD1E2:#34222e;--kF3F5E6:#3e4128;--kE2D1CA:#53433c;--kEAF6F2:#2a423a;--kD1EAEA:#223434;--kD4E2DB:#252e29;--kF6F6EA:#42422a;--kE2EAD1:#2e3422;--kDAE2CB:#282c20;--kEAECF6:#2a2e42;--kD5D1EA:#252234;--kD3D3E3:#24242e;--kF6EAF4:#422a3e;--kEAD1DE:#34222b;--kEFF5E6:#374128;--kCADAE2:#3c4b53;--kEAF6F4:#2a423e;--kD1E6EA:#223134;--kD4E2DE:#252e2b;--kDCE8F2:#24323d;--kF8F4ED:#453c2a;--kEDE1C9:#352d1e;--kECF0DB:#373b25;--kF6EAF2:#422a3a;--kEAD1DA:#342228;--kEAEAF6:#2a2a42;--kDAD1EA:#282234;--kD6D3E3:#26242e;--kF1F5E6:#3b4128;--kCAE2CC:#3c533e;--kEAF6F6:#2a4242;--kD1E2EA:#222e34;--kD4E2E0:#252e2c;--kF8F6ED:#45412a;--kEDE7C9:#35311e;--kE9F0DB:#333b25;--kF2E7D2:#3a3221;--kF1D9C9:#36281f;--kF2F6EA:#3a422a;--kDAEAD1:#283422;--kD2E2CB:#242c20;--kECEAF6:#2e2a42;--kDED1EA:#2b2234;--kD9D3E3:#28242e;--kF6EAF0:#422a36;--kEAD1D5:#342225;--kEAF4F6:#2a3e42;--kD1DEEA:#222b34;--kD4E2E2:#252e2e;--kE3EEF3:#28373f;--kE8F1E4:#303c2a;--kF8F8ED:#45452a;--kEDEDC9:#35351e;--kE6F0DB:#303b25;--kE6F1F4:#293b40;--kF0F6EA:#36422a;--kD5EAD1:#253422;--kCFE2CB:#232c20;--kF6EAEE:#422a32;--kEAD1D1:#342222;--kE8F5E6:#2c4128;--kCAE2D3:#3c5344;--kEAF2F6:#2a3a42;--kD1DAEA:#222834;--kD4E0E2:#252c2e;--kF6F8ED:#41452a;--kE7EDC9:#31351e;--kE2F0DB:#2c3b25;--kF4F6EA:#3e422a;--kDEEAD1:#2b3422;--kEEF6EA:#32422a;--kD1EAD1:#223422;--kCBE2CB:#202c20;--kF6EAEC:#422a2e;--kEAD5D1:#342522;--kE6F5E8:#28412c;--kCAE2D6:#3c5347;--kD4DEE2:#252b2e;--kECF6EA:#2e422a;--kD1EAD5:#223425;--kCBE2CF:#202c23;--kE1D3E3:#2d242e;--kE6F5EA:#28412f;--kE2CAD7:#533c48;--kEAEEF6:#2a3242;--kD1D1EA:#222234;--kD4DBE2:#25292e;--kF2F8ED:#37452a;--kDBEDC9:#29351e;--kDBF0DB:#253b25;--kEAF6EA:#2a422a;--kD1EADA:#223428;--kCBE2D2:#202c24;--kF6ECEA:#422e2a;--kEADED1:#342b22;--kECF5E6:#324128;--kE2D8CA:#53493c;--kD4D9E2:#25282e;--kF0F8ED:#32452a;--kD5EDC9:#25351e;--kDBF0DF:#253b29;--kCCE0CC:#3e513e;--kE9F5E6:#2d4128;--kD4E2CA:#45533c;--kE3D3E1:#2e242d;--kD4D7E2:#25272e;--kEEF8ED:#2d452a;--kCFEDC9:#22351e;--kDBF0E2:#253b2c;--kCBE2DA:#202c28;--kE3D3DE:#2e242b;--kD7CAE2:#483c53;--kD4D4E2:#25252e;--kEDF8ED:#2a452a;--kC9EDC9:#1e351e;--kDBF0E6:#253b30;--kCCE0D3:#3e5144;--kE3D3DB:#2e2429;--kE6F5E6:#284128;--kD5E2CA:#46533c;--kEEEAF6:#322a42;--kE2D1EA:#2e2234;--kD7D4E2:#27252e;--kEDF8EE:#2a452d;--kC9EDCF:#1e3522;--kDBF0E9:#253b33;--kCCE0D6:#3e5147;--kE3EFF3:#28393f;--kEAF6EC:#2a422e;--kD1EADE:#22342b;--kCBE2E2:#202c2c;--kE3D3D9:#2e2428;--kF0EAF6:#362a42;--kE6D1EA:#312234;--kD9D4E2:#28252e;--kFFF3E6:#473929;--kDBD4E2:#29252e;--kEDF8F2:#2a4537;--kC9EDDB:#1e3529;--kDBF0F0:#253b3b;--kF5F1E8:#413a2a;--kDED4E2:#2b252e;--kEDF8F4:#2a453c;--kC9EDE1:#1e352d;--kDBECF0:#25373b;--kCCE0E0:#3e5151;--kE3D6D3:#2e2624;--kE6F5F1:#28413b;--kCAD3E2:#3c4453;--kE0D4E2:#2c252e;--kEDF8F6:#2a4541;--kC9EDE7:#1e3531;--kDBE9F0:#25333b;--kCBD2E2:#20242c;--kE3D9D3:#2e2824;--kE6EEF5:#283641;--kCAE0E2:#3c5153;--kE2D4E2:#2e252e;--kEDF8F8:#2a4545;--kC9EDED:#1e3535;--kDBE6F0:#25303b;--kCCDAE0:#3e4b51;--kC9C2B4:#47433c;--kE3DBD3:#2e2924;--kE2D4E0:#2e252c;--kEDF6F8:#2a4145;--kC9E7ED:#1e3135;--kDBE2F0:#252c3b;--kCCD6E0:#3e4751;--kE3DED3:#2e2b24;--kE6E6F5:#282841;--kE2D2CA:#53443c;--kE2D4DE:#2e252b;--kEDF4F8:#2a3c45;--kC9E1ED:#1e2d35;--kDBDFF0:#25293b;--kCFCBE2:#23202c;--kEAE6F5:#2f2841;--kCAD8E2:#3c4953;--kE2D4DB:#2e2529;--kEDF2F8:#2a3745;--kC9DBED:#1e2935;--kDBDBF0:#25253b;--kD2CBE2:#24202c;--kE3E3D3:#2e2e24;--kECE6F5:#322841;--kD4CAE2:#453c53;--kE2D4D9:#2e2528;--kEDF0F8:#2a3245;--kC9D5ED:#1e2535;--kDFDBF0:#29253b;--kD6CBE2:#26202c;--kE1E3D3:#2d2e24;--kEEE6F5:#362841;--kD9E2CA:#4a533c;--kE2D4D7:#2e2527;--kDACBE2:#28202c;--kDEE3D3:#2b2e24;--kE9E6F5:#2d2841;--kE0CAE2:#513c53;--kE2D4D4:#2e2525;--kEDEDF8:#2a2a45;--kC9C9ED:#1e1e35;--kE6DBF0:#30253b;--kD3CCE0:#443e51;--kF3E6F5:#3e2841;--kE2D7D4:#2e2725;--kEEEDF8:#2d2a45;--kCFC9ED:#221e35;--kE9DBF0:#33253b;--kE2CBE2:#2c202c;--kD9E3D3:#282e24;--kE2D9D4:#2e2825;--kF0EDF8:#322a45;--kD5C9ED:#251e35;--kECDBF0:#37253b;--kE2CBDE:#2c202a;--kD6E3D3:#262e24;--kE2DBD4:#2e2925;--kF2EDF8:#372a45;--kDBC9ED:#291e35;--kF0DBF0:#3b253b;--kE2DED4:#2e2b25;--kF4EDF8:#3c2a45;--kE1C9ED:#2d1e35;--kF0DBEC:#3b2537;--kE0CCE0:#513e51;--kD3E3D6:#242e26;--kF5E6F1:#41283b;--kE2E0D4:#2e2c25;--kF6EDF8:#412a45;--kE7C9ED:#311e35;--kF0DBE9:#3b2533;--kE2CBD2:#2c2024;--kD3E3D9:#242e28;--kF5E6EB:#412831;--kE2E2D4:#2e2e25;--kF8EDF8:#452a45;--kEDC9ED:#351e35;--kF0DBE6:#3b2530;--kE0CCDA:#513e4b;--kD3E3DB:#242e29;--kF5E6E8:#41282c;--kE2D3CA:#53443c;--kE0E2D4:#2c2e25;--kF8EDF6:#452a41;--kEDC9E7:#351e31;--kF0DBE2:#3b252c;--kE0CCD6:#513e47;--kE2CBCB:#2c2020;--kF5E6ED:#412834;--kCAE2DE:#3c534f;--kDEE2D4:#2b2e25;--kF8EDF4:#452a3c;--kEDC9E1:#351e2d;--kF0DBDF:#3b2529;--kE0CCD3:#513e44;--kF4E9D4:#3c3322;--kF5E7E6:#412a28;--kD0CAE2:#423c53;--kDBE2D4:#292e25;--kF8EDF2:#452a37;--kEDC9DB:#351e29;--kF0DBDB:#3b2525;--kE0CCCF:#513e41;--kCAE2DF:#3c5350;--kD9E2D4:#282e25;--kBDBDBD:#414141;--kF8EDF0:#452a32;--kEDC9D5:#351e25;--kF0DFDB:#3b2925;--kE2D6CB:#2c2620;--kD3E1E3:#242d2e;--kF5E6E6:#412828;--kE2CACD:#533c3f;--kD7E2D4:#272e25;--kF7E3B8:#322b1c;--kD3DEE3:#242b2e;--kD4E2D4:#252e25;--kF7F1E6:#443a27;--kFFFDF7:#4e462c;--kE8F0E6:#2f3a2c;--kF4F7F2:#384132;--kE8EEF4:#2b353f;--kF6DCE3:#40242c;--kDCE7F6:#243040;--kF4E6C8:#372f1f;--kE7E0F4:#2f2540;--kDCEFE2:#263a2c;--kF6E0D8:#3e2a23;--kEEF4F7:#2d3c43;--kF3E9DA:#3e3323;--kEEF5F2:#2f3f38;--kCFE3EE:#202f37;--kF2F5F8:#303a43;--kF8F3EC:#463a2a;--kF2F6FA:#2c3a48;--kE3DCCB:#2d2920;--kE8EDF4:#2b333f;--kF7EFE3:#433726;--kFFF8EA:#493e29;--kF4EFE6:#403829;--kF3ECF6:#3b2c42;--kDCE4F2:#242d3d;--kEFD5C6:#34261e;--kCBCBE2:#20202c;--kE6D2A8:#564a31;--kD3DBE3:#24292e;--kDBD3E3:#29242e;--kE3D3E3:#2e242e;--kD3E3DE:#242e2b;--kD9CFEA:#282133;--kF5F1E6:#413b28;--kF0F5E6:#394128;--kCADBE2:#3c4c53;--kE2D0CA:#53423c;--kCADCE2:#3c4d53;--kE6F5F3:#28413e;--kE2CFCA:#53413c;--kE6E7F5:#282a41;--kCADDE2:#3c4e53;--kF2E6F5:#3c2841;--kE2CECA:#53403c;--kCADEE2:#3c4f53;--kEBD9CF:#342821;--kF3EAF5:#3d2c41;--kF7F2EA:#443a29;--kF6F1E7:#433a28;--kF4F2EE:#3d3931;--kF6F8F4:#3a4133}</style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <filter id="cut" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/></filter>
@@ -2868,6 +2980,14 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     Object.keys(ms).forEach(mcount);
   }
   window.HB_INITREC = initRec; initRec();
+  // many ticks at once (the first-run "前面的月份都做过了" step); also used to clear them again
+  window.HB_BULK = function (keys, on) {
+    var n = 0; keys.forEach(function (k) { if (on) { if (!rec[k]) { rec[k] = 1; n++; } } else if (rec[k]) { delete rec[k]; n++; } });
+    try { localStorage.setItem("hb:rec", JSON.stringify(rec)); } catch (e) {}
+    var ms = {}; document.querySelectorAll("input[data-mk]").forEach(function (b) { var k = b.getAttribute("data-mk"); if (keys.indexOf(k) < 0) return; b.checked = !!rec[k]; var li = b.closest(".chk"); if (li) li.classList.toggle("done", b.checked); ms[k.split(":")[0]] = 1; });
+    Object.keys(ms).forEach(mcount); return n;
+  };
+  window.HB_RECKEYS = function () { return Object.keys(rec); };
   // search across the whole handbook
   var Q = document.getElementById("q"), QR = document.getElementById("qr"), QN = document.getElementById("qn"), IDX = null, qLoading = false, qT = null;
   function getIdx(cb) {
@@ -3137,12 +3257,12 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     h += '<section class="card r-fav"><h2>收藏的活动</h2>' + (FV.length ? FV.map(function (f) { return '<a href="#' + (f.id || "acts") + '"><span class="code">' + esc(f.k) + "</span><span>" + esc(f.t) + (f.m !== null && f.m !== undefined ? "<small>满 " + f.m + " 个月</small>" : "") + "</span></a>"; }).join("") : '<div class="empty"><span class="e-m">' + MASC({ mood: "sleep" }) + '</span><p class="r-note">在活动卡片右上角点书签，收藏的活动会列在这里。</p></div>') + "</section>";
     var lastEx = null; try { lastEx = localStorage.getItem("hb:exported"); } catch (e) {}
     if (HBApp.saveFile) h += '<section class="card r-data"><h2>备份记录</h2><p class="r-note">勾选、收藏、出生日期和设置都只保存在这台手机上。换手机或卸载前，先导出一份记录文件；在新手机上导入即可恢复。' + (lastEx ? "上次导出：" + esc(lastEx) + "。" : "") + '</p><div class="r-btns"><button type="button" class="btn" data-x="export">导出记录</button><button type="button" class="btn ghost" data-x="import">导入记录</button></div></section>';
-    h += '<section class="card r-more"><a href="#guide">使用说明与年龄口径</a><a href="#sources">来源与置信度台账</a><a href="#" data-x="note">使用前须知</a><a href="#" data-x="privacy">隐私说明</a>' + (HBApp.checkUpdate ? '<a href="#" data-x="update" class="r-ver"><span>检查更新</span><small>当前版本 ' + vname(HBApp.version ? HBApp.version() : 0) + "</small></a>" : "") + "</section>";
+    h += '<section class="card r-more"><a href="#guide">使用说明与年龄口径</a><a href="#sources">来源与置信度台账</a><a href="#" data-x="note">使用前须知</a><a href="#" data-x="privacy">隐私说明</a>' + (HBApp.checkUpdate ? '<a href="#" data-x="update" class="r-ver"><span>检查更新</span><small>当前版本 ' + vname(HBApp.version ? HBApp.version() : 0) + "</small></a>" : "") + '<a href="#" data-x="whatsnew" class="r-new' + (seenNew() ? "" : " dot") + '"><span>这一版更新了什么</span><small>' + (HBApp.versionName ? "版本 " + vname(HBApp.version ? HBApp.version() : 0) : "") + "</small></a></section>";
     R.innerHTML = h;
     if (window.HB_REC_WIRE) HB_REC_WIRE(R);
     updDot();
     wireDate("bd3", buildRec);
-    R.querySelectorAll("[data-x]").forEach(function (b) { b.addEventListener("click", function (e) { e.preventDefault(); var x = b.getAttribute("data-x"); if (x === "export") exportRec(); else if (x === "import") { try { HBApp.openFile(); } catch (er) {} } else if (x === "note") showNote(); else if (x === "privacy") showPrivacy(); else if (x === "update") { var pu = updPending(); if (pu) { pu.manual = true; HB_UPDATE(pu); return; } b.classList.add("busy"); try { HBApp.checkUpdate(true); } catch (er) {} } }); });
+    R.querySelectorAll("[data-x]").forEach(function (b) { b.addEventListener("click", function (e) { e.preventDefault(); var x = b.getAttribute("data-x"); if (x === "export") exportRec(); else if (x === "import") { try { HBApp.openFile(); } catch (er) {} } else if (x === "note") showNote(); else if (x === "privacy") showPrivacy(); else if (x === "whatsnew") showNew(); else if (x === "update") { var pu = updPending(); if (pu) { pu.manual = true; HB_UPDATE(pu); return; } b.classList.add("busy"); try { HBApp.checkUpdate(true); } catch (er) {} } }); });
     R.querySelectorAll("[data-th]").forEach(function (btn) { btn.addEventListener("click", function () { applyTheme(btn.getAttribute("data-th") || null); buildRec(); }); });
     R.querySelectorAll("[data-zoom]").forEach(function (btn) { btn.addEventListener("click", function () { try { HBApp.setTextZoom(+btn.getAttribute("data-zoom")); } catch (e) {} buildRec(); }); });
   }
@@ -3254,12 +3374,20 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     o.querySelectorAll(".sh-a button").forEach(function (b) { b.addEventListener("click", function () { var f = buttons[+b.getAttribute("data-i")].f; o.lock = false; history.back(); if (f) setTimeout(f, 280); }); });
   }
   window.addEventListener("popstate", function () { if (SH) { if (SH.lock) { try { history.pushState({ sheet: 1 }, ""); } catch (e) {} return; } closeSheet(); } });
+  // what changed in the version on this phone: the release notes travel with the pages (v/notes.json)
+  function verKey() { try { return String(HBApp.versionName ? HBApp.versionName() : HBApp.version ? HBApp.version() : ""); } catch (e) { return ""; } }
+  function seenNew() { var k = verKey(); if (!k) return true; try { var s0 = localStorage.getItem("hb:seenNew"); if (s0 === null) { localStorage.setItem("hb:seenNew", k); return true; } return s0 === k; } catch (e) { return true; } }
+  function showNew() {
+    var go = function (t) { bsheet("这一版更新了什么", '<span class="sh-ill">' + MASC({ hold: "star", mood: "party" }) + '</span><p class="up-meta">版本 ' + esc(vname(HBApp.version ? HBApp.version() : 0)) + "</p>" + (t ? mdText(t) : "<p>没有找到这一版的更新说明。</p>"), [{ t: "知道了" }]); try { localStorage.setItem("hb:seenNew", verKey()); } catch (e) {} document.querySelectorAll(".r-new.dot").forEach(function (a) { a.classList.remove("dot"); }); if (window.HB_NEWDOT) HB_NEWDOT(); };
+    fetch("v/notes.json").then(function (r) { return r.json(); }).then(function (o) { go(o && o.text); }).catch(function () { go(""); });
+  }
+  window.HB_SHOWNEW = showNew; window.HB_SEENNEW = seenNew;
   function showNote(first) {
-    bsheet("使用前须知", "<p>本手册整理自世界卫生组织（WHO）、美国疾病控制与预防中心（CDC）、美国儿科学会（AAP）、中国国家卫生健康委员会等机构的公开资料，供家庭日常参考，不替代医生的诊断和建议。</p><p>各月龄的观察项目用于记录孩子的日常表现，不是达标考核。对孩子的发育有疑问时，请咨询儿保医生。</p><p>孩子出现呼吸困难、失去意识、严重窒息征象等危及生命的情况时，请立即拨打当地急救电话（中国大陆为 120）。</p>",
+    bsheet("使用前须知", '<span class="sh-ill">' + MASC({ hold: "book", mood: "open" }) + "</span><p>本手册整理自世界卫生组织（WHO）、美国疾病控制与预防中心（CDC）、美国儿科学会（AAP）、中国国家卫生健康委员会等机构的公开资料，供家庭日常参考，不替代医生的诊断和建议。</p><p>各月龄的观察项目用于记录孩子的日常表现，不是达标考核。对孩子的发育有疑问时，请咨询儿保医生。</p><p>孩子出现呼吸困难、失去意识、严重窒息征象等危及生命的情况时，请立即拨打当地急救电话（中国大陆为 120）。</p>",
       [{ t: "查看需要就医的情形", ghost: true, f: function () { location.hash = "redflag"; } }, { t: "我已了解", f: function () { try { localStorage.setItem("hb:ok", "1"); } catch (e) {} } }], first);
   }
   function showPrivacy() {
-    bsheet("隐私说明", "<p>本应用不需要注册账号，不收集、不上传任何个人信息，也不包含广告或统计分析工具。</p><ul><li>出生日期、勾选记录、收藏、字号和外观设置只保存在这台手机的应用数据中。</li><li>通知权限只用于在接种和儿保日期的前 3 天和当天提醒；手机重启后，应用会重新设置这些提醒。</li><li>导出记录时，文件保存在您选择的位置，由您自行保管；导入时，应用只读取您选择的那一个文件。</li><li>分享和打印只在您点按时进行，内容交给您选择的应用或打印服务。</li><li>检查更新时，应用会读取 GitHub 上发布的最新版本号，不发送任何个人信息；下载更新由手机浏览器完成。</li><li>页面中的外部链接会用手机浏览器打开，之后的访问适用该网站自己的隐私规则。</li><li>删除数据：在系统设置中清除本应用的数据，或卸载应用。</li></ul>", [{ t: "知道了" }]);
+    bsheet("隐私说明", '<span class="sh-ill">' + MASC({ hold: "heart", mood: "happy" }) + "</span>" + "<p>本应用不需要注册账号，不收集、不上传任何个人信息，也不包含广告或统计分析工具。</p><ul><li>出生日期、勾选记录、收藏、字号和外观设置只保存在这台手机的应用数据中。</li><li>通知权限只用于在接种和儿保日期的前 3 天和当天提醒；手机重启后，应用会重新设置这些提醒。</li><li>导出记录时，文件保存在您选择的位置，由您自行保管；导入时，应用只读取您选择的那一个文件。</li><li>分享和打印只在您点按时进行，内容交给您选择的应用或打印服务。</li><li>检查更新时，应用会读取 GitHub 上发布的最新版本号，不发送任何个人信息；下载更新由手机浏览器完成。</li><li>页面中的外部链接会用手机浏览器打开，之后的访问适用该网站自己的隐私规则。</li><li>删除数据：在系统设置中清除本应用的数据，或卸载应用。</li></ul>", [{ t: "知道了" }]);
   }
   function exportRec() {
     var data = {}; try { for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k && k.indexOf("hb:") === 0 && k !== "hb:pos") data[k] = localStorage.getItem(k); } } catch (e) {}
@@ -3312,7 +3440,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   };
   function updPending() { var u = null; try { u = JSON.parse(localStorage.getItem("hb:upd") || "null"); } catch (e) {} var A = window.HBApp, cur = A && A.version ? +A.version() : 0; return u && u.latest > cur ? u : null; }
   function updDot() {
-    var u = updPending(), t = document.querySelector('.tabbar a[data-tab="rec"]'); if (t) t.classList.toggle("dot", !!u);
+    var u = updPending(), t = document.querySelector('.tabbar a[data-tab="rec"]'); if (t) t.classList.toggle("dot", !!u || !seenNew());
     var r = document.querySelector("[data-x='update']"); if (r) { r.classList.toggle("dot", !!u); var sm = r.querySelector("small"); if (sm) sm.textContent = u ? "新版本 " + tname(u) + " 可以更新" : "当前版本 " + vname(window.HBApp && HBApp.version ? HBApp.version() : 0); }
   }
   window.HB_UPDDOT = updDot;
@@ -3405,6 +3533,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
       var lb = e.target.nextElementSibling; if (lb && lb.tagName === "LABEL") { lb.classList.remove("just"); void lb.offsetWidth; lb.classList.add("just"); setTimeout(function () { lb.classList.remove("just"); }, 400); } } });
 
   }
+  window.HB_NOTE = function () { showNote(); }; window.HB_PRIVACY = function () { showPrivacy(); };
   window.HB = { APP: APP, getBirth: getBirth, ageOf: ageOf, stats: stats, mtitle: mtitle, addM: addM, fmtD: fmtD, care: function () { return CARE; }, snack: snack, sheet: bsheet, loadView: loadView, esc: esc, nextOf: nextOf, mascot: MASC, confetti: confetti, cur: function () { return cur; }, enhance: enhance, show: show, setBirth: setBirth, eventsFor: eventsFor, buildToday: buildToday, buildRec: buildRec, sync: function () { var bb = getBirth(); if (bb) syncApp(bb.d); }, haptic: function () { try { HBApp.haptic(); } catch (e) {} } };
 })();
 
@@ -3957,7 +4086,8 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var gs = itemsOf(m), s = H.stats(m), b = H.getBirth();
     var head = '<div class="qb-nav"><button type="button" class="qb-ar" data-qm="' + (m - 1) + '"' + (m <= 0 ? " disabled" : "") + ' aria-label="上一个月"><i class="ic ar-l"></i></button><div class="qb-t"><span class="qb-m">' + HB_MONSTER.svg({ color: "mint", stage: HB_MONSTER.stageOf(m), hold: propFor(m), mood: s[1] && s[0] === s[1] ? "happy" : "open", flat: true }) + "</span><b>满 " + m + " 个月</b><small>" + (b ? dShort(H.addM(b.d, m)) + " · " : "") + '已勾选 <em class="qb-n">' + s[0] + " / " + s[1] + '</em></small></div><button type="button" class="qb-ar" data-qm="' + (m + 1) + '"' + (m >= last ? " disabled" : "") + ' aria-label="下一个月"><i class="ic ar-r"></i></button></div>';
     var body = gs.length ? gs.map(function (g, gi) { return '<section class="qb-g"><p class="qb-gh"><b>' + H.esc(g.n) + '</b><button type="button" class="qb-all" data-g="' + gi + '">' + (g.it.every(function (x) { return x.on; }) ? "全部取消" : "这一组全选") + "</button></p>" + g.it.map(function (x) { return '<label class="qb-i"><input type="checkbox" data-qk="' + x.k + '"' + (x.on ? " checked" : "") + "><span>" + H.esc(x.t) + "</span></label>"; }).join("") + "</section>"; }).join("") : '<p class="r-note">这个月还没有可勾选的项目。</p>';
-    return head + '<div class="qb-body">' + body + '</div><p class="qb-go"><a href="#m' + m + '">打开满 ' + m + " 个月这一页</a></p>";
+    var allOn = s[1] && s[0] === s[1];
+    return head + '<p class="qb-allm"><button type="button" class="qb-mall" data-m="' + m + '">' + (allOn ? "这个月全部取消" : "这个月全部勾上") + '</button><small>之后可以逐项修改</small></p><div class="qb-body">' + body + '</div><p class="qb-go"><a href="#m' + m + '">打开满 ' + m + " 个月这一页</a></p>";
   }
   function quickOpen(m) {
     var b = H.getBirth(), last = b ? Math.min(36, Math.max(0, H.ageOf(b.d).m)) : 36; m = Math.max(0, Math.min(last, m));
@@ -4396,13 +4526,14 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     h += '<nav class="jr-date"><button type="button" data-day="-1" aria-label="前一天"><i class="ic ar-l"></i></button><label><b>' + (isToday ? "今天 · " : "") + wd(k) + '</b><input type="date" data-pick value="' + k + '" max="' + dk(Date.now()) + '"></label><button type="button" data-day="1" aria-label="后一天"' + (isToday ? " disabled" : "") + '><i class="ic ar-r"></i></button></nav>';
     var ag = ageAt(k);
     if (ag || !isToday) h += '<p class="jr-age">' + (ag ? '<button type="button" data-tomon="' + ag.m + '"><span>' + svgM({ stage: MS.stageOf(ag.m), hold: window.HB_PROP ? HB_PROP(ag.m) : "", flat: true }) + "</span>这一天满 <b>" + ag.m + "</b> 个月" + (ag.d ? " " + ag.d + " 天" : "") + '<i class="ic ar-r" aria-hidden="true"></i></button>' : "") + (isToday ? "" : '<button type="button" class="jr-today" data-today>回到今天</button>') + "</p>";
-    h += '<div class="jr-pane">' + [["day", "这一天"], ["w", "近 7 天"], ["m", H.getBirth() ? "按月龄" : "近 30 天"], ["g", "生长"]].map(function (x) { return '<button type="button" data-pane="' + x[0] + '"' + (PANE === x[0] ? ' class="on"' : "") + ">" + x[1] + "</button>"; }).join("") + "</div>";
+    h += '<div class="jr-pane">' + [["day", "这一天"], ["w", "近 7 天"], ["m", H.getBirth() ? "按月龄" : "近 30 天"], ["g", "生长"]].concat(foodNear() ? [["f", "辅食"]] : []).map(function (x) { return '<button type="button" data-pane="' + x[0] + '"' + (PANE === x[0] ? ' class="on"' : "") + ">" + x[1] + "</button>"; }).join("") + "</div>";
     if (PANE === "day") h += dayPane(k, s, ref, isToday);
     else if (PANE === "g") h += growPane();
+    else if (PANE === "f") h += foodPane();
     else if (PANE === "w") { var a7 = ageM(Date.now()), k7 = lastKeys(7); h += compareCard(k7.slice(0, 6), lastKeys(13).slice(0, 6), "和再往前 6 天比", "前 6 天"); h += trendPane(k7, a7 === null ? null : Math.floor(a7), "近 7 天", true); }
     else h += monthPane();
     if (window.HBApp && HBApp.setJournalReminders) h += remindCard();
-    h += '<section class="card jr-more"><h2>手帐数据</h2><div class="r-btns"><button type="button" class="btn" data-x="csv">导出 CSV 表格</button><button type="button" class="btn ghost" data-x="share">分享这周小结</button></div><div class="r-btns jr-mg"><button type="button" class="btn ghost" data-x="mgout">导出给家人合并</button><button type="button" class="btn ghost" data-x="mgin">合并家人的手帐</button></div><button type="button" class="jr-visit" data-x="visit"><span>' + svgM({ hold: "thermo", stage: 2 }) + '</span><span><b>儿保随访时给医生看</b><small>近两周的吃睡、尿布、体温、生长和想问的问题，整理成一页</small></span><i class="ic ar-r" aria-hidden="true"></i></button><div hidden></div><p class="r-note">手帐数据只保存在这台手机上，也会包含在「记录 › 备份记录」导出的文件里。参考范围只用来看大概是否合理，不是达标考核；有疑虑请咨询儿保医生。</p><details class="jr-src"><summary>参考来源</summary><p>睡眠时长：世界卫生组织（WHO）《5 岁以下儿童身体活动、久坐行为和睡眠指南》。喂奶次数、湿尿布：美国疾病控制与预防中心（CDC）母乳喂养指引。配方奶量与发热就医：美国儿科学会（AAP）HealthyChildren。生长曲线：WHO 儿童生长标准；国内儿保使用国家卫生健康委《7 岁以下儿童生长标准》，数值略有差异。辅食逐样添加与观察：WHO 婴幼儿喂养指导、AAP。</p></details><button type="button" class="jr-off" data-x="off">关闭手帐</button></section>';
+    h += '<section class="card jr-more"><h2>手帐数据</h2><div class="r-btns"><button type="button" class="btn" data-x="csv">导出 CSV 表格</button><button type="button" class="btn ghost" data-x="share">分享这周小结</button></div><div class="r-btns jr-mg"><button type="button" class="btn ghost" data-x="mgout">发给家人合并</button><button type="button" class="btn ghost" data-x="mgin">合并家人的手帐</button></div><button type="button" class="jr-visit" data-x="visit"><span>' + svgM({ hold: "thermo", stage: 2 }) + '</span><span><b>儿保随访时给医生看</b><small>近两周的吃睡、尿布、体温、生长和想问的问题，整理成一页</small></span><i class="ic ar-r" aria-hidden="true"></i></button><div hidden></div><p class="r-note">手帐数据只保存在这台手机上，也会包含在「记录 › 备份记录」导出的文件里。参考范围只用来看大概是否合理，不是达标考核；有疑虑请咨询儿保医生。</p><details class="jr-src"><summary>参考来源</summary><p>睡眠时长：世界卫生组织（WHO）《5 岁以下儿童身体活动、久坐行为和睡眠指南》。喂奶次数、湿尿布：美国疾病控制与预防中心（CDC）母乳喂养指引。配方奶量与发热就医：美国儿科学会（AAP）HealthyChildren。生长曲线：WHO 儿童生长标准；国内儿保使用国家卫生健康委《7 岁以下儿童生长标准》，数值略有差异。辅食逐样添加与观察：WHO 婴幼儿喂养指导、AAP。</p></details><button type="button" class="jr-off" data-x="off">关闭手帐</button></section>';
     J.innerHTML = h; wire(J);
   }
   function intro() {
@@ -4619,6 +4750,41 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var html = '<div class="jr-vs">' + d.map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("") + '</div><p class="jr-hint">' + (sx ? "百分位按 WHO 儿童生长标准估算，" : "") + "数据来自手帐记录，以医生的测量和评估为准。</p>";
     H.sheet("给医生看的小结", "<dl class=\"jr-vsl\">" + html.replace('<div class="jr-vs">', "").replace("</div><p", "</dl><p"), [{ t: "关闭", ghost: true }, { t: "分享", f: function () { try { HBApp.share("儿保随访小结", d.map(function (r) { return r[0] + "：" + r[1]; }).join("\n")); } catch (e) {} } }]);
   }
+  // ---------- 辅食清单: what has been tried, what hasn't, what caused trouble ----------
+  var FOODS = [
+    ["谷物", ["米粉", "粥", "软面条", "燕麦", "小米", "馒头"]],
+    ["蔬菜", ["南瓜", "胡萝卜", "西兰花", "土豆", "红薯", "菠菜", "豌豆", "西红柿"]],
+    ["水果", ["苹果", "香蕉", "梨", "牛油果", "蓝莓", "木瓜", "橙子"]],
+    ["肉蛋鱼", ["猪肉", "鸡肉", "牛肉", "蛋黄", "全蛋", "鱼", "虾"]],
+    ["豆、奶与其他", ["豆腐", "酸奶", "奶酪", "花生酱", "芝麻酱"]]
+  ];
+  var ALLERGEN = /蛋|花生|鱼|虾|面|小麦|豆|奶|酪|芝麻|坚果/;
+  function foodNear() { var a = ageM(Date.now()); return (a !== null && a >= 5) || EV.some(function (e) { return e.k === "food"; }); }
+  function foodStat(name) {
+    var fs = EV.filter(function (e) { return e.k === "food" && e.v.name && (e.v.name.indexOf(name) >= 0 || name.indexOf(e.v.name) >= 0); });
+    var rs = EV.filter(function (e) { return e.k === "react" && e.v.food && (e.v.food.indexOf(name) >= 0 || name.indexOf(e.v.food) >= 0); });
+    return { n: fs.length, first: fs.length ? fs[0].t : 0, bad: rs.filter(function (r) { return !r.v.ok; }), ok: rs.some(function (r) { return r.v.ok; }), fs: fs };
+  }
+  function foodPane() {
+    var known = {}, tried = 0, bad = 0, h = "";
+    FOODS.forEach(function (g) { g[1].forEach(function (f) { known[f] = 1; var st = foodStat(f); if (st.n) tried++; if (st.bad.length) bad++; }); });
+    var other = {}; EV.forEach(function (e) { if (e.k !== "food" || !e.v.name || e.v.name === "辅食") return; var hit = Object.keys(known).some(function (f) { return e.v.name.indexOf(f) >= 0 || f.indexOf(e.v.name) >= 0; }); if (!hit) other[e.v.name] = 1; });
+    var ok = Object.keys(other); ok.forEach(function (f) { var st = foodStat(f); tried++; if (st.bad.length) bad++; });
+    h += '<section class="card jr-fl"><div class="fl-h"><span class="fl-m">' + svgM({ hold: "spoon", mood: "happy", flat: false }) + "</span><div><b>辅食清单</b><small>已尝试 " + tried + " 种" + (bad ? " · 有过反应 " + bad + " 种" : "") + '</small></div></div><p class="fl-lg"><i class="t"></i>吃过<i class="b"></i>有过反应<i class="n"></i>还没吃过<i class="a"></i>常见致敏食物</p>';
+    FOODS.forEach(function (g) {
+      h += '<p class="fl-g">' + g[0] + '</p><div class="fl-c">' + g[1].map(function (f) { var st = foodStat(f), cls = st.bad.length ? "b" : st.n ? "t" : "n"; return '<button type="button" class="fl-i ' + cls + (ALLERGEN.test(f) ? " a" : "") + '" data-fd="' + esc(f) + '"><b>' + esc(f) + "</b><small>" + (st.bad.length ? "有过反应" : st.n ? dk(st.first).slice(5).replace("-", "/") + " 起 · " + st.n + " 次" : "点一下记第一次") + "</small></button>"; }).join("") + "</div>";
+    });
+    if (ok.length) h += '<p class="fl-g">其他吃过的</p><div class="fl-c">' + ok.map(function (f) { var st = foodStat(f); return '<button type="button" class="fl-i ' + (st.bad.length ? "b" : "t") + '" data-fd="' + esc(f) + '"><b>' + esc(f) + "</b><small>" + dk(st.first).slice(5).replace("-", "/") + " 起 · " + st.n + " 次</small></button>"; }).join("") + "</div>";
+    h += '<p class="r-note">一次只加一种新食物，观察几天再加下一种；常见致敏食物同样可以按这个节奏逐一尝试。孩子有湿疹或已知过敏时，先听儿保医生的安排。</p></section>';
+    return h;
+  }
+  function foodSheet(f) {
+    var st = foodStat(f);
+    if (!st.n) { open("food"); setTimeout(function () { var i = document.querySelector('.sheet-m [data-f="name"]'); if (i) { i.value = f; i.dispatchEvent(new Event("input", { bubbles: true })); } }, 30); return; }
+    var body = '<ul class="fl-hist">' + st.fs.slice().reverse().slice(0, 12).map(function (e) { return "<li><time>" + dk(e.t).slice(5).replace("-", "/") + "</time>" + esc(e.v.name) + (e.v.amt ? " · " + esc(e.v.amt) : "") + (e.v.first ? "<em>第一次</em>" : "") + "</li>"; }).join("") + "</ul>" + (st.bad.length ? '<p class="jr-note" style="--jc:#C96B5B">' + st.bad.map(function (r) { return dk(r.t).slice(5).replace("-", "/") + " " + esc((r.v.s || []).join("、") + (r.v.txt ? "，" + r.v.txt : "")); }).join("<br>") + "</p>" : st.ok ? '<p class="jr-hint">观察期内没有异常。</p>' : "");
+    H.sheet(f, body, [{ t: "关闭", ghost: true }, { t: "再记一次", f: function () { open("food"); setTimeout(function () { var i = document.querySelector('.sheet-m [data-f="name"]'); if (i) { i.value = f; i.dispatchEvent(new Event("input", { bubbles: true })); } }, 30); } }]);
+  }
+  document.addEventListener("click", function (e) { var b = e.target.closest && e.target.closest("#journal [data-fd]"); if (!b) return; H.haptic(); foodSheet(b.getAttribute("data-fd")); });
   function growPane() {
     var sx = ls("hb:jr:sex"), b = H.getBirth(), W = window.HB_WHO, h = "";
     h += '<section class="card jr-gh"><p>性别（用于对照 WHO 生长曲线）</p>' + radio("gsex", [["m", "男孩"], ["f", "女孩"]], sx || "") + '<button type="button" class="btn" data-k="grow">记录一次测量</button></section>';
@@ -4684,8 +4850,9 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   // two phones, one journal: each exports a file, the other merges it in; the same record is never counted twice
   function mergeOut() {
     var d = new Date();
-    try { HBApp.saveFile("养小怪兽手帐合并-" + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + ".json", JSON.stringify({ app: "growth-handbook-journal", v: 1, at: d.toISOString(), ev: EV })); } catch (e) { H.snack("这台设备不能导出文件"); return; }
-    H.snack("导出后把文件发给家人，在对方的手帐里点「合并家人的手帐」");
+    var nm = "养小怪兽手帐合并-" + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + ".json", body = JSON.stringify({ app: "growth-handbook-journal", v: 1, at: d.toISOString(), ev: EV });
+    try { if (HBApp.shareFile) HBApp.shareFile(nm, body); else HBApp.saveFile(nm, body); } catch (e) { H.snack("这台设备不能导出文件"); return; }
+    H.snack(HBApp.shareFile ? "选择微信或其他应用发给家人；对方在手帐里点「合并家人的手帐」" : "导出后把文件发给家人，在对方的手帐里点「合并家人的手帐」");
   }
   function sameEv(a, b) { return a.k === b.k && Math.abs(a.t - b.t) < 2 * MIN && JSON.stringify(a.v || {}) === JSON.stringify(b.v || {}); }
   function mergeIn(list) {
@@ -4903,6 +5070,223 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   };
   // after switching, the new look says hello once on Today
   try { if (sessionStorage.getItem("hb:iphello")) { sessionStorage.removeItem("hb:iphello"); setTimeout(function () { H.snack("已换成" + (cur === "eye" ? "独眼款" : "圆眼款") + "形象"); if (H.confetti) H.confetti(); }, 900); } } catch (e) {}
+})();
+
+(function () {
+  // How the app hangs together, visible everywhere: four areas (今天 · 手帐 · 目录 · 记录), the 目录 split into
+  // three shelves (月份 · 主题 · 说明), a breadcrumb at the top of every page, a whole-book map one tap away,
+  // and 记录 split into 进度 · 收藏 · 设置. Also the first-run step that marks earlier months as done in one go.
+  var H = window.HB, MS = window.HB_MONSTER; if (!H || !H.APP || !MS) return;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
+  function ss(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } }
+  function M(o) { return MS.svg(Object.assign({ color: "mint", stage: 2, flat: true }, o)); }
+  function babyM() { var b = H.getBirth(); return b ? Math.max(0, Math.min(36, H.ageOf(b.d).m)) : null; }
+  var esc = H.esc;
+
+  // ---------- the parts of the book ----------
+  var TOPIC = [["nodes", "star"], ["health", "heart"], ["boards", "block"], ["acts", "ball"], ["tools", "crayon"]];
+  var INFO = [["guide", "book"], ["sources", "lens"]];
+  var EXTRA = [["new", "这一版更新了什么", "star", "当前版本的新功能和改动"], ["note", "使用前须知", "note", "这本手册能做什么、不能做什么"], ["privacy", "隐私说明", "heart", "所有记录只保存在这台手机上"]];
+  var REF = {}; // titles and one-line descriptions, read from the handbook's own reference list
+  function readRef() {
+    document.querySelectorAll("#home-ref a[href^='#']").forEach(function (a) {
+      var id = a.getAttribute("href").slice(1), t = a.querySelector("b,strong,h3"), sm = a.querySelector("small,p,span:last-child");
+      var txt = a.textContent.replace(/\s+/g, " ").trim().replace(/^\d{2}/, "");
+      var title = (document.getElementById(id) || {}).getAttribute ? document.getElementById(id).getAttribute("data-title") : "";
+      REF[id] = { t: title || (t ? t.textContent.trim() : txt), d: title && txt.indexOf(title) === 0 ? txt.slice(title.length).trim() : sm ? sm.textContent.trim() : "" };
+    });
+  }
+  function titleOf(id) { var v = document.getElementById(id); return (REF[id] && REF[id].t) || (v && v.getAttribute("data-title")) || id; }
+  function shelfOf(id) { if (/^m\d+$/.test(id)) return "m"; if (INFO.some(function (x) { return x[0] === id; })) return "i"; if (TOPIC.some(function (x) { return x[0] === id; })) return "t"; return ""; }
+  var SHN = { m: "月份", t: "主题", i: "说明" };
+  function areaOf(id) { if (id === "today" || id === "journal" || id === "rec") return id; if (id === "search") return "book"; return "book"; }
+
+  // ---------- 目录: three shelves ----------
+  var HOME = document.getElementById("home");
+  function curShelf() { return ss("hb:shelf") || "m"; }
+  function setShelf(s, noScroll) {
+    if (!HOME) return; ss("hb:shelf", s); HOME.setAttribute("data-shelf", s);
+    HOME.querySelectorAll(".shelf button").forEach(function (b) { var on = b.getAttribute("data-s") === s; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); });
+    if (!noScroll) window.scrollTo(0, 0);
+  }
+  window.HB_SHELF = function (s) { setShelf(s); if (location.hash !== "#home") location.hash = "home"; };
+  function card(id, prop, n, title, desc, extra) {
+    return '<a class="sh-c" href="#' + id + '"' + (extra || "") + '><span class="sh-n">' + n + '</span><span class="sh-m">' + M({ hold: prop, mood: "open" }) + '</span><span class="sh-t"><b>' + esc(title) + "</b><small>" + esc(desc || "") + '</small></span><i class="ic ar-r" aria-hidden="true"></i></a>';
+  }
+  function buildShelves() {
+    if (!HOME || HOME.querySelector(".shelf")) return; readRef();
+    var nm = 37, bar = '<nav class="shelf" role="tablist" aria-label="目录分区">' + [["m", "月份", nm + " 站", "book"], ["t", "主题", TOPIC.length + " 个专题", "lens"], ["i", "说明", (INFO.length + EXTRA.length) + " 篇", "note"]].map(function (x) { return '<button type="button" role="tab" data-s="' + x[0] + '"><span class="shf-m">' + M({ hold: x[3] }) + "</span><b>" + x[1] + "</b><small>" + x[2] + "</small></button>"; }).join("") + "</nav>";
+    var tp = '<section class="shelf-p" data-s="t"><p class="shp-h">按主题查：同一件事，从出生到 3 岁放在一起看</p>' + TOPIC.map(function (x, i) { return card(x[0], x[1], "0" + (i + 1), titleOf(x[0]), REF[x[0]] && REF[x[0]].d); }).join("") + "</section>";
+    var ip = '<section class="shelf-p" data-s="i"><p class="shp-h">说明与资料：怎么用这本手册，内容从哪里来</p>' + INFO.map(function (x, i) { return card(x[0], x[1], "0" + (i + 1), titleOf(x[0]), REF[x[0]] && REF[x[0]].d); }).join("") + EXTRA.map(function (x, i) { return card("", x[2], "0" + (INFO.length + i + 1), x[1], x[3], ' data-ex="' + x[0] + '"' + (x[0] === "new" && window.HB_SEENNEW && !HB_SEENNEW() ? ' data-dot="1"' : "")); }).join("") + '<div class="shp-more"></div></section>';
+    HOME.insertAdjacentHTML("afterbegin", bar);
+    HOME.insertAdjacentHTML("beforeend", tp + ip);
+    // the handbook's own about text and notes live on the 说明 shelf
+    var more = HOME.querySelector(".shelf-p[data-s=i] .shp-more");
+    ["h-about", "cover", "note"].forEach(function (c) { var el = HOME.querySelector(":scope > ." + c); if (el && more) more.appendChild(el); });
+    HOME.querySelectorAll(".shelf button").forEach(function (b) { b.addEventListener("click", function () { H.haptic(); setShelf(b.getAttribute("data-s")); }); });
+    HOME.querySelectorAll("[data-ex]").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); var x = a.getAttribute("data-ex"); if (x === "new" && window.HB_SHOWNEW) { HB_SHOWNEW(); a.removeAttribute("data-dot"); } else if (x === "note" && window.HB_NOTE) HB_NOTE(); else if (x === "privacy" && window.HB_PRIVACY) HB_PRIVACY(); }); });
+    setShelf(curShelf(), true);
+    // the map is drawn later by another part of the app; the shelf bar always stays on top
+    new MutationObserver(function () { var sb = HOME.querySelector(":scope > .shelf"), la = HOME.querySelector(":scope > .sh-last"); if (sb && HOME.firstElementChild !== sb) HOME.insertBefore(sb, HOME.firstChild); if (la && sb && sb.nextElementSibling !== la) sb.insertAdjacentElement("afterend", la); }).observe(HOME, { childList: true });
+  }
+
+  // ---------- where am I: a breadcrumb on every page, and the area colour on the bars ----------
+  function crumbFor(v) {
+    var id = v.id, sh = shelfOf(id); if (!sh && id !== "search") return "";
+    var me = /^m\d+$/.test(id) ? "满 " + id.slice(1) + " 个月" : titleOf(id);
+    return '<nav class="crumb" aria-label="当前位置"><a href="#home" data-cr="">目录</a>' + (sh ? '<i aria-hidden="true">›</i><a href="#home" data-cr="' + sh + '">' + SHN[sh] + "</a>" : "") + '<i aria-hidden="true">›</i><b>' + esc(me) + '</b><span class="cr-sec"></span><button type="button" class="cr-map" data-map>全书结构</button></nav>';
+  }
+  function putCrumb(v) {
+    if (!v || v.querySelector(":scope > .crumb")) return; var h = crumbFor(v); if (!h) return;
+    v.insertAdjacentHTML("afterbegin", h);
+    v.querySelectorAll(".crumb [data-cr]").forEach(function (a) { a.addEventListener("click", function (e) { var s = a.getAttribute("data-cr"); if (s) setShelf(s, true); }); });
+  }
+  // the section being read shows after the page name
+  var secT = 0;
+  function sections(v) {
+    if (!v) return [];
+    if (/^m\d+$/.test(v.id)) { var out = []; v.querySelectorAll(".dnav a[href^='#']").forEach(function (a) { var t = document.getElementById(a.getAttribute("href").slice(1)); if (t) out.push([t, a.textContent.replace(/^[A-F]/, "").trim(), a.getAttribute("href").slice(1)]); }); return out; }
+    return [].slice.call(v.querySelectorAll(".sec[id] > .h2, .sec[id] > h2")).map(function (h) { var s = h.closest(".sec"); return [s, h.textContent.trim(), s.id]; });
+  }
+  function trackSec() {
+    clearTimeout(secT); secT = setTimeout(function () {
+      var v = H.cur(); if (!v) return; var cr = v.querySelector(":scope > .crumb .cr-sec"); if (!cr) return;
+      var secs = sections(v), cur = null; secs.forEach(function (x) { if (x[0].getBoundingClientRect().top < 160) cur = x; });
+      var t = cur ? cur[1] : ""; if (cr.textContent !== (t ? "· " + t : "")) cr.textContent = t ? "· " + t : "";
+      // remember where reading stopped, for 「接着读」
+      if (shelfOf(v.id)) ls("hb:lastRead", JSON.stringify({ id: v.id, t: /^m\d+$/.test(v.id) ? "满 " + v.id.slice(1) + " 个月" : titleOf(v.id), s: t, sid: cur ? cur[2] : "", at: Date.now() }));
+    }, 140);
+  }
+  window.addEventListener("scroll", trackSec, { passive: true });
+  function onShow() {
+    var v = H.cur(); if (!v) return; var id = v.id;
+    document.documentElement.setAttribute("data-area", areaOf(id));
+    if (id === "home") { buildShelves(); var sb = HOME && HOME.querySelector(".shelf"); if (sb && HOME.firstElementChild !== sb) HOME.insertBefore(sb, HOME.firstChild); lastReadChip(); }
+    else putCrumb(v);
+    trackSec(); newDot();
+  }
+  window.addEventListener("hashchange", function () { setTimeout(onShow, 80); });
+  // views load their content later; the crumb goes back on top when they do
+  var enh0 = window.HB_ENH;
+  window.HB_ENH = function (R) { if (enh0) enh0(R); var v = H.cur(); if (v) putCrumb(v); };
+
+  // 「接着读」: one chip on the shelf bar, back to the page and section where reading stopped
+  function lastReadChip() {
+    if (!HOME) return; var o = null; try { o = JSON.parse(ls("hb:lastRead") || "null"); } catch (e) {}
+    var old = HOME.querySelector(".sh-last"); if (old) old.remove(); if (!o || !document.getElementById(o.id)) return;
+    var bar = HOME.querySelector(".shelf"); if (!bar) return;
+    bar.insertAdjacentHTML("afterend", '<a class="sh-last" href="#' + o.id + '" data-sid="' + esc(o.sid || "") + '"><span>' + M({ hold: "book", mood: "happy", stage: 1 }) + "</span><small>接着读</small><b>" + esc(o.t) + (o.s ? " · " + esc(o.s) : "") + '</b><i class="ic ar-r" aria-hidden="true"></i></a>');
+    var a = HOME.querySelector(".sh-last"); a.addEventListener("click", function () { var sid = a.getAttribute("data-sid"); if (!sid) return; setTimeout(function () { var t = document.getElementById(sid); if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 120, behavior: reduce ? "auto" : "smooth" }); }, 700); });
+  }
+
+  // ---------- the whole-book map ----------
+  function mapBody() {
+    var v = H.cur(), id = v ? v.id : "", bm = babyM(), area = areaOf(id), jr = ls("hb:jr:on") === "1";
+    var here = '<em class="mp-here">你在这里</em>';
+    var tiles = [["today", "今天", "sun", "每天先看这里"], jr ? ["journal", "手帐", "note", "喂奶、睡眠、尿布"] : null, ["home", "目录", "book", "月份 · 主题 · 说明"], ["rec", "记录", "crayon", "进度 · 收藏 · 设置"]].filter(Boolean);
+    var h = '<p class="mp-l">四个部分，底部标签随时切换</p><div class="mp-tiles">' + tiles.map(function (x) { var on = area === x[0] || (x[0] === "home" && area === "book"); return '<a class="mp-t' + (on ? " on" : "") + '" href="#' + x[0] + '" data-go="' + x[0] + '"><span>' + M({ hold: x[2] === "sun" ? "star" : x[2], mood: on ? "happy" : "open" }) + "</span><b>" + x[1] + "</b><small>" + x[3] + "</small>" + (on ? here : "") + "</a>"; }).join("") + "</div>";
+    h += '<p class="mp-l">目录 › 月份<small>点任意一个月</small></p><div class="mp-ms">';
+    for (var m = 0; m <= 36; m++) { var st = H.stats(m), done = st[1] && st[0] === st[1]; h += '<a href="#m' + m + '" data-go="m' + m + '" class="' + (id === "m" + m ? "cur " : "") + (bm === m ? "now " : "") + (done ? "done" : "") + '">' + m + (bm === m ? "<i>现在</i>" : "") + "</a>"; }
+    h += "</div>";
+    h += '<p class="mp-l">目录 › 主题</p><div class="mp-list">' + TOPIC.map(function (x) { return '<a href="#' + x[0] + '" data-go="' + x[0] + '" class="' + (id === x[0] ? "cur" : "") + '"><span>' + M({ hold: x[1] }) + "</span>" + esc(titleOf(x[0])) + (id === x[0] ? here : "") + "</a>"; }).join("") + "</div>";
+    h += '<p class="mp-l">目录 › 说明</p><div class="mp-list">' + INFO.map(function (x) { return '<a href="#' + x[0] + '" data-go="' + x[0] + '" class="' + (id === x[0] ? "cur" : "") + '"><span>' + M({ hold: x[1] }) + "</span>" + esc(titleOf(x[0])) + (id === x[0] ? here : "") + "</a>"; }).join("") + "</div>";
+    var secs = sections(v);
+    if (secs.length) h += '<p class="mp-l">这一页的部分<small>' + esc(/^m\d+$/.test(id) ? "满 " + id.slice(1) + " 个月" : titleOf(id)) + '</small></p><div class="mp-secs">' + secs.map(function (x) { return '<a href="#" data-sec="' + esc(x[2]) + '">' + esc(x[1]) + "</a>"; }).join("") + "</div>";
+    return h;
+  }
+  function openMap() {
+    if (!HOME || !HOME.querySelector(".shelf")) { readRef(); }
+    H.sheet("全书结构", '<div class="mp">' + mapBody() + "</div>", [{ t: "关闭", ghost: true }]);
+    var sh = document.querySelector(".sheet-m"); if (!sh) return;
+    sh.addEventListener("click", function (e) {
+      var a = e.target.closest("[data-go],[data-sec]"); if (!a) return; e.preventDefault(); H.haptic();
+      var go = a.getAttribute("data-go"), sec = a.getAttribute("data-sec"); history.back();
+      setTimeout(function () {
+        if (sec) { var t = document.getElementById(sec); if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 110, behavior: reduce ? "auto" : "smooth" }); return; }
+        var sh2 = shelfOf(go); if (sh2) ss("hb:shelf", sh2); location.hash = go;
+      }, 300);
+    });
+  }
+  window.HB_MAP = openMap;
+  document.addEventListener("click", function (e) { var b = e.target.closest && e.target.closest("[data-map]"); if (!b) return; e.preventDefault(); openMap(); });
+  // a map button in the top bar, next to search
+  var srch = document.querySelector(".top .srch");
+  if (srch && !document.querySelector(".top .tmap")) srch.insertAdjacentHTML("beforebegin", '<button type="button" class="tmap" data-map aria-label="全书结构"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="8" height="7" rx="2"/><rect x="13" y="4" width="8" height="7" rx="2"/><rect x="3" y="13" width="8" height="7" rx="2"/><rect x="13" y="13" width="8" height="7" rx="2"/></svg></button>');
+
+  // ---------- 记录: three panes instead of one long page ----------
+  var RP = { stk: "p", months: "p", "t-link": "p", fav: "f" };
+  function recPane(R) {
+    var cur = ss("hb:rpane") || "p", seg = R.querySelector(".rp-seg");
+    if (!seg) {
+      var head = R.querySelector(":scope > .t-h");
+      var html = '<nav class="rp-seg seg" role="tablist" aria-label="记录分区">' + [["p", "进度"], ["f", "收藏"], ["s", "设置与帮助"]].map(function (x) { return '<button type="button" role="tab" data-rp="' + x[0] + '">' + x[1] + "</button>"; }).join("") + "</nav>";
+      if (head) head.insertAdjacentHTML("afterend", html); else R.insertAdjacentHTML("afterbegin", html);
+      seg = R.querySelector(".rp-seg");
+      seg.querySelectorAll("button").forEach(function (b) { b.addEventListener("click", function () { ss("hb:rpane", b.getAttribute("data-rp")); H.haptic(); recPane(R); window.scrollTo(0, 0); }); });
+    }
+    [].forEach.call(R.children, function (c) {
+      if (c.classList.contains("t-h") || c.classList.contains("rp-seg")) return;
+      var p = c.classList.contains("r-stk") || c.classList.contains("r-months") || c.classList.contains("t-link") ? "p" : c.classList.contains("r-fav") ? "f" : "s";
+      c.setAttribute("data-rpane", p); c.hidden = p !== cur;
+    });
+    seg.querySelectorAll("button").forEach(function (b) { var on = b.getAttribute("data-rp") === cur; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); b.classList.toggle("dot", b.getAttribute("data-rp") === "s" && !!R.querySelector(".r-ver.dot,.r-new.dot")); });
+  }
+  var rw = window.HB_REC_WIRE;
+  window.HB_REC_WIRE = function (R) { if (rw) rw(R); recPane(R); };
+  function newDot() { var t = document.querySelector('.tabbar a[data-tab="rec"]'); if (t && window.HB_SEENNEW && !HB_SEENNEW()) t.classList.add("dot"); }
+  window.HB_NEWDOT = function () { if (window.HB_UPDDOT) HB_UPDDOT(); var R = document.getElementById("rec"); if (R && R.querySelector(".rp-seg")) recPane(R); };
+
+  // ---------- first run: the months before today, marked as done in one go ----------
+  function pastLeft(bm) { var n = 0, last = -1; for (var m = 0; m < bm; m++) { var st = H.stats(m); if (st[1] && st[0] < st[1]) { n++; if (last < 0 || m > last) last = m; } } return [n, last]; }
+  function keysOf(m, cb) {
+    var v = document.getElementById("m" + m); if (!v) return cb([]);
+    var ins = v.querySelectorAll('input[data-mk^="' + m + ':"]'); if (ins.length) return cb([].map.call(ins, function (i) { return i.getAttribute("data-mk"); }));
+    var ld = v.querySelector(".mv-load"); if (!ld) return cb([]);
+    fetch(ld.getAttribute("data-src")).then(function (r) { return r.text(); }).then(function (t) { var out = [], re = /data-mk="(\d+:[^"]+)"/g, x; while ((x = re.exec(t))) out.push(x[1]); cb(out); }).catch(function () { cb([]); });
+  }
+  function bulkPast(bm, kinds, done) {
+    var all = [], m = 0;
+    (function next() {
+      if (m >= bm) { var keep = all.filter(function (k) { var t = k.split(":")[1] || "", c = t.charAt(0); return (kinds.c && c === "c") || (kinds.a && c === "a") || (kinds.v && (c === "v" || c === "k")); }); done(keep); return; }
+      keysOf(m++, function (ks) { all = all.concat(ks); next(); });
+    })();
+  }
+  var tw = window.HB_TODAY_WIRE;
+  window.HB_TODAY_WIRE = function (T, b, a, mm) {
+    if (tw) tw(T, b, a, mm);
+    var bm = babyM(); if (!b || bm === null || bm < 1 || ls("hb:bulkDone")) return;
+    var left = pastLeft(bm); if (!left[0]) { ls("hb:bulkDone", "1"); return; }
+    var bk = T.querySelector(".t-back"); if (bk) bk.hidden = true;
+    var html = '<section class="card t-bulk"><div class="tb-h"><span class="tb-mm">' + M({ hold: "crayon", mood: "happy", stage: MS.stageOf(bm), flat: false }) + '</span><div><small>第一次使用 · 一步就好</small><b>宝宝已经满 ' + bm + ' 个月了</b></div></div><p>前面 ' + (bm === 1 ? "满 0 个月" : "0–" + (bm - 1) + " 个月") + '的观察清单、活动和接种儿保，可以先<b>一次全部标为已完成</b>。之后发现哪一项其实没做过，再到那个月取消勾选就好。</p><div class="tb-k">' + [["c", "观察清单"], ["a", "本月做过的活动"], ["v", "接种与儿保"]].map(function (x) { return '<label><input type="checkbox" data-bk="' + x[0] + '" checked><span>' + x[1] + "</span></label>"; }).join("") + '</div><div class="tb-b"><button type="button" class="btn" data-bulk="all">全部标为已完成</button><button type="button" class="btn ghost" data-bulk="self">我自己逐月看</button></div><button type="button" class="tb-skip" data-bulk="skip">先跳过，以后在「记录 › 进度」里补看</button></section>';
+    var anchor = T.querySelector(".t-h"); if (anchor) anchor.insertAdjacentHTML("afterend", html); else T.insertAdjacentHTML("afterbegin", html);
+    var c = T.querySelector(".t-bulk");
+    c.querySelectorAll("[data-bulk]").forEach(function (bt) { bt.addEventListener("click", function () {
+      var x = bt.getAttribute("data-bulk"); H.haptic();
+      if (x === "skip") { ls("hb:bulkDone", "skip"); c.remove(); if (bk) bk.hidden = false; H.snack("可以随时在「记录 › 进度」里补看"); return; }
+      if (x === "self") { ls("hb:bulkDone", "self"); c.remove(); if (bk) bk.hidden = false; if (window.HB_QUICK) HB_QUICK(left[1] >= 0 ? 0 : 0); return; }
+      var kinds = {}; c.querySelectorAll("[data-bk]").forEach(function (i) { kinds[i.getAttribute("data-bk")] = i.checked; });
+      if (!kinds.c && !kinds.a && !kinds.v) { H.snack("至少选一类"); return; }
+      bt.disabled = true; bt.textContent = "正在标记…";
+      bulkPast(bm, kinds, function (keys) {
+        var n = window.HB_BULK ? HB_BULK(keys, true) : 0; ls("hb:bulkDone", "1"); ls("hb:bulkKeys", JSON.stringify(keys));
+        if (H.confetti && !reduce) H.confetti();
+        H.snack("已把前面 " + bm + " 个月的 " + n + " 项标为已完成", function () { HB_BULK(keys, false); ls("hb:bulkDone", null); H.buildToday(); });
+        H.buildToday(); if (window.HB_TABDRAW) HB_TABDRAW();
+      });
+    }); });
+  };
+
+  // ---------- the quick past-month panel: the whole month in one tap ----------
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest(".qb-mall"); if (!b) return; e.preventDefault();
+    var m = +b.getAttribute("data-m"), v = document.getElementById("m" + m); if (!v) return;
+    var keys = [].map.call(v.querySelectorAll('input[data-mk^="' + m + ':"]'), function (i) { return i.getAttribute("data-mk"); });
+    var allOn = keys.every(function (k) { var i = v.querySelector('input[data-mk="' + k + '"]'); return i && i.checked; });
+    HB_BULK(keys, !allOn); H.haptic(); if (window.HB_QUICK) HB_QUICK(m);
+  });
+
+  [0, 500, 1400].forEach(function (t) { setTimeout(onShow, t); });
 })();
 </script>
 <script>if("serviceWorker" in navigator&&!window.HBApp&&/^https?:$/.test(location.protocol)){addEventListener("load",function(){navigator.serviceWorker.register("sw.js")})}</script>

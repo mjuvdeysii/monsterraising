@@ -17,3 +17,15 @@ open MonsterRaising.xcodeproj
 ```
 
 在 Xcode 的 Signing & Capabilities 里选择自己的开发团队，连接 iPhone 后运行即可。
+
+## 发布到 TestFlight（准备好 Apple 开发者账号后）
+
+1. 在 App Store Connect 新建 App，套装 ID 填 `cn.growthhandbook.app`（小组件为 `cn.growthhandbook.app.widget`，构建时自动注册）。
+2. 在 App Store Connect › 用户和访问 › 集成 › App Store Connect API 新建一个「管理」权限的密钥，下载 `.p8` 文件。
+3. 在 GitHub 仓库 Settings › Secrets and variables › Actions 添加四个密钥：
+   - `APPLE_TEAM_ID`：开发者账号的团队 ID
+   - `ASC_KEY_ID`、`ASC_ISSUER_ID`：上一步密钥页面显示的 Key ID 和 Issuer ID
+   - `ASC_KEY_P8`：`.p8` 文件内容的 base64（`base64 -i AuthKey_XXXX.p8`）
+4. 在 Actions › iOS to TestFlight 点 Run workflow。完成后，构建会出现在 App Store Connect 的 TestFlight 里，邀请家人用 TestFlight 安装。
+
+版本号与安卓一致采用「主版本.次版本.构建号」，主版本和次版本来自仓库根目录的 `VERSION` 文件。

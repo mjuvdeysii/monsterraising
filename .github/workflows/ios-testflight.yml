@@ -1,0 +1,58 @@
+name: iOS to TestFlight
+# Run by hand (Actions › iOS to TestFlight › Run workflow) once an Apple Developer account is set up.
+# Needs these repository secrets: APPLE_TEAM_ID, ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8 (the App Store Connect API
+# key file, base64). Signing is automatic: Xcode creates the certificate and profiles with that key.
+on:
+  workflow_dispatch:
+jobs:
+  testflight:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check the Apple secrets
+        env:
+          T: ${{ secrets.APPLE_TEAM_ID }}
+          K: ${{ secrets.ASC_KEY_ID }}
+          I: ${{ secrets.ASC_ISSUER_ID }}
+          P: ${{ secrets.ASC_KEY_P8 }}
+        run: |
+          if [ -z "$T" ] || [ -z "$K" ] || [ -z "$I" ] || [ -z "$P" ]; then
+            echo "::error title=Apple account needed::Add APPLE_TEAM_ID, ASC_KEY_ID, ASC_ISSUER_ID and ASC_KEY_P8 under Settings > Secrets and variables > Actions. See ios/README.md."; exit 1; fi
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate the project with the team and version
+        env:
+          TEAM: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          V="$(tr -d ' \r\n' < VERSION)"
+          sed -i '' "s/MARKETING_VERSION: \".*\"/MARKETING_VERSION: \"$V.${{ github.run_number }}\"/; s/CURRENT_PROJECT_VERSION: \".*\"/CURRENT_PROJECT_VERSION: \"${{ github.run_number }}\"/; s/DEVELOPMENT_TEAM: \".*\"/DEVELOPMENT_TEAM: \"$TEAM\"/" ios/project.yml
+          python3 ios/scripts/prepare_assets.py
+          (cd ios && xcodegen generate --spec project.yml)
+      - name: Write the API key
+        env:
+          P: ${{ secrets.ASC_KEY_P8 }}
+          K: ${{ secrets.ASC_KEY_ID }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/keys"
+          echo "$P" | base64 -d > "$RUNNER_TEMP/keys/AuthKey_$K.p8"
+      - name: Archive and upload to TestFlight
+        env:
+          TEAM: ${{ secrets.APPLE_TEAM_ID }}
+          K: ${{ secrets.ASC_KEY_ID }}
+          I: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          set -o pipefail
+          AUTH="-allowProvisioningUpdates -authenticationKeyPath $RUNNER_TEMP/keys/AuthKey_$K.p8 -authenticationKeyID $K -authenticationKeyIssuerID $I"
+          xcodebuild -project ios/MonsterRaising.xcodeproj -scheme MonsterRaising -configuration Release \
+            -destination 'generic/platform=iOS' -archivePath "$RUNNER_TEMP/MR.xcarchive" DEVELOPMENT_TEAM="$TEAM" $AUTH archive | tail -20
+          cat > "$RUNNER_TEMP/export.plist" <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>method</key><string>app-store-connect</string>
+            <key>destination</key><string>upload</string>
+            <key>teamID</key><string>$TEAM</string>
+            <key>signingStyle</key><string>automatic</string>
+          </dict></plist>
+          PLIST
+          xcodebuild -exportArchive -archivePath "$RUNNER_TEMP/MR.xcarchive" -exportOptionsPlist "$RUNNER_TEMP/export.plist" -exportPath "$RUNNER_TEMP/out" $AUTH | tail -20

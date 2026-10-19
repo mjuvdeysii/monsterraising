@@ -112,6 +112,7 @@ final class Bridge: NSObject, WKScriptMessageHandler {
             haptic:function(){post("haptic");},
             share:function(t,x){post("share",{t:String(t||""),x:String(x||"")});},
             saveFile:function(n,t){post("save",{n:String(n||"file.txt"),t:String(t||"")});},
+            shareFile:function(n,t){post("save",{n:String(n||"file.txt"),t:String(t||"")});},
             openFile:function(){post("open");},
             openUrl:function(u){post("url",{u:String(u||"")});},
             setDark:function(d){post("dark",{d:!!d});},

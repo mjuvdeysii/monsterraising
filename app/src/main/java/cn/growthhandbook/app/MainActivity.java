@@ -357,6 +357,23 @@ public class MainActivity extends Activity {
         @JavascriptInterface
         public void saveFile(String name, String text) { a.saveFile(name, text); }
 
+        // hand a file straight to WeChat, mail or another app, without saving it somewhere first
+        @JavascriptInterface
+        public void shareFile(String name, String text) {
+            try {
+                java.io.File dir = new java.io.File(a.getCacheDir(), "share");
+                dir.mkdirs();
+                java.io.File f = new java.io.File(dir, (name == null ? "file.txt" : name).replace("/", "-"));
+                try (java.io.FileOutputStream o = new java.io.FileOutputStream(f)) { o.write((text == null ? "" : text).getBytes("UTF-8")); }
+                android.net.Uri uri = androidx.core.content.FileProvider.getUriForFile(a, a.getPackageName() + ".files", f);
+                Intent i = new Intent(Intent.ACTION_SEND).setType(f.getName().endsWith(".csv") ? "text/csv" : "application/json")
+                        .putExtra(Intent.EXTRA_STREAM, uri).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                a.runOnUiThread(() -> a.startActivity(Intent.createChooser(i, "发送给")));
+            } catch (Exception e) {
+                a.runOnUiThread(() -> a.js("HB_FILE_DONE&&HB_FILE_DONE('save',false)"));
+            }
+        }
+
         @JavascriptInterface
         public void openFile() { a.openFile(); }
 

@@ -47,16 +47,50 @@
             android:ellipsize="end" />
     </LinearLayout>
 </LinearLayout>
-    <TextView
-        android:id="@+id/w_jr"
+    <LinearLayout
+        android:id="@+id/w_jrrow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColor="@color/w_ink2"
-        android:textSize="12sp"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:visibility="gone" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/w_jrl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/w_ink"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:maxLines="1" />
+        <Chronometer
+            android:id="@+id/w_chr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/w_ink"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/w_jr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/w_ink2"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+        <ImageView
+            android:id="@+id/w_night"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="2dp"
+            android:src="@drawable/w_sleep"
+            android:scaleType="fitCenter"
+            android:background="@drawable/wb_sleep"
+            android:contentDescription="夜间模式" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/w_btns"
         android:layout_width="match_parent"

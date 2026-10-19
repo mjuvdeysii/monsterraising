@@ -2417,6 +2417,72 @@ html.nt-on,html.nt-on body{overflow:hidden}
 .jr-vsl dt{color:var(--ink2);white-space:nowrap}
 .jr-vsl dd{margin:0;line-height:1.55}
 .t-visit{margin-top:-6px!important;border-color:color-mix(in srgb,#D9614E 40%,var(--line))!important}
+/* 出处只在页末说一次 */
+.pv-foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:22px 0 8px;padding:12px 2px 0;border-top:1px dashed var(--line);font-family:var(--f-ui);font-size:12px;line-height:1.6;color:var(--ink2)}
+.pv-foot span{flex-basis:100%}
+.pv-foot button,.pv-foot a{min-height:32px;padding:0;border:0;background:none;color:var(--ink2);font:inherit;text-decoration:underline;text-underline-offset:3px}
+.jr-src{margin:12px 0 0;font-family:var(--f-ui);font-size:12px;color:var(--ink2)}
+.jr-src summary{cursor:pointer;min-height:32px;display:flex;align-items:center;list-style:none}
+.jr-src summary::-webkit-details-marker{display:none}
+.jr-src summary::after{content:"›";margin-left:6px;transition:transform .2s}
+.jr-src[open] summary::after{transform:rotate(90deg)}
+.jr-src p{margin:4px 0 0;line-height:1.7}
+/* 亲喂：左右两侧 */
+.jr-sides{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.jr-sd{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:8px;align-items:center;min-height:64px;padding:8px 12px;border-radius:16px;border:2px solid var(--line);background:var(--surface);color:var(--ink2);text-align:left;font-family:var(--f-ui)}
+.jr-sd b{grid-row:1/3;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--tint);font-size:20px;color:var(--ink2)}
+.jr-sd span{font-size:12px}
+.jr-sd em{font-style:normal;font-family:var(--f-num);font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
+.jr-sd.on{border-color:#E58C8C;background:color-mix(in srgb,#E58C8C 16%,var(--surface));color:var(--ink)}
+.jr-sd.on b{background:#E58C8C;color:#fff}
+@media (prefers-reduced-motion:no-preference){.jr-run:not(.paused) .jr-sd.on b{animation:jrPulse 1.8s ease-in-out infinite}}
+@keyframes jrPulse{50%{box-shadow:0 0 0 6px color-mix(in srgb,#E58C8C 25%,transparent)}}
+.jr-sides.big .jr-sd{min-height:84px;border-color:#3D3236;background:#221B24;color:#B9A68C}
+.jr-sides.big .jr-sd b{width:52px;height:52px;font-size:26px;background:#2E2530;color:#B9A68C}
+.jr-sides.big .jr-sd em{font-size:20px;color:#EADBC4}
+.jr-sides.big .jr-sd.on{border-color:#E0B860;background:#3A2E22;color:#F0DDBE}
+.jr-sides.big .jr-sd.on b{background:#E0B860;color:#1D1715}
+.nt-run .jr-sides{grid-column:1/3;margin-top:10px}
+.jr-start{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 12px}
+.jr-start.one{grid-template-columns:1fr}
+.jr-sb{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:132px;border-radius:22px;border:2px solid color-mix(in srgb,#E58C8C 45%,var(--line));background:color-mix(in srgb,#E58C8C 9%,var(--surface));color:var(--ink);font-family:var(--f-ui);font-size:15px}
+.jr-sb b{display:grid;place-items:center;width:62px;height:62px;border-radius:50%;background:#E58C8C;color:#fff;font-size:30px}
+.jr-sb.sug{border-color:#E58C8C;box-shadow:0 4px 0 color-mix(in srgb,#E58C8C 35%,transparent)}
+.jr-sb i{position:absolute;top:8px;right:10px;font-style:normal;font-size:11px;padding:2px 8px;border-radius:999px;background:#E58C8C;color:#fff}
+.jr-start.one .jr-sb{border-color:color-mix(in srgb,#6F8FD8 45%,var(--line));background:color-mix(in srgb,#6F8FD8 9%,var(--surface));min-height:110px;font-size:16px}
+.jr-sbm{display:block;width:64px;height:58px}.jr-sbm .mascot{display:block;width:100%;height:100%}
+.jr-sb:active{transform:scale(.97)}
+.jr-sretro{margin:0}
+.nt-side{position:relative}
+.nt-side b{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#3A2E22;color:#F0DDBE;font-size:28px;margin-bottom:4px}
+.nt-side.sug{border-color:#7A5E36!important}
+/* 新食物观察 */
+.jr-watch{border-color:color-mix(in srgb,#C96B5B 40%,var(--line))!important}
+.jw-r{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px dashed var(--line)}
+.jw-r:first-of-type{border-top:0}
+.jw-m{display:block;width:42px;height:38px;flex:none}.jw-m .mascot{display:block;width:100%;height:100%}
+.jw-r>div:nth-child(2){flex:1;min-width:0}
+.jw-r b{display:block;font-size:15px}
+.jw-r small{display:block;font-family:var(--f-ui);font-size:12px;color:var(--ink2)}
+.jw-r em{display:inline-block;margin-top:3px;font-style:normal;font-family:var(--f-ui);font-size:12px;padding:1px 8px;border-radius:999px;background:var(--tint)}
+.jw-r.bad em{background:var(--err-l);color:var(--err)}
+.jw-r.ok em{background:color-mix(in srgb,#7DBB6A 18%,var(--surface))}
+.jw-b{display:flex;flex-direction:column;gap:6px}
+.jw-b button{min-height:36px;padding:0 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font-family:var(--f-ui);font-size:13px;white-space:nowrap}
+.jw-b button[data-wok]{border-color:#7DBB6A}
+.jr-ms button.on{border-color:#C96B5B;background:color-mix(in srgb,#C96B5B 14%,var(--surface))}
+.jr-urgent{margin:6px 0;padding:10px 12px;border-radius:12px;background:var(--err-l);color:var(--err);font-family:var(--f-ui);font-size:14px;font-weight:600;line-height:1.5}
+.jr-urgent[hidden]{display:none}
+.jr-mg{margin-top:8px}
+/* 独眼款：贴纸、回顾卡用它自己的赤陶、金黄、灰绿配色，彩虹只在得到的贴纸上露一角 */
+html[data-ip="eye"] .sk.got .sk-f{background:linear-gradient(180deg,#FBF4E8,#F3EADB);border-color:color-mix(in srgb,#C8795B 45%,var(--line));box-shadow:0 3px 0 color-mix(in srgb,#8FAE8B 35%,transparent)}
+html[data-ip="eye"] .sk.got .sk-f::before{content:"";position:absolute;left:50%;top:6%;width:62%;aspect-ratio:2/1;transform:translateX(-50%);border-radius:999px 999px 0 0;background:radial-gradient(circle at 50% 100%,transparent 52%,#7FA3C9 52% 61%,#E0A94A 61% 71%,#C8795B 71% 80%,transparent 80%);opacity:.5;pointer-events:none}
+html[data-ip="eye"] .sk-f{border-radius:18px 18px 12px 12px}
+html[data-ip="eye"] .sk-b{background:color-mix(in srgb,#C8795B 14%,var(--surface));border-color:color-mix(in srgb,#C8795B 40%,transparent)}
+html[data-ip="eye"] .sk-bar{background:color-mix(in srgb,#8FAE8B 22%,var(--line))}
+html[data-ip="eye"] .jr-rev{background:color-mix(in srgb,#8FAE8B 10%,var(--surface))!important}
+html[data-ip="eye"] .jr-rev.done{border-color:color-mix(in srgb,#C8795B 55%,var(--line))!important;box-shadow:0 3px 0 color-mix(in srgb,#C8795B 25%,transparent)}
+html[data-ip="eye"] .ip-c.on{border-color:#C8795B;background:color-mix(in srgb,#C8795B 10%,var(--surface))}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kFFF6E6:#473c29;--kE8EEDB:#333826;--kDDE8CF:#2b3222;--kF5E0E4:#41252a;--kFFF3C4:#3a3521;--kDFC6C3:#523d3a;--kF1EEE8:#3b372d;--kF5E0E0:#412525;--kDFCAC3:#52403a;--kF5E4E0:#412a25;--kDFCFC3:#52443a;--kF5E7E0:#412e25;--kDFD3C3:#52483a;--kF5EBE0:#413425;--kDFD8C3:#524c3a;--kF5EEE0:#413825;--kF5F1E0:#413c25;--kDDDFC3:#50523a;--kF5F5E0:#414125;--kD8DFC3:#4c523a;--kF1F5E0:#3c4125;--kD3DFC3:#48523a;--kEEF5E0:#384125;--kCFDFC3:#44523a;--kEBF5E0:#344125;--kCADFC3:#40523a;--kE7F5E0:#2e4125;--kC6DFC3:#3d523a;--kE4F5E0:#2a4125;--kC3DFC6:#3a523d;--kF7EFE2:#433826;--kE0F5E0:#254125;--kC3DFCA:#3a5240;--kE0F5E4:#25412a;--kC3DFCF:#3a5244;--kE0F5E7:#25412e;--kC3DFD3:#3a5248;--kE0F5EB:#254134;--kC3DFD8:#3a524c;--kE0F5EE:#254138;--kC3DFDD:#3a5250;--kE0F5F1:#25413c;--kC3DDDF:#3a5052;--kC99A6B:#47382a;--kE0F5F5:#254141;--kC3D8DF:#3a4c52;--kE0F1F5:#253c41;--kC3D3DF:#3a4852;--kE0EEF5:#253841;--kC3CFDF:#3a4452;--kE0EBF5:#253441;--kC3CADF:#3a4052;--kE0E7F5:#252e41;--kC3C6DF:#3a3d52;--kE0E4F5:#252a41;--kC6C3DF:#3d3a52;--kE0E0F5:#252541;--kCFE6D4:#223025;--kE4E0F5:#2a2541;--kCFC3DF:#443a52;--kE7E0F5:#2e2541;--kD3C3DF:#483a52;--kFFF3D6:#413925;--kEBE0F5:#342541;--kD8C3DF:#4c3a52;--kEEE0F5:#382541;--kF1E0F5:#3c2541;--kDFC3DD:#523a50;--kF5E0F5:#412541;--kF5E0F1:#41253c;--kDFC3D3:#523a48;--kDCEBF5:#24343f;--kF5E0EE:#412538;--kF5E0EB:#412534;--kDFC3CA:#523a40;--kF5E0E7:#41252e;--kDFC3C6:#523a3d;--kF7D8DF:#3f242a;--kFBF7EF:#493f2a;--kF3EEE6:#3e372a;--kA8D5B5:#354e3c;--kFFF6D6:#413b25;--kEDF2F7:#2c3843;--kF7F0E4:#433926;--kEEF5EE:#2f3f2f;--kFFF8EC:#4a3e2a;--kE9D8B8:#594c33;--kEFE3CC:#372f1f;--kF4F1EA:#3f392d;--kF3D9DF:#3d2329;--kF8EDED:#452a2a;--kEDC9C9:#351e1e;--kF0E6DB:#3b3025;--kEAF4F0:#2d3f38;--kEAF1EE:#2f3b36;--kDCE6D2:#2a3023;--kF6EAEA:#422a2a;--kEADAD1:#342822;--kF6F0EA:#42362a;--kEAE6D1:#343122;--kE2DECB:#2c2a20;--kF2EAF6:#3a2a42;--kEAD1EA:#342234;--kF5EAE6:#412f28;--kE2DECA:#534f3c;--kEAF6EE:#2a4232;--kD1EAE2:#22342e;--kD4E2D7:#252e27;--kF2EEE6:#3d372b;--kF6E9EC:#432a2f;--kFBF3E4:#453b27;--kF8EEED:#452d2a;--kEDCFC9:#35221e;--kF0E9DB:#3b3325;--kE8F1F4:#2b3a3f;--kF6F2EA:#423a2a;--kEAEAD1:#343422;--kE2E2CB:#2c2c20;--kEAF0F6:#2a3642;--kD1D5EA:#222534;--kD3D9E3:#24282e;--kF4EAF6:#3e2a42;--kEAD1E6:#342231;--kF5E9E6:#412d28;--kE2CAD4:#533c45;--kEAF6F0:#2a4236;--kD1EAE6:#223431;--kD4E2D9:#252e28;--kE8EEF2:#2c363d;--kF8F0ED:#45322a;--kEDD5C9:#35251e;--kF0ECDB:#3b3725;--kF6EEEA:#42322a;--kEAE2D1:#342e22;--kF6F4EA:#423e2a;--kE6EAD1:#313422;--kDEE2CB:#2a2c20;--kF6EAF6:#422a42;--kEAD1E2:#34222e;--kF3F5E6:#3e4128;--kE2D1CA:#53433c;--kEAF6F2:#2a423a;--kD1EAEA:#223434;--kD4E2DB:#252e29;--kF6F6EA:#42422a;--kE2EAD1:#2e3422;--kDAE2CB:#282c20;--kEAECF6:#2a2e42;--kD5D1EA:#252234;--kD3D3E3:#24242e;--kF6EAF4:#422a3e;--kEAD1DE:#34222b;--kEFF5E6:#374128;--kCADAE2:#3c4b53;--kEAF6F4:#2a423e;--kD1E6EA:#223134;--kD4E2DE:#252e2b;--kDCE8F2:#24323d;--kF8F4ED:#453c2a;--kEDE1C9:#352d1e;--kECF0DB:#373b25;--kF6EAF2:#422a3a;--kEAD1DA:#342228;--kEAEAF6:#2a2a42;--kDAD1EA:#282234;--kD6D3E3:#26242e;--kF1F5E6:#3b4128;--kCAE2CC:#3c533e;--kEAF6F6:#2a4242;--kD1E2EA:#222e34;--kD4E2E0:#252e2c;--kF8F6ED:#45412a;--kEDE7C9:#35311e;--kE9F0DB:#333b25;--kF2E7D2:#3a3221;--kF1D9C9:#36281f;--kF2F6EA:#3a422a;--kDAEAD1:#283422;--kD2E2CB:#242c20;--kECEAF6:#2e2a42;--kDED1EA:#2b2234;--kD9D3E3:#28242e;--kF6EAF0:#422a36;--kEAD1D5:#342225;--kEAF4F6:#2a3e42;--kD1DEEA:#222b34;--kD4E2E2:#252e2e;--kE3EEF3:#28373f;--kE8F1E4:#303c2a;--kF8F8ED:#45452a;--kEDEDC9:#35351e;--kE6F0DB:#303b25;--kE6F1F4:#293b40;--kF0F6EA:#36422a;--kD5EAD1:#253422;--kCFE2CB:#232c20;--kF6EAEE:#422a32;--kEAD1D1:#342222;--kE8F5E6:#2c4128;--kCAE2D3:#3c5344;--kEAF2F6:#2a3a42;--kD1DAEA:#222834;--kD4E0E2:#252c2e;--kF6F8ED:#41452a;--kE7EDC9:#31351e;--kE2F0DB:#2c3b25;--kF4F6EA:#3e422a;--kDEEAD1:#2b3422;--kEEF6EA:#32422a;--kD1EAD1:#223422;--kCBE2CB:#202c20;--kF6EAEC:#422a2e;--kEAD5D1:#342522;--kE6F5E8:#28412c;--kCAE2D6:#3c5347;--kD4DEE2:#252b2e;--kECF6EA:#2e422a;--kD1EAD5:#223425;--kCBE2CF:#202c23;--kE1D3E3:#2d242e;--kE6F5EA:#28412f;--kE2CAD7:#533c48;--kEAEEF6:#2a3242;--kD1D1EA:#222234;--kD4DBE2:#25292e;--kF2F8ED:#37452a;--kDBEDC9:#29351e;--kDBF0DB:#253b25;--kEAF6EA:#2a422a;--kD1EADA:#223428;--kCBE2D2:#202c24;--kF6ECEA:#422e2a;--kEADED1:#342b22;--kECF5E6:#324128;--kE2D8CA:#53493c;--kD4D9E2:#25282e;--kF0F8ED:#32452a;--kD5EDC9:#25351e;--kDBF0DF:#253b29;--kCCE0CC:#3e513e;--kE9F5E6:#2d4128;--kD4E2CA:#45533c;--kE3D3E1:#2e242d;--kD4D7E2:#25272e;--kEEF8ED:#2d452a;--kCFEDC9:#22351e;--kDBF0E2:#253b2c;--kCBE2DA:#202c28;--kE3D3DE:#2e242b;--kD7CAE2:#483c53;--kD4D4E2:#25252e;--kEDF8ED:#2a452a;--kC9EDC9:#1e351e;--kDBF0E6:#253b30;--kCCE0D3:#3e5144;--kE3D3DB:#2e2429;--kE6F5E6:#284128;--kD5E2CA:#46533c;--kEEEAF6:#322a42;--kE2D1EA:#2e2234;--kD7D4E2:#27252e;--kEDF8EE:#2a452d;--kC9EDCF:#1e3522;--kDBF0E9:#253b33;--kCCE0D6:#3e5147;--kE3EFF3:#28393f;--kEAF6EC:#2a422e;--kD1EADE:#22342b;--kCBE2E2:#202c2c;--kE3D3D9:#2e2428;--kF0EAF6:#362a42;--kE6D1EA:#312234;--kD9D4E2:#28252e;--kFFF3E6:#473929;--kDBD4E2:#29252e;--kEDF8F2:#2a4537;--kC9EDDB:#1e3529;--kDBF0F0:#253b3b;--kF5F1E8:#413a2a;--kDED4E2:#2b252e;--kEDF8F4:#2a453c;--kC9EDE1:#1e352d;--kDBECF0:#25373b;--kCCE0E0:#3e5151;--kE3D6D3:#2e2624;--kE6F5F1:#28413b;--kCAD3E2:#3c4453;--kE0D4E2:#2c252e;--kEDF8F6:#2a4541;--kC9EDE7:#1e3531;--kDBE9F0:#25333b;--kCBD2E2:#20242c;--kE3D9D3:#2e2824;--kE6EEF5:#283641;--kCAE0E2:#3c5153;--kE2D4E2:#2e252e;--kEDF8F8:#2a4545;--kC9EDED:#1e3535;--kDBE6F0:#25303b;--kCCDAE0:#3e4b51;--kC9C2B4:#47433c;--kE3DBD3:#2e2924;--kE2D4E0:#2e252c;--kEDF6F8:#2a4145;--kC9E7ED:#1e3135;--kDBE2F0:#252c3b;--kCCD6E0:#3e4751;--kE3DED3:#2e2b24;--kE6E6F5:#282841;--kE2D2CA:#53443c;--kE2D4DE:#2e252b;--kEDF4F8:#2a3c45;--kC9E1ED:#1e2d35;--kDBDFF0:#25293b;--kCFCBE2:#23202c;--kEAE6F5:#2f2841;--kCAD8E2:#3c4953;--kE2D4DB:#2e2529;--kEDF2F8:#2a3745;--kC9DBED:#1e2935;--kDBDBF0:#25253b;--kD2CBE2:#24202c;--kE3E3D3:#2e2e24;--kECE6F5:#322841;--kD4CAE2:#453c53;--kE2D4D9:#2e2528;--kEDF0F8:#2a3245;--kC9D5ED:#1e2535;--kDFDBF0:#29253b;--kD6CBE2:#26202c;--kE1E3D3:#2d2e24;--kEEE6F5:#362841;--kD9E2CA:#4a533c;--kE2D4D7:#2e2527;--kDACBE2:#28202c;--kDEE3D3:#2b2e24;--kE9E6F5:#2d2841;--kE0CAE2:#513c53;--kE2D4D4:#2e2525;--kEDEDF8:#2a2a45;--kC9C9ED:#1e1e35;--kE6DBF0:#30253b;--kD3CCE0:#443e51;--kF3E6F5:#3e2841;--kE2D7D4:#2e2725;--kEEEDF8:#2d2a45;--kCFC9ED:#221e35;--kE9DBF0:#33253b;--kE2CBE2:#2c202c;--kD9E3D3:#282e24;--kE2D9D4:#2e2825;--kF0EDF8:#322a45;--kD5C9ED:#251e35;--kECDBF0:#37253b;--kE2CBDE:#2c202a;--kD6E3D3:#262e24;--kE2DBD4:#2e2925;--kF2EDF8:#372a45;--kDBC9ED:#291e35;--kF0DBF0:#3b253b;--kE2DED4:#2e2b25;--kF4EDF8:#3c2a45;--kE1C9ED:#2d1e35;--kF0DBEC:#3b2537;--kE0CCE0:#513e51;--kD3E3D6:#242e26;--kF5E6F1:#41283b;--kE2E0D4:#2e2c25;--kF6EDF8:#412a45;--kE7C9ED:#311e35;--kF0DBE9:#3b2533;--kE2CBD2:#2c2024;--kD3E3D9:#242e28;--kF5E6EB:#412831;--kE2E2D4:#2e2e25;--kF8EDF8:#452a45;--kEDC9ED:#351e35;--kF0DBE6:#3b2530;--kE0CCDA:#513e4b;--kD3E3DB:#242e29;--kF5E6E8:#41282c;--kE2D3CA:#53443c;--kE0E2D4:#2c2e25;--kF8EDF6:#452a41;--kEDC9E7:#351e31;--kF0DBE2:#3b252c;--kE0CCD6:#513e47;--kE2CBCB:#2c2020;--kF5E6ED:#412834;--kCAE2DE:#3c534f;--kDEE2D4:#2b2e25;--kF8EDF4:#452a3c;--kEDC9E1:#351e2d;--kF0DBDF:#3b2529;--kE0CCD3:#513e44;--kF4E9D4:#3c3322;--kF5E7E6:#412a28;--kD0CAE2:#423c53;--kDBE2D4:#292e25;--kF8EDF2:#452a37;--kEDC9DB:#351e29;--kF0DBDB:#3b2525;--kE0CCCF:#513e41;--kCAE2DF:#3c5350;--kD9E2D4:#282e25;--kBDBDBD:#414141;--kF8EDF0:#452a32;--kEDC9D5:#351e25;--kF0DFDB:#3b2925;--kE2D6CB:#2c2620;--kD3E1E3:#242d2e;--kF5E6E6:#412828;--kE2CACD:#533c3f;--kD7E2D4:#272e25;--kF7E3B8:#322b1c;--kD3DEE3:#242b2e;--kD4E2D4:#252e25;--kF7F1E6:#443a27;--kFFFDF7:#4e462c;--kE8F0E6:#2f3a2c;--kF4F7F2:#384132;--kE8EEF4:#2b353f;--kF6DCE3:#40242c;--kDCE7F6:#243040;--kF4E6C8:#372f1f;--kE7E0F4:#2f2540;--kDCEFE2:#263a2c;--kF6E0D8:#3e2a23;--kEEF4F7:#2d3c43;--kF3E9DA:#3e3323;--kEEF5F2:#2f3f38;--kCFE3EE:#202f37;--kF2F5F8:#303a43;--kF8F3EC:#463a2a;--kF2F6FA:#2c3a48;--kE3DCCB:#2d2920;--kE8EDF4:#2b333f;--kF7EFE3:#433726;--kFFF8EA:#493e29;--kF4EFE6:#403829;--kF3ECF6:#3b2c42;--kDCE4F2:#242d3d;--kEFD5C6:#34261e;--kCBCBE2:#20202c;--kE6D2A8:#564a31;--kD3DBE3:#24292e;--kDBD3E3:#29242e;--kE3D3E3:#2e242e;--kD3E3DE:#242e2b;--kD9CFEA:#282133;--kF5F1E6:#413b28;--kF0F5E6:#394128;--kCADBE2:#3c4c53;--kE2D0CA:#53423c;--kCADCE2:#3c4d53;--kE6F5F3:#28413e;--kE2CFCA:#53413c;--kE6E7F5:#282a41;--kCADDE2:#3c4e53;--kF2E6F5:#3c2841;--kE2CECA:#53403c;--kCADEE2:#3c4f53;--kEBD9CF:#342821;--kF3EAF5:#3d2c41;--kF7F2EA:#443a29;--kF6F1E7:#433a28;--kF4F2EE:#3d3931;--kF6F8F4:#3a4133}}:root[data-theme="dark"]{--kFFF6E6:#473c29;--kE8EEDB:#333826;--kDDE8CF:#2b3222;--kF5E0E4:#41252a;--kFFF3C4:#3a3521;--kDFC6C3:#523d3a;--kF1EEE8:#3b372d;--kF5E0E0:#412525;--kDFCAC3:#52403a;--kF5E4E0:#412a25;--kDFCFC3:#52443a;--kF5E7E0:#412e25;--kDFD3C3:#52483a;--kF5EBE0:#413425;--kDFD8C3:#524c3a;--kF5EEE0:#413825;--kF5F1E0:#413c25;--kDDDFC3:#50523a;--kF5F5E0:#414125;--kD8DFC3:#4c523a;--kF1F5E0:#3c4125;--kD3DFC3:#48523a;--kEEF5E0:#384125;--kCFDFC3:#44523a;--kEBF5E0:#344125;--kCADFC3:#40523a;--kE7F5E0:#2e4125;--kC6DFC3:#3d523a;--kE4F5E0:#2a4125;--kC3DFC6:#3a523d;--kF7EFE2:#433826;--kE0F5E0:#254125;--kC3DFCA:#3a5240;--kE0F5E4:#25412a;--kC3DFCF:#3a5244;--kE0F5E7:#25412e;--kC3DFD3:#3a5248;--kE0F5EB:#254134;--kC3DFD8:#3a524c;--kE0F5EE:#254138;--kC3DFDD:#3a5250;--kE0F5F1:#25413c;--kC3DDDF:#3a5052;--kC99A6B:#47382a;--kE0F5F5:#254141;--kC3D8DF:#3a4c52;--kE0F1F5:#253c41;--kC3D3DF:#3a4852;--kE0EEF5:#253841;--kC3CFDF:#3a4452;--kE0EBF5:#253441;--kC3CADF:#3a4052;--kE0E7F5:#252e41;--kC3C6DF:#3a3d52;--kE0E4F5:#252a41;--kC6C3DF:#3d3a52;--kE0E0F5:#252541;--kCFE6D4:#223025;--kE4E0F5:#2a2541;--kCFC3DF:#443a52;--kE7E0F5:#2e2541;--kD3C3DF:#483a52;--kFFF3D6:#413925;--kEBE0F5:#342541;--kD8C3DF:#4c3a52;--kEEE0F5:#382541;--kF1E0F5:#3c2541;--kDFC3DD:#523a50;--kF5E0F5:#412541;--kF5E0F1:#41253c;--kDFC3D3:#523a48;--kDCEBF5:#24343f;--kF5E0EE:#412538;--kF5E0EB:#412534;--kDFC3CA:#523a40;--kF5E0E7:#41252e;--kDFC3C6:#523a3d;--kF7D8DF:#3f242a;--kFBF7EF:#493f2a;--kF3EEE6:#3e372a;--kA8D5B5:#354e3c;--kFFF6D6:#413b25;--kEDF2F7:#2c3843;--kF7F0E4:#433926;--kEEF5EE:#2f3f2f;--kFFF8EC:#4a3e2a;--kE9D8B8:#594c33;--kEFE3CC:#372f1f;--kF4F1EA:#3f392d;--kF3D9DF:#3d2329;--kF8EDED:#452a2a;--kEDC9C9:#351e1e;--kF0E6DB:#3b3025;--kEAF4F0:#2d3f38;--kEAF1EE:#2f3b36;--kDCE6D2:#2a3023;--kF6EAEA:#422a2a;--kEADAD1:#342822;--kF6F0EA:#42362a;--kEAE6D1:#343122;--kE2DECB:#2c2a20;--kF2EAF6:#3a2a42;--kEAD1EA:#342234;--kF5EAE6:#412f28;--kE2DECA:#534f3c;--kEAF6EE:#2a4232;--kD1EAE2:#22342e;--kD4E2D7:#252e27;--kF2EEE6:#3d372b;--kF6E9EC:#432a2f;--kFBF3E4:#453b27;--kF8EEED:#452d2a;--kEDCFC9:#35221e;--kF0E9DB:#3b3325;--kE8F1F4:#2b3a3f;--kF6F2EA:#423a2a;--kEAEAD1:#343422;--kE2E2CB:#2c2c20;--kEAF0F6:#2a3642;--kD1D5EA:#222534;--kD3D9E3:#24282e;--kF4EAF6:#3e2a42;--kEAD1E6:#342231;--kF5E9E6:#412d28;--kE2CAD4:#533c45;--kEAF6F0:#2a4236;--kD1EAE6:#223431;--kD4E2D9:#252e28;--kE8EEF2:#2c363d;--kF8F0ED:#45322a;--kEDD5C9:#35251e;--kF0ECDB:#3b3725;--kF6EEEA:#42322a;--kEAE2D1:#342e22;--kF6F4EA:#423e2a;--kE6EAD1:#313422;--kDEE2CB:#2a2c20;--kF6EAF6:#422a42;--kEAD1E2:#34222e;--kF3F5E6:#3e4128;--kE2D1CA:#53433c;--kEAF6F2:#2a423a;--kD1EAEA:#223434;--kD4E2DB:#252e29;--kF6F6EA:#42422a;--kE2EAD1:#2e3422;--kDAE2CB:#282c20;--kEAECF6:#2a2e42;--kD5D1EA:#252234;--kD3D3E3:#24242e;--kF6EAF4:#422a3e;--kEAD1DE:#34222b;--kEFF5E6:#374128;--kCADAE2:#3c4b53;--kEAF6F4:#2a423e;--kD1E6EA:#223134;--kD4E2DE:#252e2b;--kDCE8F2:#24323d;--kF8F4ED:#453c2a;--kEDE1C9:#352d1e;--kECF0DB:#373b25;--kF6EAF2:#422a3a;--kEAD1DA:#342228;--kEAEAF6:#2a2a42;--kDAD1EA:#282234;--kD6D3E3:#26242e;--kF1F5E6:#3b4128;--kCAE2CC:#3c533e;--kEAF6F6:#2a4242;--kD1E2EA:#222e34;--kD4E2E0:#252e2c;--kF8F6ED:#45412a;--kEDE7C9:#35311e;--kE9F0DB:#333b25;--kF2E7D2:#3a3221;--kF1D9C9:#36281f;--kF2F6EA:#3a422a;--kDAEAD1:#283422;--kD2E2CB:#242c20;--kECEAF6:#2e2a42;--kDED1EA:#2b2234;--kD9D3E3:#28242e;--kF6EAF0:#422a36;--kEAD1D5:#342225;--kEAF4F6:#2a3e42;--kD1DEEA:#222b34;--kD4E2E2:#252e2e;--kE3EEF3:#28373f;--kE8F1E4:#303c2a;--kF8F8ED:#45452a;--kEDEDC9:#35351e;--kE6F0DB:#303b25;--kE6F1F4:#293b40;--kF0F6EA:#36422a;--kD5EAD1:#253422;--kCFE2CB:#232c20;--kF6EAEE:#422a32;--kEAD1D1:#342222;--kE8F5E6:#2c4128;--kCAE2D3:#3c5344;--kEAF2F6:#2a3a42;--kD1DAEA:#222834;--kD4E0E2:#252c2e;--kF6F8ED:#41452a;--kE7EDC9:#31351e;--kE2F0DB:#2c3b25;--kF4F6EA:#3e422a;--kDEEAD1:#2b3422;--kEEF6EA:#32422a;--kD1EAD1:#223422;--kCBE2CB:#202c20;--kF6EAEC:#422a2e;--kEAD5D1:#342522;--kE6F5E8:#28412c;--kCAE2D6:#3c5347;--kD4DEE2:#252b2e;--kECF6EA:#2e422a;--kD1EAD5:#223425;--kCBE2CF:#202c23;--kE1D3E3:#2d242e;--kE6F5EA:#28412f;--kE2CAD7:#533c48;--kEAEEF6:#2a3242;--kD1D1EA:#222234;--kD4DBE2:#25292e;--kF2F8ED:#37452a;--kDBEDC9:#29351e;--kDBF0DB:#253b25;--kEAF6EA:#2a422a;--kD1EADA:#223428;--kCBE2D2:#202c24;--kF6ECEA:#422e2a;--kEADED1:#342b22;--kECF5E6:#324128;--kE2D8CA:#53493c;--kD4D9E2:#25282e;--kF0F8ED:#32452a;--kD5EDC9:#25351e;--kDBF0DF:#253b29;--kCCE0CC:#3e513e;--kE9F5E6:#2d4128;--kD4E2CA:#45533c;--kE3D3E1:#2e242d;--kD4D7E2:#25272e;--kEEF8ED:#2d452a;--kCFEDC9:#22351e;--kDBF0E2:#253b2c;--kCBE2DA:#202c28;--kE3D3DE:#2e242b;--kD7CAE2:#483c53;--kD4D4E2:#25252e;--kEDF8ED:#2a452a;--kC9EDC9:#1e351e;--kDBF0E6:#253b30;--kCCE0D3:#3e5144;--kE3D3DB:#2e2429;--kE6F5E6:#284128;--kD5E2CA:#46533c;--kEEEAF6:#322a42;--kE2D1EA:#2e2234;--kD7D4E2:#27252e;--kEDF8EE:#2a452d;--kC9EDCF:#1e3522;--kDBF0E9:#253b33;--kCCE0D6:#3e5147;--kE3EFF3:#28393f;--kEAF6EC:#2a422e;--kD1EADE:#22342b;--kCBE2E2:#202c2c;--kE3D3D9:#2e2428;--kF0EAF6:#362a42;--kE6D1EA:#312234;--kD9D4E2:#28252e;--kFFF3E6:#473929;--kDBD4E2:#29252e;--kEDF8F2:#2a4537;--kC9EDDB:#1e3529;--kDBF0F0:#253b3b;--kF5F1E8:#413a2a;--kDED4E2:#2b252e;--kEDF8F4:#2a453c;--kC9EDE1:#1e352d;--kDBECF0:#25373b;--kCCE0E0:#3e5151;--kE3D6D3:#2e2624;--kE6F5F1:#28413b;--kCAD3E2:#3c4453;--kE0D4E2:#2c252e;--kEDF8F6:#2a4541;--kC9EDE7:#1e3531;--kDBE9F0:#25333b;--kCBD2E2:#20242c;--kE3D9D3:#2e2824;--kE6EEF5:#283641;--kCAE0E2:#3c5153;--kE2D4E2:#2e252e;--kEDF8F8:#2a4545;--kC9EDED:#1e3535;--kDBE6F0:#25303b;--kCCDAE0:#3e4b51;--kC9C2B4:#47433c;--kE3DBD3:#2e2924;--kE2D4E0:#2e252c;--kEDF6F8:#2a4145;--kC9E7ED:#1e3135;--kDBE2F0:#252c3b;--kCCD6E0:#3e4751;--kE3DED3:#2e2b24;--kE6E6F5:#282841;--kE2D2CA:#53443c;--kE2D4DE:#2e252b;--kEDF4F8:#2a3c45;--kC9E1ED:#1e2d35;--kDBDFF0:#25293b;--kCFCBE2:#23202c;--kEAE6F5:#2f2841;--kCAD8E2:#3c4953;--kE2D4DB:#2e2529;--kEDF2F8:#2a3745;--kC9DBED:#1e2935;--kDBDBF0:#25253b;--kD2CBE2:#24202c;--kE3E3D3:#2e2e24;--kECE6F5:#322841;--kD4CAE2:#453c53;--kE2D4D9:#2e2528;--kEDF0F8:#2a3245;--kC9D5ED:#1e2535;--kDFDBF0:#29253b;--kD6CBE2:#26202c;--kE1E3D3:#2d2e24;--kEEE6F5:#362841;--kD9E2CA:#4a533c;--kE2D4D7:#2e2527;--kDACBE2:#28202c;--kDEE3D3:#2b2e24;--kE9E6F5:#2d2841;--kE0CAE2:#513c53;--kE2D4D4:#2e2525;--kEDEDF8:#2a2a45;--kC9C9ED:#1e1e35;--kE6DBF0:#30253b;--kD3CCE0:#443e51;--kF3E6F5:#3e2841;--kE2D7D4:#2e2725;--kEEEDF8:#2d2a45;--kCFC9ED:#221e35;--kE9DBF0:#33253b;--kE2CBE2:#2c202c;--kD9E3D3:#282e24;--kE2D9D4:#2e2825;--kF0EDF8:#322a45;--kD5C9ED:#251e35;--kECDBF0:#37253b;--kE2CBDE:#2c202a;--kD6E3D3:#262e24;--kE2DBD4:#2e2925;--kF2EDF8:#372a45;--kDBC9ED:#291e35;--kF0DBF0:#3b253b;--kE2DED4:#2e2b25;--kF4EDF8:#3c2a45;--kE1C9ED:#2d1e35;--kF0DBEC:#3b2537;--kE0CCE0:#513e51;--kD3E3D6:#242e26;--kF5E6F1:#41283b;--kE2E0D4:#2e2c25;--kF6EDF8:#412a45;--kE7C9ED:#311e35;--kF0DBE9:#3b2533;--kE2CBD2:#2c2024;--kD3E3D9:#242e28;--kF5E6EB:#412831;--kE2E2D4:#2e2e25;--kF8EDF8:#452a45;--kEDC9ED:#351e35;--kF0DBE6:#3b2530;--kE0CCDA:#513e4b;--kD3E3DB:#242e29;--kF5E6E8:#41282c;--kE2D3CA:#53443c;--kE0E2D4:#2c2e25;--kF8EDF6:#452a41;--kEDC9E7:#351e31;--kF0DBE2:#3b252c;--kE0CCD6:#513e47;--kE2CBCB:#2c2020;--kF5E6ED:#412834;--kCAE2DE:#3c534f;--kDEE2D4:#2b2e25;--kF8EDF4:#452a3c;--kEDC9E1:#351e2d;--kF0DBDF:#3b2529;--kE0CCD3:#513e44;--kF4E9D4:#3c3322;--kF5E7E6:#412a28;--kD0CAE2:#423c53;--kDBE2D4:#292e25;--kF8EDF2:#452a37;--kEDC9DB:#351e29;--kF0DBDB:#3b2525;--kE0CCCF:#513e41;--kCAE2DF:#3c5350;--kD9E2D4:#282e25;--kBDBDBD:#414141;--kF8EDF0:#452a32;--kEDC9D5:#351e25;--kF0DFDB:#3b2925;--kE2D6CB:#2c2620;--kD3E1E3:#242d2e;--kF5E6E6:#412828;--kE2CACD:#533c3f;--kD7E2D4:#272e25;--kF7E3B8:#322b1c;--kD3DEE3:#242b2e;--kD4E2D4:#252e25;--kF7F1E6:#443a27;--kFFFDF7:#4e462c;--kE8F0E6:#2f3a2c;--kF4F7F2:#384132;--kE8EEF4:#2b353f;--kF6DCE3:#40242c;--kDCE7F6:#243040;--kF4E6C8:#372f1f;--kE7E0F4:#2f2540;--kDCEFE2:#263a2c;--kF6E0D8:#3e2a23;--kEEF4F7:#2d3c43;--kF3E9DA:#3e3323;--kEEF5F2:#2f3f38;--kCFE3EE:#202f37;--kF2F5F8:#303a43;--kF8F3EC:#463a2a;--kF2F6FA:#2c3a48;--kE3DCCB:#2d2920;--kE8EDF4:#2b333f;--kF7EFE3:#433726;--kFFF8EA:#493e29;--kF4EFE6:#403829;--kF3ECF6:#3b2c42;--kDCE4F2:#242d3d;--kEFD5C6:#34261e;--kCBCBE2:#20202c;--kE6D2A8:#564a31;--kD3DBE3:#24292e;--kDBD3E3:#29242e;--kE3D3E3:#2e242e;--kD3E3DE:#242e2b;--kD9CFEA:#282133;--kF5F1E6:#413b28;--kF0F5E6:#394128;--kCADBE2:#3c4c53;--kE2D0CA:#53423c;--kCADCE2:#3c4d53;--kE6F5F3:#28413e;--kE2CFCA:#53413c;--kE6E7F5:#282a41;--kCADDE2:#3c4e53;--kF2E6F5:#3c2841;--kE2CECA:#53403c;--kCADEE2:#3c4f53;--kEBD9CF:#342821;--kF3EAF5:#3d2c41;--kF7F2EA:#443a29;--kF6F1E7:#433a28;--kF4F2EE:#3d3931;--kF6F8F4:#3a4133}</style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <filter id="cut" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/></filter>
@@ -3722,16 +3788,12 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   function pvSheet() {
     H.sheet("内容出处的两种标签", '<p class="pv-row">' + pv("o") + "</p><p>" + PV.o[1] + "：CDC 正式里程碑清单、国家免疫规划接种、国家基本公共卫生服务儿保随访、WHO 年龄组健康行为建议。按机构原文概括，不自行增减。</p>" + '<p class="pv-row">' + pv("f") + "</p><p>" + PV.f[1] + "：六个领域的成人做法、本月活动和活动卡。年龄是可以尝试的参考范围，不是必须达到的时间，也不是官方技能截止目标。</p><p>任何年龄的单项表现均不用于家庭自行诊断。</p>", [{ t: "知道了" }]);
   }
-  document.addEventListener("click", function (e) { var b = e.target.closest && e.target.closest(".pv[data-pv]"); if (!b || b.closest(".sheet-m")) return; e.preventDefault(); pvSheet(); });
+  document.addEventListener("click", function (e) { var b = e.target.closest && e.target.closest(".pv[data-pv],[data-pvm]"); if (!b || b.closest(".sheet-m")) return; e.preventDefault(); pvSheet(); });
   function tagMonth(v) {
     if (v.getAttribute("data-pv")) return; v.setAttribute("data-pv", "1");
     var m = v.getAttribute("data-m"), ed = v.querySelector(".mh .ed");
-    if (ed) ed.insertAdjacentHTML("afterend", '<p class="pv-lg">' + pv("o") + pv("f") + "<small>点标签看区别</small></p>");
-    var put = function (el, k) { if (el && !el.querySelector(".pv")) el.insertAdjacentHTML("beforeend", " " + pv(k)); };
-    v.querySelectorAll(".cdc header h3").forEach(function (h) { put(h, "o"); });
-    v.querySelectorAll(".care > h2").forEach(function (h) { put(h, "o"); });
-    v.querySelectorAll(".who > .lab").forEach(function (h) { put(h, "o"); });
-    v.querySelectorAll(".sec > h2").forEach(function (h) { if (/六个领域|本月活动/.test(h.textContent)) put(h, "f"); });
+    // where the content comes from is said once, in a quiet note at the end of the page, not on every heading
+    if (!v.querySelector(".pv-foot")) { var foot = '<p class="pv-foot"><span>内容出处：里程碑、接种与儿保、健康行为按 CDC、国家免疫规划、国家基本公共卫生服务规范、WHO 等机构原文概括；六个领域的做法和本月活动为家庭实践编排，年龄只是参考。</span><button type="button" class="pv-more" data-pvm>两类内容的区别</button><a href="#sources">来源与置信度</a></p>'; var srcs = v.querySelector(".srcs"); if (srcs) srcs.insertAdjacentHTML("afterend", foot); else v.insertAdjacentHTML("beforeend", foot); }
     // the full vaccine and check-up timetable, one tap from every month's care section
     var care = v.querySelector(".sec.care"); if (care && !care.querySelector(".care-all")) { var h2 = care.querySelector("h2"); (h2 || care).insertAdjacentHTML(h2 ? "afterend" : "afterbegin", '<a class="care-all" href="#nodes-care"><span class="ca-m">' + HB_MONSTER.svg({ color: "mint", stage: HB_MONSTER.stageOf(+m), hold: "star", flat: true }) + '</span><span><b>全部接种安排</b><small>0–36 个月国家免疫规划接种、儿保随访与筛查，一张表看完</small></span><i class="ic ar-r" aria-hidden="true"></i></a>'); }
   }
@@ -3801,7 +3863,6 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   function tagActs(R) {
     within(R, ".ac,.story").forEach(function (a) {
       if (a.getAttribute("data-pv")) return; a.setAttribute("data-pv", "1");
-      var hd = a.querySelector("header > div"); if (hd && !hd.querySelector(".pv")) hd.insertAdjacentHTML("beforeend", '<p class="pv-ac">' + pv("f") + "</p>");
       a.querySelectorAll(".basis .ref").forEach(function (r) { r.classList.add("ref-pill"); });
     });
   }
@@ -4147,7 +4208,8 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     temp: { n: "体温", p: "thermo", c: "#D9614E" },
     grow: { n: "生长", p: "ruler", c: "#8E7BC8" },
     note: { n: "备注", p: "note", c: "#9A8F80" },
-    care: { n: "接种儿保", p: "star", c: "#4E9B5B" }
+    care: { n: "接种儿保", p: "star", c: "#4E9B5B" },
+    react: { n: "辅食观察", p: "spoon", c: "#C96B5B" }
   };
   var WALL = ["nurse", "bottle", "sleep", "diaper", "vitd", "food", "bath", "play", "temp", "grow", "note"];
 
@@ -4215,6 +4277,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
       var tot = r.l + r.r; if (tot > net && tot > 0) { r.l = r.l * net / tot; r.r = r.r * net / tot; }
       ev = add({ k: "nurse", t: r.start, e: end, v: { l: Math.round(r.l / 1000), r: Math.round(r.r / 1000) } });
     }
+    if (k === "nurse") ls("hb:jr:side", r.side);
     delete RUN[k]; save(); H.haptic(); pop(k); refresh();
     H.snack((k === "sleep" ? "记下一段睡眠 " : "记下一次亲喂 ") + dur(net), function () { open(ev.k, ev); }, "修改");
   }
@@ -4253,12 +4316,13 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   function chips(name, list, cur) { return '<div class="jr-chips">' + list.map(function (x) { var v = x[0], l = x[1] || x[0]; return '<button type="button" data-chip="' + name + '" data-v="' + esc(String(v)) + '"' + (String(v) === String(cur) ? ' class="on"' : "") + ">" + esc(String(l)) + "</button>"; }).join("") + "</div>"; }
   function baseT() { var k = curDay(); return k === dk(Date.now()) ? Date.now() : d0(k) + 12 * HR; }
   function open(k, ev) {
+    if (k === "react") { reactSheet(ev ? ev.v.food : "", ev); return; }
     var t0 = ev ? ev.t : baseT(), v = ev ? ev.v : {}, done = function (st, e) { var t = fromInput(st.t) || t0; if (ev) upd(ev.id, function (x) { x.t = t; if (e) { x.e = e.e; x.v = e.v; } }); else { var n = add({ k: k, t: t, e: e && e.e, v: (e && e.v) || {} }); pop(k); } refresh(); H.snack(ev ? "已修改" : "已记录 " + T[k].n); };
     var delBtn = ev ? '<p class="jr-del">' + (T[k].kind !== "timer" && !T[k].once && k !== "grow" ? '<button type="button" class="btn ghost" data-dup="' + ev.id + '">按现在时间再记一条</button>' : "") + '<button type="button" class="btn ghost" data-del="' + ev.id + '">删除这条记录</button></p>' : "";
     if (k === "bottle") sheetForm(ev ? "修改瓶喂" : "瓶喂", '<label class="jr-l">喂的是</label>' + radio("src", [["fm", "奶粉"], ["bm", "母乳"]], v.src || ls("hb:jr:src") || "fm") + '<label class="jr-l">奶量（毫升）</label><input class="bd-i" type="number" inputmode="numeric" min="0" max="400" data-f="ml" value="' + (v.ml || ls("hb:jr:ml") || 90) + '">' + chips("ml", [[30], [60], [90], [120], [150], [180], [210], [240]], v.ml || ls("hb:jr:ml") || 90) + when(t0) + delBtn, ev ? "保存" : "记录", function (st) { var ml = Math.max(0, Math.min(400, +st.ml || 0)); ls("hb:jr:ml", String(ml)); ls("hb:jr:src", st.src || "fm"); done(st, { v: { ml: ml, src: st.src || "fm" } }); });
     else if (k === "diaper") sheetForm(ev ? "修改尿布" : "换尿布", (ev ? '<label class="jr-l">这一片</label>' + radio("dw", [["w", "湿"], ["d", "便"], ["wd", "湿和便"]], v.d && v.w ? "wd" : v.d ? "d" : "w") : '<p class="jr-hint">点一下就记下，时间默认是现在。</p><div class="jr-dq">' + [["w", "湿", "drop"], ["d", "便", "diaper"], ["wd", "湿和便", "star"]].map(function (x) { return '<button type="button" data-dq="' + x[0] + '"><span>' + svgM({ hold: x[2], stage: 2, mood: "happy" }) + "</span>" + x[1] + "</button>"; }).join("") + "</div>") + when(t0) + delBtn, ev ? "保存" : "记为湿", function (st) { var x = st.dw || "w"; done(st, { v: { w: /w/.test(x) ? 1 : 0, d: /d/.test(x) ? 1 : 0 } }); });
-    else if (k === "food") sheetForm(ev ? "修改辅食" : "辅食", '<label class="jr-l">吃了什么</label><input class="bd-i" type="text" data-f="name" maxlength="30" value="' + esc(v.name || "") + '" placeholder="例如：南瓜泥">' + chips("name", [["米粉"], ["蔬菜泥"], ["水果泥"], ["肉泥"], ["蛋黄"], ["粥"], ["软面条"]], v.name) + '<label class="jr-l">大概吃了</label><input type="hidden" data-f="amt" value="' + esc(v.amt || "") + '">' + chips("amt", [["几口"], ["小半碗"], ["半碗"], ["一碗"]], v.amt) + when(t0) + delBtn, ev ? "保存" : "记录", function (st) { done(st, { v: { name: (st.name || "").trim() || "辅食", amt: st.amt || "" } }); });
-    else if (k === "temp") sheetForm(ev ? "修改体温" : "体温", '<label class="jr-l">体温（℃）</label><input class="bd-i" type="number" inputmode="decimal" step="0.1" min="34" max="42" data-f="c" value="' + (v.c || "36.8") + '">' + when(t0) + '<p class="jr-hint">未满 3 个月体温达到或超过 38.0℃，应立即联系医生或就医（AAP-FEVER）。</p>' + delBtn, ev ? "保存" : "记录", function (st) { var c = Math.round((+st.c || 0) * 10) / 10; done(st, { v: { c: c } }); var a = ageM(fromInput(st.t) || t0); if (a !== null && a < 3 && c >= 38) setTimeout(function () { H.snack("未满 3 个月体温 " + c + "℃：请尽快联系医生或就医"); }, 400); });
+    else if (k === "food") sheetForm(ev ? "修改辅食" : "辅食", '<label class="jr-l">吃了什么</label><input class="bd-i" type="text" data-f="name" maxlength="30" value="' + esc(v.name || "") + '" placeholder="例如：南瓜泥">' + chips("name", [["米粉"], ["蔬菜泥"], ["水果泥"], ["肉泥"], ["蛋黄"], ["粥"], ["软面条"]], v.name) + '<label class="jr-l">大概吃了</label><input type="hidden" data-f="amt" value="' + esc(v.amt || "") + '">' + chips("amt", [["几口"], ["小半碗"], ["半碗"], ["一碗"]], v.amt) + when(t0) + delBtn, ev ? "保存" : "记录", function (st) { var nm = (st.name || "").trim() || "辅食", first = !ev && nm !== "辅食" && !EV.some(function (x) { return x.k === "food" && x.v.name === nm; }); done(st, { v: { name: nm, amt: st.amt || "", first: first ? 1 : (v.first || 0) } }); if (first) setTimeout(function () { H.snack("第一次吃" + nm + "：接下来 3 天留意有没有皮疹、呕吐或腹泻"); }, 500); });
+    else if (k === "temp") sheetForm(ev ? "修改体温" : "体温", '<label class="jr-l">体温（℃）</label><input class="bd-i" type="number" inputmode="decimal" step="0.1" min="34" max="42" data-f="c" value="' + (v.c || "36.8") + '">' + when(t0) + '<p class="jr-hint">未满 3 个月体温达到或超过 38.0℃，应立即联系医生或就医。</p>' + delBtn, ev ? "保存" : "记录", function (st) { var c = Math.round((+st.c || 0) * 10) / 10; done(st, { v: { c: c } }); var a = ageM(fromInput(st.t) || t0); if (a !== null && a < 3 && c >= 38) setTimeout(function () { H.snack("未满 3 个月体温 " + c + "℃：请尽快联系医生或就医"); }, 400); });
     else if (k === "grow") { var sx = ls("hb:jr:sex") || ""; sheetForm(ev ? "修改生长数据" : "生长数据", '<p class="jr-hint">三项可以只填一项，单位：体重千克、身长厘米、头围厘米。</p><label class="jr-l">体重（kg）</label><input class="bd-i" type="number" inputmode="decimal" step="0.01" data-f="kg" value="' + (v.kg || "") + '"><label class="jr-l">身长 / 身高（cm）</label><input class="bd-i" type="number" inputmode="decimal" step="0.1" data-f="cm" value="' + (v.cm || "") + '"><label class="jr-l">头围（cm）</label><input class="bd-i" type="number" inputmode="decimal" step="0.1" data-f="hc" value="' + (v.hc || "") + '">' + (sx ? "" : '<label class="jr-l">性别（用于对照 WHO 生长曲线）</label>' + radio("sex", [["m", "男孩"], ["f", "女孩"]], "")) + when(t0, "测量时间") + delBtn, ev ? "保存" : "记录", function (st) { if (st.sex) ls("hb:jr:sex", st.sex); var o = {}; ["kg", "cm", "hc"].forEach(function (f) { var n = +st[f]; if (n > 0) o[f] = n; }); if (!o.kg && !o.cm && !o.hc) { H.snack("至少填一项"); return; } done(st, { v: o }); }); }
     else if (k === "note") sheetForm(ev ? "修改备注" : "备注", '<textarea class="bd-i jr-ta" data-f="txt" maxlength="300" placeholder="今天想记下的一件事">' + esc(v.txt || "") + '</textarea><label class="ip-ic"><input type="checkbox" data-f="ask" value="1"' + (v.ask ? " checked" : "") + "><span>下次儿保想问医生</span></label>" + when(t0) + delBtn, ev ? "保存" : "记录", function (st) { var x = (st.txt || "").trim(); if (!x) return; done(st, { v: { txt: x, ask: st.ask ? 1 : 0 } }); });
     else if (k === "play") openPlay(ev, t0, delBtn, done);
@@ -4292,9 +4356,22 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
       });
     });
   }
+  // nothing starts by accident: the panel says which side, then 开始
+  function sideHTML(r, big) { return '<div class="jr-sides' + (big ? " big" : "") + '">' + ["l", "r"].map(function (sd) { var on = r.side === sd; return '<button type="button" class="jr-sd' + (on ? " on" : "") + '" data-side="' + sd + '"><b>' + (sd === "l" ? "左" : "右") + "</b><span>" + (on ? (r.paused ? "暂停中" : "正在喂") : "换到这侧") + '</span><em data-sidet="' + sd + '">' + clock(sideMs(r, sd)) + "</em></button>"; }).join("") + "</div>"; }
+  function lastSide() { return ls("hb:jr:side") || ""; }
+  function startSheet(k) {
+    var body, ls0 = lastSide();
+    if (k === "nurse") body = (ls0 ? '<p class="jr-hint">上次在' + (ls0 === "l" ? "左侧" : "右侧") + "结束，这次可以先喂" + (ls0 === "l" ? "右侧" : "左侧") + "。</p>" : '<p class="jr-hint">选好从哪一侧开始，点了才开始计时。</p>') + '<div class="jr-start">' + ["l", "r"].map(function (sd) { var sug = ls0 && sd !== ls0; return '<button type="button" class="jr-sb' + (sug ? " sug" : "") + '" data-ss="' + sd + '"><b>' + (sd === "l" ? "左" : "右") + "</b><span>从" + (sd === "l" ? "左侧" : "右侧") + "开始</span>" + (sug ? "<i>建议</i>" : "") + "</button>"; }).join("") + "</div>";
+    else body = '<div class="jr-start one"><button type="button" class="jr-sb" data-ss="go"><span class="jr-sbm">' + svgM({ hold: "moon", mood: "sleep", stage: 2 }) + "</span><span>宝宝睡着了，开始计时</span></button></div>";
+    body += '<button type="button" class="jr-retro jr-sretro" data-ss="retro"><span>' + svgM({ hold: "note", stage: 2 }) + "</span>已经" + (k === "nurse" ? "喂完了？补录一次" : "睡过了？补录一段") + "</button>";
+    H.sheet(k === "nurse" ? "开始亲喂" : "开始睡眠计时", body, [{ t: "取消", ghost: true }]);
+    var sh = document.querySelector(".sheet-m"); if (!sh) return;
+    sh.addEventListener("click", function (e) { var b = e.target.closest("[data-ss]"); if (!b) return; var x = b.getAttribute("data-ss"); H.haptic(); history.back(); setTimeout(function () { if (x === "retro") { open(k); return; } startTimer(k, x === "go" ? "" : x); H.snack("开始计时 " + T[k].n + (k === "nurse" ? " · " + (x === "l" ? "左侧" : "右侧") : ""), function () { cancelTimer(k); }); }, 300); });
+  }
+  window.HB_START = startSheet;
   function tap(k) {
     if (T[k].kind === "timer" && curDay() !== dk(Date.now()) && !RUN[k]) { open(k); return; }
-    if (T[k].kind === "timer") { if (RUN[k]) { var rc = document.querySelector(".jr-run-" + k); if (rc) { rc.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); rc.classList.remove("flash"); void rc.offsetWidth; rc.classList.add("flash"); } return; } startTimer(k); H.snack("开始计时 " + T[k].n, function () { cancelTimer(k); open(k); }); return; }
+    if (T[k].kind === "timer") { if (RUN[k]) { var rc = document.querySelector(".jr-run-" + k); if (rc) { rc.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); rc.classList.remove("flash"); void rc.offsetWidth; rc.classList.add("flash"); } return; } startSheet(k); return; }
     if (T[k].once) {
       var today = curDay(), have = onDay(today, k)[0];
       if (have) { H.snack(T[k].n === "维生素" ? "这一天已经喂过维生素" : "这一天已经记过" + T[k].n, function () { del(have.id); refresh(); }); return; }
@@ -4302,7 +4379,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     }
     open(k);
   }
-  window.HB_LOG = function (k) { if (!T[k]) return; if (!on()) { ls("hb:jr:on", "1"); syncTab(); } location.hash = "journal"; setTimeout(function () { tap(k); }, 450); };
+  window.HB_LOG = function (k) { if (k !== "night" && !T[k]) return; if (!on()) { ls("hb:jr:on", "1"); syncTab(); } location.hash = "journal"; setTimeout(function () { if (k === "night") nightOpen(); else tap(k); }, 450); };
 
   // ---------- the journal page ----------
   var DAYK = null, PANE = "day";
@@ -4325,7 +4402,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     else if (PANE === "w") { var a7 = ageM(Date.now()), k7 = lastKeys(7); h += compareCard(k7.slice(0, 6), lastKeys(13).slice(0, 6), "和再往前 6 天比", "前 6 天"); h += trendPane(k7, a7 === null ? null : Math.floor(a7), "近 7 天", true); }
     else h += monthPane();
     if (window.HBApp && HBApp.setJournalReminders) h += remindCard();
-    h += '<section class="card jr-more"><h2>手帐数据</h2><div class="r-btns"><button type="button" class="btn" data-x="csv">导出 CSV 表格</button><button type="button" class="btn ghost" data-x="share">分享这周小结</button></div><button type="button" class="jr-visit" data-x="visit"><span>' + svgM({ hold: "thermo", stage: 2 }) + '</span><span><b>儿保随访时给医生看</b><small>近两周的吃睡、尿布、体温、生长和想问的问题，整理成一页</small></span><i class="ic ar-r" aria-hidden="true"></i></button><div hidden></div><p class="r-note">手帐数据只保存在这台手机上，也会包含在「记录 › 备份记录」导出的文件里。参考范围来自世界卫生组织（WHO）、美国疾病控制与预防中心（CDC）、美国儿科学会（AAP）等机构的公开资料，用来看大概是否合理，不是达标考核；有疑虑请咨询儿保医生。</p><button type="button" class="jr-off" data-x="off">关闭手帐</button></section>';
+    h += '<section class="card jr-more"><h2>手帐数据</h2><div class="r-btns"><button type="button" class="btn" data-x="csv">导出 CSV 表格</button><button type="button" class="btn ghost" data-x="share">分享这周小结</button></div><div class="r-btns jr-mg"><button type="button" class="btn ghost" data-x="mgout">导出给家人合并</button><button type="button" class="btn ghost" data-x="mgin">合并家人的手帐</button></div><button type="button" class="jr-visit" data-x="visit"><span>' + svgM({ hold: "thermo", stage: 2 }) + '</span><span><b>儿保随访时给医生看</b><small>近两周的吃睡、尿布、体温、生长和想问的问题，整理成一页</small></span><i class="ic ar-r" aria-hidden="true"></i></button><div hidden></div><p class="r-note">手帐数据只保存在这台手机上，也会包含在「记录 › 备份记录」导出的文件里。参考范围只用来看大概是否合理，不是达标考核；有疑虑请咨询儿保医生。</p><details class="jr-src"><summary>参考来源</summary><p>睡眠时长：世界卫生组织（WHO）《5 岁以下儿童身体活动、久坐行为和睡眠指南》。喂奶次数、湿尿布：美国疾病控制与预防中心（CDC）母乳喂养指引。配方奶量与发热就医：美国儿科学会（AAP）HealthyChildren。生长曲线：WHO 儿童生长标准；国内儿保使用国家卫生健康委《7 岁以下儿童生长标准》，数值略有差异。辅食逐样添加与观察：WHO 婴幼儿喂养指导、AAP。</p></details><button type="button" class="jr-off" data-x="off">关闭手帐</button></section>';
     J.innerHTML = h; wire(J);
   }
   function intro() {
@@ -4337,12 +4414,12 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     // timers running
     ["nurse", "sleep"].forEach(function (t) {
       var r = RUN[t]; if (!r) return; var el = elapsed(t), long = el > (t === "sleep" ? 14 : 1.5) * HR;
-      h += '<section class="card jr-run jr-run-' + t + (r.paused ? " paused" : "") + '"><div class="jr-rt"><span class="jr-rm">' + svgM({ hold: T[t].p, mood: t === "sleep" && !r.paused ? "sleep" : r.paused ? "open" : "happy", flat: false }) + '</span><div><small>' + (r.paused ? "已暂停 · " : "") + (t === "sleep" ? hmd(r.start) + " 入睡" : "亲喂 · " + hmd(r.start) + " 开始 · 现在" + (r.side === "l" ? "左侧" : "右侧")) + '</small><b class="jr-clock" data-run="' + t + '">' + clock(el) + "</b>" + (t === "nurse" ? "<em>左 " + clock(sideMs(r, "l")) + " · 右 " + clock(sideMs(r, "r")) + "</em>" : r.pz ? "<em>中途醒着 " + dur(r.pz) + "，不计入</em>" : "") + '</div><button type="button" class="jr-adj" data-adj="' + t + '">调整</button></div>' +
+      h += '<section class="card jr-run jr-run-' + t + (r.paused ? " paused" : "") + '"><div class="jr-rt"><span class="jr-rm">' + svgM({ hold: T[t].p, mood: t === "sleep" && !r.paused ? "sleep" : r.paused ? "open" : "happy", flat: false }) + '</span><div><small>' + (r.paused ? "已暂停 · " : "") + (t === "sleep" ? hmd(r.start) + " 入睡" : "亲喂 · " + hmd(r.start) + " 开始") + '</small><b class="jr-clock" data-run="' + t + '">' + clock(el) + "</b>" + (t === "sleep" && r.pz ? "<em>中途醒着 " + dur(r.pz) + "，不计入</em>" : "") + '</div><button type="button" class="jr-adj" data-adj="' + t + '">调整</button></div>' + (t === "nurse" ? sideHTML(r) : "") +
         (long ? '<p class="jr-long">计时已超过 ' + dur(el) + '，是不是忘了结束？点「调整」可以填写实际结束时间。</p>' : "") +
-        '<div class="jr-rb">' + (t === "nurse" ? '<button type="button" class="btn ghost" data-swap>换一侧</button>' : "") + '<button type="button" class="btn ghost" data-pause="' + t + '">' + (r.paused ? "继续" : "暂停") + '</button><button type="button" class="btn" data-stop="' + t + '">' + (t === "sleep" ? "醒了" : "喂完了") + "</button></div></section>";
+        '<div class="jr-rb"><button type="button" class="btn ghost" data-pause="' + t + '">' + (r.paused ? "继续" : "暂停") + '</button><button type="button" class="btn" data-stop="' + t + '">' + (t === "sleep" ? "醒了" : "喂完了") + "</button></div></section>";
     });
     // the button wall
-    h += '<section class="jr-wall">' + WALL.map(function (t) { var run = !!RUN[t], doneOnce = T[t].once && onDay(k, t).length; return '<button type="button" class="jr-b' + (run ? " run" : "") + (doneOnce ? " done" : "") + '" data-k="' + t + '" style="--jc:' + T[t].c + '"><span class="jr-bm">' + svgM({ hold: T[t].p, mood: run && t === "sleep" ? "sleep" : doneOnce ? "happy" : "open" }) + "</span><b>" + T[t].n + "</b>" + (run ? "<i>" + (RUN[t].paused ? "已暂停" : "计时中") + "</i>" : doneOnce ? "<i>已完成</i>" : T[t].kind === "timer" ? "<i>点击计时</i>" : t === "bottle" && ls("hb:jr:ml") ? "<i>上次 " + ls("hb:jr:ml") + " ml</i>" : "") + "</button>"; }).join("") + '</section><p class="jr-tip">' + (isToday ? "喂奶、睡眠点一下开始计时，可以暂停；忘了记的，点「补录」或长按按钮。" : "现在是补录 " + wd(k) + "：喂奶、睡眠直接填开始和结束时间。") + '</p><button type="button" class="jr-retro" data-retro><span>' + svgM({ hold: "note", stage: 2 }) + "</span>补录一条</button>";
+    h += '<section class="jr-wall">' + WALL.map(function (t) { var run = !!RUN[t], doneOnce = T[t].once && onDay(k, t).length; return '<button type="button" class="jr-b' + (run ? " run" : "") + (doneOnce ? " done" : "") + '" data-k="' + t + '" style="--jc:' + T[t].c + '"><span class="jr-bm">' + svgM({ hold: T[t].p, mood: run && t === "sleep" ? "sleep" : doneOnce ? "happy" : "open" }) + "</span><b>" + T[t].n + "</b>" + (run ? "<i>" + (RUN[t].paused ? "已暂停" : "计时中") + "</i>" : doneOnce ? "<i>已完成</i>" : T[t].kind === "timer" ? "<i>点开准备</i>" : t === "bottle" && ls("hb:jr:ml") ? "<i>上次 " + ls("hb:jr:ml") + " ml</i>" : "") + "</button>"; }).join("") + '</section><p class="jr-tip">' + (isToday ? "喂奶、睡眠点开后再按开始，可以暂停；忘了记的，点「补录」或长按按钮。" : "现在是补录 " + wd(k) + "：喂奶、睡眠直接填开始和结束时间。") + '</p><button type="button" class="jr-retro" data-retro><span>' + svgM({ hold: "note", stage: 2 }) + "</span>补录一条</button>";
     // since last
     if (isToday) { var lf = lastOf(["nurse", "bottle"]), ls0 = lastOf(["sleep"]); var bits = []; if (lf) bits.push("上次喂奶 " + ago(Date.now() - (lf.e || lf.t))); if (RUN.sleep) bits.push("已睡 " + dur(Date.now() - RUN.sleep.start)); else if (ls0) bits.push("已醒 " + dur(Date.now() - (ls0.e || ls0.t))); if (bits.length) h += '<p class="jr-since">' + bits.join("　·　") + "</p>"; }
     // summary
@@ -4353,6 +4430,8 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
       '<div class="jr-s" style="--jc:' + T.diaper.c + '"><b>' + (s.wet + s.dirty ? s.wet + "<small>湿</small> " + s.dirty + "<small>便</small>" : "—") + "</b><span>尿布</span><em>" + (s.wet + s.dirty ? "共 " + onDay(k, "diaper").length + " 片" : "还没有记录") + "</em></div></section>";
     // the day as a 24-hour band
     h += '<section class="card jr-band"><h2>这一天的节奏</h2>' + band(k) + '<p class="jr-lg"><i class="s"></i>睡眠<i class="f"></i>喂奶<i class="d"></i>尿布<i class="o"></i>其他</p></section>';
+    // new foods: three days of watching, one tap when all is fine
+    h += watchCard(k);
     // daily things
     var items = [["vitd", "维生素 D / AD", s.vitd], ["bath", "洗澡", s.bath], ["play", "早教活动", s.play > 0]];
     if (H.getBirth() && Math.floor(ageM(d0(k)) || 0) >= 6) items.push(["food", "辅食", s.food > 0]);
@@ -4364,6 +4443,33 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     return h;
   }
   function gapOf(e) { if (e.k !== "nurse" && e.k !== "bottle") return ""; var prev = null; for (var i = 0; i < EV.length; i++) { var x = EV[i]; if (x.t >= e.t) break; if (x.k === "nurse" || x.k === "bottle") prev = x; } if (!prev) return ""; var g = e.t - (prev.e || prev.t); return g > 0 && g < 12 * HR ? " · 距上次 " + dur(g) : ""; }
+  // a new food is watched for three days (one new food at a time, a few days apart, is the usual advice)
+  var DANGER = ["嘴唇或脸肿", "咳嗽或喘"];
+  function watching(k) {
+    var t = d0(k) + DAY, out = [];
+    EV.forEach(function (e) { if (e.k !== "food" || !e.v.first || e.t >= t || t - d0(dk(e.t)) > 4 * DAY) return; var r = EV.filter(function (x) { return x.k === "react" && x.v.food === e.v.name; }); out.push({ e: e, day: Math.round((d0(k) - d0(dk(e.t))) / DAY) + 1, r: r }); });
+    return out;
+  }
+  function watchCard(k) {
+    var w = watching(k); if (!w.length) return "";
+    return '<section class="card jr-watch"><h2>新食物观察</h2>' + w.map(function (x) {
+      var bad = x.r.filter(function (r) { return !r.v.ok; }), okd = x.r.some(function (r) { return r.v.ok; });
+      return '<div class="jw-r' + (bad.length ? " bad" : okd ? " ok" : "") + '"><span class="jw-m">' + svgM({ hold: "spoon", mood: bad.length ? "dizzy" : okd ? "happy" : "open", stage: 2 }) + '</span><div><b>' + esc(x.e.v.name) + "</b><small>" + dk(x.e.t).slice(5).replace("-", "/") + " 第一次吃 · " + (x.day <= 3 ? "观察第 " + x.day + " 天" : "观察期已过") + "</small>" + (bad.length ? "<em>" + esc(bad.map(function (r) { return (r.v.s || []).join("、"); }).join("；")) + "</em>" : okd ? "<em>没有异常</em>" : "") + '</div><div class="jw-b">' + (okd || bad.length ? "" : '<button type="button" data-wok="' + esc(x.e.v.name) + '">一切正常</button>') + '<button type="button" data-wbad="' + esc(x.e.v.name) + '">有反应</button></div></div>';
+    }).join("") + '<p class="r-note">一次只加一种新食物，观察几天再加下一种，方便看出是哪一样引起的不适。</p></section>';
+  }
+  function reactSheet(food, ev) {
+    var v = ev ? ev.v : {}, sel = (v.s || []).slice(), opts = ["皮疹或荨麻疹", "呕吐", "腹泻", "嘴唇或脸肿", "咳嗽或喘", "精神差", "其他"];
+    sheetForm(ev ? "修改辅食反应" : "吃" + food + "后的反应", '<p class="jr-hint">选出看到的情况，可以多选。</p><div class="jr-chips jr-ms">' + opts.map(function (o) { return '<button type="button" data-ms="' + o + '"' + (sel.indexOf(o) >= 0 ? ' class="on"' : "") + ">" + o + "</button>"; }).join("") + '</div><p class="jr-urgent" hidden>出现嘴唇或面部肿胀、呼吸困难、喘鸣、反复呕吐或精神很差，请立即就医或拨打 120。</p><input type="hidden" data-f="s" value="' + esc(sel.join("|")) + '"><label class="jr-l">补充说明（可不填）</label><input class="bd-i" type="text" data-f="txt" maxlength="60" value="' + esc(v.txt || "") + '" placeholder="例如：嘴角一圈小红点，半天后消退">' + when(ev ? ev.t : Date.now(), "发现时间") + (ev ? '<p class="jr-del"><button type="button" class="btn ghost" data-del="' + ev.id + '">删除这条记录</button></p>' : ""), ev ? "保存" : "记录", function (st) {
+      var ss = (st.s || "").split("|").filter(Boolean); if (!ss.length && !(st.txt || "").trim()) { H.snack("选一项看到的情况"); return; }
+      var t = fromInput(st.t) || Date.now(), vv = { food: food, s: ss, txt: (st.txt || "").trim() };
+      if (ev) upd(ev.id, function (x) { x.t = t; x.v = vv; }); else add({ k: "react", t: t, v: vv });
+      refresh(); H.snack("已记下，会出现在给医生看的小结里");
+    });
+    var sh = document.querySelector(".sheet-m"); if (!sh) return;
+    var sync = function () { var on2 = [].slice.call(sh.querySelectorAll("[data-ms].on")).map(function (b) { return b.getAttribute("data-ms"); }), inp = sh.querySelector('[data-f="s"]'); inp.value = on2.join("|"); inp.dispatchEvent(new Event("input", { bubbles: true })); sh.querySelector(".jr-urgent").hidden = !on2.some(function (o) { return DANGER.indexOf(o) >= 0; }); };
+    sh.addEventListener("click", function (e) { var b = e.target.closest("[data-ms]"); if (!b) return; b.classList.toggle("on"); H.haptic(); sync(); });
+    sync();
+  }
   function desc(e) {
     var v = e.v || {};
     if (e.k === "bottle") return v.ml + " ml · " + (v.src === "bm" ? "母乳" : "奶粉");
@@ -4376,6 +4482,8 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     if (e.k === "play") return [v.code ? v.code + " " + (v.title || "") : "", v.txt || ""].filter(Boolean).join(" · ") || "早教活动";
     if (e.k === "note") return (v.ask ? "【想问医生】" : "") + (v.txt || "");
     if (e.k === "care") return v.txt || "";
+    if (e.k === "react") return (v.food || "") + "：" + (v.ok ? "观察期内没有异常" : (v.s || []).join("、") + (v.txt ? "，" + v.txt : ""));
+    if (e.k === "food" && v.first) return (v.name || "") + (v.amt ? " · " + v.amt : "") + " · 第一次吃";
     if (e.k === "vitd") return "维生素 D / AD";
     return "";
   }
@@ -4399,21 +4507,21 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var full = days.filter(function (d) { return d.k !== end; }), vs = full.filter(function (d) { return d.sleeps >= 2 && d.sleepMs >= 3 * HR; }), vf = full.filter(function (d) { return d.feeds >= 3; }), vd = full.filter(function (d) { return d.wet + d.dirty >= 3; });
     var avg = function (arr, f) { return arr.length ? Math.round(arr.reduce(function (x, d) { return x + f(d); }, 0) / arr.length * 10) / 10 : null; };
     var notes = [];
-    if (ref && vs.length >= Math.min(5, n)) { var out = vs.filter(function (d) { return d.sleepH < ref[0] || d.sleepH > ref[1]; }).length; if (out >= Math.ceil(vs.length * 0.7)) notes.push(["sleep", "这段时间多数天的睡眠在参考范围（" + ref[0] + "–" + ref[1] + " 小时，" + ref[2] + "，WHO）之外。偶尔几天不同很常见；如果一直这样，或孩子白天精神不好，可以咨询儿保医生。"]); }
+    if (ref && vs.length >= Math.min(5, n)) { var out = vs.filter(function (d) { return d.sleepH < ref[0] || d.sleepH > ref[1]; }).length; if (out >= Math.ceil(vs.length * 0.7)) notes.push(["sleep", "这段时间多数天的睡眠在参考范围（" + ref[0] + "–" + ref[1] + " 小时，" + ref[2] + "）之外。偶尔几天不同很常见；如果一直这样，或孩子白天精神不好，可以咨询儿保医生。"]); }
     var mlF = avg(vf, function (d) { return d.mlF; }), kg = lastWeight();
-    if (mlF && mlF > 960) notes.push(["bottle", "平均每天奶粉约 " + Math.round(mlF) + " ml，超过美国儿科学会（AAP）提到的每天约 960 ml。宝宝会自己调节食量，可以多留意饥饿和吃饱的信号，必要时咨询医生。"]);
-    else if (mlF && kg && m !== null && m < 6 && vf.every(function (d) { return d.mlB === 0 && d.nurseMin === 0 && d.feeds === onDay(d.k, "bottle").length; }) && mlF < kg * 165 * 0.6) notes.push(["bottle", "以最近体重 " + kg + " kg 估算，平均奶粉量明显低于 AAP 提到的每公斤约 165 ml/天。这只是粗略参考；如果尿布也偏少或体重增长慢，建议咨询医生。"]);
-    if (live && m !== null && m < 1) { var low = full.slice(-3).filter(function (d) { return d.feeds > 0 && d.feeds < 8; }).length; if (low >= 3) notes.push(["nurse", "满月前一般每 24 小时喂 8–12 次（CDC），最近 3 天都少于 8 次。如果湿尿布也偏少，建议尽快咨询医生。"]); }
-    if (live && m !== null && m < 3) { var lw = full.slice(-2).filter(function (d) { return d.wet + d.dirty >= 1 && d.wet < 6; }).length; if (lw >= 2) notes.push(["diaper", "出生第 5 天起一般每天至少 6 片湿尿布（CDC），最近 2 天都少于 6 片。湿尿布是吃够了的信号之一，偏少时建议咨询医生。"]); }
+    if (mlF && mlF > 960) notes.push(["bottle", "平均每天奶粉约 " + Math.round(mlF) + " ml，超过每天约 960 ml 的常见上限。宝宝会自己调节食量，可以多留意饥饿和吃饱的信号，必要时咨询医生。"]);
+    else if (mlF && kg && m !== null && m < 6 && vf.every(function (d) { return d.mlB === 0 && d.nurseMin === 0 && d.feeds === onDay(d.k, "bottle").length; }) && mlF < kg * 165 * 0.6) notes.push(["bottle", "以最近体重 " + kg + " kg 估算，平均奶粉量明显低于每公斤约 165 ml/天的常见参考。这只是粗略参考；如果尿布也偏少或体重增长慢，建议咨询医生。"]);
+    if (live && m !== null && m < 1) { var low = full.slice(-3).filter(function (d) { return d.feeds > 0 && d.feeds < 8; }).length; if (low >= 3) notes.push(["nurse", "满月前一般每 24 小时喂 8–12 次，最近 3 天都少于 8 次。如果湿尿布也偏少，建议尽快咨询医生。"]); }
+    if (live && m !== null && m < 3) { var lw = full.slice(-2).filter(function (d) { return d.wet + d.dirty >= 1 && d.wet < 6; }).length; if (lw >= 2) notes.push(["diaper", "出生第 5 天起一般每天至少 6 片湿尿布，最近 2 天都少于 6 片。湿尿布是吃够了的信号之一，偏少时建议咨询医生。"]); }
     var vdays = full.filter(function (d) { return d.vitd; }).length;
     h += '<section class="card jr-kpi"><h2>' + title + "平均</h2><dl>" +
       kpi(T.sleep.c, "睡眠", avg(vs, function (d) { return d.sleepH; }), "小时/天", vs.length) + kpi(T.bottle.c, "瓶喂奶量", avg(vf, function (d) { return d.ml; }), "ml/天", vf.length) + kpi(T.nurse.c, "喂奶次数", avg(vf, function (d) { return d.feeds; }), "次/天", vf.length) + kpi(T.diaper.c, "湿尿布", avg(vd, function (d) { return d.wet; }), "片/天", vd.length) +
       "</dl><p class=\"jr-vit\"><span>" + svgM({ hold: "drop", mood: vdays === full.length ? "happy" : "open" }) + "</span><em>维生素 D / AD：" + (live ? "前 " : "") + full.length + " 天里记了 <b>" + vdays + "</b> 天</em></p></section>";
     h += '<section class="card jr-notes"><h2>参考提示</h2>' + (notes.length ? notes.map(function (x) { return '<p class="jr-note" style="--jc:' + T[x[0]].c + '">' + esc(x[1]) + "</p>"; }).join("") : '<p class="r-note jr-ok"><span>' + svgM({ hold: "star", mood: "happy" }) + "</span>这段时间的记录没有需要特别留意的地方。参考范围只用来看大概是否合理，每个孩子都有自己的节奏。</p>") + '<p class="r-note">' + (live ? "今天还没过完，图上浅色显示，不计入平均和提示。" : "") + "记录太少的日子不参与比对（睡眠少于 2 段、喂奶少于 3 次、尿布少于 3 片），以免漏记被当成吃得少、睡得少。</p></section>";
-    h += chart("睡眠（小时）", days, function (d) { return d.sleeps >= 2 && d.sleepMs >= 3 * HR ? d.sleepH : null; }, T.sleep.c, ref ? [ref[0], ref[1]] : null, n, ref ? "浅色带为 WHO 参考范围 " + ref[0] + "–" + ref[1] + " 小时（" + ref[2] + "，含小睡）" : "");
+    h += chart("睡眠（小时）", days, function (d) { return d.sleeps >= 2 && d.sleepMs >= 3 * HR ? d.sleepH : null; }, T.sleep.c, ref ? [ref[0], ref[1]] : null, n, ref ? "浅色带为参考范围 " + ref[0] + "–" + ref[1] + " 小时（" + ref[2] + "，含小睡）" : "");
     h += chart("瓶喂奶量（ml）", days, function (d) { return d.ml || (d.feeds ? 0 : null); }, T.bottle.c, null, n, "母乳亲喂不计入毫升数");
-    h += chart("喂奶次数", days, function (d) { return d.feeds || null; }, T.nurse.c, m !== null && m < 1 ? [8, 12] : null, n, m !== null && m < 1 ? "浅色带为满月前每天 8–12 次（CDC）" : "");
-    h += chart("湿尿布（片）", days, function (d) { return d.wet + d.dirty ? d.wet : null; }, T.diaper.c, m !== null && m < 3 ? [6, null] : null, n, m !== null && m < 3 ? "浅色线为每天至少 6 片（CDC，出生第 5 天起）" : "");
+    h += chart("喂奶次数", days, function (d) { return d.feeds || null; }, T.nurse.c, m !== null && m < 1 ? [8, 12] : null, n, m !== null && m < 1 ? "浅色带为满月前每天 8–12 次" : "");
+    h += chart("湿尿布（片）", days, function (d) { return d.wet + d.dirty ? d.wet : null; }, T.diaper.c, m !== null && m < 3 ? [6, null] : null, n, m !== null && m < 3 ? "浅色线为每天至少 6 片（出生第 5 天起）" : "");
     return h;
   }
   // 按月龄: the same month as the handbook's month pages, so the numbers and that month's content sit together
@@ -4427,6 +4535,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var h = '<nav class="jr-mon"><button type="button" data-mon="-1" aria-label="上个月"' + (MON <= 0 ? " disabled" : "") + '><i class="ic ar-l"></i></button><div><b>满 ' + MON + " 个月</b><small>" + st.slice(5).replace("-", "/") + " – " + en.slice(5).replace("-", "/") + (live ? " · 进行中" : "") + '</small></div><button type="button" data-mon="1" aria-label="下个月"' + (MON >= cm ? " disabled" : "") + '><i class="ic ar-r"></i></button></nav>';
     var plays = {}, cares = [], grows = [], foods = {};
     inM.forEach(function (e) { if (e.k === "play") { var key = e.v.code || e.v.txt || "早教"; plays[key] = plays[key] || [0, e.v.code ? e.v.code + " " + (e.v.title || "") : e.v.txt || "早教活动"]; plays[key][0]++; } else if (e.k === "care") cares.push(e); else if (e.k === "grow") grows.push(e); else if (e.k === "food" && e.v.name) foods[e.v.name] = 1; });
+    EV.forEach(function (e) { if (e.k === "react" && !e.v.ok && foods[e.v.food]) foods[e.v.food + "（有反应）"] = 1, delete foods[e.v.food]; });
     var pk = Object.keys(plays), fd = Object.keys(foods);
     h += '<section class="card jr-mstory"><h2>这个月<small>' + (Object.keys(dset).length ? "有记录的 " + Object.keys(dset).length + " / " + keys.length + " 天" : "还没有记录") + '</small></h2><ul>' +
       '<li style="--jc:' + T.play.c + '"><b>早教活动</b><span>' + (pk.length ? pk.map(function (x) { return esc(plays[x][1]) + (plays[x][0] > 1 ? " ×" + plays[x][0] : ""); }).join("、") : "这个月还没记") + "</span></li>" +
@@ -4500,6 +4609,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var gs = EV.filter(function (e) { return e.k === "grow"; }).slice(-3);
     out.push(["生长测量", gs.length ? gs.map(function (e) { var am = ageM(e.t), bits = []; [["kg", "w", "kg"], ["cm", "l", "cm"], ["hc", "h", "cm"]].forEach(function (q) { if (!e.v[q[0]]) return; var t = q[0] === "hc" ? "头围 " : ""; var pc = sx && W && am !== null && am <= 36 ? "（约 P" + Math.round(pct(zOf(lms(W[q[1] + sx], Math.max(0, am)), +e.v[q[0]]))) + "）" : ""; bits.push(t + e.v[q[0]] + " " + q[2] + pc); }); return dk(e.t).slice(5) + " " + bits.join("，"); }).join("；") : "还没有记录"]);
     var foods = {}; EV.forEach(function (e) { if (e.k === "food" && e.v.name && !foods[e.v.name]) foods[e.v.name] = dk(e.t).slice(5); }); var fk = Object.keys(foods); if (fk.length) out.push(["吃过的辅食（首次）", fk.map(function (f) { return f + " " + foods[f]; }).join("、")]);
+    var rx = EV.filter(function (e) { return e.k === "react" && !e.v.ok; }); out.push(["辅食反应", rx.length ? rx.map(function (e) { return dk(e.t).slice(5) + " " + desc(e); }).join("；") : (EV.some(function (e) { return e.k === "react"; }) ? "观察过的新食物都没有异常" : "没有记录")]);
     var cares = EV.filter(function (e) { return e.k === "care"; }).slice(-3); if (cares.length) out.push(["最近接种与儿保", cares.map(function (e) { return dk(e.t).slice(5) + " " + (e.v.txt || ""); }).join("；")]);
     var asks = EV.filter(function (e) { return e.k === "note" && e.v.ask; }).slice(-8); out.push(["想问医生", asks.length ? asks.map(function (e) { return e.v.txt; }).join("；") : "（在备注里勾选「下次儿保想问医生」，会出现在这里）"]);
     return out;
@@ -4529,7 +4639,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
       if (lastP) { var z = zOf(lms(tab, lastP[0]), lastP[1]), pc = pct(z); info = "最近一次 " + lastP[1] + " " + x[3] + "（" + Math.floor(lastP[0]) + " 个月），约在第 " + pc + " 百分位"; if (pc < 3 || pc > 97) warn = "最近一次测量在 P3–P97 之外。孩子自己的增长趋势比单次数值更重要，可以带着记录咨询儿保医生。"; if (my.length > 1) { var prev = my[my.length - 2], z0 = zOf(lms(tab, prev[0]), prev[1]), cross = ZS.filter(function (q) { return (z0 - q[0]) * (z - q[0]) < 0; }).length; if (cross >= 2) warn = "两次测量之间跨过了两条百分位线。测量误差也可能造成这种情况，建议下次儿保时请医生看看趋势。"; } }
       h += '<section class="card jr-gc"><h2>' + x[2] + "<small>" + x[3] + " · 月龄</small></h2>" + '<svg viewBox="0 0 ' + Wd + " " + Hd + '" class="jr-gsvg" aria-hidden="true">' + g + "</svg>" + (info ? '<p class="jr-gi">' + info + "</p>" : '<p class="r-note">还没有' + x[2] + "记录。</p>") + (warn ? '<p class="jr-note" style="--jc:' + T.grow.c + '">' + warn + "</p>" : "") + "</section>";
     });
-    h += '<p class="r-note">曲线为世界卫生组织（WHO）儿童生长标准；国内儿保使用的《7 岁以下儿童生长标准》（CN-GROW）数值略有差异，以儿保医生的评估为准。</p>';
+    h += '<p class="r-note">曲线为 WHO 儿童生长标准，以儿保医生的评估为准。</p>';
     if (pts.length) h += '<section class="card jr-tl"><h2>测量记录</h2><ol>' + pts.slice().reverse().map(function (e) { return '<li><button type="button" data-ev="' + e.id + '" style="--jc:' + T.grow.c + '"><time>' + dk(e.t).slice(5) + '</time><span class="jr-tm">' + svgM({ hold: "ruler", stage: 2 }) + "</span><b>生长</b><em>" + esc(desc(e)) + "</em></button></li>"; }).join("") + "</ol></section>";
     return h;
   }
@@ -4544,12 +4654,15 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     });
     J.querySelectorAll("[data-stop]").forEach(function (b) { b.addEventListener("click", function () { stopTimer(b.getAttribute("data-stop")); }); });
     J.querySelectorAll("[data-swap]").forEach(function (b) { b.addEventListener("click", swapSide); });
+    J.querySelectorAll(".jr-sd[data-side]").forEach(function (b) { b.addEventListener("click", function () { var r = RUN.nurse; if (!r) return; if (b.getAttribute("data-side") !== r.side) swapSide(); else if (r.paused) pauseTimer("nurse"); }); });
     J.querySelectorAll("[data-pause]").forEach(function (b) { b.addEventListener("click", function () { pauseTimer(b.getAttribute("data-pause")); }); });
     J.querySelectorAll("[data-adj]").forEach(function (b) { b.addEventListener("click", function () { adjustTimer(b.getAttribute("data-adj")); }); });
     J.querySelectorAll("[data-retro]").forEach(function (b) { b.addEventListener("click", retroPick); });
     J.querySelectorAll("[data-ev]").forEach(function (b) { b.addEventListener("click", function () { var id = b.getAttribute("data-ev"), e = EV.filter(function (x) { return x.id === id; })[0]; if (e) open(e.k, e); }); });
     J.querySelectorAll("[data-day]").forEach(function (b) { b.addEventListener("click", function () { var n = addD(curDay(), +b.getAttribute("data-day")); if (n > dk(Date.now())) return; DAYK = n === dk(Date.now()) ? null : n; PANE = "day"; H.haptic(); render(); }); });
     var pk = J.querySelector("[data-pick]"); if (pk) pk.addEventListener("change", function () { if (pk.value && pk.value <= dk(Date.now())) { DAYK = pk.value === dk(Date.now()) ? null : pk.value; PANE = "day"; render(); } });
+    J.querySelectorAll("[data-wok]").forEach(function (b) { b.addEventListener("click", function () { var f = b.getAttribute("data-wok"), n1 = add({ k: "react", t: Date.now(), v: { food: f, ok: 1 } }); refresh(); H.snack(f + "：记为没有异常", function () { del(n1.id); refresh(); }); }); });
+    J.querySelectorAll("[data-wbad]").forEach(function (b) { b.addEventListener("click", function () { reactSheet(b.getAttribute("data-wbad")); }); });
     J.querySelectorAll("[data-night]").forEach(function (b) { b.addEventListener("click", nightOpen); });
     J.querySelectorAll("[data-share-m]").forEach(function (b) { b.addEventListener("click", function () { shareMonth(+b.getAttribute("data-share-m")); }); });
     wireRemind(J);
@@ -4560,7 +4673,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     if (PANE === "day" && !J._sw) { J._sw = 1; var sx = 0, sy = 0, tt = 0; J.addEventListener("touchstart", function (e) { var t = e.touches[0]; sx = t.clientX; sy = t.clientY; tt = Date.now(); }, { passive: true }); J.addEventListener("touchend", function (e) { if (PANE !== "day" || document.querySelector(".sheet-m")) return; var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy; if (Date.now() - tt > 600 || Math.abs(dx) < 70 || Math.abs(dy) > Math.abs(dx) * 0.6 || e.target.closest(".jr-24,.jr-chips,input")) return; var n = addD(curDay(), dx < 0 ? 1 : -1); if (n > dk(Date.now())) return; DAYK = n === dk(Date.now()) ? null : n; H.haptic(); render(); var w = J.querySelector(".jr-wall,.jr-sum"); if (w && !reduce) { J.classList.remove("swl", "swr"); void J.offsetWidth; J.classList.add(dx < 0 ? "swl" : "swr"); } }, { passive: true }); }
     J.querySelectorAll("[data-pane]").forEach(function (b) { b.addEventListener("click", function () { PANE = b.getAttribute("data-pane"); H.haptic(); render(); }); });
     J.querySelectorAll('input[name="jr-gsex"]').forEach(function (r) { r.addEventListener("change", function () { ls("hb:jr:sex", r.value); render(); }); });
-    J.querySelectorAll("[data-x]").forEach(function (b) { b.addEventListener("click", function () { var x = b.getAttribute("data-x"); if (x === "csv") csv(); else if (x === "share") shareWeek(); else if (x === "visit") visitOpen(); else if (x === "off") { ls("hb:jr:on", null); syncTab(); widget(); location.hash = "rec"; H.snack("手帐已关闭，记录会保留", function () { ls("hb:jr:on", "1"); syncTab(); widget(); location.hash = "journal"; }); } }); });
+    J.querySelectorAll("[data-x]").forEach(function (b) { b.addEventListener("click", function () { var x = b.getAttribute("data-x"); if (x === "csv") csv(); else if (x === "share") shareWeek(); else if (x === "visit") visitOpen(); else if (x === "mgout") mergeOut(); else if (x === "mgin") { window._jrMerge = 1; try { HBApp.openFile(); } catch (e) { H.snack("这台设备不能选择文件"); } } else if (x === "off") { ls("hb:jr:on", null); syncTab(); widget(); location.hash = "rec"; H.snack("手帐已关闭，记录会保留", function () { ls("hb:jr:on", "1"); syncTab(); widget(); location.hash = "journal"; }); } }); });
   }
   // 补录: pick what to add, then the form opens with its own time fields
   function retroPick() {
@@ -4568,6 +4681,28 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var sh = document.querySelector(".sheet-m"); if (!sh) return;
     sh.addEventListener("click", function (e) { var b = e.target.closest("[data-pk]"); if (!b) return; var k = b.getAttribute("data-pk"); history.back(); setTimeout(function () { if (T[k].once) { var have = onDay(curDay(), k)[0]; if (have) { open(k, have); return; } add({ k: k, t: baseT(), v: {} }); refresh(); var x = onDay(curDay(), k)[0]; open(k, x); return; } open(k); }, 320); });
   }
+  // two phones, one journal: each exports a file, the other merges it in; the same record is never counted twice
+  function mergeOut() {
+    var d = new Date();
+    try { HBApp.saveFile("养小怪兽手帐合并-" + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + ".json", JSON.stringify({ app: "growth-handbook-journal", v: 1, at: d.toISOString(), ev: EV })); } catch (e) { H.snack("这台设备不能导出文件"); return; }
+    H.snack("导出后把文件发给家人，在对方的手帐里点「合并家人的手帐」");
+  }
+  function sameEv(a, b) { return a.k === b.k && Math.abs(a.t - b.t) < 2 * MIN && JSON.stringify(a.v || {}) === JSON.stringify(b.v || {}); }
+  function mergeIn(list) {
+    var ids = {}, before = EV.slice(), add1 = 0, dup = 0; EV.forEach(function (e) { ids[e.id] = 1; });
+    list.forEach(function (e) { if (!e || !e.k || !e.t || !T[e.k]) return; if (ids[e.id] || EV.some(function (x) { return sameEv(x, e); })) { dup++; return; } EV.push(e); ids[e.id] = 1; add1++; });
+    EV.sort(function (a, b) { return a.t - b.t; }); save(); refresh();
+    H.snack("合并了 " + add1 + " 条" + (dup ? "，" + dup + " 条重复已跳过" : ""), add1 ? function () { EV = before; save(); refresh(); } : null);
+  }
+  var imp0 = window.HB_IMPORT;
+  window.HB_IMPORT = function (text) {
+    var o = null; try { o = JSON.parse(text); } catch (e) {}
+    var wantMerge = window._jrMerge; window._jrMerge = 0;
+    if (o && o.app === "growth-handbook-journal" && o.ev) { if (!on()) { ls("hb:jr:on", "1"); syncTab(); } mergeIn(o.ev); return; }
+    if (wantMerge && o && o.app === "growth-handbook" && o.data) { var ev = []; try { ev = JSON.parse(o.data["hb:jr:ev"] || "[]"); } catch (e) {} if (ev.length) { mergeIn(ev); return; } H.snack("这份文件里没有手帐记录"); return; }
+    if (wantMerge) { H.snack("这不是手帐导出的文件"); return; }
+    if (imp0) imp0(text);
+  };
   function csv() {
     var rows = [["日期", "开始", "结束", "类型", "数值", "备注"]];
     EV.forEach(function (e) { var v = e.v || {}, val = e.k === "bottle" ? v.ml : e.k === "nurse" ? Math.round(((v.l || 0) + (v.r || 0)) / 60) : e.k === "sleep" ? Math.round(((e.e || e.t) - e.t - (v.pz || 0)) / MIN) : e.k === "temp" ? v.c : ""; rows.push([dk(e.t), hm(e.t), e.e ? dk(e.e) + " " + hm(e.e) : "", T[e.k] ? T[e.k].n : e.k, val, desc(e)]); });
@@ -4595,14 +4730,15 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   function drawNight() {
     if (!NT) return; var lf = lastOf(["nurse", "bottle"]), ml = +ls("hb:jr:ml") || 90, now = new Date(), r = RUN.nurse || RUN.sleep, rk = RUN.nurse ? "nurse" : RUN.sleep ? "sleep" : "";
     var h = '<div class="nt-top"><b>' + pad(now.getHours()) + ":" + pad(now.getMinutes()) + "</b><span>" + (lf ? "上次喂奶 " + ago(Date.now() - (lf.e || lf.t)) : "今天还没有喂奶记录") + '</span><button type="button" data-nt="x">退出</button></div>';
-    if (rk) h += '<div class="nt-run"><span class="nt-m">' + svgM({ hold: T[rk].p, mood: rk === "sleep" && !r.paused ? "sleep" : "open", stage: 2 }) + "</span><small>" + (r.paused ? "已暂停 · " : "") + (rk === "sleep" ? "正在睡" : "正在亲喂 · " + (r.side === "l" ? "左侧" : "右侧")) + '</small><b data-run="' + rk + '">' + clock(elapsed(rk)) + '</b><div class="nt-rb">' + (rk === "nurse" ? '<button type="button" data-nt="swap">换一侧</button>' : "") + '<button type="button" data-nt="pause">' + (r.paused ? "继续" : "暂停") + '</button><button type="button" class="nt-stop" data-nt="stop">' + (rk === "sleep" ? "醒了" : "喂完了") + "</button></div></div>";
+    if (rk) h += '<div class="nt-run"><span class="nt-m">' + svgM({ hold: T[rk].p, mood: rk === "sleep" && !r.paused ? "sleep" : "open", stage: 2 }) + "</span><small>" + (r.paused ? "已暂停 · " : "") + (rk === "sleep" ? "正在睡" : "正在亲喂") + '</small><b data-run="' + rk + '">' + clock(elapsed(rk)) + "</b>" + (rk === "nurse" ? sideHTML(r, true) : "") + '<div class="nt-rb">' + '<button type="button" data-nt="pause">' + (r.paused ? "继续" : "暂停") + '</button><button type="button" class="nt-stop" data-nt="stop">' + (rk === "sleep" ? "醒了" : "喂完了") + "</button></div></div>";
     h += '<div class="nt-g">' +
-      (RUN.nurse ? "" : '<button type="button" data-nt="nurse"><span>' + svgM({ hold: "heart", stage: 2 }) + "</span>亲喂计时</button>") +
+      (RUN.nurse ? "" : ["l", "r"].map(function (sd) { var sug = lastSide() && sd !== lastSide(); return '<button type="button" class="nt-side' + (sug ? " sug" : "") + '" data-nt="n' + sd + '"><b>' + (sd === "l" ? "左" : "右") + "</b>亲喂 · 从" + (sd === "l" ? "左侧" : "右侧") + "开始" + (sug ? "<small>建议这一侧</small>" : "") + "</button>"; }).join("")) +
       '<button type="button" data-nt="bottle"><span>' + svgM({ hold: "bottle", stage: 2 }) + "</span>瓶喂 " + ml + ' ml<small data-nt="ml">长按改奶量</small></button>' +
       '<button type="button" data-nt="w"><span>' + svgM({ hold: "drop", stage: 2 }) + "</span>尿布 · 湿</button>" +
       '<button type="button" data-nt="d"><span>' + svgM({ hold: "diaper", stage: 2 }) + "</span>尿布 · 便</button>" +
       (RUN.sleep ? "" : '<button type="button" data-nt="sleep"><span>' + svgM({ hold: "moon", mood: "sleep", stage: 2 }) + "</span>睡着了</button>") + "</div>";
     NT.innerHTML = h;
+    NT.querySelectorAll(".jr-sd[data-side]").forEach(function (b) { b.addEventListener("click", function () { var r2 = RUN.nurse; if (!r2) return; if (b.getAttribute("data-side") !== r2.side) swapSide(); else if (r2.paused) pauseTimer("nurse"); drawNight(); }); });
     NT.querySelectorAll("[data-nt]").forEach(function (b) {
       var a = b.getAttribute("data-nt"), pt = null, long = false; if (a === "ml") return;
       if (a === "bottle") { b.addEventListener("pointerdown", function () { long = false; pt = setTimeout(function () { long = true; H.haptic(); var opts = [60, 90, 120, 150, 180, 210]; var i = (opts.indexOf(+ls("hb:jr:ml")) + 1) % opts.length; ls("hb:jr:ml", String(opts[i])); drawNight(); }, 550); }); ["pointerup", "pointerleave", "pointercancel"].forEach(function (x) { b.addEventListener(x, function () { clearTimeout(pt); }); }); }
@@ -4610,7 +4746,8 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
         if (long) return; H.haptic();
         if (a === "x") return nightClose();
         if (a === "swap") swapSide(); else if (a === "pause") pauseTimer(rk); else if (a === "stop") stopTimer(rk);
-        else if (a === "nurse" || a === "sleep") startTimer(a);
+        else if (a === "nl" || a === "nr") { startTimer("nurse", a.slice(1)); H.snack("开始计时 亲喂 · " + (a === "nl" ? "左侧" : "右侧"), function () { cancelTimer("nurse"); drawNight(); }); }
+        else if (a === "sleep") { startTimer("sleep"); H.snack("开始计时 睡眠", function () { cancelTimer("sleep"); drawNight(); }); }
         else if (a === "bottle") { var n1 = add({ k: "bottle", t: Date.now(), v: { ml: ml, src: ls("hb:jr:src") || "fm" } }); H.snack("已记录 瓶喂 " + ml + " ml", function () { del(n1.id); drawNight(); }); }
         else if (a === "w" || a === "d") { var n2 = add({ k: "diaper", t: Date.now(), v: { w: a === "w" ? 1 : 0, d: a === "d" ? 1 : 0 } }); H.snack("已记录 尿布 · " + (a === "w" ? "湿" : "便"), function () { del(n2.id); drawNight(); }); }
         drawNight();
@@ -4622,7 +4759,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
   // ---------- reminders (off by default): vitamin D once a day, and a nudge some hours after the last feed ----------
   function remindCard() {
     var vt = ls("hb:jr:rvit") || "", fh = ls("hb:jr:rfeed") || "";
-    return '<section class="card jr-rmd"><h2>提醒</h2><label class="ip-ic"><input type="checkbox" data-rv' + (vt ? " checked" : "") + '><span>每天提醒喂维生素 D / AD</span></label><div class="jr-rmt"' + (vt ? "" : " hidden") + '><input class="bd-i" type="time" data-rvt value="' + (vt || "09:00") + '"><small>当天已经记过就不再提醒</small></div><p class="bd-l">距上次喂奶多久提醒</p><div class="seg jr-rf">' + [["", "不提醒"], ["2.5", "2.5 小时"], ["3", "3 小时"], ["4", "4 小时"]].map(function (x) { return '<button type="button" data-rf="' + x[0] + '"' + (fh === x[0] ? ' class="on"' : "") + ">" + x[1] + "</button>"; }).join("") + '</div><p class="r-note">按需喂养是常见建议（WHO、AAP），这个提醒只是防止忙起来忘了时间，不是要求按点喂。</p></section>';
+    return '<section class="card jr-rmd"><h2>提醒</h2><label class="ip-ic"><input type="checkbox" data-rv' + (vt ? " checked" : "") + '><span>每天提醒喂维生素 D / AD</span></label><div class="jr-rmt"' + (vt ? "" : " hidden") + '><input class="bd-i" type="time" data-rvt value="' + (vt || "09:00") + '"><small>当天已经记过就不再提醒</small></div><p class="bd-l">距上次喂奶多久提醒</p><div class="seg jr-rf">' + [["", "不提醒"], ["2.5", "2.5 小时"], ["3", "3 小时"], ["4", "4 小时"]].map(function (x) { return '<button type="button" data-rf="' + x[0] + '"' + (fh === x[0] ? ' class="on"' : "") + ">" + x[1] + "</button>"; }).join("") + '</div><p class="r-note">按需喂养是常见建议，这个提醒只是防止忙起来忘了时间，不是要求按点喂。</p></section>';
   }
   function wireRemind(J) {
     var cb = J.querySelector("[data-rv]"), tm = J.querySelector("[data-rvt]"); if (!cb) return;
@@ -4671,12 +4808,12 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     var ks = ["nurse", "sleep"].filter(function (k) { return RUN[k]; }), cv = H.cur();
     BAR.hidden = !ks.length || (cv && cv.id === "journal");
     if (!ks.length) return;
-    BAR.innerHTML = ks.map(function (k) { return '<span class="jb-i" style="--jc:' + T[k].c + '"><span class="jb-m">' + svgM({ hold: T[k].p, mood: k === "sleep" ? "sleep" : "happy", stage: 2 }) + "</span>" + (k === "sleep" ? "睡眠" : "亲喂") + (RUN[k].paused ? " · 暂停" : "") + ' <b data-run="' + k + '">' + clock(elapsed(k)) + "</b></span>"; }).join("");
+    BAR.innerHTML = ks.map(function (k) { return '<span class="jb-i" style="--jc:' + T[k].c + '"><span class="jb-m">' + svgM({ hold: T[k].p, mood: k === "sleep" ? "sleep" : "happy", stage: 2 }) + "</span>" + (k === "sleep" ? "睡眠" : "亲喂 · " + (RUN[k].side === "l" ? "左" : "右")) + (RUN[k].paused ? " · 暂停" : "") + ' <b data-run="' + k + '">' + clock(elapsed(k)) + "</b></span>"; }).join("");
   }
   setInterval(function () {
     if (!RUN.nurse && !RUN.sleep) return;
     document.querySelectorAll("[data-run]").forEach(function (el) { var k = el.getAttribute("data-run"); if (RUN[k]) el.textContent = clock(elapsed(k)); });
-    var em = document.querySelector(".jr-run-nurse em"), r = RUN.nurse; if (em && r) em.textContent = "左 " + clock(sideMs(r, "l")) + " · 右 " + clock(sideMs(r, "r"));
+    var r = RUN.nurse; if (r) document.querySelectorAll("[data-sidet]").forEach(function (el) { el.textContent = clock(sideMs(r, el.getAttribute("data-sidet"))); });
   }, 1000);
   window.addEventListener("hashchange", function () { setTimeout(bar, 60); });
   // Today: a slim summary with four quick buttons when the journal is on; an invitation when it is not
@@ -4689,7 +4826,7 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
       var html = '<section class="card t-jr"><a class="tj-top" href="#journal"><b>今天的手帐</b><small>' + [s.ml ? "瓶喂 " + s.ml + " ml" : "", "喂奶 " + s.feeds + " 次", "睡 " + (s.sleepH || 0) + " 小时", "尿布 " + (s.wet + s.dirty) + " 片"].filter(Boolean).join(" · ") + (lf ? " · 上次喂奶 " + ago(Date.now() - (lf.e || lf.t)) : "") + '</small><i class="ic ar-r" aria-hidden="true"></i></a>' + (isNight() ? '<button type="button" class="tj-nt" data-tnt><span>' + svgM({ hold: "moon", mood: "sleep", stage: 2 }) + "</span>夜里喂奶，打开夜间模式</button>" : "") + '<div class="tj-q">' + ["nurse", "bottle", "sleep", "diaper"].map(function (k) { return '<button type="button" data-q="' + k + '" class="' + (RUN[k] ? "run" : "") + '" style="--jc:' + T[k].c + '"><span>' + svgM({ hold: T[k].p, mood: RUN[k] && k === "sleep" ? "sleep" : "open", stage: 2 }) + "</span>" + (RUN[k] ? (k === "sleep" ? "醒了" : "喂完") : T[k].n) + "</button>"; }).join("") + "</div></section>";
       if (anchor) anchor.insertAdjacentHTML("afterend", html);
       Tt.querySelectorAll("[data-tnt]").forEach(function (bt) { bt.addEventListener("click", nightOpen); });
-      Tt.querySelectorAll(".t-jr [data-q]").forEach(function (bt) { bt.addEventListener("click", function () { var k = bt.getAttribute("data-q"); if (RUN[k]) stopTimer(k); else if (T[k].kind === "timer") { startTimer(k); H.snack("开始计时 " + T[k].n); } else { location.hash = "journal"; setTimeout(function () { open(k); }, 350); } }); });
+      Tt.querySelectorAll(".t-jr [data-q]").forEach(function (bt) { bt.addEventListener("click", function () { var k = bt.getAttribute("data-q"); if (RUN[k]) stopTimer(k); else if (T[k].kind === "timer") startSheet(k); else { location.hash = "journal"; setTimeout(function () { open(k); }, 350); } }); });
       // vaccines and check-ups: one tap marks them done on the month page and writes them into the journal
       Tt.querySelectorAll(".t-due").forEach(function (c) {
         var mm = +((c.getAttribute("href") || "").match(/#m(\d+)/) || [0, -1])[1], isV = /接种/.test(c.textContent); if (mm < 0 || c.nextElementSibling && c.nextElementSibling.classList.contains("t-done")) return;
@@ -4720,7 +4857,8 @@ window.HB_WHO={"wm":[[0.3487,3.3464,0.14602],[0.2297,4.4709,0.13395],[0.197,5.56
     remindSync(); if (NT) drawNight();
     if (!window.HBApp || !HBApp.setJournal) return;
     var s = sumDay(dk(Date.now())), lf = lastOf(["nurse", "bottle"]);
-    var o = { on: on(), last: lf ? "上次喂奶 " + hm(lf.e || lf.t) + (lf.k === "bottle" ? " · " + lf.v.ml + " ml" : " · 亲喂") : "今天还没有喂奶记录", sleep: RUN.sleep ? "正在睡 · " + hm(RUN.sleep.start) + " 入睡" : RUN.nurse ? "正在亲喂 · " + hm(RUN.nurse.start) + " 开始" : "", today: "今天 喂奶 " + s.feeds + " 次" + (s.ml ? " · " + s.ml + " ml" : "") + " · 睡 " + (s.sleepH || 0) + " 小时 · 尿布 " + (s.wet + s.dirty) };
+    var rk = RUN.nurse ? "nurse" : RUN.sleep ? "sleep" : "", rr = rk ? RUN[rk] : null;
+    var o = { lastT: lf ? (lf.e || lf.t) : 0, runK: rk, runStart: rr ? rr.start : 0, runPz: rr ? (rr.pz || 0) : 0, runPaused: rr && rr.paused ? rr.paused : 0, side: rr && rk === "nurse" ? rr.side : "", on: on(), last: lf ? "上次喂奶 " + hm(lf.e || lf.t) + (lf.k === "bottle" ? " · " + lf.v.ml + " ml" : " · 亲喂") : "今天还没有喂奶记录", sleep: RUN.sleep ? "正在睡 · " + hm(RUN.sleep.start) + " 入睡" : RUN.nurse ? "正在亲喂 · " + hm(RUN.nurse.start) + " 开始" : "", today: "今天 喂奶 " + s.feeds + " 次" + (s.ml ? " · " + s.ml + " ml" : "") + " · 睡 " + (s.sleepH || 0) + " 小时 · 尿布 " + (s.wet + s.dirty) };
     try { HBApp.setJournal(JSON.stringify(o)); } catch (e) {}
   }
   syncTab(); bar(); widget(); monthsRefresh();

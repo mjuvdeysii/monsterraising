@@ -1,0 +1,55 @@
+# iOS version of 养小怪兽: the same offline handbook pages as Android, in a WKWebView, with a native bridge
+# (share, files, notifications, haptics, home-screen widget, alternate icon). Generate the Xcode project with
+#   python3 ios/scripts/prepare_assets.py && xcodegen generate --spec ios/project.yml
+name: MonsterRaising
+options:
+  bundleIdPrefix: cn.growthhandbook
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    MARKETING_VERSION: "2.2.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Automatic
+targets:
+  MonsterRaising:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+      - path: Generated/Assets.xcassets
+      - path: ../app/src/main/assets/site
+        type: folder
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: cn.growthhandbook.app
+        PRODUCT_NAME: 养小怪兽
+        INFOPLIST_FILE: App/Info.plist
+        CODE_SIGN_ENTITLEMENTS: App/App.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES: AppIconEye
+        TARGETED_DEVICE_FAMILY: "1,2"
+    dependencies:
+      - target: MonsterWidget
+  MonsterWidget:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: Widget
+      - path: Generated/Assets.xcassets
+      - path: App/Shared.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: cn.growthhandbook.app.widget
+        PRODUCT_NAME: MonsterWidget
+        INFOPLIST_FILE: Widget/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Widget/Widget.entitlements
+        TARGETED_DEVICE_FAMILY: "1,2"
+    dependencies:
+      - sdk: WidgetKit.framework
+      - sdk: SwiftUI.framework

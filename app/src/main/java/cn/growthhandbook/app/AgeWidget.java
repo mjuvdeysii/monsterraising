@@ -94,10 +94,32 @@ public class AgeWidget extends AppWidgetProvider {
             try { jr = new JSONObject(c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(JOURNAL, "{}")); } catch (Exception e) { }
             boolean on = jr != null && jr.optBoolean("on");
             v.setViewVisibility(R.id.w_btns, on ? android.view.View.VISIBLE : android.view.View.GONE);
-            v.setViewVisibility(R.id.w_jr, on ? android.view.View.VISIBLE : android.view.View.GONE);
+            v.setViewVisibility(R.id.w_jrrow, on ? android.view.View.VISIBLE : android.view.View.GONE);
             if (on) {
                 String run = jr.optString("sleep");
-                v.setTextViewText(R.id.w_jr, run.isEmpty() ? jr.optString("last") + "  ·  " + jr.optString("today").replace("今天 ", "") : run);
+                // a live clock: time since the last feed, or the running timer; the system ticks it without waking the app
+                long now = System.currentTimeMillis(), el = android.os.SystemClock.elapsedRealtime();
+                String rk = jr.optString("runK");
+                long rs = jr.optLong("runStart", 0), pz = jr.optLong("runPz", 0), pa = jr.optLong("runPaused", 0), lt = jr.optLong("lastT", 0);
+                if (!rk.isEmpty() && rs > 0) {
+                    v.setTextViewText(R.id.w_jrl, "sleep".equals(rk) ? "已睡" : "亲喂" + ("l".equals(jr.optString("side")) ? "·左" : "r".equals(jr.optString("side")) ? "·右" : ""));
+                    long ms = (pa > 0 ? pa : now) - rs - pz;
+                    v.setChronometer(R.id.w_chr, el - Math.max(0, ms), null, pa == 0);
+                    v.setViewVisibility(R.id.w_chr, android.view.View.VISIBLE);
+                    v.setTextViewText(R.id.w_jr, pa > 0 ? "暂停中" : "");
+                } else if (lt > 0) {
+                    v.setTextViewText(R.id.w_jrl, "距上次喂奶");
+                    v.setChronometer(R.id.w_chr, el - Math.max(0, now - lt), null, true);
+                    v.setViewVisibility(R.id.w_chr, android.view.View.VISIBLE);
+                    v.setTextViewText(R.id.w_jr, jr.optString("today").replace("今天 ", ""));
+                } else {
+                    v.setTextViewText(R.id.w_jrl, "");
+                    v.setViewVisibility(R.id.w_chr, android.view.View.GONE);
+                    v.setTextViewText(R.id.w_jr, jr.optString("last"));
+                }
+                Intent ni = new Intent(c, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("log", "night").setAction("log.night");
+                v.setOnClickPendingIntent(R.id.w_night, PendingIntent.getActivity(c, 30, ni, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
+                v.setImageViewResource(R.id.w_night, eyeLook ? R.drawable.ew_sleep : R.drawable.w_sleep);
                 String[] ks = { "nurse", "bottle", "sleep", "diaper" };
                 int[] vs = { R.id.wb_nurse, R.id.wb_bottle, R.id.wb_sleep, R.id.wb_diaper };
                 for (int k = 0; k < ks.length; k++) {

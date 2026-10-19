@@ -1,0 +1,36 @@
+name: Build iOS (simulator check)
+# Checks that the iOS app and its widget compile. It builds for the simulator without signing, so it needs no
+# Apple account; installing on an iPhone or publishing needs an Apple Developer account and signing.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ios/**"
+      - "app/src/main/assets/site/**"
+      - ".github/workflows/ios.yml"
+  workflow_dispatch:
+jobs:
+  ios:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Prepare pictures and generate the Xcode project
+        run: |
+          V="$(tr -d ' \r\n' < VERSION)"
+          sed -i '' "s/MARKETING_VERSION: \".*\"/MARKETING_VERSION: \"$V.0\"/; s/CURRENT_PROJECT_VERSION: \".*\"/CURRENT_PROJECT_VERSION: \"${{ github.run_number }}\"/" ios/project.yml
+          python3 ios/scripts/prepare_assets.py
+          xcodegen generate --spec ios/project.yml
+      - name: Build for the simulator
+        run: |
+          set -o pipefail
+          xcodebuild -project ios/MonsterRaising.xcodeproj -scheme MonsterRaising -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build 2>&1 | tee xcodebuild.log | grep -E "error:|warning: .*Swift|BUILD (SUCCEEDED|FAILED)" || true
+          grep -q "BUILD SUCCEEDED" xcodebuild.log
+      - name: Report build errors
+        if: failure()
+        run: |
+          msg=$(grep -E "error:" xcodebuild.log | head -40 | sed ':a;N;$!ba;s/%/%25/g;s/\n/%0A/g')
+          echo "::error title=Xcode build::${msg}"

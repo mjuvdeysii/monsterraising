@@ -1,10 +1,8 @@
 name: Mossling on the emulator
 # Runs the native app on an Android emulator: the critical-path UI test, then cold-start timing of the release
 # build after its baseline profile is applied. Results are reported as annotations on the run.
+# The native app now lives in its own repository, mjuvdeysii/mossling; this copy only runs by hand.
 on:
-  workflow_run:
-    workflows: ["Mossling (native app)"]
-    types: [completed]
   workflow_dispatch:
 permissions:
   contents: read

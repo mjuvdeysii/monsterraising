@@ -1,12 +1,8 @@
 name: Mossling (native app)
 # Builds the native Compose app in native/: unit tests, Paparazzi screenshots of every screen, and a signed release
 # APK. Screenshots and APK are uploaded as artifacts; the APK is also published as the prerelease "mossling-preview".
+# The native app now lives in its own repository, mjuvdeysii/mossling; this copy only runs by hand.
 on:
-  push:
-    branches: [main, native]
-    paths:
-      - "native/**"
-      - ".github/workflows/native.yml"
   workflow_dispatch:
 permissions:
   contents: write
